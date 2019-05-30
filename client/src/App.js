@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardTitle, Button } from 'reactstrap';
-import Home from './components/Home';
 import { Route, withRouter } from "react-router-dom";
+import Home from './components/Home';
+import { Card, CardTitle, Button } from 'reactstrap';
+
+import { getPosts } from './actions';
+
 
 class App extends Component {
 
+  componentDidMount() {
+    this.props.getPosts();
+  }
 
   render() {
     return (
@@ -14,7 +20,7 @@ class App extends Component {
 
           <Card>
             <CardTitle >
-              Hello How To
+              {this.props.message}
             </CardTitle>
             <Button>
               Get Started
@@ -35,12 +41,16 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({ projectsReducer }) {
   return {
-    projects: state.projects,
+    projects: projectsReducer.projects,
+    message: projectsReducer.message,
   }
 }
 
 export default withRouter(connect(
-  mapStateToProps, {}
+  mapStateToProps,
+  {
+    getPosts
+  }
 )(App));

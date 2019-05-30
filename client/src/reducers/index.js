@@ -1,18 +1,6 @@
+import { combineReducers } from 'redux';
+import projectsReducer from './projectsReducer';
 
-
-const initialState =
-{
-    projects: ['one', 'two', 'three'],
-    error: null
-};
-
-const reducer = (state = initialState, action) => {
-
-    switch (action.type) {
-
-        default:
-            return state;
-    }
-};
-
-export default reducer;
+export default combineReducers({
+    projectsReducer
+})

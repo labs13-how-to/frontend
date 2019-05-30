@@ -1,23 +1,46 @@
-import React from 'react';
-// import './App.css';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Card, CardTitle, Button } from 'reactstrap';
+import Home from './components/Home';
+import { Route, withRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
+class App extends Component {
 
-        <Card>
-          <CardTitle >
-            Hello How To
-          </CardTitle>
-          <Button>
-            Get Started
-          </Button>
-        </Card>
-      </header>
-    </div>
-  );
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+
+          <Card>
+            <CardTitle >
+              Hello How To
+            </CardTitle>
+            <Button>
+              Get Started
+            </Button>
+          </Card>
+        </header>
+
+        <Route exact path="/" render={((props) => (
+          <Home
+            {...props.history}
+            {...this.props}
+          />
+        ))}
+        />
+
+      </div>
+    );
+  }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    projects: state.projects,
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps, {}
+)(App));

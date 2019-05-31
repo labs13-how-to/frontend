@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from "react-router-dom";
 import Home from './components/Home';
+import Users from './components/Users';
 import { Card, CardTitle, Button } from 'reactstrap';
 
-import { getPosts } from './actions';
+import { getPosts, getUsers } from './actions';
 
 
 class App extends Component {
@@ -14,6 +15,8 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props)
+
     return (
       <div className="App">
         <header className="App-header">
@@ -36,21 +39,32 @@ class App extends Component {
         ))}
         />
 
+        <Route path="/user/:id" render={props => (
+          <Users
+            props
+            {...this.props}
+
+          />
+        )}
+        />
+
       </div>
     );
   }
 }
 
-function mapStateToProps({ projectsReducer }) {
+function mapStateToProps({ projectsReducer, usersReducer }) {
   return {
-    projects: projectsReducer.projects,
+    posts: projectsReducer.posts,
     message: projectsReducer.message,
+    user: usersReducer.user,
   }
 }
 
 export default withRouter(connect(
   mapStateToProps,
   {
-    getPosts
+    getPosts,
+    getUsers
   }
 )(App));

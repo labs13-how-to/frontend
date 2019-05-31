@@ -6,6 +6,10 @@ export const FAILURE = 'FAILURE';
 export const ADD_FETCH = 'ADD_FETCH';
 export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_FAILURE = 'ADD_FAILURE';
+//USER_FETCH, USER_SUCCESS, USER_FAIL
+export const USER_FETCH = 'USER_FETCH';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAIL = 'USER_FAIL';
 
 
 export const getPosts = () => dispatch => {
@@ -30,5 +34,19 @@ export const addPost = (newPost) => dispatch => {
         })
         .catch(err => {
             dispatch({ type: ADD_FAILURE, payload: err });
+        })
+}
+
+export const getUsers = (id) => dispatch => {
+    dispatch({ type: USER_FETCH });
+    console.log('fetched');
+    axios
+        .get(`https://lambda-how-to.herokuapp.com/users/${id}`)
+        .then(res => {
+            console.log(res);
+            dispatch({ type: USER_SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            dispatch({ type: USER_FAIL, payload: err });
         })
 }

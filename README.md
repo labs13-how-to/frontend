@@ -1,18 +1,17 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# How-To
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+1️⃣ You can find the deployed project at [https://how-tutor.netlify.com/](https://how-tutor.netlify.com/).
 
 ## 4️⃣ Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       [Patrick Steveson](https://github.com/Mrsteveson)                                        |                                       [Matt Poloni](https://github.com/matt-poloni)                                        |                                       [Austin James](https://github.com/AJLambda)                                        |                                       [Nick Stricker](https://github.com/NickStrick)                                        |                                       [Meera Anderson](https://github.com/meera-andersen)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
@@ -59,16 +58,25 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 ### Front end built using:
 
-#### React.js and Redux
+#### React.js
 
-🚫 Why did you choose this framework?
+-    easy to use and flexable
+-    team is most familiar with it
+-    resuable components
+-    fast rendering with virtual DOM
 
--    point one
--    point two
--    point three
--    point four
+#### Redux
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+-    total seperation of data and presentation
+-    stops cluttered passing down of props
+-    state management and orginization
+
+#### Bootstrap
+
+-    Saves time and is easy to use
+-    Consistency in styling
+-    easy customization
+
 
 #### Front end deployed to `netlify`.
 
@@ -76,19 +84,28 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 #### Node.js and Express
 
--    point one
--    point two
--    point three
+-    It is more dynamic and easier to read than other frameworks.
+-    Express gives us route support.
+-    Node.js is known for offering high performance, and the freedom to develop without restrictions.
+-    Express offers lightweight middleware support for routes.
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### Postgres
+
+-    works better with our deployment sites
+-    large scale, can hold lots of data 
+
+#### Cloudinary
+
+-    Mangaes our images and videos
+-    large scale, can hold lots of data 
+
+🚫 List the rest of the back end features and libraries in the same format as the framework above
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Pass[port.js]
 
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
 
 ## 2️⃣ Payment API here
 
@@ -96,11 +113,9 @@ Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do 
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
-## 3️⃣ Misc API here
+## Cloudinary
 
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+a cloud-based image and video management solution. It enables users to upload, store, manage, manipulate and deliver images and video for websites and apps.
 
 ## 3️⃣ Misc API here
 

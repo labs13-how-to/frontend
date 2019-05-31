@@ -6,7 +6,7 @@ import {
 
 const initialState =
 {
-    projects: ['one', 'two', 'three'],
+    posts: ['one', 'two', 'three'],
     message: 'default',
     fetching: false,
     adding: false,
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 adding: false,
-                projects: action.payload
+                posts: action.payload
             }
         case ADD_FAILURE:
             return {

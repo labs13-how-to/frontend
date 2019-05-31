@@ -33,32 +33,33 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+1️⃣ [Trello Board](https://trello.com/b/vZ0hvT9Q/labs-13-how-to)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+1️⃣ [Product Canvas](https://docs.google.com/document/d/175olB_zZ7dd4bmDLb2WfAMQfk81Ej3lKhnXlmTIpP5A/edit#heading=h.gg2qc9jbcbvg)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+1️⃣ [UX Design files](https://invis.io/P4S6N4XWEC7), (https://whimsical.com/YUtnHkNyd6fEnYrJ6oyMLi)
 
-🚫 Replace lorem ipsum with a description of your project
+This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+How To aims to provide a central location for anyone looking to find reliable, highly-rated projects reviewed and tested by users like them. Users can find and become apart of a community that has similar passions to their own, where they can read, follow, and post about projects they are interested in.
 
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Ability to register an account and login
+-    Ability to create/view/edit/delete posts
+-    Ability to upload images for those posts
+-    Ability to leave reviews
+-    Ability to embed a youtube video
+-    Ability to search
+-    Ability to view account info and user specific posts
+-    Ability to add tags to posts
 
 ## 1️⃣ Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React.js and Redux
 
 🚫 Why did you choose this framework?
 
@@ -69,11 +70,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to `netlify`.
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](https://github.com/labs13-how-to/backend) built using:
 
-#### 🚫 back end framework goes here
+#### Node.js and Express
 
 -    point one
 -    point two
@@ -194,4 +195,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs13-how-to/backend/blob/master/README.md) for details on the backend of our project.

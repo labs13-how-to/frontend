@@ -1,0 +1,22 @@
+@import '~bootstrap/scss/bootstrap';
+
+body {
+  background: lightgray;
+  text-align: center;
+}
+
+.card-title{
+  font-size: 40px;
+}
+.card{
+  margin: 20 auto;
+}
+.btn{
+  width: 20%;
+  margin: 0 auto;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

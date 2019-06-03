@@ -39,8 +39,8 @@ class App extends Component {
 
         <Route exact path="/" render={((props) => (
           <Home
-            {...props.history}
-            {...this.props}
+            {...props}
+            posts={this.props.posts}
           />
         ))}
         />
@@ -48,8 +48,8 @@ class App extends Component {
         <Route path="/user/:id" render={props => (
           <Users
             {...props}
-            {...this.props}
-
+            user={this.props.user}
+            getUsers={this.props.getUsers}
           />
         )}
         />

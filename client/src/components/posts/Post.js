@@ -20,7 +20,7 @@ class Post extends React.Component {
             duration
         } = this.props.post
         return (
-            <Card>
+            <Card className='post'>
                 <CardImg src={img_url} alt="Card image" />
                 <CardHeader>{title}</CardHeader>
                 <CardBody>

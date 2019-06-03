@@ -12,11 +12,13 @@ body {
   margin: 20px 1%;
   width: 18%;
   display:flex;
+  background: none;
 }
 .card-body{
   display: flex;
   flex-direction: column;
   justify-content:  space-between;
+  align-items: center;
 }
 .btn{
   width: 200px;
@@ -28,6 +30,14 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
 
+}
+.post{
+  width: 70%;
+  margin: 20px auto;
+  .card-img{
+    width: 500px;
+    margin: 0 auto;
+  }
 }
 
 code {

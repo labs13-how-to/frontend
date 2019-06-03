@@ -12,8 +12,6 @@ const Home = props => {
                         post={post}
                         key={index}
                         history={props.history}
-                        match={props.match}
-                        getPost={props.getPost}
                     />
                 )}
             </div>

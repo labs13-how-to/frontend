@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, withRouter } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
+import { withRouter } from 'react-router';
 import Home from './components/Home';
-import Users from './components/Users';
-import { Card, CardTitle, Button } from 'reactstrap';
+import Users from './components/users/Users';
+import Post from './components/posts/Post';
+import { Button } from 'reactstrap';
 
-import { getPosts, getUsers } from './actions';
+import { getPosts, getUsers, getTest, getPost } from './actions';
 
 
 class App extends Component {
 
   componentDidMount() {
     this.props.getPosts();
+    this.props.getTest();
   }
 
   render() {
@@ -21,14 +24,17 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
 
-          <Card>
-            <CardTitle >
-              {this.props.message}
-            </CardTitle>
-            <Button>
-              Get Started
+
+          <h1>
+            {this.props.message}
+          </h1>
+          <NavLink to={'/'}>
+            <Button >
+              Home
             </Button>
-          </Card>
+          </NavLink>
+
+
         </header>
 
         <Route exact path="/" render={((props) => (
@@ -41,9 +47,18 @@ class App extends Component {
 
         <Route path="/user/:id" render={props => (
           <Users
-            props
+            {...props}
             {...this.props}
 
+          />
+        )}
+        />
+
+        <Route path="/posts/:id" render={props => (
+          <Post
+            {...props}
+            getPost={this.props.getPost}
+            post={this.props.currPost}
           />
         )}
         />
@@ -57,6 +72,8 @@ function mapStateToProps({ projectsReducer, usersReducer }) {
   return {
     posts: projectsReducer.posts,
     message: projectsReducer.message,
+    currPost: projectsReducer.currPost,
+
     user: usersReducer.user,
   }
 }
@@ -65,6 +82,8 @@ export default withRouter(connect(
   mapStateToProps,
   {
     getPosts,
-    getUsers
+    getUsers,
+    getTest,
+    getPost
   }
 )(App));

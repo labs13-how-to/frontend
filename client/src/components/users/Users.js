@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 class Users extends Component {
 
     componentDidMount() {
-        // console.log(this.props.match.params.id)
-        this.props.getUsers(1);
+        const id = Number(this.props.location.pathname.split('/')[2]);
+        this.props.getUsers(id);
     }
 
     render() {

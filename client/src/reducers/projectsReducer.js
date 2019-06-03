@@ -1,5 +1,6 @@
 import {
-    FETCH, SUCCESS, FAILURE,
+    TEST,
+    FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
 } from "../actions";
 
@@ -7,6 +8,7 @@ import {
 const initialState =
 {
     posts: ['one', 'two', 'three'],
+    currPost: {},
     message: 'default',
     fetching: false,
     adding: false,
@@ -22,12 +24,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 fetching: true
             }
-        case SUCCESS:
+        case TEST:
             return {
                 ...state,
                 error: null,
                 fetching: false,
                 message: action.payload.message
+            }
+        case SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                posts: action.payload
+            }
+        case SUCCESS_ID:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                currPost: action.payload
             }
         case FAILURE:
             return {

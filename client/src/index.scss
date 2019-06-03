@@ -9,11 +9,25 @@ body {
   font-size: 40px;
 }
 .card{
-  margin: 20 auto;
+  margin: 20px 1%;
+  width: 18%;
+  display:flex;
+}
+.card-body{
+  display: flex;
+  flex-direction: column;
+  justify-content:  space-between;
 }
 .btn{
-  width: 20%;
+  width: 200px;
   margin: 0 auto;
+
+}
+.post-list{
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
 }
 
 code {

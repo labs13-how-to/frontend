@@ -5,7 +5,7 @@
 
 # How-To
 
-1️⃣ You can find the deployed project at [netlify](https://how-tutor.netlify.com/).
+1️⃣ You can find the deployed project at [https://how-tutor.netlify.com/](https://how-tutor.netlify.com/).
 
 ## 4️⃣ Contributors
 

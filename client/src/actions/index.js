@@ -86,6 +86,7 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
 export const register = creds => dispatch => {
     dispatch({ type: REGISTER_START })
+    console.log(creds);
     return axios
         .post(`https://lambda-how-to.herokuapp.com/auth/register`, creds)
         .then(res => {

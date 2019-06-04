@@ -1,12 +1,19 @@
 import React from 'react';
+import Posts from './posts/Posts.js';
 
 
 const Home = props => {
     return (
         <React.Fragment>
             <h2>Posts</h2>
-            <div className="list">
-                {props.posts.map((post, index) => (<div key={post}>{post}</div>))}
+            <div className='post-list'>
+                {props.posts.map((post, index) =>
+                    <Posts
+                        post={post}
+                        key={index}
+                        history={props.history}
+                    />
+                )}
             </div>
         </React.Fragment>
     );

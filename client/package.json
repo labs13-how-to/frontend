@@ -17,6 +17,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   },
+  "proxy": "https://how-tutor.netlify.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

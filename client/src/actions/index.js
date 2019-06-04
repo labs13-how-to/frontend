@@ -78,3 +78,45 @@ export const getUsers = (id) => dispatch => {
             dispatch({ type: USER_FAIL, payload: err });
         })
 }
+
+// Register Action
+export const REGISTER_START = 'REGISTER_START';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+
+export const register = creds => dispatch => {
+    dispatch({ type: REGISTER_START })
+    return axios
+        .post(`https://lambda-how-to.herokuapp.com/auth/register`, creds)
+        .then(res => {
+            console.log('Register!', res.data)
+            dispatch({ type: REGISTER_SUCCESS, payload: res.data })
+        })
+        .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }))
+};
+
+// Login Actions
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export const login = creds => dispatch => {
+    dispatch({ type: LOGIN_START })
+    return axios
+        .post(`https://lambda-how-to.herokuapp.com/auth/login`, creds)
+        .then(res => {
+            console.log('Login!', res.data)
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('id', res.data.user_id)
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data})
+        })
+        .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }))
+}
+
+//Logout Action
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+export const logout = () => {
+    localStorage.removeItem('token');
+    return({ type: LOGOUT_SUCCESS })
+}

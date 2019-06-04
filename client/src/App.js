@@ -4,6 +4,7 @@ import { Route, NavLink } from "react-router-dom";
 import { withRouter } from 'react-router';
 import Home from './components/Home';
 import Users from './components/users/Users';
+import Register from './components/users/Register';
 import Post from './components/posts/Post';
 import { Button } from 'reactstrap';
 
@@ -34,6 +35,12 @@ class App extends Component {
             </Button>
           </NavLink>
 
+          <NavLink to={'/register'}>
+            <Button >
+              Register
+            </Button>
+          </NavLink>
+
 
         </header>
 
@@ -50,6 +57,13 @@ class App extends Component {
             {...props}
             user={this.props.user}
             getUsers={this.props.getUsers}
+          />
+        )}
+        />
+
+        <Route path="/register" render={props => (
+          <Register
+            {...props}
           />
         )}
         />

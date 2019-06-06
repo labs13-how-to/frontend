@@ -10,6 +10,7 @@ const initialState =
     posts: ['one', 'two', 'three'],
     currPost: {},
     message: 'default',
+    addMsg: 'default',
     fetching: false,
     adding: false,
     error: null,
@@ -63,7 +64,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 adding: false,
-                posts: action.payload
+                addMsg: action.payload.id
             }
         case ADD_FAILURE:
             return {

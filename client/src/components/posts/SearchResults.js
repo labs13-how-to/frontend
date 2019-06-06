@@ -4,26 +4,6 @@ import Posts from './Posts.js';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions';
 
-// const SearchResults = props => {
-//   const query = queryString.parse(props.location.search).q;
-//   console.log('QUERY',query)
-
-//   return (
-//       <React.Fragment>
-//           <h2>`Search results for "${query}"`</h2>
-//           <div className='post-list'>
-//               {props.posts.map((post, index) =>
-//                   <Posts
-//                       post={post}
-//                       key={index}
-//                       history={props.history}
-//                   />
-//               )}
-//           </div>
-//       </React.Fragment>
-//   );
-// }
-
 
 class Home extends React.Component {
     componentDidMount() {

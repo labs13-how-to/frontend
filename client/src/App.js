@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Route, NavLink } from "react-router-dom";
 import { withRouter } from 'react-router';
 import Home from './components/Home';
+import Nav from './components/nav';
 import Users from './components/users/Users';
 import Post from './components/posts/Post';
+import CreatePost from './components/posts/CreatePost.js';
 import { Button } from 'reactstrap';
 
 import { getPosts, getUsers, getTest, getPost } from './actions';
@@ -23,46 +25,46 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-
-
           <h1>
             {this.props.message}
           </h1>
-          <NavLink to={'/'}>
-            <Button >
-              Home
-            </Button>
-          </NavLink>
-
-
+          <Nav />
         </header>
-
-        <Route exact path="/" render={((props) => (
-          <Home
-            {...props}
-            posts={this.props.posts}
+        <div className="container">
+          <Route exact path="/" render={((props) => (
+            <Home
+              {...props}
+            />
+          ))}
           />
-        ))}
-        />
 
-        <Route path="/user/:id" render={props => (
-          <Users
-            {...props}
-            user={this.props.user}
-            getUsers={this.props.getUsers}
+          <Route path="/user/:id" render={props => (
+            <Users
+              {...props}
+              user={this.props.user}
+              getUsers={this.props.getUsers}
+            />
+          )}
           />
-        )}
-        />
-
-        <Route path="/posts/:id" render={props => (
-          <Post
-            {...props}
-            getPost={this.props.getPost}
-            post={this.props.currPost}
+          <Route exact path="/forms/post/create" render={props => (
+            <CreatePost
+              {...props}
+              getPost={this.props.getPost}
+              post={this.props.currPost}
+            />
+          )}
           />
-        )}
-        />
 
+          <Route exact path="/posts/:id" render={props => (
+            <Post
+              {...props}
+              getPost={this.props.getPost}
+              post={this.props.currPost}
+            />
+          )}
+          />
+
+        </div>
       </div>
     );
   }

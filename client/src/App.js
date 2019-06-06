@@ -11,17 +11,33 @@ import CreatePost from './components/posts/CreatePost.js';
 import { Button } from 'reactstrap';
 
 import { getPosts, getUsers, getTest, getPost } from './actions';
+import SearchResults from './components/posts/SearchResults';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        search: ''
+    };
+  }
 
   componentDidMount() {
     this.props.getPosts();
     this.props.getTest();
   }
 
+  searchChanges = e => {
+    this.setState({ search: e.target.value })
+  }
+
+  searchSubmit = e => {
+    e.preventDefault();
+    this.props.history.push(`/search?q=${this.state.search}`)
+  }
+
   render() {
-    console.log(this.props)
+    console.log('PROPS',this.props)
 
     return (
       <div className="App">
@@ -29,7 +45,10 @@ class App extends Component {
           <h1>
             {this.props.message}
           </h1>
-          <Nav />
+          <Nav
+            handleSubmit={this.searchSubmit}
+            handleChanges={this.searchChanges}
+          />
         </header>
         <div className="container">
           <Route exact path="/" render={((props) => (
@@ -69,6 +88,10 @@ class App extends Component {
               getPost={this.props.getPost}
               post={this.props.currPost}
             />)} />
+
+          <Route path="/search" render={props => (
+            <SearchResults {...props} />
+          )} />
 
         </div>
       </div>

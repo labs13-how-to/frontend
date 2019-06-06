@@ -1,4 +1,8 @@
-import { USER_FETCH, USER_SUCCESS, USER_FAIL } from '../actions';
+import { 
+    USER_FETCH, USER_SUCCESS, USER_FAIL, 
+    REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE,
+
+} from '../actions';
 
 const initialState =
 {
@@ -6,6 +10,8 @@ const initialState =
     fetching: false,
     adding: false,
     error: null,
+    isRegistered: false,
+    isLoggedIn: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +37,26 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
+        case REGISTER_START:
+            return {
+                ...state,
+                isRegistered: true,
+                error: null,
+            }
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                isRegistered: false,
+                isLoggedIn: true,
+                user_id: action.payload.id,
+                error: null
+            }
+        case REGISTER_FAILURE:
+            return {
+                ...state,
+                isRegistered: false,
+                error: action.payload
+            }
 
         default:
             return state;

@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import Home from './components/Home';
 import Nav from './components/nav';
 import Users from './components/users/Users';
+import Register from './components/users/Register';
 import Post from './components/posts/Post';
 import CreatePost from './components/posts/CreatePost.js';
 import { Button } from 'reactstrap';
@@ -55,14 +56,19 @@ class App extends Component {
           )}
           />
 
-          <Route exact path="/posts/:id" render={props => (
+          <Route path="/register" render={props => (
+            <Register
+              {...props}
+            />
+          )}
+          />
+
+          <Route path="/posts/:id" render={props => (
             <Post
               {...props}
               getPost={this.props.getPost}
               post={this.props.currPost}
-            />
-          )}
-          />
+            />)} />
 
         </div>
       </div>

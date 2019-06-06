@@ -11,14 +11,15 @@ class Home extends React.Component {
     }
 
     render() {
+        // Grabs query string out of URL params
         const query = queryString.parse(this.props.location.search).q;
-        console.log('QUERY',query)
 
         return (
             <React.Fragment>
                 <h2>Search results for "{query}"</h2>
                 <div className='post-list'>
                     {this.props.posts.reduce((posts, post, index) => {
+                        // Checks if a post title exists w/ query string, ignoring case
                         return post.title && post.title.toLowerCase().includes(query.toLowerCase())
                           ? [
                               ...posts,

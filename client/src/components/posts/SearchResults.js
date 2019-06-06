@@ -19,7 +19,7 @@ class Home extends React.Component {
                 <h2>Search results for "{query}"</h2>
                 <div className='post-list'>
                     {this.props.posts.reduce((posts, post, index) => {
-                        return post.title && post.title.includes(query)
+                        return post.title && post.title.toLowerCase().includes(query.toLowerCase())
                           ? [
                               ...posts,
                               (<Posts

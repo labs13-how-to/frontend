@@ -58,7 +58,7 @@ export const addPost = (newPost) => dispatch => {
     axios
         .post('https://lambda-how-to.herokuapp.com/posts', newPost)
         .then(response => {
-            dispatch({ type: ADD_SUCCESS, payload: response.data });
+            dispatch({ type: ADD_SUCCESS, payload: { id: response.data } })
         })
         .catch(err => {
             dispatch({ type: ADD_FAILURE, payload: err });

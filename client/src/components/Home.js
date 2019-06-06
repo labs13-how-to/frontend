@@ -1,22 +1,43 @@
 import React from 'react';
 import Posts from './posts/Posts.js';
+import { connect } from 'react-redux';
+import { getPosts } from '../actions';
 
 
-const Home = props => {
-    return (
-        <React.Fragment>
-            <h2>Posts</h2>
-            <div className='post-list'>
-                {props.posts.map((post, index) =>
-                    <Posts
-                        post={post}
-                        key={index}
-                        history={props.history}
-                    />
-                )}
-            </div>
-        </React.Fragment>
-    );
+class Home extends React.Component {
+
+    componentDidMount() {
+        this.props.getPosts();
+    }
+
+    render() {
+        return (
+            <React.Fragment>
+                <h2>Posts</h2>
+                <div className='post-list'>
+                    {this.props.posts.map((post, index) =>
+                        <Posts
+                            post={post}
+                            key={index}
+                            history={this.props.history}
+                        />
+                    )}
+                </div>
+            </React.Fragment>
+        );
+    }
+
 };
 
-export default Home;
+function mapStateToProps({ projectsReducer }) {
+    return {
+        posts: projectsReducer.posts
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {
+        getPosts
+    }
+)(Home);

@@ -21,7 +21,7 @@ body {
   align-items: center;
 }
 .btn{
-  width: 200px;
+  width: 80%;
   margin: 0 auto;
 
 }
@@ -43,4 +43,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+header{
+  width: 800px;
+  margin: 0 auto;
+}
+
+.container{
+  margin: 0 auto;
+  width: 1500px;
 }

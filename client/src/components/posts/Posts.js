@@ -3,13 +3,13 @@ import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstra
 
 
 const Posts = props => {
-    const { title, description, img_url, id } = props.post
+    const { title, difficulty, img_url, id } = props.post
     return (
         <Card>
             <CardImg src={img_url} alt="Card image" />
             <CardHeader>{title}</CardHeader>
             <CardBody>
-                <CardText>{description}</CardText>
+                <CardText>{difficulty}</CardText>
                 <Button onClick={() => props.history.push(`posts/${id}`)}>
                     Learn More
                 </Button>

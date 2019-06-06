@@ -23,11 +23,12 @@ const NavComponent = props => {
             <NavbarBrand href="/">How-To</NavbarBrand>
             <Nav className="mr-auto" navbar>
                 <NavItem>
-                    <Form onSubmit={this.props.handleSearch}>
+                    <Form onSubmit={props.handleSubmit}>
                         <Input
                             type="text"
                             id="search"
                             placeholder="Search"
+                            onChange={props.handleChanges}
                         />
                     </Form>
                 </NavItem>

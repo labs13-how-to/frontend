@@ -53,6 +53,7 @@ export const getPost = id => dispatch => {
     });
 };
 
+<<<<<<< HEAD
 export const addPost = newPost => dispatch => {
   dispatch({ type: ADD_FETCH });
   axios
@@ -64,6 +65,19 @@ export const addPost = newPost => dispatch => {
       dispatch({ type: ADD_FAILURE, payload: err });
     });
 };
+=======
+export const addPost = (newPost) => dispatch => {
+    dispatch({ type: ADD_FETCH });
+    axios
+        .post('https://lambda-how-to.herokuapp.com/posts', newPost)
+        .then(response => {
+            dispatch({ type: ADD_SUCCESS, payload: { id: response.data } })
+        })
+        .catch(err => {
+            dispatch({ type: ADD_FAILURE, payload: err });
+        })
+}
+>>>>>>> 253800119084e8f89f377b1660783d7130e29f37
 
 export const getUsers = id => dispatch => {
   dispatch({ type: USER_FETCH });

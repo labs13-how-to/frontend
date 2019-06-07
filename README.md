@@ -133,6 +133,10 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
+ - REACT_APP_BE_URL=http://localhost:5000
+ - REACT_APP_FE_ROOT=http://localhost:3000
+
+
 🚫These are just examples, replace them with the specifics for your app
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console

@@ -9,10 +9,7 @@ import Register from "./components/users/Register";
 import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
 import { Button } from "reactstrap";
-
-import { getPosts, getUsers, getTest, getPost } from "./actions";
 import SearchResults from "./components/posts/SearchResults";
-
 import { getPosts, getUsers, getTest, getPost, login } from "./actions";
 
 class App extends Component {

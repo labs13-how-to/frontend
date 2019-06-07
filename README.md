@@ -1,7 +1,4 @@
-
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+***Must create .env file inside of client folder and include environment variables provided below***
 
 # How-To
 
@@ -132,6 +129,10 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 # 3️⃣ Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
+
+ - REACT_APP_BE_URL=http://localhost:5000
+ - REACT_APP_FE_ROOT=http://localhost:3000
+
 
 🚫These are just examples, replace them with the specifics for your app
 

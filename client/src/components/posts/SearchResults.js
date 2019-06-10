@@ -20,7 +20,7 @@ class Home extends React.Component {
                 <div className='post-list'>
                     {this.props.posts.reduce((posts, post, index) => {
                         // Checks if a post title exists w/ query string, ignoring case
-                        return query && post.title && post.title.toLowerCase().includes(query.toLowerCase())
+                        return post.title && post.title.toLowerCase().includes(query.toLowerCase())
                           ? [
                               ...posts,
                               (<Posts

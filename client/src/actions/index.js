@@ -79,6 +79,25 @@ export const getUsers = id => dispatch => {
     });
 };
 
+//Get User Posts --> Account Page
+export const USER_POSTS_FETCH = "USER_POSTS_FETCH";
+export const USER_POSTS_SUCCESS = "USER_POSTS_SUCCESS";
+export const USER_POSTS_FAIL = "USER_POSTS_FAIL";
+
+export const getUserPosts = id => dispatch => {
+  dispatch({ type: USER_POSTS_FETCH })
+  console.log("fetching user posts");
+  axios
+    .get(`https://lambda-how-to.herokuapp.com/users/${id}/posts`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: USER_POSTS_FAIL, payload: err})
+    });
+};
+
 // Register Action
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";

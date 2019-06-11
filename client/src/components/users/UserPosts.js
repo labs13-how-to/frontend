@@ -13,7 +13,7 @@ class UserPosts extends React.Component {
     render() {
         return(
             <div className='post-list'>
-                {this.props.posts.map((post, i) => {
+                {this.props.userPosts.map((post, i) => {
                     return (
                         <Card key={i}>
                             <CardImg src={post.img_url} alt="Card Image"/>
@@ -35,7 +35,7 @@ class UserPosts extends React.Component {
 
 function mapStateToProps({ projectsReducer, usersReducer }) {
     return {
-        posts: projectsReducer.posts,
+        userPosts: projectsReducer.userPosts,
         user: usersReducer.user.id
     };
 };

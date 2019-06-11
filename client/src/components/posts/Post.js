@@ -1,13 +1,18 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 import PostStep from './PostStep';
 
 
 class Post extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: Number(this.props.location.pathname.split('/')[2])
+        }
+    }
 
     componentDidMount() {
-        const id = Number(this.props.location.pathname.split('/')[2]);
-        this.props.getPost(id)
+        this.props.getPost(this.state.id)
     }
 
     render() {
@@ -43,6 +48,9 @@ class Post extends React.Component {
                         />
                     )
                 })}
+                <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
+                    Add Steps
+                </Button>
             </React.Fragment>
         );
     }

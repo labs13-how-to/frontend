@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getReviews, getUsers } from "../../actions";
-import { Card, CardText, CardBody, CardHeader, CardImg } from "reactstrap";
+import { Card, CardText, CardBody, CardHeader } from "reactstrap";
 
 
 class Reviews extends React.Component {
@@ -14,8 +14,6 @@ class Reviews extends React.Component {
         return (
             <div>
                 {this.props.reviews.map((review, index) => {
-                    // this.props.getUsers(review.user_id)
-                    // const currentUser = this.props.user.username
                     return (
                         <Card key={index}>
                             <CardHeader>{review.username}</CardHeader>

@@ -12,7 +12,7 @@ import CreateStep from './components/posts/CreatePostStep';
 import { Button } from "reactstrap";
 import SearchResults from "./components/posts/SearchResults";
 
-import { getPosts, getUsers, getTest, getPost, login } from "./actions";
+import { getUsers, getTest, login } from "./actions";
 
 
 class App extends Component {
@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.getPosts();
     this.props.getTest();
   }
 
@@ -68,18 +67,10 @@ class App extends Component {
           <Route exact path="/" render={props => <Home {...props} />} />
 
           <Route
-            exact
-            path="/"
-            render={props => <Home {...props} posts={this.props.posts} />}
-          />
-
-          <Route
             path="/user/:id"
             render={props => (
               <Users
                 {...props}
-                user={this.props.user}
-                getUsers={this.props.getUsers}
               />
             )}
           />
@@ -97,8 +88,6 @@ class App extends Component {
             render={props => (
               <Post
                 {...props}
-                getPost={this.props.getPost}
-                post={this.props.currPost}
               />
             )}
           />
@@ -122,9 +111,7 @@ class App extends Component {
 
 function mapStateToProps({ projectsReducer, usersReducer }) {
   return {
-    posts: projectsReducer.posts,
     message: projectsReducer.message,
-    currPost: projectsReducer.currPost,
     token: usersReducer.token,
     user: usersReducer.user
   };
@@ -134,10 +121,8 @@ export default withRouter(
   connect(
     mapStateToProps,
     {
-      getPosts,
       getUsers,
       getTest,
-      getPost,
       login
     }
   )(App)

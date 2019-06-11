@@ -29,8 +29,7 @@ class CreatePostForm extends React.Component {
     handleSumbit = async e => {
         console.log(this.state);
         e.preventDefault();
-        const newPost = await this.props.addPost(this.state);
-        // console.log(newPost)
+        await this.props.addPost(this.state)
         this.setState({
             title: '',
             img_url: '',
@@ -41,7 +40,9 @@ class CreatePostForm extends React.Component {
             supplies: '',
             created_by: 0,
         })
-        setTimeout(() => this.props.history.push(`/forms/post/${newPost.id}/steps`), 300);
+        console.log(this.props.addId);
+
+        setTimeout(() => this.props.history.push(`/forms/post/${this.props.addId}/steps`), 600);
     }
 
     render() {
@@ -139,7 +140,8 @@ class CreatePostForm extends React.Component {
 
 function mapStateToProps({ projectsReducer }) {
     return {
-        error: projectsReducer.error
+        error: projectsReducer.error,
+        addId: projectsReducer.addId
     }
 }
 

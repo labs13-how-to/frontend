@@ -27,16 +27,14 @@ class UserPosts extends React.Component {
                         </Card>
                     )
                 })}
-
             </div>
         );
     };
 };
 
-function mapStateToProps({ projectsReducer, usersReducer }) {
+function mapStateToProps({ projectsReducer }) {
     return {
-        userPosts: projectsReducer.userPosts,
-        user: usersReducer.user.id
+        userPosts: projectsReducer.userPosts
     };
 };
 

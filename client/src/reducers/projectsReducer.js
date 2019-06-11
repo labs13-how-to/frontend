@@ -2,7 +2,11 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
+
 } from "../actions";
+import {
+    ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
+} from '../actions/steps-tagsActions';
 
 
 const initialState =
@@ -67,6 +71,25 @@ const reducer = (state = initialState, action) => {
                 addMsg: action.payload.id
             }
         case ADD_FAILURE:
+            return {
+                ...state,
+                adding: false,
+                error: action.payload
+            }
+        //add a step reducers
+        case ADDSTEP_FETCH:
+            return {
+                ...state,
+                adding: true
+            }
+        case ADDSTEP_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                adding: false,
+                addMsg: action.payload.id
+            }
+        case ADDSTEP_FAILURE:
             return {
                 ...state,
                 adding: false,

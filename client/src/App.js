@@ -47,8 +47,6 @@ class App extends Component {
           </a>
         </header>
         <div className="container">
-          <Route exact path="/" render={props => <Home {...props} />} />
-
           <Route
             exact
             path="/"

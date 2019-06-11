@@ -165,7 +165,7 @@ export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
 export const REVIEW_ADD_FAILURE = "REVIEW_ADD_FAILURE";
 
-export const addReview = () => {
+export const addReview = id => dispatch => {
   dispatch({ type: REVIEW_ADD_START })
   axios
     .get(`https://lambda-how-to.herokuapp.com/posts/${id}/reviews`)

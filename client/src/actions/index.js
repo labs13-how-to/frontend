@@ -107,7 +107,7 @@ export const login = () => dispatch => {
     .get(`${process.env.REACT_APP_BE_URL}/auth/google`)
     .then(res => {
       console.log(res);
-      dispatch({ type: LOGIN_SUCCESS });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err.message);
@@ -119,6 +119,6 @@ export const login = () => dispatch => {
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
 export const logout = () => {
-  localStorage.removeItem("token");
+  localStorage.removeItem("jwt");
   return { type: LOGOUT_SUCCESS };
 };

@@ -1,0 +1,36 @@
+import React from 'react';
+import { withRouter } from "react-router";
+import { Form, Input } from 'reactstrap';
+
+class NavSearch extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: ""
+    }
+  }
+
+  searchChanges = e => {
+    this.setState({ search: e.target.value });
+  };
+
+  searchSubmit = e => {
+    e.preventDefault();
+    this.props.history.push(`/search?q=${this.state.search}`);
+  };
+
+  render() {
+    return (
+      <Form onSubmit={this.searchSubmit}>
+          <Input
+              type="text"
+              id="search"
+              placeholder="Search"
+              onChange={this.searchChanges}
+          />
+      </Form>
+    )
+  }
+}
+
+export default withRouter(NavSearch);

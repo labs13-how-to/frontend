@@ -10,7 +10,7 @@ import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
 import { Button } from "reactstrap";
 import SearchResults from "./components/posts/SearchResults";
-
+import CreateStep from "./components/posts/CreatePostStep";
 import { getPosts, getUsers, getTest, getPost, login } from "./actions";
 import queryString from "query-string";
 

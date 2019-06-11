@@ -9,6 +9,7 @@ import {
 const initialState =
 {
     posts: ['one', 'two', 'three'],
+    userPosts: [],
     currPost: {},
     message: 'default',
     addMsg: 'default',
@@ -85,13 +86,13 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 fetching: false,
-                posts: action.payload
+                userPosts: action.payload
             }
         case USER_POSTS_FAIL:
             return {
                 ...state,
                 fetching: false,
-                posts: [],
+                userPosts: [],
                 error: action.payload
             }
 

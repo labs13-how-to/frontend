@@ -6,7 +6,7 @@ import {
 } from "../actions";
 
 const initialState = {
-    tech: [],
+    posts: [],
     reviews: [],
     fetching: false,
     adding: false,
@@ -19,23 +19,86 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         //Get
         case REVIEW_FETCH_START:
+            return {
+                ...state,
+                fetching: true,
+                error: null,
+            }
         case REVIEW_FETCH_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                reviews: action.payload,
+                error: null,
+            }
         case REVIEW_FETCH_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
         
         //Post
         case REVIEW_ADD_START:
+            return {
+                ...state,
+                adding: true,
+                error: null,
+            }
         case REVIEW_ADD_SUCCESS:
+            return {
+                ...state,
+                adding: false,
+                reviews: action.payload,
+                error: null,
+            }
         case REVIEW_ADD_FAILURE:
+            return {
+                ...state,
+                adding: false,
+                error: action.payload,
+            }
 
         //Update
         case REVIEW_UPDATE_START:
+            return {
+                ...state,
+                updating: true,
+                error: null,
+            }
         case REVIEW_UPDATE_SUCCESS:
+            return {
+                ...state,
+                updating: false,
+                reviews: action.payload,
+                error: null,
+            }
         case REVIEW_UPDATE_FAILURE:
+            return {
+                ...state,
+                updating: false,
+                error: null,
+            }
 
         //Delete
         case REVIEW_DELETE_START:
+            return {
+                ...state,
+                deleting: true,
+                error: null,
+            }
         case REVIEW_DELETE_SUCCESS:
+            return {
+                ...state,
+                deleting: false,
+                reviews: action.payload,
+            }
         case REVIEW_DELETE_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+                error: action.payload,
+            }
     };
 };
 

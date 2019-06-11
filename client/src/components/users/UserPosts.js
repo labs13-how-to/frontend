@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 import { getUserPosts } from '../../actions';
 
 class UserPosts extends React.Component {
@@ -11,24 +11,27 @@ class UserPosts extends React.Component {
 
     render() {
         return(
-            <div>
+            <React.Fragment>
                 <h2>Your Published Projects</h2>
-               
-                {this.props.posts.map(post => {
-                    <Card>
-                        <CardImg src={post.img_url} alt="Card Image"/>
-                        <CardHeader>{post.title}</CardHeader>
-                        <CardBody>
-                            <CardText>{post.description}</CardText>
-                            <CardText>difficulty: {post.difficulty}</CardText>
-                            <CardText>duration: {post.duration} </CardText>
-                            <CardText>skills: {post.skills}</CardText>
-                            <CardText>supplies: {post.supplies}</CardText>
-                        </CardBody>
-                    </Card>
-                })}
+                <div className='post-list'>
+                
+                    {this.props.posts.map(post => {
+                        return (
+                            <Card>
+                                <CardImg src={post.img_url} alt="Card Image"/>
+                                <CardHeader>{post.title}</CardHeader>
+                                <CardBody>
+                                    <CardText>{post.difficulty}</CardText>
+                                    <Button onClick={() => this.props.history.push(`/posts/${post.id}`)}>
+                                        Learn More
+                                    </Button>
+                                </CardBody>
+                            </Card>
+                        )
+                    })}
 
-            </div>
+                </div>
+            </React.Fragment>
         );
     };
 };

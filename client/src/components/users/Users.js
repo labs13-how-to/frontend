@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import UserPosts from './UserPosts';
 
 class Users extends Component {
 
@@ -9,7 +9,6 @@ class Users extends Component {
     }
 
     render() {
-        console.log(this.props.user)
         return (
             <React.Fragment>
                 <h2>User</h2>
@@ -17,6 +16,7 @@ class Users extends Component {
                     <p>{this.props.user.username}</p>
                     <p>is a: {this.props.user.role}</p>
                 </div>
+                <UserPosts history={this.props.history} />
             </React.Fragment>
         )
     }

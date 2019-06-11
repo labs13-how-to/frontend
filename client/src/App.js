@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, NavLink } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { withRouter } from 'react-router';
 import Home from './components/Home';
 import Nav from './components/nav';
@@ -8,7 +8,7 @@ import Users from './components/users/Users';
 import Register from './components/users/Register';
 import Post from './components/posts/Post';
 import CreatePost from './components/posts/CreatePost.js';
-import { Button } from 'reactstrap';
+import CreateStep from './components/posts/CreatePostStep';
 
 import { getPosts, getUsers, getTest, getPost } from './actions';
 
@@ -47,11 +47,9 @@ class App extends Component {
             />
           )}
           />
-          <Route exact path="/forms/post/create" render={props => (
+          <Route path="/forms/post/create" render={props => (
             <CreatePost
               {...props}
-              getPost={this.props.getPost}
-              post={this.props.currPost}
             />
           )}
           />
@@ -69,6 +67,13 @@ class App extends Component {
               getPost={this.props.getPost}
               post={this.props.currPost}
             />)} />
+
+          <Route path="/forms/post/:id/steps" render={props => (
+            <CreateStep
+              {...props}
+            />
+          )}
+          />
 
         </div>
       </div>

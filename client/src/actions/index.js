@@ -58,7 +58,9 @@ export const addPost = (newPost) => dispatch => {
     axios
         .post('https://lambda-how-to.herokuapp.com/posts', newPost)
         .then(response => {
+            console.log(response.data)
             dispatch({ type: ADD_SUCCESS, payload: { id: response.data } })
+            // return { id: response.data }
         })
         .catch(err => {
             dispatch({ type: ADD_FAILURE, payload: err });
@@ -109,7 +111,7 @@ export const login = creds => dispatch => {
             console.log('Login!', res.data)
             localStorage.setItem('token', res.data.token);
             localStorage.setItem('id', res.data.user_id)
-            dispatch({ type: LOGIN_SUCCESS, payload: res.data})
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data })
         })
         .catch(err => dispatch({ type: LOGIN_FAILURE, payload: err }))
 }
@@ -119,5 +121,5 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const logout = () => {
     localStorage.removeItem('token');
-    return({ type: LOGOUT_SUCCESS })
+    return ({ type: LOGOUT_SUCCESS })
 }

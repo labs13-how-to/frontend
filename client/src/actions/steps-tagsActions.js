@@ -7,7 +7,7 @@ export const ADDSTEP_FAILURE = 'ADDSTEP_FAILURE';
 export const addStep = (id, newStep) => dispatch => {
     dispatch({ type: ADDSTEP_FETCH });
     axios
-        .post(`http://localhost:4000/posts/${id}/steps`, newStep)
+        .post(`https://lambda-how-to.herokuapp.com/posts/${id}/steps`, newStep)
         .then(response => {
             console.log(response.data)
             dispatch({ type: ADDSTEP_SUCCESS, payload: response.data })

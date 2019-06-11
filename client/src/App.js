@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import Home from "./components/Home";
 import Nav from "./components/navbar/Nav";
 import Users from "./components/users/Users";
-import Register from "./components/users/Register";
+// import Register from "./components/users/Register";
 import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
 import { Button } from "reactstrap";
@@ -44,13 +44,13 @@ class App extends Component {
             <Button>Home</Button>
           </NavLink>
 
-          <NavLink to={"/register"}>
-            <Button>Register</Button>
-          </NavLink>
-
           <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
             <Button>Login with google</Button>
           </a>
+
+          <NavLink to={"/user/:id"}>
+            <Button>Account</Button>
+          </NavLink>
         </header>
         <div className="container">
           <Route
@@ -81,7 +81,7 @@ class App extends Component {
             )}
           />
 
-          <Route path="/register" render={props => <Register {...props} />} />
+          {/* <Route path="/register" render={props => <Register {...props} />} /> */}
 
           <Route
             path="/posts/:id"

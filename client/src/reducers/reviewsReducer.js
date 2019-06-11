@@ -99,6 +99,9 @@ const reducer = (state = initialState, action) => {
                 deleting: false,
                 error: action.payload,
             }
+        
+        default: 
+            return state;
     };
 };
 

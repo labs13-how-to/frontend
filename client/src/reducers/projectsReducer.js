@@ -2,7 +2,7 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
-
+    USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
@@ -12,6 +12,7 @@ import {
 const initialState =
 {
     posts: ['one', 'two', 'three'],
+    userPosts: [],
     currPost: {},
     message: 'default',
     addId: 0,
@@ -93,6 +94,27 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 adding: false,
+                error: action.payload
+            }
+
+        // User Posts Fetching
+        case USER_POSTS_FETCH:
+            return {
+                ...state,
+                fetching: true,
+                error: null
+            }
+        case USER_POSTS_SUCCESS:
+            return {
+                ...state,
+                fetching: false,
+                userPosts: action.payload
+            }
+        case USER_POSTS_FAIL:
+            return {
+                ...state,
+                fetching: false,
+                userPosts: [],
                 error: action.payload
             }
 

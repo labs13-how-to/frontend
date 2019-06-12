@@ -1,33 +1,32 @@
 import React from 'react';
+import { withRouter } from "react-router";
 import { connect } from 'react-redux';
-import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 import { getUserPosts } from '../../actions';
 
 class UserPosts extends React.Component {
 
     componentDidMount() {
-        this.props.getUserPosts();
+        this.props.getUserPosts(this.props.match.params.id);
     };
 
     render() {
         return(
-            <div>
-                <h2>Your Published Projects</h2>
-               
-                {this.props.posts.map(post => {
-                    <Card>
-                        <CardImg src={post.img_url} alt="Card Image"/>
-                        <CardHeader>{post.title}</CardHeader>
-                        <CardBody>
-                            <CardText>{post.description}</CardText>
-                            <CardText>difficulty: {post.difficulty}</CardText>
-                            <CardText>duration: {post.duration} </CardText>
-                            <CardText>skills: {post.skills}</CardText>
-                            <CardText>supplies: {post.supplies}</CardText>
-                        </CardBody>
-                    </Card>
+            <div className='post-list'>
+                {this.props.userPosts.map((post, i) => {
+                    return (
+                        <Card key={i}>
+                            <CardImg src={post.img_url} alt="Card Image"/>
+                            <CardHeader>{post.title}</CardHeader>
+                            <CardBody>
+                                <CardText>{post.difficulty}</CardText>
+                                <Button onClick={() => this.props.history.push(`/posts/${post.id}`)}>
+                                    Learn More
+                                </Button>
+                            </CardBody>
+                        </Card>
+                    )
                 })}
-
             </div>
         );
     };
@@ -35,12 +34,11 @@ class UserPosts extends React.Component {
 
 function mapStateToProps({ projectsReducer }) {
     return {
-        posts: projectsReducer.posts
-        
+        userPosts: projectsReducer.userPosts
     };
 };
 
 
 
 
-export default connect(mapStateToProps, { getUserPosts })(UserPosts);
+export default withRouter(connect(mapStateToProps, { getUserPosts })(UserPosts));

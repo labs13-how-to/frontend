@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { getUsers } from "../../actions/index";
 
 class Users extends Component {
 
@@ -22,4 +23,16 @@ class Users extends Component {
     }
 };
 
-export default Users;
+function mapStateToProps({ usersReducer }) {
+    return {
+        user: usersReducer.user
+    };
+}
+
+export default
+    connect(
+        mapStateToProps,
+        {
+            getUsers,
+        }
+    )(Users);

@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
     Card, CardText, CardBody, CardHeader, CardImg, Button,
-    FormGroup, Label, Input, DropdownToggle, DropdownMenu, DropdownItem, InputGroupButtonDropdown
+    FormGroup, Label, Input, DropdownToggle, DropdownMenu,
+    DropdownItem, InputGroupButtonDropdown, Form
 } from 'reactstrap';
-import { getTag } from '../../actions/steps-tagsActions';
+import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
 import { getPost } from '../../actions/index';
 
 import PostStep from './PostStep';
@@ -32,8 +33,19 @@ class Post extends React.Component {
         this.props.getTag();
     }
     componentDidUpdate(prevProps, prevState) {
-
+        if (prevProps.refresh !== this.props.refresh)
+            this.props.getPost(this.state.id)
     }
+
+    handleChange = e => {
+        this.setState({ tag: e.target.value });
+        const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)
+        const isTagged = this.props.currPost.tags.filter(tag => e.target.value === tag.name.toLowerCase())
+        const newTag = { post_id: this.state.id, tag_id: tagId[0].id };
+        isTagged.length
+            ? this.props.removeTag(newTag)
+            : this.props.addTag(newTag);
+    };
 
     render() {
         const {
@@ -60,13 +72,14 @@ class Post extends React.Component {
                             <DropdownToggle split outline />
                             <DropdownMenu>
                                 <DropdownItem>
-                                    <FormGroup>
-                                        <Label for="exampleSelectMulti">Select Tags</Label>
-                                        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id}>{tag.name}</option>) : null}
-                                        </Input>
-                                    </FormGroup>
-
+                                    <Form>
+                                        <FormGroup>
+                                            <Label for="exampleSelectMulti">Select Tags</Label>
+                                            <Input onChange={this.handleChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                                {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                            </Input>
+                                        </FormGroup>
+                                    </Form>
                                 </DropdownItem>
 
                             </DropdownMenu>
@@ -106,7 +119,8 @@ function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
         currPost: projectsReducer.currPost,
-        allTags: projectsReducer.allTags
+        allTags: projectsReducer.allTags,
+        refresh: projectsReducer.refresh
     }
 }
 
@@ -114,6 +128,8 @@ export default connect(
     mapStateToProps,
     {
         getTag,
-        getPost
+        getPost,
+        removeTag,
+        addTag
     }
 )(Post);

@@ -54,3 +54,35 @@ header{
   margin: 0 auto;
   width: 1500px;
 }
+
+.post-tags{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post-tags span{
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin:2px;
+}
+.tag-section{
+  display: flex;
+  justify-content: center;
+}
+
+.tag-section button{
+  width: 40px;
+  height: 30px;
+}
+.tag-section button select{
+  width: 200px;
+}
+.tag-section .dropdown-item{
+  width: 200px;
+}
+.tag-section .dropdown-menu{
+  width:250px;
+  height:170px;
+}

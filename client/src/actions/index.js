@@ -145,12 +145,13 @@ export const logout = () => {
 };
 
 //Reviews Actions
-//Getting reviews for specified post
+//Getting reviews for specified post 
 export const REVIEW_FETCH_START = "REVIEW_FETCH_START";
 export const REVIEW_FETCH_SUCCESS = "REVIEW_FETCH_SUCCESS";
 export const REVIEW_FETCH_FAILURE = "REVIEW_FETCH_FAILURE";
 
 export const getReviews = id => dispatch => {
+
   dispatch({ type: REVIEW_FETCH_START });
   axios
     .get(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`)
@@ -161,11 +162,11 @@ export const getReviews = id => dispatch => {
     .catch(err => {
       dispatch({ type: REVIEW_FETCH_FAILURE, payload: err });
     });
-};
 
 export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
 export const REVIEW_ADD_FAILURE = "REVIEW_ADD_FAILURE";
+
 
 export const addReview = (id, newPost) => dispatch => {
   console.log("NEWPOSTT!", newPost);
@@ -184,6 +185,7 @@ export const addReview = (id, newPost) => dispatch => {
 export const REVIEW_UPDATE_START = "REVIEW_UPDATE_START";
 export const REVIEW_UPDATE_SUCCESS = "REVIEW_UPDATE_SUCCESS";
 export const REVIEW_UPDATE_FAILURE = "REVIEW_UPDATE_FAILURE";
+
 
 export const updateReview = (id, updatedPost) => dispatch => {
   dispatch({ type: REVIEW_UPDATE_START });

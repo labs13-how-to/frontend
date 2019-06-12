@@ -162,6 +162,7 @@ export const getReviews = id => dispatch => {
     .catch(err => {
       dispatch({ type: REVIEW_FETCH_FAILURE, payload: err });
     });
+}
 
 export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";

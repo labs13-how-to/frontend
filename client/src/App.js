@@ -11,7 +11,7 @@ import CreatePost from "./components/posts/CreatePost.js";
 import { Button } from "reactstrap";
 import SearchResults from "./components/posts/SearchResults";
 import CreateStep from "./components/posts/CreatePostStep";
-import { getPosts, getUsers, getTest, getPost, login } from "./actions";
+import { getTest, login } from "./actions";
 import queryString from "query-string";
 
 
@@ -24,7 +24,6 @@ class App extends Component {
       this.props.history.push("/");
     }
 
-    this.props.getPosts();
     this.props.getTest();
   }
 
@@ -42,10 +41,6 @@ class App extends Component {
 
           <Nav />
 
-          <NavLink to={"/"}>
-            <Button>Home</Button>
-          </NavLink>
-
           <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
             <Button>Login with google</Button>
           </a>
@@ -55,19 +50,12 @@ class App extends Component {
           </NavLink>
         </header>
         <div className="container">
-          <Route
-            exact
-            path="/"
-            render={props => <Home {...props} posts={this.props.posts} />}
-          />
-
+          <Route exact path='/' render={props => <Home {...props} />} />
           <Route
             path="/user/:id"
             render={props => (
               <Users
                 {...props}
-                user={this.props.user}
-                getUsers={this.props.getUsers}
               />
             )}
           />
@@ -85,8 +73,6 @@ class App extends Component {
             render={props => (
               <Post
                 {...props}
-                getPost={this.props.getPost}
-                post={this.props.currPost}
               />
             )}
           />
@@ -110,11 +96,8 @@ class App extends Component {
 
 function mapStateToProps({ projectsReducer, usersReducer }) {
   return {
-    posts: projectsReducer.posts,
     message: projectsReducer.message,
-    currPost: projectsReducer.currPost,
-    token: usersReducer.token,
-    user: usersReducer.user
+    token: usersReducer.token
   };
 }
 
@@ -122,10 +105,7 @@ export default withRouter(
   connect(
     mapStateToProps,
     {
-      getPosts,
-      getUsers,
       getTest,
-      getPost,
       login
     }
   )(App)

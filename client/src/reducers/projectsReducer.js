@@ -6,6 +6,7 @@ import {
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
+    GETTAG_FETCH, GETTAG_SUCCESS, GETTAG_FAILURE,
 } from '../actions/steps-tagsActions';
 
 
@@ -14,8 +15,10 @@ const initialState =
     posts: ['one', 'two', 'three'],
     userPosts: [],
     currPost: {},
+    allTags: [],
     message: 'default',
     addId: 0,
+    addMsg: '',
     fetching: false,
     adding: false,
     error: null,
@@ -97,6 +100,23 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
+        case GETTAG_FETCH:
+            return {
+                ...state,
+                fetching: true
+            }
+        case GETTAG_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                allTags: action.payload
+            }
+        case GETTAG_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+            }
         // User Posts Fetching
         case USER_POSTS_FETCH:
             return {

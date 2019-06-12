@@ -1,14 +1,38 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import {
+    Card, CardText, CardBody, CardHeader, CardImg, Button,
+    FormGroup, Label, Input, DropdownToggle, DropdownMenu, DropdownItem, InputGroupButtonDropdown
+} from 'reactstrap';
+import { getTag } from '../../actions/steps-tagsActions';
+import { getPost } from '../../actions/index';
+
 import PostStep from './PostStep';
 import Reviews from "../reviews/Reviews";
 
 class Post extends React.Component {
-    state={
-        id: Number(this.props.location.pathname.split('/')[2]),
+    constructor(props) {
+        super(props);
+
+        this.toggleDropDown = this.toggleDropDown.bind(this);
+        this.state = {
+            dropdownOpen: false,
+            id: Number(this.props.location.pathname.split('/')[2])
+        };
     }
+
+    toggleDropDown() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
     componentDidMount() {
         this.props.getPost(this.state.id)
+        this.props.getTag();
+    }
+    componentDidUpdate(prevProps, prevState) {
+
     }
 
     render() {
@@ -20,13 +44,35 @@ class Post extends React.Component {
             skills,
             supplies,
             duration,
+            tags,
             steps
-        } = this.props.post
-        console.log(this.props.post)
+        } = this.props.currPost
         return (
             <React.Fragment>
                 <Card className='post'>
                     <CardImg src={img_url} alt="Card image" />
+                    <CardBody>Tags:</CardBody>
+                    <div className='tag-section'>
+                        <p className='post-tags'>
+                            {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                        </p>
+                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                            <DropdownToggle split outline />
+                            <DropdownMenu>
+                                <DropdownItem>
+                                    <FormGroup>
+                                        <Label for="exampleSelectMulti">Select Tags</Label>
+                                        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id}>{tag.name}</option>) : null}
+                                        </Input>
+                                    </FormGroup>
+
+                                </DropdownItem>
+
+                            </DropdownMenu>
+                        </InputGroupButtonDropdown >
+                    </div>
+
                     <CardHeader>{title}</CardHeader>
                     <CardBody>
                         <CardText>{description}</CardText>
@@ -35,24 +81,39 @@ class Post extends React.Component {
                         <CardText>skills: {skills}</CardText>
                         <CardText>supplies: {supplies}</CardText>
                     </CardBody>
+
+                    {!!steps && steps.map((step, index) => {
+                        return (
+                            <PostStep
+                                key={index}
+                                step={step}
+                            />
+                        )
+                    })}
+                    <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
+                        Add Steps
+                    </Button>
+
+                    <Reviews
+                        post_id={this.state.id}
+                    />
                 </Card>
-                {!!steps && steps.map((step, index) => {
-                    return (
-                        <PostStep
-                            key={index}
-                            step={step}
-                        />
-                    )
-                })}
-                <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
-                    Add Steps
-                </Button>
-                <Reviews 
-                    post_id={this.state.id}
-                />
             </React.Fragment>
         );
     }
 };
+function mapStateToProps({ projectsReducer }) {
+    return {
+        error: projectsReducer.error,
+        currPost: projectsReducer.currPost,
+        allTags: projectsReducer.allTags
+    }
+}
 
-export default Post;
+export default connect(
+    mapStateToProps,
+    {
+        getTag,
+        getPost
+    }
+)(Post);

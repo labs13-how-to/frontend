@@ -14,17 +14,14 @@
     "query-string": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-ratings-declarative": "^3.4.1",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.1",
-    "react-star-rating-component": "^1.4.1",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "typescript": "^3.5.1"
+    "redux-thunk": "^2.3.0"
   },
   "proxy": "https://how-tutor.netlify.com/",
   "scripts": {

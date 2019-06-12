@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addReview } from "../../actions";
+import { addReview, getReviews } from "../../actions";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
 
@@ -9,7 +9,9 @@ class ReviewForm extends React.Component {
     super(props);
     this.state = {
       rating: 0,
-      review: ""
+      review: "",
+      post_id: this.props.id,
+      user_id: 1
     };
   }
 
@@ -25,12 +27,14 @@ class ReviewForm extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    console.log("id1!!!!", this.props.id);
     await this.props.addReview(this.props.id, this.state);
 
     this.setState({
       rating: 0,
       review: ""
     });
+    setTimeout(this.props.getReviews(this.state.post_id), 1000);
   };
 
   render() {
@@ -40,7 +44,7 @@ class ReviewForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormGroup>
-          <h2>Rating from state: {rating}</h2>
+          <h2>Rating:</h2>
           <StarRatingComponent
             name="stars"
             starCount={5}
@@ -66,11 +70,12 @@ class ReviewForm extends React.Component {
 
 function mapStateToProps({ reviewsReducer }) {
   return {
-    error: reviewsReducer.error
+    error: reviewsReducer.error,
+    reviews: reviewsReducer.reviews
   };
 }
 
 export default connect(
   mapStateToProps,
-  { addReview }
+  { addReview, getReviews }
 )(ReviewForm);

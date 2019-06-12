@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink as RouteLink } from "react-router-dom";
+import NavSearch from "./NavSearch";
 import {
     // Collapse,
     Navbar,
@@ -11,9 +12,7 @@ import {
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem,
-    Form,
-    Input
+    DropdownItem
 } from 'reactstrap';
 
 const NavComponent = props => {
@@ -23,14 +22,7 @@ const NavComponent = props => {
             <NavbarBrand href="/">How-To</NavbarBrand>
             <Nav className="mr-auto" navbar>
                 <NavItem>
-                    <Form onSubmit={props.handleSubmit}>
-                        <Input
-                            type="text"
-                            id="search"
-                            placeholder="Search"
-                            onChange={props.handleChanges}
-                        />
-                    </Form>
+                    <NavSearch {...props} />
                 </NavItem>
             </Nav>
             <Nav className="mr-auto" navbar>

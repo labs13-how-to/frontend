@@ -6,6 +6,7 @@ import {
 } from 'reactstrap';
 import { getTag } from '../../actions/steps-tagsActions';
 import { getPost } from '../../actions/index';
+import Reviews from '../reviews/Reviews';
 
 
 
@@ -15,7 +16,8 @@ class Post extends React.Component {
 
         this.toggleDropDown = this.toggleDropDown.bind(this);
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
+            id: Number(this.props.location.pathname.split('/')[2])
         };
     }
 
@@ -26,8 +28,7 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        const id = Number(this.props.location.pathname.split('/')[2]);
-        this.props.getPost(id)
+        this.props.getPost(this.state.id)
         this.props.getTag();
     }
     componentDidUpdate(prevProps, prevState) {
@@ -78,7 +79,9 @@ class Post extends React.Component {
                     <CardText>skills: {skills}</CardText>
                     <CardText>supplies: {supplies}</CardText>
                 </CardBody>
-
+                <Reviews
+                    post_id={this.state.id}
+                />
             </Card>
         );
     }

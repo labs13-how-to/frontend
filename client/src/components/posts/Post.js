@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-    Card, CardText, CardBody, CardHeader, CardImg,
+    Card, CardText, CardBody, CardHeader, CardImg, Button,
     FormGroup, Label, Input, DropdownToggle, DropdownMenu, DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
 import { getTag } from '../../actions/steps-tagsActions';
 import { getPost } from '../../actions/index';
-import Reviews from '../reviews/Reviews';
 
-
+import PostStep from './PostStep';
+import Reviews from "../reviews/Reviews";
 
 class Post extends React.Component {
     constructor(props) {
@@ -44,45 +44,61 @@ class Post extends React.Component {
             skills,
             supplies,
             duration,
-            tags
+            tags,
+            steps
         } = this.props.currPost
         return (
-            <Card className='post'>
-                <CardImg src={img_url} alt="Card image" />
-                <CardBody>Tags:</CardBody>
-                <div className='tag-section'>
-                    <p className='post-tags'>
-                        {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
-                    </p>
-                    <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                        <DropdownToggle split outline />
-                        <DropdownMenu>
-                            <DropdownItem>
-                                <FormGroup>
-                                    <Label for="exampleSelectMulti">Select Tags</Label>
-                                    <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                        {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id}>{tag.name}</option>) : null}
-                                    </Input>
-                                </FormGroup>
+            <React.Fragment>
+                <Card className='post'>
+                    <CardImg src={img_url} alt="Card image" />
+                    <CardBody>Tags:</CardBody>
+                    <div className='tag-section'>
+                        <p className='post-tags'>
+                            {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                        </p>
+                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                            <DropdownToggle split outline />
+                            <DropdownMenu>
+                                <DropdownItem>
+                                    <FormGroup>
+                                        <Label for="exampleSelectMulti">Select Tags</Label>
+                                        <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id}>{tag.name}</option>) : null}
+                                        </Input>
+                                    </FormGroup>
 
-                            </DropdownItem>
+                                </DropdownItem>
 
-                        </DropdownMenu>
-                    </InputGroupButtonDropdown >
-                </div>
+                            </DropdownMenu>
+                        </InputGroupButtonDropdown >
+                    </div>
 
-                <CardHeader>{title}</CardHeader>
-                <CardBody>
-                    <CardText>{description}</CardText>
-                    <CardText>Difficulty: {difficulty}</CardText>
-                    <CardText>duration: {duration}</CardText>
-                    <CardText>skills: {skills}</CardText>
-                    <CardText>supplies: {supplies}</CardText>
-                </CardBody>
-                <Reviews
-                    post_id={this.state.id}
-                />
-            </Card>
+                    <CardHeader>{title}</CardHeader>
+                    <CardBody>
+                        <CardText>{description}</CardText>
+                        <CardText>Difficulty: {difficulty}</CardText>
+                        <CardText>duration: {duration}</CardText>
+                        <CardText>skills: {skills}</CardText>
+                        <CardText>supplies: {supplies}</CardText>
+                    </CardBody>
+
+                    {!!steps && steps.map((step, index) => {
+                        return (
+                            <PostStep
+                                key={index}
+                                step={step}
+                            />
+                        )
+                    })}
+                    <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
+                        Add Steps
+                    </Button>
+
+                    <Reviews
+                        post_id={this.state.id}
+                    />
+                </Card>
+            </React.Fragment>
         );
     }
 };

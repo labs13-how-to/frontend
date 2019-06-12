@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUsers } from "../../actions/index";
+import UserPosts from './UserPosts';
 
 class Users extends Component {
 
@@ -10,14 +11,10 @@ class Users extends Component {
     }
 
     render() {
-        console.log(this.props.user)
         return (
             <React.Fragment>
-                <h2>User</h2>
-                <div>
-                    <p>{this.props.user.username}</p>
-                    <p>is a: {this.props.user.role}</p>
-                </div>
+                <h2>{this.props.user.username}'s Posts</h2>
+                <UserPosts history={this.props.history} />
             </React.Fragment>
         )
     }

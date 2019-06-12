@@ -5,8 +5,6 @@ import { Card, CardText, CardBody, CardHeader, Button } from "reactstrap";
 import ReviewForm from "./ReviewForm";
 import StarRatingComponent from "react-star-rating-component";
 
-//reviewsreviews!!!!
-
 class Reviews extends React.Component {
   state = {
     review: 0,

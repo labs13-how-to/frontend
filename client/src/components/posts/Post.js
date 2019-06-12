@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import PostStep from './PostStep';
 import Reviews from "../reviews/Reviews";
-
 
 class Post extends React.Component {
     state={
@@ -19,23 +19,38 @@ class Post extends React.Component {
             difficulty,
             skills,
             supplies,
-            duration
+            duration,
+            steps
         } = this.props.post
+        console.log(this.props.post)
         return (
-            <Card className='post'>
-                <CardImg src={img_url} alt="Card image" />
-                <CardHeader>{title}</CardHeader>
-                <CardBody>
-                    <CardText>{description}</CardText>
-                    <CardText>Difficulty: {difficulty}</CardText>
-                    <CardText>duration: {duration}</CardText>
-                    <CardText>skills: {skills}</CardText>
-                    <CardText>supplies: {supplies}</CardText>
-                </CardBody>
+            <React.Fragment>
+                <Card className='post'>
+                    <CardImg src={img_url} alt="Card image" />
+                    <CardHeader>{title}</CardHeader>
+                    <CardBody>
+                        <CardText>{description}</CardText>
+                        <CardText>Difficulty: {difficulty}</CardText>
+                        <CardText>duration: {duration}</CardText>
+                        <CardText>skills: {skills}</CardText>
+                        <CardText>supplies: {supplies}</CardText>
+                    </CardBody>
+                </Card>
+                {!!steps && steps.map((step, index) => {
+                    return (
+                        <PostStep
+                            key={index}
+                            step={step}
+                        />
+                    )
+                })}
+                <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
+                    Add Steps
+                </Button>
                 <Reviews 
                     post_id={this.state.id}
                 />
-            </Card>
+            </React.Fragment>
         );
     }
 };

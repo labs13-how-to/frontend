@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route, NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
 import Home from "./components/Home";
@@ -10,8 +10,10 @@ import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
 import { Button } from "reactstrap";
 import SearchResults from "./components/posts/SearchResults";
+import CreateStep from "./components/posts/CreatePostStep";
 import { getPosts, getUsers, getTest, getPost, login } from "./actions";
 import queryString from "query-string";
+
 
 class App extends Component {
   componentDidMount() {
@@ -71,16 +73,11 @@ class App extends Component {
               />
             )}
           />
-          <Route
-            exact
-            path="/forms/post/create"
-            render={props => (
-              <CreatePost
-                {...props}
-                getPost={this.props.getPost}
-                post={this.props.currPost}
-              />
-            )}
+          <Route path="/forms/post/create" render={props => (
+            <CreatePost
+              {...props}
+            />
+          )}
           />
 
           {/* <Route path="/register" render={props => <Register {...props} />} /> */}
@@ -94,6 +91,13 @@ class App extends Component {
                 post={this.props.currPost}
               />
             )}
+          />
+
+          <Route path="/forms/post/:id/steps" render={props => (
+            <CreateStep
+              {...props}
+            />
+          )}
           />
 
           <Route

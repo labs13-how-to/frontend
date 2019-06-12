@@ -34,26 +34,28 @@ class Reviews extends React.Component {
     return (
       <div>
         <ReviewForm id={this.props.post_id} />
-        {this.props.reviews &&
-          this.props.reviews.map((review, index) => {
-            return (
-              <Card key={index}>
-                <CardHeader>{review.username}</CardHeader>
-                <CardBody>
-                  <StarRatingComponent
-                    name="stars"
-                    starCount={5}
-                    value={review.rating}
-                  />
-                  <CardText>{review.review}</CardText>
-                </CardBody>
-                <Button onClick={() => this.props.deleteReview(review.id)}>
-                  X
-                </Button>
-                {/* need something for up/down votes */}
-              </Card>
-            );
-          })}
+        <div className="review-container">
+          {this.props.reviews &&
+            this.props.reviews.map((review, index) => {
+              return (
+                <Card key={index} className="review-cards">
+                  <CardHeader>{review.username}</CardHeader>
+                  <CardBody>
+                    <StarRatingComponent
+                      name="stars"
+                      starCount={5}
+                      value={review.rating}
+                    />
+                    <CardText>{review.review}</CardText>
+                  </CardBody>
+                  <Button onClick={() => this.props.deleteReview(review.id)}>
+                    X
+                  </Button>
+                  {/* need something for up/down votes */}
+                </Card>
+              );
+            })}
+        </div>
       </div>
     );
   }

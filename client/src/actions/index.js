@@ -1,4 +1,6 @@
 import axios from "axios";
+import axiosWithAuth from "../auth/needAuth";
+const backendUrl = process.env.REACT_APP_BE_URL || `http://localhost:5000`;
 
 export const TEST = "TEST";
 export const FETCH = "FETCH";
@@ -85,7 +87,7 @@ export const USER_POSTS_SUCCESS = "USER_POSTS_SUCCESS";
 export const USER_POSTS_FAIL = "USER_POSTS_FAIL";
 
 export const getUserPosts = id => dispatch => {
-  dispatch({ type: USER_POSTS_FETCH })
+  dispatch({ type: USER_POSTS_FETCH });
   console.log("fetching user posts");
   axios
     .get(`https://lambda-how-to.herokuapp.com/users/${id}/posts`)
@@ -94,7 +96,7 @@ export const getUserPosts = id => dispatch => {
       dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: USER_POSTS_FAIL, payload: err})
+      dispatch({ type: USER_POSTS_FAIL, payload: err });
     });
 };
 
@@ -149,32 +151,35 @@ export const REVIEW_FETCH_SUCCESS = "REVIEW_FETCH_SUCCESS";
 export const REVIEW_FETCH_FAILURE = "REVIEW_FETCH_FAILURE";
 
 export const getReviews = id => dispatch => {
-  dispatch({ type: REVIEW_FETCH_START })
+
+  dispatch({ type: REVIEW_FETCH_START });
   axios
-    .get(`https://lambda-how-to.herokuapp.com/posts/${id}/reviews`)
+    .get(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`)
     .then(res => {
-      console.log(res)
-      dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data})
+      console.log(res);
+      dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: REVIEW_FETCH_FAILURE, payload: err })
-    }); 
-};
+      dispatch({ type: REVIEW_FETCH_FAILURE, payload: err });
+    });
+}
 
 export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
 export const REVIEW_ADD_FAILURE = "REVIEW_ADD_FAILURE";
 
-export const addReview = id => dispatch => {
-  dispatch({ type: REVIEW_ADD_START })
-  axios
-    .get(`https://lambda-how-to.herokuapp.com/posts/${id}/reviews`)
+
+export const addReview = (id, newPost) => dispatch => {
+  console.log("NEWPOSTT!", newPost);
+  dispatch({ type: REVIEW_ADD_START });
+  axiosWithAuth()
+    .post(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`, newPost)
     .then(res => {
-      console.log(res)
-      dispatch({ type: REVIEW_ADD_START, payload: res.data })
+      console.log("res.data", res.data);
+      dispatch({ type: REVIEW_ADD_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: REVIEW_ADD_FAILURE, payload: err })
+      dispatch({ type: REVIEW_ADD_FAILURE, payload: err });
     });
 };
 
@@ -182,16 +187,17 @@ export const REVIEW_UPDATE_START = "REVIEW_UPDATE_START";
 export const REVIEW_UPDATE_SUCCESS = "REVIEW_UPDATE_SUCCESS";
 export const REVIEW_UPDATE_FAILURE = "REVIEW_UPDATE_FAILURE";
 
-export const updateReview = id => dispatch => {
-  dispatch({ type: REVIEW_UPDATE_START })
+
+export const updateReview = (id, updatedPost) => dispatch => {
+  dispatch({ type: REVIEW_UPDATE_START });
   axios
-    .get(`https://lambda-how-to.herokuapp.com/posts/reviews/${id}`)
+    .put(`${process.env.REACT_APP_BE_URL}/posts/reviews/${id}`, updatedPost)
     .then(res => {
-      console.log(res)
-      dispatch({ type: REVIEW_UPDATE_START, payload: res.data })
+      console.log(res);
+      dispatch({ type: REVIEW_UPDATE_START, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: REVIEW_UPDATE_FAILURE, payload: err })
+      dispatch({ type: REVIEW_UPDATE_FAILURE, payload: err });
     });
 };
 
@@ -200,14 +206,14 @@ export const REVIEW_DELETE_SUCCESS = "REVIEW_DELETE_SUCCESS";
 export const REVIEW_DELETE_FAILURE = "REVIEW_DELETE_FAILURE";
 
 export const deleteReview = id => dispatch => {
-  dispatch({ type: REVIEW_DELETE_START })
+  dispatch({ type: REVIEW_DELETE_START });
   axios
-    .get(`https://lambda-how-to.herokuapp.com/posts/reviews/${id}`)
+    .delete(`${process.env.REACT_APP_BE_URL}/posts/reviews/${id}`)
     .then(res => {
-      console.log(res)
-      dispatch({ type: REVIEW_DELETE_SUCCESS, payload: res.data })
+      console.log(res);
+      dispatch({ type: REVIEW_DELETE_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: REVIEW_UPDATE_FAILURE, payload: err})
+      dispatch({ type: REVIEW_DELETE_FAILURE, payload: err });
     });
 };

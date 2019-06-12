@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, NavLink } from "react-router-dom";
 import { withRouter } from "react-router";
+// import Register from "./components/users/Register";
+import { Button } from "reactstrap";
+
 import Home from "./components/Home";
 import Nav from "./components/navbar/Nav";
 import Users from "./components/users/Users";
-// import Register from "./components/users/Register";
 import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
-import { Button } from "reactstrap";
 import SearchResults from "./components/posts/SearchResults";
+import TagsSearch from "./components/posts/TagsSearch";
 import CreateStep from "./components/posts/CreatePostStep";
+
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
@@ -87,6 +90,10 @@ class App extends Component {
           <Route
             path="/search"
             render={props => <SearchResults {...props} />}
+          />
+          <Route
+            path="/categories/search"
+            render={props => <TagsSearch {...props} />}
           />
         </div>
       </div>

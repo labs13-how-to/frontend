@@ -49,7 +49,7 @@ class Reviews extends React.Component {
                   <Button onClick={() => this.props.deleteReview(review.id)}>
                     X
                   </Button>
-                  {/* need something for up/down votes */}
+                  {/* need something for up/down votes wooooooooooo*/}
                 </Card>
               );
             })}

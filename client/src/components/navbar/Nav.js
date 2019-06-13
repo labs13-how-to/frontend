@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink as RouteLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
+import { connect } from "react-redux";
 import {
-  //Container
   // Collapse,
   Navbar,
   // NavbarToggler,
@@ -16,17 +16,20 @@ import {
   DropdownItem,
   Button
 } from "reactstrap";
+import { getTag } from "../../actions/steps-tagsActions";
 
-const NavComponent = props => {
-  console.log("PROPS", props);
+class NavComponent extends React.Component {
+  componentDidMount() {
+    this.props.getTag();
+  }
 
-  return (
-    <div className="nav-container">
-      <Navbar color="white" light expand="md">
+  render() {
+    return (
+      <Navbar color="light" light expand="md">
         <NavbarBrand href="/">How-To</NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavSearch {...props} />
+            <NavSearch {...this.props} />
           </NavItem>
         </Nav>
         <Nav className="mr-auto" navbar>
@@ -34,7 +37,6 @@ const NavComponent = props => {
             <RouteLink to="/forms/post/create/">Create Post</RouteLink>
           </NavItem>
         </Nav>
-
         <Nav className="mr-auto" navbar>
           <NavItem>
             <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
@@ -47,21 +49,33 @@ const NavComponent = props => {
             Categories
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>Option 1</DropdownItem>
-            <DropdownItem>Option 2</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Reset</DropdownItem>
+            {this.props.allTags.map(tag => (
+              <RouteLink to={`/categories/search?q=${tag.name}`} key={tag.id}>
+                <DropdownItem>{tag.name}</DropdownItem>
+              </RouteLink>
+            ))}
           </DropdownMenu>
         </UncontrolledDropdown>
         <RouteLink to={"/user/:id"}>
           <Button>Account</Button>
         </RouteLink>
-        <RouteLink exact to="/" onClick={props.logOut}>
+        <RouteLink exact to="/" onClick={this.props.logOut}>
           Logout
         </RouteLink>
       </Navbar>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default NavComponent;
+function mapStateToProps({ projectsReducer }) {
+  return {
+    allTags: projectsReducer.allTags
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  {
+    getTag
+  }
+)(NavComponent);

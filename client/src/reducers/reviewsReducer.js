@@ -82,6 +82,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         updating: false,
+        refresh: true,
         refreshReview: true,
         error: null
       };

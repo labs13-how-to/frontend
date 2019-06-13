@@ -5,6 +5,9 @@ import ReviewForm from "./ReviewForm";
 import Review from "./Review";
 
 class Reviews extends React.Component {
+  state = {
+    update: false
+  }
 
   componentDidMount() {
     this.props.getReviews(this.props.post_id);
@@ -14,24 +17,25 @@ class Reviews extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.refresh !== this.props.refresh) {
       this.props.getReviews(this.props.post_id);
+      this.setState({ update: !this.state.update })
     }
   }
 
   render() {
     return (
-      <div>
+      < div >
         <ReviewForm id={this.props.post_id} />
         <div className="review-container">
           {this.props.reviews &&
             this.props.reviews.map((review, index) => (
-              <Review 
+              <Review
                 review={review}
                 key={index}
                 post_id={this.props.post_id}
               />
             ))}
         </div>
-      </div>
+      </div >
     );
   }
 }

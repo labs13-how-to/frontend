@@ -2,6 +2,7 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
+    UPDATE_FETCH, UPDATE_SUCCESS, UPDATE_FAILURE,
     USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
 } from "../actions";
 import {
@@ -65,7 +66,7 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
-        //add conditions ============
+        //add Post conditions ============
         case ADD_FETCH:
             return {
                 ...state,
@@ -84,6 +85,27 @@ const reducer = (state = initialState, action) => {
                 adding: false,
                 error: action.payload
             }
+
+        //UPDATE Post conditions ============
+        case UPDATE_FETCH:
+            return {
+                ...state,
+                updating: true
+            }
+        case UPDATE_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                updating: false,
+                message: action.payload.id
+            }
+        case UPDATE_FAILURE:
+            return {
+                ...state,
+                updating: false,
+                error: action.payload
+            }
+
         //add a step reducers
         case ADDSTEP_FETCH:
             return {

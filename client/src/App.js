@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 // import Register from "./components/users/Register";
-import { Button } from "reactstrap";
 
 import Home from "./components/Home";
 import Nav from "./components/navbar/Nav";
@@ -56,11 +55,14 @@ class App extends Component {
     console.log("PROPS", this.props);
     return (
       <div className="App">
-        <div className="container">
-          <header className="App-header">
-            <Nav logOut={this.logOut} />
-          </header>
 
+        <header className="App-header">
+          <div className="container">
+            <Nav logOut={this.logOut} />
+          </div>
+        </header>
+
+        <div className="container">
           <Route exact path="/" render={props => <Home {...props} />} />
 
           <Route path="/user/:id" render={props => <Users {...props} />} />
@@ -72,17 +74,11 @@ class App extends Component {
             render={props => <CreatePost {...props} />}
           />
 
-<<<<<<< HEAD
           <Route exact path="/forms/post/edit/:id" render={props => (
             <EditPost
               {...props}
             />
           )}
-=======
-          <Route
-            path="/forms/post/:id"
-            render={props => <EditPost {...props} />}
->>>>>>> austin-james
           />
 
           <Route

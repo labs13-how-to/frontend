@@ -232,7 +232,7 @@ export const updateReview = (id, updatedPost) => dispatch => {
     .put(`${process.env.REACT_APP_BE_URL}/posts/reviews/${id}`, updatedPost)
     .then(res => {
       console.log(res);
-      dispatch({ type: REVIEW_UPDATE_START, payload: res.data });
+      dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: REVIEW_UPDATE_FAILURE, payload: err });

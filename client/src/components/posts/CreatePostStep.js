@@ -20,6 +20,24 @@ class CreateStepForm extends React.Component {
     componentDidMount() {
         this.props.getPost(this.state.post_id)
         console.log(this.props.currPost)
+        if (this.props.currPost.length)
+            this.setState({
+                step_num: this.props.currPost.steps.length + 1
+            })
+    }
+    componentDidUpdate(prevProps, prevS) {
+
+        if (this.props.currPost)
+            if (prevProps.currPost === undefined) {
+                this.setState({
+                    step_num: this.props.currPost.steps.length + 1
+                })
+            } else if (prevProps.currPost.steps !== this.props.currPost.steps) {
+                this.setState({
+                    step_num: this.props.currPost.steps.length + 1
+                })
+            }
+
     }
 
 

@@ -5,7 +5,7 @@ import {
     FormGroup, Label, Input, DropdownToggle, DropdownMenu, DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
 import { getTag } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
+import { getPost, deletePost } from '../../actions/index';
 
 import PostStep from './PostStep';
 import Reviews from "../reviews/Reviews";
@@ -30,10 +30,17 @@ class Post extends React.Component {
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
+        console.log("IDDD", this.state.id)
     }
     componentDidUpdate(prevProps, prevState) {
-
+   
     }
+    delete(){
+        this.props.deletePost(this.state.id);
+        this.props.history.push("/");
+    };
+    
+
 
     render() {
         const {
@@ -80,6 +87,7 @@ class Post extends React.Component {
                         <CardText>duration: {duration}</CardText>
                         <CardText>skills: {skills}</CardText>
                         <CardText>supplies: {supplies}</CardText>
+                        <Button onClick={() => this.delete()}>X</Button>
                     </CardBody>
 
                     {!!steps && steps.map((step, index) => {
@@ -106,7 +114,8 @@ function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
         currPost: projectsReducer.currPost,
-        allTags: projectsReducer.allTags
+        allTags: projectsReducer.allTags,
+        refresh: projectsReducer.refresh
     }
 }
 
@@ -114,6 +123,7 @@ export default connect(
     mapStateToProps,
     {
         getTag,
-        getPost
+        getPost,
+        deletePost
     }
 )(Post);

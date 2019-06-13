@@ -11,7 +11,7 @@ class Home extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.posts !== this.props.posts) {
+        if (prevProps.refresh !== this.props.refresh) {
           this.props.getPosts();
         }
     }
@@ -37,7 +37,8 @@ class Home extends React.Component {
 
 function mapStateToProps({ projectsReducer }) {
     return {
-        posts: projectsReducer.posts
+        posts: projectsReducer.posts,
+        refresh: projectsReducer.refresh
     }
 }
 

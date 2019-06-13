@@ -56,7 +56,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 fetching: false,
-                currPost: action.payload
+                currPost: action.payload,
+                refresh: false,
             }
         case FAILURE:
             return {
@@ -134,6 +135,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 deleting: false,
+                refresh: true,
                 error: null,
             }
         case STEP_DELETE_FAILURE:

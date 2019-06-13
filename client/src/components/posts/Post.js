@@ -33,7 +33,7 @@ class Post extends React.Component {
         console.log("IDDD", this.state.id)
     }
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.currPost.steps !== this.props.currPost.steps){
+        if (prevProps.refresh !== this.props.refresh){
             this.props.getPost(this.state.id)
         };
     };

@@ -33,8 +33,10 @@ class Post extends React.Component {
         console.log("IDDD", this.state.id)
     }
     componentDidUpdate(prevProps, prevState) {
-   
-    }
+        if(prevProps.currPost.steps !== this.props.currPost.steps){
+            this.props.getPost(this.state.id)
+        };
+    };
     delete(){
         this.props.deletePost(this.state.id);
         this.props.history.push("/");

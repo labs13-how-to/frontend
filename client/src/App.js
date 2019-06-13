@@ -13,6 +13,7 @@ import CreatePost from "./components/posts/CreatePost.js";
 import SearchResults from "./components/posts/SearchResults";
 import TagsSearch from "./components/posts/TagsSearch";
 import CreateStep from "./components/posts/CreatePostStep";
+import EditPost from './components/posts/EditPost';
 
 import { getTest, login } from "./actions";
 import queryString from "query-string";
@@ -62,12 +63,7 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/forms/post/create" render={props => (
-            <CreatePost
-              {...props}
-            />
-          )}
-          />
+
 
           {/* <Route path="/register" render={props => <Register {...props} />} /> */}
 
@@ -80,12 +76,27 @@ class App extends Component {
             )}
           />
 
+          <Route path="/forms/post/create" render={props => (
+            <CreatePost
+              {...props}
+            />
+          )}
+          />
+
+          <Route path="/forms/post/:id" render={props => (
+            <EditPost
+              {...props}
+            />
+          )}
+          />
+
           <Route path="/forms/post/:id/steps" render={props => (
             <CreateStep
               {...props}
             />
           )}
           />
+
 
           <Route
             path="/search"

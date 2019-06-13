@@ -25,7 +25,7 @@ class NavComponent extends React.Component {
 
   render() {
     return (
-      <Navbar color="light" light expand="md">
+      <Navbar color="whitesmoke" light expand="md">
         <NavbarBrand href="/">How-To</NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
@@ -56,8 +56,8 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
-        <RouteLink to={"/user/:id"}>
-          <Button>Account</Button>
+        <RouteLink to={"/user/1"}>
+          <Button className='navBtn'>Account</Button>
         </RouteLink>
         <RouteLink exact to="/" onClick={this.props.logOut}>
           Logout

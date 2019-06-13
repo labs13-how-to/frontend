@@ -6,7 +6,7 @@ const Posts = props => {
     const { title, difficulty, img_url, id } = props.post
     return (
         <Card>
-            <CardImg src={img_url} alt="Card image" />
+            <CardImg className="img-fluid" src={img_url} alt="Card image" />
             <CardHeader>{title}</CardHeader>
             <CardBody>
                 <CardText>{difficulty}</CardText>

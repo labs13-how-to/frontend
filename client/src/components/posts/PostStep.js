@@ -5,7 +5,7 @@ import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstra
 
 class PostStep extends React.Component {
 
-  render(){
+  render() {
     const {
       step_num,
       title,
@@ -16,12 +16,12 @@ class PostStep extends React.Component {
     } = this.props.step;
     return (
       <Card className='post'>
-          <CardImg src={img_url} alt="Card image" />
-          <CardHeader>Step {step_num}: {title}</CardHeader>
-          <CardBody>
-              <CardText>{instruction}</CardText>
-          </CardBody>
-          <Button onClick={() => this.props.deleteStep( post_id, id)}>X</Button>
+        <CardImg src={img_url} alt="Card image" />
+        <CardHeader>Step {this.props.index + 1}: {title}</CardHeader>
+        <CardBody>
+          <CardText>{instruction}</CardText>
+        </CardBody>
+        <Button onClick={() => this.props.deleteStep(post_id, id)}>X</Button>
       </Card>
     )
   }

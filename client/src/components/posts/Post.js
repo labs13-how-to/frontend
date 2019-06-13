@@ -35,15 +35,15 @@ class Post extends React.Component {
         console.log("IDDD", this.state.id)
     };
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.refresh !== this.props.refresh){
+        if (prevProps.refresh !== this.props.refresh) {
             this.props.getPost(this.state.id)
         };
     };
-    delete(){
+    delete() {
         this.props.deletePost(this.state.id);
         this.props.history.push("/");
     };
-    
+
 
     handleChange = e => {
         this.setState({ tag: e.target.value });
@@ -70,10 +70,8 @@ class Post extends React.Component {
         return (
             <React.Fragment>
                 <Card className='post'>
-                    <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/${this.state.id}`)}>
-                        Edit
-                    </Button>
-                    <CardImg src={img_url} alt="Card image" />
+
+                    <CardImg className="img-fluid" src={img_url} alt="Card image" />
                     <CardBody>Tags:</CardBody>
                     <div className='tag-section'>
                         <p className='post-tags'>
@@ -104,7 +102,12 @@ class Post extends React.Component {
                         <CardText>duration: {duration}</CardText>
                         <CardText>skills: {skills}</CardText>
                         <CardText>supplies: {supplies}</CardText>
-                        <Button onClick={() => this.delete()}>X</Button>
+                        <div className="btn-group" role="group">
+                            <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
+                                Edit
+                            </Button>
+                            <Button className="edit-button" onClick={() => this.delete()}>X</Button>
+                        </div>
                     </CardBody>
 
                     {!!steps && steps.map((step, index) => {
@@ -112,6 +115,7 @@ class Post extends React.Component {
                             <PostStep
                                 key={index}
                                 step={step}
+                                index={index}
                             />
                         )
                     })}

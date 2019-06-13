@@ -83,7 +83,7 @@ class App extends Component {
           )}
           />
 
-          <Route path="/forms/post/:id" render={props => (
+          <Route exact path="/forms/post/edit/:id" render={props => (
             <EditPost
               {...props}
             />

@@ -1,16 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteStep } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
 import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 
 class PostStep extends React.Component {
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.refresh !== this.props.refresh) {
-      this.props.getPost(this.props.post_id);
-    }
-  }
 
   render(){
     const {
@@ -41,4 +34,4 @@ function mapStateToProps({ projectsReducer }) {
   }
 }
 
-export default connect(mapStateToProps, { deleteStep, getPost })(PostStep);
+export default connect(mapStateToProps, { deleteStep })(PostStep);

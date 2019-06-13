@@ -1,65 +1,81 @@
-import React from 'react';
+import React from "react";
 import { connect } from "react-redux";
-import { addReview } from "../../actions";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { addReview, getReviews } from "../../actions";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import StarRatingComponent from "react-star-rating-component";
 
 class ReviewForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            rating: '',
-            review: '',
-        };
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: 0,
+      review: "",
+      post_id: this.props.id,
+      user_id: 1
     };
+  }
 
-    handleChange = event => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({ rating: nextValue });
+  }
 
-    handleSubmit = async event => {
-        event.preventDefault()
-        await this.props.addReview(this.state)
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
 
-        this.setState({
-            rating: '',
-            review: '',
-        })
-        // setTimeout(() => this.props.history.push('/'), 500) (need to adjust this to send back to specific post)
-    };
+  handleSubmit = async event => {
+    event.preventDefault();
+    console.log("id1!!!!", this.props.id);
+    await this.props.addReview(this.props.id, this.state);
 
-    render() {
-        return (
-            <Form>
-                <FormGroup>
-                    <Label>Rating</Label>
-                    <Input
-                        name='rating'
-                        placeholder='rating'
-                        onChange={this.handleChange}
-                        value={this.state.rating}
-                    />
-                </FormGroup>
-                <FormGroup>
-                    <Label>Review</Label>
-                    <Input 
-                        type='textarea'
-                        name='review'
-                        placeholder='Review'
-                        onChange={this.handleChange}
-                        value={this.state.review}
-                    />
-                </FormGroup>
-            </Form>
-        );
-    };
-};
+    this.setState({
+      rating: 0,
+      review: ""
+    });
+    setTimeout(this.props.getReviews(this.state.post_id), 1000);
+  };
+
+  render() {
+    //Star Rating Component
+    const { rating } = this.state;
+
+    return (
+      <Form onSubmit={this.handleSubmit}>
+        <FormGroup>
+          <h2>Rating:</h2>
+          <StarRatingComponent
+            name="stars"
+            starCount={5}
+            value={rating}
+            onStarClick={this.onStarClick.bind(this)}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label>Review</Label>
+          <Input
+            type="textarea"
+            name="review"
+            placeholder="Review"
+            onChange={this.handleChange}
+            value={this.state.review}
+          />
+        </FormGroup>
+        <Button type="submit">Post</Button>
+      </Form>
+    );
+  }
+}
 
 function mapStateToProps({ reviewsReducer }) {
-    return {
-        error: reviewsReducer.error
-    };
-};
+  return {
+    error: reviewsReducer.error,
+    reviews: reviewsReducer.reviews
+  };
+}
 
-export default connect(mapStateToProps, { addReview })(ReviewForm);
+export default connect(
+  mapStateToProps,
+  { addReview, getReviews }
+)(ReviewForm);

@@ -1,17 +1,29 @@
 @import "~bootstrap/scss/bootstrap";
 
 // Media Queries
-$mobile: "only screen and (max-width : 500px)";
+// @include media-breakpoint-up(sm) { ... }
+// @include media-breakpoint-up(md) { ... }
+// @include media-breakpoint-up(lg) { ... }
 
 body {
   background: lightgray;
   text-align: center;
 }
 
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
+
+.App-header{
+  width: 100%;
+  background: whitesmoke;
+  padding: 15px 0;
 }
+
+.navbar .navBtn{
+  font-size: .8rem;
+  width: auto;
+  margin-right: 20px;
+}
+
+//Desktop view
 
 .card-title {
   font-size: 40px;
@@ -21,11 +33,6 @@ body {
   width: 18%;
   display: flex;
   background: none;
-
-  @media #{$mobile} {
-    width: 45%;
-    margin: 10px auto;
-  }
 }
 .card-body {
   display: flex;
@@ -48,26 +55,15 @@ code {
     monospace;
 }
 
-<<<<<<< HEAD
-header{
-  width: 800px;
-  margin: 0 auto;
-}
-
-=======
->>>>>>> austin-james
 // post.js styles ======================
 .post {
   width: 70%;
   margin: 20px auto;
   position: relative;
-<<<<<<< HEAD
-=======
-  .card-img {
-    width: 100%;
-    margin: 0 auto;
-  }
->>>>>>> austin-james
+}
+.btn-group{
+ 
+  align-self: flex-end;
 }
 .post-tags {
   display: flex;
@@ -106,9 +102,9 @@ header{
   background: orange;
   border: 1px solid white;
   width: 50px;
-  position: absolute;
+  // position: absolute;
   font-size: 0.75rem;
-  top: 900px;
+  // top: 900px;
 }
 .review-cards {
   width: 80%;
@@ -118,3 +114,30 @@ header{
   justify-content: center;
   flex-wrap: wrap;
 }
+@include media-breakpoint-down(lg) {
+  .card{
+      width: 24%;
+      margin: 10px auto;
+  }
+
+}
+
+// Tablet view
+@include media-breakpoint-down(md) {
+  .card{
+      width: 31%;
+      margin: 10px auto;
+  }
+
+}
+
+// Phone view
+@include media-breakpoint-down(sm) {
+  .card{
+      width: 45%;
+      margin: 10px auto;
+  }
+
+}
+
+

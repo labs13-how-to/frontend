@@ -50,3 +50,37 @@ export const getTag = () => dispatch => {
             dispatch({ type: GETTAG_FAILURE, payload: err });
         })
 }
+
+export const ADDTAG_FETCH = 'ADDTAG_FETCH';
+export const ADDTAG_SUCCESS = 'ADDTAG_SUCCESS';
+export const ADDTAG_FAILURE = 'ADDTAG_FAILURE';
+
+export const addTag = (tag) => dispatch => {
+    dispatch({ type: ADDTAG_FETCH });
+    axios
+        .post(`https://lambda-how-to.herokuapp.com/posts/${tag.post_id}/tags`, tag)
+        .then(response => {
+            console.log(response.data)
+            dispatch({ type: ADDTAG_SUCCESS, payload: response.data })
+        })
+        .catch(err => {
+            dispatch({ type: ADDTAG_FAILURE, payload: err });
+        })
+}
+
+export const REMOVETAG_FETCH = 'REMOVETAG_FETCH';
+export const REMOVETAG_SUCCESS = 'REMOVETAG_SUCCESS';
+export const REMOVETAG_FAILURE = 'REMOVETAG_FAILURE';
+
+export const removeTag = (tag) => dispatch => {
+    dispatch({ type: REMOVETAG_FETCH });
+    axios
+        .delete(`https://lambda-how-to.herokuapp.com/posts/${tag.post_id}/tags/${tag.tag_id}`)
+        .then(response => {
+            console.log(response.data)
+            dispatch({ type: REMOVETAG_SUCCESS, payload: response.data })
+        })
+        .catch(err => {
+            dispatch({ type: REMOVETAG_FAILURE, payload: err });
+        })
+}

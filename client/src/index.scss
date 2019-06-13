@@ -86,3 +86,11 @@ header{
   width:250px;
   height:170px;
 }
+.review-cards{
+  width: 80%;
+}
+.review-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

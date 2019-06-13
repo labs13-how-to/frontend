@@ -13,14 +13,13 @@ class Review extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.refresh !== this.props.refresh) {
-          this.props.getReviews(this.props.post_id);
+        if (prevProps.refreshReview !== this.props.refreshReview) {
+            this.props.getReviews(this.props.post_id);
             this.setState({ 
                 newRating: this.props.review.rating,
                 newReview: this.props.review.review
             });
         }
-       
     };
 
     handleUpdate = event => {
@@ -98,7 +97,7 @@ function mapStateToProps({ reviewsReducer }) {
     return {
       reviews: reviewsReducer.reviews,
       error: reviewsReducer.error,
-      refresh: reviewsReducer.refresh
+      refreshReview: reviewsReducer.refreshReview
     };
 };
 

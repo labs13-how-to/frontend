@@ -11,11 +11,11 @@ class Reviews extends React.Component {
     console.log(this.props.post_id);
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.refresh !== this.props.refresh) {
-  //     this.props.getReviews(this.props.post_id);
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.refresh !== this.props.refresh) {
+      this.props.getReviews(this.props.post_id);
+    }
+  }
 
   render() {
     return (

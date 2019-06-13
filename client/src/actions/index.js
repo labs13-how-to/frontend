@@ -115,11 +115,7 @@ export const getUserPosts = id => dispatch => {
       dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-<<<<<<< HEAD
-      dispatch({ type: USER_POSTS_FAIL, payload: err })
-=======
       dispatch({ type: USER_POSTS_FAIL, payload: err });
->>>>>>> master
     });
 };
 
@@ -179,15 +175,6 @@ export const getReviews = id => dispatch => {
   axios
     .get(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`)
     .then(res => {
-<<<<<<< HEAD
-      console.log(res)
-      dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data })
-    })
-    .catch(err => {
-      dispatch({ type: REVIEW_FETCH_FAILURE, payload: err })
-    });
-};
-=======
       console.log(res);
       dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data });
     })
@@ -195,7 +182,6 @@ export const getReviews = id => dispatch => {
       dispatch({ type: REVIEW_FETCH_FAILURE, payload: err });
     });
 }
->>>>>>> master
 
 export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
@@ -247,10 +233,6 @@ export const deleteReview = id => dispatch => {
       dispatch({ type: REVIEW_DELETE_SUCCESS, payload: res.data });
     })
     .catch(err => {
-<<<<<<< HEAD
-      dispatch({ type: REVIEW_UPDATE_FAILURE, payload: err })
-=======
       dispatch({ type: REVIEW_DELETE_FAILURE, payload: err });
->>>>>>> master
     });
 };

@@ -2,11 +2,14 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
+    UPDATE_FETCH, UPDATE_SUCCESS, UPDATE_FAILURE,
     USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
     GETTAG_FETCH, GETTAG_SUCCESS, GETTAG_FAILURE,
+    ADDTAG_FETCH, ADDTAG_SUCCESS, ADDTAG_FAILURE,
+    REMOVETAG_FETCH, REMOVETAG_SUCCESS, REMOVETAG_FAILURE,
 } from '../actions/steps-tagsActions';
 
 
@@ -22,6 +25,7 @@ const initialState =
     fetching: false,
     adding: false,
     error: null,
+    refresh: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,7 +56,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 fetching: false,
-                currPost: action.payload
+                currPost: action.payload,
+                refresh: false,
             }
         case FAILURE:
             return {
@@ -61,7 +66,7 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
-        //add conditions ============
+        //add Post conditions ============
         case ADD_FETCH:
             return {
                 ...state,
@@ -80,6 +85,27 @@ const reducer = (state = initialState, action) => {
                 adding: false,
                 error: action.payload
             }
+
+        //UPDATE Post conditions ============
+        case UPDATE_FETCH:
+            return {
+                ...state,
+                updating: true
+            }
+        case UPDATE_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                updating: false,
+                message: action.payload.id
+            }
+        case UPDATE_FAILURE:
+            return {
+                ...state,
+                updating: false,
+                error: action.payload
+            }
+
         //add a step reducers
         case ADDSTEP_FETCH:
             return {
@@ -100,6 +126,7 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
+        //Tag reducer section
         case GETTAG_FETCH:
             return {
                 ...state,
@@ -110,13 +137,52 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 fetching: false,
-                allTags: action.payload
+                allTags: action.payload,
             }
         case GETTAG_FAILURE:
             return {
                 ...state,
                 fetching: false,
             }
+        case ADDTAG_FETCH:
+            return {
+                ...state,
+                fetching: true
+            }
+        case ADDTAG_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                refresh: true,
+            }
+        case ADDTAG_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
+
+        case REMOVETAG_FETCH:
+            return {
+                ...state,
+                fetching: true
+            }
+        case REMOVETAG_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                refresh: true,
+
+            }
+        case REMOVETAG_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
+
         // User Posts Fetching
         case USER_POSTS_FETCH:
             return {

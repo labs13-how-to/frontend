@@ -7,78 +7,97 @@ export const FETCH = "FETCH";
 export const SUCCESS = "SUCCESS";
 export const SUCCESS_ID = "SUCCESS_ID";
 export const FAILURE = "FAILURE";
+
+export const getTest = () => dispatch => {
+  dispatch({ type: FETCH });
+  console.log("fetched");
+  axios
+    .get("https://lambda-how-to.herokuapp.com/")
+    .then(res => {
+      dispatch({ type: TEST, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FAILURE, payload: err });
+    });
+};
+
+export const getPosts = () => dispatch => {
+  dispatch({ type: FETCH });
+  console.log("fetched");
+  axios
+    .get(`https://lambda-how-to.herokuapp.com/posts`)
+    .then(res => {
+      dispatch({ type: SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FAILURE, payload: err });
+    });
+};
+
+export const getPost = id => dispatch => {
+  dispatch({ type: FETCH });
+  console.log("fetched");
+  axios
+    .get(`https://lambda-how-to.herokuapp.com/posts/${id}`)
+    .then(res => {
+      dispatch({ type: SUCCESS_ID, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FAILURE, payload: err });
+    });
+};
+
 export const ADD_FETCH = "ADD_FETCH";
 export const ADD_SUCCESS = "ADD_SUCCESS";
 export const ADD_FAILURE = "ADD_FAILURE";
+
+export const addPost = newPost => dispatch => {
+  dispatch({ type: ADD_FETCH });
+  axios
+    .post("https://lambda-how-to.herokuapp.com/posts", newPost)
+    .then(response => {
+      dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
+    })
+    .catch(err => {
+      dispatch({ type: ADD_FAILURE, payload: err });
+    });
+};
+
+//Update a post
+export const UPDATE_FETCH = "UPDATE_FETCH";
+export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
+export const UPDATE_FAILURE = "UPDATE_FAILURE";
+
+export const updatePost = (id, updatedPost) => dispatch => {
+  dispatch({ type: UPDATE_FETCH });
+  axios
+    .put(`https://lambda-how-to.herokuapp.com/posts/${id}`, updatedPost)
+    .then(response => {
+      console.log('response', response.data)
+      dispatch({ type: UPDATE_SUCCESS, payload: response.data });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_FAILURE, payload: err });
+    });
+};
 
 //USER_FETCH, USER_SUCCESS, USER_FAIL
 export const USER_FETCH = "USER_FETCH";
 export const USER_SUCCESS = "USER_SUCCESS";
 export const USER_FAIL = "USER_FAIL";
 
-export const getTest = () => dispatch => {
-    dispatch({ type: FETCH });
-    console.log("fetched");
-    axios
-        .get("https://lambda-how-to.herokuapp.com/")
-        .then(res => {
-            dispatch({ type: TEST, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: FAILURE, payload: err });
-        });
-};
-
-export const getPosts = () => dispatch => {
-    dispatch({ type: FETCH });
-    console.log("fetched");
-    axios
-        .get(`https://lambda-how-to.herokuapp.com/posts`)
-        .then(res => {
-            dispatch({ type: SUCCESS, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: FAILURE, payload: err });
-        });
-};
-
-export const getPost = id => dispatch => {
-    dispatch({ type: FETCH });
-    console.log("fetched");
-    axios
-        .get(`https://lambda-how-to.herokuapp.com/posts/${id}`)
-        .then(res => {
-            dispatch({ type: SUCCESS_ID, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: FAILURE, payload: err });
-        });
-};
-
-export const addPost = newPost => dispatch => {
-    dispatch({ type: ADD_FETCH });
-    axios
-        .post("https://lambda-how-to.herokuapp.com/posts", newPost)
-        .then(response => {
-            dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
-        })
-        .catch(err => {
-            dispatch({ type: ADD_FAILURE, payload: err });
-        });
-};
-
 export const getUsers = id => dispatch => {
-    dispatch({ type: USER_FETCH });
-    console.log("fetched");
-    axios
-        .get(`https://lambda-how-to.herokuapp.com/users/${id}`)
-        .then(res => {
-            console.log(res);
-            dispatch({ type: USER_SUCCESS, payload: res.data });
-        })
-        .catch(err => {
-            dispatch({ type: USER_FAIL, payload: err });
-        });
+  dispatch({ type: USER_FETCH });
+  console.log("fetched");
+  axios
+    .get(`https://lambda-how-to.herokuapp.com/users/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: USER_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: USER_FAIL, payload: err });
+    });
 };
 
 //Get User Posts --> Account Page
@@ -106,15 +125,15 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const register = creds => dispatch => {
-    dispatch({ type: REGISTER_START });
-    console.log(creds);
-    return axios
-        .post(`https://lambda-how-to.herokuapp.com/auth/register`, creds)
-        .then(res => {
-            console.log("Register!", res.data);
-            dispatch({ type: REGISTER_SUCCESS, payload: res.data });
-        })
-        .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
+  dispatch({ type: REGISTER_START });
+  console.log(creds);
+  return axios
+    .post(`https://lambda-how-to.herokuapp.com/auth/register`, creds)
+    .then(res => {
+      console.log("Register!", res.data);
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
 };
 
 // Login Actions

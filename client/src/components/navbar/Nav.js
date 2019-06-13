@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink as RouteLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
+import { connect } from 'react-redux';
 import {
     // Collapse,
     Navbar,
@@ -14,47 +15,59 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
+import { getTag } from '../../actions/steps-tagsActions';
 
-const NavComponent = props => {
+class NavComponent extends React.Component {
 
-    return (
-        <Navbar color="light" light expand="md">
-            <NavbarBrand href="/">How-To</NavbarBrand>
-            <Nav className="mr-auto" navbar>
-                <NavItem>
-                    <NavSearch {...props} />
-                </NavItem>
-            </Nav>
-            <Nav className="mr-auto" navbar>
-                <NavItem>
-                    <RouteLink to="/forms/post/create/">Create Post</RouteLink>
-                </NavItem>
-            </Nav>
-            <Nav className="mr-auto" navbar>
-                <NavItem>
-                    <RouteLink to="/register/">Register</RouteLink>
-                </NavItem>
-            </Nav>
+    componentDidMount() {
+        this.props.getTag();
+    }
 
-            <UncontrolledDropdown className="mr-auto" inNavbar>
-                <DropdownToggle nav caret>
-                    Categories
+    render() {
+        return (
+            <Navbar color="light" light expand="md">
+                <NavbarBrand href="/">How-To</NavbarBrand>
+                <Nav className="mr-auto" navbar>
+                    <NavItem>
+                        <NavSearch {...this.props} />
+                    </NavItem>
+                </Nav>
+                <Nav className="mr-auto" navbar>
+                    <NavItem>
+                        <RouteLink to="/forms/post/create/">Create Post</RouteLink>
+                    </NavItem>
+                </Nav>
+                <Nav className="mr-auto" navbar>
+                    <NavItem>
+                        <RouteLink to="/register/">Register</RouteLink>
+                    </NavItem>
+                </Nav>
+
+                <UncontrolledDropdown className="mr-auto" inNavbar>
+                    <DropdownToggle nav caret>
+                        Categories
                 </DropdownToggle>
-                <DropdownMenu >
-                    <DropdownItem>
-                        Option 1
+                    <DropdownMenu >
+                        <DropdownItem>
+                            Option 1
                     </DropdownItem>
-                    <DropdownItem>
-                        Option 2
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>
-                        Reset
-                    </DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown >
-        </Navbar>
-    )
+                        {this.props.allTags.map(tag => <RouteLink to={`/categories/search?q=${tag.name}`} key={tag.id}><DropdownItem >{tag.name}</DropdownItem></RouteLink>)}
+                    </DropdownMenu>
+                </UncontrolledDropdown >
+            </Navbar>
+        )
+    }
 }
 
-export default NavComponent;
+function mapStateToProps({ projectsReducer }) {
+    return {
+        allTags: projectsReducer.allTags
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    {
+        getTag
+    }
+)(NavComponent);

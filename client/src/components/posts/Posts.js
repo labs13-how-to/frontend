@@ -10,7 +10,7 @@ const Posts = props => {
             <CardHeader>{title}</CardHeader>
             <CardBody>
                 <CardText>{difficulty}</CardText>
-                <Button onClick={() => props.history.push(`posts/${id}`)}>
+                <Button onClick={() => props.history.push(`/posts/${id}`)}>
                     Learn More
                 </Button>
             </CardBody>

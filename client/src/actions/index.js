@@ -33,7 +33,7 @@ export const getPosts = () => dispatch => {
     dispatch({ type: FETCH });
     console.log("fetched");
     axios
-        .get(`https://lambda-how-to.herokuapp.com/posts`)
+        .get(`${process.env.REACT_APP_BE_URL}/posts/`)
         .then(res => {
             dispatch({ type: SUCCESS, payload: res.data });
         })
@@ -46,7 +46,7 @@ export const getPost = id => dispatch => {
     dispatch({ type: FETCH });
     console.log("fetched");
     axios
-        .get(`https://lambda-how-to.herokuapp.com/posts/${id}`)
+        .get(`${process.env.REACT_APP_BE_URL}/posts/${id}`)
         .then(res => {
             dispatch({ type: SUCCESS_ID, payload: res.data });
         })
@@ -58,13 +58,31 @@ export const getPost = id => dispatch => {
 export const addPost = newPost => dispatch => {
     dispatch({ type: ADD_FETCH });
     axios
-        .post("https://lambda-how-to.herokuapp.com/posts", newPost)
+        .post(`${process.env.REACT_APP_BE_URL}/posts/`, newPost)
         .then(response => {
             dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
         })
         .catch(err => {
             dispatch({ type: ADD_FAILURE, payload: err });
         });
+};
+
+
+export const POST_DELETE_START = "POST_DELETE_START";
+export const POST_DELETE_SUCCESS = "POST_DELETE_SUCCESS";
+export const POST_DELETE_FAILURE = "POST_DELETE_FAILURE";
+
+export const deletePost = id => dispatch => {
+  dispatch({ type: POST_DELETE_START });
+  axios
+    .delete(`${process.env.REACT_APP_BE_URL}/posts/${id}`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: POST_DELETE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: POST_DELETE_FAILURE, payload: err });
+    });
 };
 
 export const getUsers = id => dispatch => {

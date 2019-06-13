@@ -1,108 +1,108 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+// Media Queries
+$mobile: "only screen and (max-width : 500px)";
 
 body {
   background: lightgray;
   text-align: center;
 }
 
-.card-title{
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card-title {
   font-size: 40px;
 }
-.card{
+.card {
   margin: 20px 1%;
   width: 18%;
-  display:flex;
+  display: flex;
   background: none;
+
+  @media #{$mobile} {
+    width: 45%;
+    margin: 10px auto;
+  }
 }
-.card-body{
+.card-body {
   display: flex;
   flex-direction: column;
-  justify-content:  space-between;
+  justify-content: space-between;
   align-items: center;
 }
-.btn{
+.btn {
   width: 80%;
   margin: 0 auto;
-
 }
-.post-list{
-  display:flex;
+.post-list {
+  display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
 }
-
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-header{
-  width: 800px;
-  margin: 0 auto;
-}
-
-.container{
-  margin: 0 auto;
-  width: 1500px;
-}
-
 // post.js styles ======================
-.post{
+.post {
   width: 70%;
   margin: 20px auto;
   position: relative;
-  .card-img{
+  .card-img {
     width: 100%;
     margin: 0 auto;
   }
 }
-.post-tags{
-  display:flex;
+.post-tags {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.post-tags span{
+.post-tags span {
   padding: 2px;
   border: 1px solid black;
   border-radius: 3px;
-  margin:2px;
+  margin: 2px;
 }
-.tag-section{
+.tag-section {
   display: flex;
   justify-content: center;
 }
 
-.tag-section button{
+.tag-section button {
   width: 40px;
   height: 30px;
 }
-.tag-section button select{
+.tag-section button select {
   width: 200px;
 }
-.tag-section .dropdown-item{
+.tag-section .dropdown-item {
   width: 200px;
 }
-.tag-section .dropdown-menu{
-  width:250px;
-  height:170px;
+.tag-section .dropdown-menu {
+  width: 250px;
+  height: 170px;
 }
-.edit-button{
+.edit-button {
   justify-self: flex-end;
   align-self: flex-end;
   background: orange;
   border: 1px solid white;
   width: 50px;
   position: absolute;
-  font-size: .75rem;
+  font-size: 0.75rem;
   top: 900px;
 }
-.review-cards{
+.review-cards {
   width: 80%;
 }
-.review-container{
+.review-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

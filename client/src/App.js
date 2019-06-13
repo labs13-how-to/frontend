@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route, NavLink } from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 // import Register from "./components/users/Register";
 import { Button } from "reactstrap";
@@ -13,18 +13,22 @@ import CreatePost from "./components/posts/CreatePost.js";
 import SearchResults from "./components/posts/SearchResults";
 import TagsSearch from "./components/posts/TagsSearch";
 import CreateStep from "./components/posts/CreatePostStep";
-import EditPost from './components/posts/EditPost';
+import EditPost from "./components/posts/EditPost";
 
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
-
 class App extends Component {
   componentDidMount() {
+    this.setState({
+      ...this.state
+    });
+
     var query = queryString.parse(this.props.location.search);
     console.log("query:", query);
-    if (query.token) {
+    if (query.token && query.user) {
       window.localStorage.setItem("jwt", query.token);
+      window.localStorage.setItem("user_id", query.user);
       this.props.history.push("/");
     }
 
@@ -36,72 +40,53 @@ class App extends Component {
     this.props.login();
   };
 
+  logOut = () => {
+    console.log("logout");
+    this.setState({
+      ...this.state,
+      token: null
+    });
+    localStorage.clear();
+    //localStorage.removeItem('token')
+    //props.history.push('/login)
+    window.location.assign("/");
+  };
+
   render() {
     console.log("PROPS", this.props);
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>{this.props.message}</h1>
-
-          <Nav />
-
-          <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
-            <Button>Login with google</Button>
-          </a>
-
-          <NavLink to={"/user/:id"}>
-            <Button>Account</Button>
-          </NavLink>
-        </header>
         <div className="container">
-          <Route exact path='/' render={props => <Home {...props} />} />
-          <Route
-            path="/user/:id"
-            render={props => (
-              <Users
-                {...props}
-              />
-            )}
-          />
+          <header className="App-header">
+            <Nav logOut={this.logOut} />
+          </header>
 
+          <Route exact path="/" render={props => <Home {...props} />} />
 
-          {/* <Route path="/register" render={props => <Register {...props} />} /> */}
+          <Route path="/user/:id" render={props => <Users {...props} />} />
+
+          <Route path="/posts/:id" render={props => <Post {...props} />} />
 
           <Route
-            path="/posts/:id"
-            render={props => (
-              <Post
-                {...props}
-              />
-            )}
+            path="/forms/post/create"
+            render={props => <CreatePost {...props} />}
           />
 
-          <Route path="/forms/post/create" render={props => (
-            <CreatePost
-              {...props}
-            />
-          )}
+          <Route
+            path="/forms/post/:id"
+            render={props => <EditPost {...props} />}
           />
 
-          <Route path="/forms/post/:id" render={props => (
-            <EditPost
-              {...props}
-            />
-          )}
+          <Route
+            path="/forms/post/:id/steps"
+            render={props => <CreateStep {...props} />}
           />
-
-          <Route path="/forms/post/:id/steps" render={props => (
-            <CreateStep
-              {...props}
-            />
-          )}
-          />
-
 
           <Route
             path="/search"
             render={props => <SearchResults {...props} />}
           />
+
           <Route
             path="/categories/search"
             render={props => <TagsSearch {...props} />}

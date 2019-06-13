@@ -10,6 +10,12 @@ class Home extends React.Component {
         this.props.getPosts();
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.posts !== this.props.posts) {
+          this.props.getPosts();
+        }
+    }
+
     render() {
         return (
             <React.Fragment>

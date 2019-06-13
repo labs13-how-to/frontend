@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import { withRouter } from "react-router";
-import { Form, Input } from 'reactstrap';
+import { Form, Input } from "reactstrap";
 
 class NavSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       search: ""
-    }
+    };
   }
 
   searchChanges = e => {
@@ -22,14 +22,15 @@ class NavSearch extends React.Component {
   render() {
     return (
       <Form onSubmit={this.searchSubmit}>
-          <Input
-              type="text"
-              id="search"
-              placeholder="Search"
-              onChange={this.searchChanges}
-          />
+        <Input
+          type="text"
+          id="search"
+          placeholder="Search"
+          size="50"
+          onChange={this.searchChanges}
+        />
       </Form>
-    )
+    );
   }
 }
 

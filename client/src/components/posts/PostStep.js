@@ -1,22 +1,37 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import { connect } from 'react-redux';
+import { deleteStep } from '../../actions/steps-tagsActions';
+import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 
-const PostStep = props => {
-  const {
-    step_num,
-    title,
-    instruction,
-    img_url
-  } = props.step;
-  return (
-    <Card className='post'>
+class PostStep extends React.Component {
+
+  render() {
+    const {
+      step_num,
+      title,
+      instruction,
+      img_url,
+      id,
+      post_id
+    } = this.props.step;
+    return (
+      <Card className='post'>
         <CardImg src={img_url} alt="Card image" />
-        <CardHeader>Step {step_num}: {title}</CardHeader>
+        <CardHeader>Step {this.props.index + 1}: {title}</CardHeader>
         <CardBody>
-            <CardText>{instruction}</CardText>
+          <CardText>{instruction}</CardText>
         </CardBody>
-    </Card>
-  )
+        <Button onClick={() => this.props.deleteStep(post_id, id)}>X</Button>
+      </Card>
+    )
+  }
 }
 
-export default PostStep;
+function mapStateToProps({ projectsReducer }) {
+  return {
+    error: projectsReducer.error,
+    refresh: projectsReducer.refresh
+  }
+}
+
+export default connect(mapStateToProps, { deleteStep })(PostStep);

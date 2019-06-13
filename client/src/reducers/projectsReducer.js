@@ -2,11 +2,14 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
+    POST_DELETE_START, POST_DELETE_SUCCESS, POST_DELETE_FAILURE,
+    UPDATE_FETCH, UPDATE_SUCCESS, UPDATE_FAILURE,
     USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
     GETTAG_FETCH, GETTAG_SUCCESS, GETTAG_FAILURE,
+    STEP_DELETE_START, STEP_DELETE_SUCCESS, STEP_DELETE_FAILURE,
     ADDTAG_FETCH, ADDTAG_SUCCESS, ADDTAG_FAILURE,
     REMOVETAG_FETCH, REMOVETAG_SUCCESS, REMOVETAG_FAILURE,
 } from '../actions/steps-tagsActions';
@@ -23,6 +26,8 @@ const initialState =
     addMsg: '',
     fetching: false,
     adding: false,
+    deleting: false,
+    refresh: false,
     error: null,
     refresh: false
 };
@@ -65,7 +70,7 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
-        //add conditions ============
+        //add Post conditions ============
         case ADD_FETCH:
             return {
                 ...state,
@@ -84,6 +89,44 @@ const reducer = (state = initialState, action) => {
                 adding: false,
                 error: action.payload
             }
+        //delete post conditions
+        case POST_DELETE_START:
+                return {
+                    ...state,
+                    deleting: true,
+                    error: null,
+                }
+        case POST_DELETE_SUCCESS:
+            return {
+                ...state,
+                deleting: false,
+                refresh: true,
+            }
+        case POST_DELETE_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+            }
+        //UPDATE Post conditions ============
+        case UPDATE_FETCH:
+            return {
+                ...state,
+                updating: true
+            }
+        case UPDATE_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                updating: false,
+                message: action.payload.id
+            }
+        case UPDATE_FAILURE:
+            return {
+                ...state,
+                updating: false,
+                error: action.payload
+            }
+
         //add a step reducers
         case ADDSTEP_FETCH:
             return {
@@ -102,6 +145,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 adding: false,
                 error: action.payload
+            }
+        
+        case STEP_DELETE_START:
+            return {
+                ...state,
+                deleting: true,
+                error: null,
+            }
+        case STEP_DELETE_SUCCESS: 
+            return {
+                ...state,
+                deleting: false,
+                refresh: true,
+                error: null,
+            }
+        case STEP_DELETE_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+                error: action.payload,
             }
 
         //Tag reducer section

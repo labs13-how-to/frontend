@@ -5,8 +5,9 @@ import {
     FormGroup, Label, Input, DropdownToggle, DropdownMenu,
     DropdownItem, InputGroupButtonDropdown, Form
 } from 'reactstrap';
+import { getPost, deletePost } from '../../actions/index';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
+
 
 import PostStep from './PostStep';
 import Reviews from "../reviews/Reviews";
@@ -26,16 +27,23 @@ class Post extends React.Component {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
         });
-    }
+    };
 
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
-    }
+        console.log("IDDD", this.state.id)
+    };
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.refresh !== this.props.refresh)
+        if (prevProps.refresh !== this.props.refresh) {
             this.props.getPost(this.state.id)
-    }
+        };
+    };
+    delete() {
+        this.props.deletePost(this.state.id);
+        this.props.history.push("/");
+    };
+
 
     handleChange = e => {
         this.setState({ tag: e.target.value });
@@ -62,7 +70,8 @@ class Post extends React.Component {
         return (
             <React.Fragment>
                 <Card className='post'>
-                    <CardImg src={img_url} alt="Card image" />
+
+                    <CardImg className="img-fluid" src={img_url} alt="Card image" />
                     <CardBody>Tags:</CardBody>
                     <div className='tag-section'>
                         <p className='post-tags'>
@@ -93,6 +102,12 @@ class Post extends React.Component {
                         <CardText>duration: {duration}</CardText>
                         <CardText>skills: {skills}</CardText>
                         <CardText>supplies: {supplies}</CardText>
+                        <div className="btn-group" role="group">
+                            <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
+                                Edit
+                            </Button>
+                            <Button className="edit-button" onClick={() => this.delete()}>X</Button>
+                        </div>
                     </CardBody>
 
                     {!!steps && steps.map((step, index) => {
@@ -100,6 +115,7 @@ class Post extends React.Component {
                             <PostStep
                                 key={index}
                                 step={step}
+                                index={index}
                             />
                         )
                     })}
@@ -129,6 +145,7 @@ export default connect(
     {
         getTag,
         getPost,
+        deletePost,
         removeTag,
         addTag
     }

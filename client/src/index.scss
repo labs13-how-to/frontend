@@ -56,8 +56,8 @@ code {
 }
 
 // post.js styles ======================
-.post {
-  width: 70%;
+#post, #post .post {
+  width: 75%;
   margin: 20px auto;
   position: relative;
 }
@@ -106,7 +106,7 @@ code {
   font-size: 0.75rem;
   // top: 900px;
 }
-.review-cards {
+#post .review-cards {
   width: 80%;
 }
 .review-container {
@@ -114,6 +114,8 @@ code {
   justify-content: center;
   flex-wrap: wrap;
 }
+
+// large tablet
 @include media-breakpoint-down(lg) {
   .card{
       width: 24%;
@@ -127,6 +129,10 @@ code {
   .card{
       width: 31%;
       margin: 10px auto;
+  }
+  #post, #post .post {
+    width: 90%;
+
   }
 
 }

@@ -7,6 +7,8 @@ import {
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
     GETTAG_FETCH, GETTAG_SUCCESS, GETTAG_FAILURE,
+    ADDTAG_FETCH, ADDTAG_SUCCESS, ADDTAG_FAILURE,
+    REMOVETAG_FETCH, REMOVETAG_SUCCESS, REMOVETAG_FAILURE,
 } from '../actions/steps-tagsActions';
 
 
@@ -22,6 +24,7 @@ const initialState =
     fetching: false,
     adding: false,
     error: null,
+    refresh: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,7 +55,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 fetching: false,
-                currPost: action.payload
+                currPost: action.payload,
+                refresh: false,
             }
         case FAILURE:
             return {
@@ -100,6 +104,7 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             }
 
+        //Tag reducer section
         case GETTAG_FETCH:
             return {
                 ...state,
@@ -110,13 +115,52 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 fetching: false,
-                allTags: action.payload
+                allTags: action.payload,
             }
         case GETTAG_FAILURE:
             return {
                 ...state,
                 fetching: false,
             }
+        case ADDTAG_FETCH:
+            return {
+                ...state,
+                fetching: true
+            }
+        case ADDTAG_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                refresh: true,
+            }
+        case ADDTAG_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
+
+        case REMOVETAG_FETCH:
+            return {
+                ...state,
+                fetching: true
+            }
+        case REMOVETAG_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                fetching: false,
+                refresh: true,
+
+            }
+        case REMOVETAG_FAILURE:
+            return {
+                ...state,
+                fetching: false,
+                error: action.payload
+            }
+
         // User Posts Fetching
         case USER_POSTS_FETCH:
             return {

@@ -10,6 +10,12 @@ class Home extends React.Component {
         this.props.getPosts();
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.refresh !== this.props.refresh) {
+          this.props.getPosts();
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -31,7 +37,8 @@ class Home extends React.Component {
 
 function mapStateToProps({ projectsReducer }) {
     return {
-        posts: projectsReducer.posts
+        posts: projectsReducer.posts,
+        refresh: projectsReducer.refresh
     }
 }
 

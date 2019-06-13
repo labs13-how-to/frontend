@@ -69,7 +69,7 @@ class Post extends React.Component {
         } = this.props.currPost
         return (
             <React.Fragment>
-                <Card className='post'>
+                <Card id='post'>
 
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
                     <CardBody>Tags:</CardBody>

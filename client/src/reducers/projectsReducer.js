@@ -2,11 +2,13 @@ import {
     TEST,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
-    USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
+    POST_DELETE_START, POST_DELETE_SUCCESS, POST_DELETE_FAILURE,
+    USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL,
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
     GETTAG_FETCH, GETTAG_SUCCESS, GETTAG_FAILURE,
+    STEP_DELETE_START, STEP_DELETE_SUCCESS, STEP_DELETE_FAILURE,
 } from '../actions/steps-tagsActions';
 
 
@@ -21,6 +23,8 @@ const initialState =
     addMsg: '',
     fetching: false,
     adding: false,
+    deleting: false,
+    refresh: false,
     error: null,
 };
 
@@ -80,6 +84,26 @@ const reducer = (state = initialState, action) => {
                 adding: false,
                 error: action.payload
             }
+        //delete post conditions
+        case POST_DELETE_START:
+                return {
+                    ...state,
+                    deleting: true,
+                    error: null,
+                }
+        case POST_DELETE_SUCCESS:
+            return {
+                ...state,
+                deleting: false,
+                refresh: true,
+            }
+        case POST_DELETE_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+                error: action.payload
+            }
+
         //add a step reducers
         case ADDSTEP_FETCH:
             return {
@@ -98,6 +122,25 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 adding: false,
                 error: action.payload
+            }
+        
+        case STEP_DELETE_START:
+            return {
+                ...state,
+                deleting: true,
+                error: null,
+            }
+        case STEP_DELETE_SUCCESS: 
+            return {
+                ...state,
+                deleting: false,
+                error: null,
+            }
+        case STEP_DELETE_FAILURE:
+            return {
+                ...state,
+                deleting: false,
+                error: action.payload,
             }
 
         case GETTAG_FETCH:

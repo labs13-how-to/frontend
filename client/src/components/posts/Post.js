@@ -62,6 +62,9 @@ class Post extends React.Component {
         return (
             <React.Fragment>
                 <Card className='post'>
+                    <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/${this.state.id}`)}>
+                        Edit
+                    </Button>
                     <CardImg src={img_url} alt="Card image" />
                     <CardBody>Tags:</CardBody>
                     <div className='tag-section'>

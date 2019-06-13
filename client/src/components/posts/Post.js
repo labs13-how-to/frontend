@@ -65,7 +65,7 @@ class Post extends React.Component {
                     <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/${this.state.id}`)}>
                         Edit
                     </Button>
-                    <CardImg src={img_url} alt="Card image" />
+                    <CardImg className="img-fluid" src={img_url} alt="Card image" />
                     <CardBody>Tags:</CardBody>
                     <div className='tag-section'>
                         <p className='post-tags'>

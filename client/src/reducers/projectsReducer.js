@@ -29,7 +29,6 @@ const initialState =
     deleting: false,
     refresh: false,
     error: null,
-    refresh: false
 };
 
 const reducer = (state = initialState, action) => {

@@ -42,27 +42,29 @@ class ReviewForm extends React.Component {
     const { rating } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form className="review-form" onSubmit={this.handleSubmit}>
         <FormGroup>
-          <h2>Rating:</h2>
-          <StarRatingComponent
-            name="stars"
-            starCount={5}
-            value={rating}
-            onStarClick={this.onStarClick.bind(this)}
-          />
+          <h5 className="rf-title">How would you rate this project?</h5>
+          <div className="stars-container">
+            <StarRatingComponent
+              className="review-stars"
+              name="stars"
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+          </div>
         </FormGroup>
-        <FormGroup>
-          <Label>Review</Label>
-          <Input
-            type="textarea"
-            name="review"
-            placeholder="Review"
-            onChange={this.handleChange}
-            value={this.state.review}
-          />
-        </FormGroup>
-        <Button type="submit">Post</Button>
+        <Input
+          className="rf-text"
+          type="textarea"
+          name="review"
+          placeholder="What did you think of this project?"
+          onChange={this.handleChange}
+          value={this.state.review}
+          rows="6"
+        />
+        <Button className="rf-button" type="submit">Post</Button>
       </Form>
     );
   }

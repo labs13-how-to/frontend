@@ -12,7 +12,7 @@ export const getTest = () => dispatch => {
   dispatch({ type: FETCH });
   console.log("fetched");
   axios
-    .get("https://lambda-how-to.herokuapp.com/")
+    .get(`${process.env.REACT_APP_BE_URL}`)
     .then(res => {
       dispatch({ type: TEST, payload: res.data });
     })
@@ -27,10 +27,10 @@ export const getPosts = () => dispatch => {
   axios
     .get(`${process.env.REACT_APP_BE_URL}/posts/`)
     .then(res => {
-        dispatch({ type: SUCCESS, payload: res.data });
+      dispatch({ type: SUCCESS, payload: res.data });
     })
     .catch(err => {
-        dispatch({ type: FAILURE, payload: err });
+      dispatch({ type: FAILURE, payload: err });
     });
 };
 
@@ -40,13 +40,12 @@ export const getPost = id => dispatch => {
   axios
     .get(`${process.env.REACT_APP_BE_URL}/posts/${id}`)
     .then(res => {
-        dispatch({ type: SUCCESS_ID, payload: res.data });
+      dispatch({ type: SUCCESS_ID, payload: res.data });
     })
     .catch(err => {
-        dispatch({ type: FAILURE, payload: err });
+      dispatch({ type: FAILURE, payload: err });
     });
 };
-
 
 export const ADD_FETCH = "ADD_FETCH";
 export const ADD_SUCCESS = "ADD_SUCCESS";
@@ -57,13 +56,12 @@ export const addPost = newPost => dispatch => {
   axios
     .post(`${process.env.REACT_APP_BE_URL}/posts/`, newPost)
     .then(response => {
-        dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
+      dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
     })
     .catch(err => {
-        dispatch({ type: ADD_FAILURE, payload: err });
+      dispatch({ type: ADD_FAILURE, payload: err });
     });
 };
-
 
 export const POST_DELETE_START = "POST_DELETE_START";
 export const POST_DELETE_SUCCESS = "POST_DELETE_SUCCESS";
@@ -90,9 +88,9 @@ export const UPDATE_FAILURE = "UPDATE_FAILURE";
 export const updatePost = (id, updatedPost) => dispatch => {
   dispatch({ type: UPDATE_FETCH });
   axios
-    .put(`https://lambda-how-to.herokuapp.com/posts/${id}`, updatedPost)
+    .put(`${process.env.REACT_APP_BE_URL}/posts/${id}`, updatedPost)
     .then(response => {
-      console.log('response', response.data)
+      console.log("response", response.data);
       dispatch({ type: UPDATE_SUCCESS, payload: response.data });
     })
     .catch(err => {
@@ -109,7 +107,7 @@ export const getUsers = id => dispatch => {
   dispatch({ type: USER_FETCH });
   console.log("fetched");
   axios
-    .get(`https://lambda-how-to.herokuapp.com/users/${id}`)
+    .get(`${process.env.REACT_APP_BE_URL}/users/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: USER_SUCCESS, payload: res.data });
@@ -128,7 +126,7 @@ export const getUserPosts = id => dispatch => {
   dispatch({ type: USER_POSTS_FETCH });
   console.log("fetching user posts");
   axios
-    .get(`https://lambda-how-to.herokuapp.com/users/${id}/posts`)
+    .get(`${process.env.REACT_APP_BE_URL}/users/${id}/posts`)
     .then(res => {
       console.log(res);
       dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
@@ -147,7 +145,7 @@ export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
   console.log(creds);
   return axios
-    .post(`https://lambda-how-to.herokuapp.com/auth/register`, creds)
+    .post(`${process.env.REACT_APP_BE_URL}/auth/register`, creds)
     .then(res => {
       console.log("Register!", res.data);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
@@ -183,13 +181,12 @@ export const logout = () => {
 };
 
 //Reviews Actions
-//Getting reviews for specified post 
+//Getting reviews for specified post
 export const REVIEW_FETCH_START = "REVIEW_FETCH_START";
 export const REVIEW_FETCH_SUCCESS = "REVIEW_FETCH_SUCCESS";
 export const REVIEW_FETCH_FAILURE = "REVIEW_FETCH_FAILURE";
 
 export const getReviews = id => dispatch => {
-
   dispatch({ type: REVIEW_FETCH_START });
   axios
     .get(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`)
@@ -200,12 +197,11 @@ export const getReviews = id => dispatch => {
     .catch(err => {
       dispatch({ type: REVIEW_FETCH_FAILURE, payload: err });
     });
-}
+};
 
 export const REVIEW_ADD_START = "REVIEW_ADD_START";
 export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
 export const REVIEW_ADD_FAILURE = "REVIEW_ADD_FAILURE";
-
 
 export const addReview = (id, newPost) => dispatch => {
   console.log("NEWPOSTT!", newPost);
@@ -224,7 +220,6 @@ export const addReview = (id, newPost) => dispatch => {
 export const REVIEW_UPDATE_START = "REVIEW_UPDATE_START";
 export const REVIEW_UPDATE_SUCCESS = "REVIEW_UPDATE_SUCCESS";
 export const REVIEW_UPDATE_FAILURE = "REVIEW_UPDATE_FAILURE";
-
 
 export const updateReview = (id, updatedPost) => dispatch => {
   dispatch({ type: REVIEW_UPDATE_START });

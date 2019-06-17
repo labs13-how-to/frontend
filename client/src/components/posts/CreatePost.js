@@ -15,10 +15,31 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: 0,
+            created_by: '',
         };
     }
+    componentDidMount() {
+        this.hydrateStateWithLocalStorage();
 
+    }
+    hydrateStateWithLocalStorage() {
+        // for all items in state
+        for (let user_id in this.state) {
+            // if the key exists in localStorage
+            if (localStorage.hasOwnProperty(user_id)) {
+                // get the key's value from localStorage
+                let value = localStorage.getItem(user_id);
+                console.log("VALUE:", value)
+                try {
+                    console.log("VALUE", value);
+                    this.setState({ created_by: `${value}` });
+                } catch (e) {
+                    // handle empty string
+                    this.setState({ created_by: `${value}` });
+                }
+            }
+        }
+    }
 
 
     handleChange = e => {
@@ -38,11 +59,11 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: 0,
+            created_by: '',
         })
         console.log(this.props.addId);
 
-        setTimeout(() => this.props.history.push(`/forms/post/${this.props.addId}/steps`), 600);
+        setTimeout(() => this.props.history.push(`/forms/post/${this.state.created_by}/steps`), 600);
     }
 
     render() {

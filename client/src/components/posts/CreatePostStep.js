@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStep } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
+import { getPost, getPosts } from '../../actions/index';
+import PostStep from './PostStep';
 
 class CreateStepForm extends React.Component {
     constructor(props) {
@@ -38,9 +39,11 @@ class CreateStepForm extends React.Component {
                 })
             }
 
+            if (prevProps.refresh !== this.props.refresh) {
+                this.props.getPost(this.state.post_id)
+            };
+
     }
-
-
 
     handleChange = e => {
         console.log(e.target.value);
@@ -66,8 +69,20 @@ class CreateStepForm extends React.Component {
     }
 
     render() {
+        const {steps} = this.props.currPost;
         return (
             <>
+                {steps && steps.map((step, index) => {
+                    return (
+                        <PostStep
+                            key={index}
+                            step={step}
+                            index={index}
+                            location={this.props.location}
+                        />
+                    )
+                })}
+                <h3 className='ps-section-header'>Add Steps, Instructions, and additional Photos/Videos here</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
@@ -97,8 +112,6 @@ class CreateStepForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
-
-
                     <FormGroup>
                         <Label>Video(optional)</Label>
                         <Input
@@ -108,7 +121,6 @@ class CreateStepForm extends React.Component {
                             name='vid_url'
                         />
                     </FormGroup>
-
 
                     <Button type='submit'>Save</Button>
                 </Form>
@@ -121,7 +133,9 @@ class CreateStepForm extends React.Component {
 function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
-        currPost: projectsReducer.currPost
+        currPost: projectsReducer.currPost,
+        posts: projectsReducer.posts,
+        refresh: projectsReducer.refresh,
     }
 }
 
@@ -129,6 +143,7 @@ export default connect(
     mapStateToProps,
     {
         addStep,
-        getPost
+        getPost,
+        getPosts
     }
 )(CreateStepForm);

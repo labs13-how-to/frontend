@@ -51,10 +51,10 @@ class ReviewForm extends React.Component {
     console.log("id1!!!!", this.props.id);
     await this.props.addReview(this.props.id, this.state);
 
-    // this.setState({
-    //   rating: 0,
-    //   review: ""
-    // });
+    this.setState({
+      rating: 0,
+      review: ""
+    });
     setTimeout(this.props.getReviews(this.state.post_id), 1000);
   };
 

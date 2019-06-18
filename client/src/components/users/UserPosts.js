@@ -11,12 +11,12 @@ class UserPosts extends React.Component {
     };
 
     render() {
-        return(
+        return (
             <div className='post-list'>
                 {this.props.userPosts.map((post, i) => {
                     return (
                         <Card key={i}>
-                            <CardImg src={post.img_url} alt="Card Image"/>
+                            <CardImg src={post.img_url} alt="Card Image" />
                             <CardHeader>{post.title}</CardHeader>
                             <CardBody>
                                 <CardText>{post.difficulty}</CardText>

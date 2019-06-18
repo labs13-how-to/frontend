@@ -4,6 +4,19 @@ import { deleteStep } from '../../actions/steps-tagsActions';
 import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
 
 class PostStep extends React.Component {
+  state={
+    isForm:false
+  }
+
+  componentDidMount(){
+    if(this.props.location){
+      let isForm = this.props.location.pathname.split('/')[1] === 'forms';
+    this.setState({
+      isForm: isForm
+    })
+    }
+    
+  }
 
   render() {
     const {
@@ -21,7 +34,7 @@ class PostStep extends React.Component {
         <CardBody>
           <CardText>{instruction}</CardText>
         </CardBody>
-        <Button onClick={() => this.props.deleteStep(post_id, id)}>X</Button>
+        {this.state.isForm && <Button onClick={() => this.props.deleteStep(post_id, id)}>X</Button>}
       </Card>
     )
   }

@@ -137,7 +137,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 error: null,
                 adding: false,
-                addMsg: action.payload.id
+                addMsg: action.payload.id,
+                refresh:true
             }
         case ADDSTEP_FAILURE:
             return {

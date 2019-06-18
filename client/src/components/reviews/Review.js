@@ -98,13 +98,13 @@ class Review extends React.Component {
                 </CardBody>
                 {!this.state.updating ? (
                     <div className="r-buttons">
+                        <Button className="r-button" onClick={() => this.props.deleteReview(this.props.review.id)}>Delete</Button>
                         <Button className="r-button" onClick={() => this.toggleUpdate()}>Edit</Button>
-                        <Button className="r-button" onClick={() => this.props.deleteReview(this.props.review.id)}>X</Button>
                     </div>
                 ) : (
                     <div className="r-buttons">
+                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Cancel</Button>
                         <Button className="r-button" onClick={() => this.update(this.props.review.id)}>Save</Button>
-                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Undo</Button>
                     </div>
                 )}
             </Card>

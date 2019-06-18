@@ -1,5 +1,6 @@
 import axios from "axios";
 import axiosWithAuth from "../auth/needAuth";
+
 const backendUrl = process.env.REACT_APP_BE_URL || `http://localhost:5000`;
 
 export const TEST = "TEST";
@@ -12,7 +13,7 @@ export const getTest = () => dispatch => {
   dispatch({ type: FETCH });
   console.log("fetched");
   axios
-    .get(`${process.env.REACT_APP_BE_URL}`)
+    .get(backendUrl)
     .then(res => {
       dispatch({ type: TEST, payload: res.data });
     })
@@ -25,7 +26,7 @@ export const getPosts = () => dispatch => {
   dispatch({ type: FETCH });
   console.log("fetched");
   axios
-    .get(`${process.env.REACT_APP_BE_URL}/posts/`)
+    .get(`${backendUrl}/posts/`)
     .then(res => {
       dispatch({ type: SUCCESS, payload: res.data });
     })
@@ -38,7 +39,7 @@ export const getPost = id => dispatch => {
   dispatch({ type: FETCH });
   console.log("fetched");
   axios
-    .get(`${process.env.REACT_APP_BE_URL}/posts/${id}`)
+    .get(`${backendUrl}/posts/${id}`)
     .then(res => {
       dispatch({ type: SUCCESS_ID, payload: res.data });
     })
@@ -54,8 +55,10 @@ export const ADD_FAILURE = "ADD_FAILURE";
 export const addPost = newPost => dispatch => {
   dispatch({ type: ADD_FETCH });
   axios
-    .post(`${process.env.REACT_APP_BE_URL}/posts/`, newPost)
+    .post(`${backendUrl}/posts/`, newPost)
     .then(response => {
+      console.log("RESPONSE", response)
+      console.log("RESPONSE DATA", response.data)
       dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
     })
     .catch(err => {
@@ -70,7 +73,7 @@ export const POST_DELETE_FAILURE = "POST_DELETE_FAILURE";
 export const deletePost = id => dispatch => {
   dispatch({ type: POST_DELETE_START });
   axios
-    .delete(`${process.env.REACT_APP_BE_URL}/posts/${id}`)
+    .delete(`${backendUrl}/posts/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: POST_DELETE_SUCCESS, payload: res.data });
@@ -88,7 +91,7 @@ export const UPDATE_FAILURE = "UPDATE_FAILURE";
 export const updatePost = (id, updatedPost) => dispatch => {
   dispatch({ type: UPDATE_FETCH });
   axios
-    .put(`${process.env.REACT_APP_BE_URL}/posts/${id}`, updatedPost)
+    .put(`${backendUrl}/posts/${id}`, updatedPost)
     .then(response => {
       console.log("response", response.data);
       dispatch({ type: UPDATE_SUCCESS, payload: response.data });
@@ -107,7 +110,7 @@ export const getUsers = id => dispatch => {
   dispatch({ type: USER_FETCH });
   console.log("fetched");
   axios
-    .get(`${process.env.REACT_APP_BE_URL}/users/${id}`)
+    .get(`${backendUrl}/users/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: USER_SUCCESS, payload: res.data });
@@ -126,7 +129,7 @@ export const getUserPosts = id => dispatch => {
   dispatch({ type: USER_POSTS_FETCH });
   console.log("fetching user posts");
   axios
-    .get(`${process.env.REACT_APP_BE_URL}/users/${id}/posts`)
+    .get(`${backendUrl}/users/${id}/posts`)
     .then(res => {
       console.log(res);
       dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
@@ -145,7 +148,7 @@ export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
   console.log(creds);
   return axios
-    .post(`${process.env.REACT_APP_BE_URL}/auth/register`, creds)
+    .post(`${backendUrl}/auth/register`, creds)
     .then(res => {
       console.log("Register!", res.data);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
@@ -161,7 +164,7 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const login = () => dispatch => {
   dispatch({ type: LOGIN_START });
   return axios
-    .get(`${process.env.REACT_APP_BE_URL}/auth/google`)
+    .get(`${backendUrl}/auth/google`)
     .then(res => {
       console.log(res);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
@@ -189,7 +192,7 @@ export const REVIEW_FETCH_FAILURE = "REVIEW_FETCH_FAILURE";
 export const getReviews = id => dispatch => {
   dispatch({ type: REVIEW_FETCH_START });
   axios
-    .get(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`)
+    .get(`${backendUrl}/posts/${id}/reviews`)
     .then(res => {
       console.log(res);
       dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data });
@@ -207,7 +210,7 @@ export const addReview = (id, newPost) => dispatch => {
   console.log("NEWPOSTT!", newPost);
   dispatch({ type: REVIEW_ADD_START });
   axiosWithAuth()
-    .post(`${process.env.REACT_APP_BE_URL}/posts/${id}/reviews`, newPost)
+    .post(`${backendUrl}/posts/${id}/reviews`, newPost)
     .then(res => {
       console.log("res.data", res.data);
       dispatch({ type: REVIEW_ADD_SUCCESS, payload: res.data });
@@ -224,7 +227,7 @@ export const REVIEW_UPDATE_FAILURE = "REVIEW_UPDATE_FAILURE";
 export const updateReview = (id, updatedPost) => dispatch => {
   dispatch({ type: REVIEW_UPDATE_START });
   axios
-    .put(`${process.env.REACT_APP_BE_URL}/posts/reviews/${id}`, updatedPost)
+    .put(`${backendUrl}/posts/reviews/${id}`, updatedPost)
     .then(res => {
       console.log(res);
       dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: res.data });
@@ -241,7 +244,7 @@ export const REVIEW_DELETE_FAILURE = "REVIEW_DELETE_FAILURE";
 export const deleteReview = id => dispatch => {
   dispatch({ type: REVIEW_DELETE_START });
   axios
-    .delete(`${process.env.REACT_APP_BE_URL}/posts/reviews/${id}`)
+    .delete(`${backendUrl}/posts/reviews/${id}`)
     .then(res => {
       console.log(res);
       dispatch({ type: REVIEW_DELETE_SUCCESS, payload: res.data });

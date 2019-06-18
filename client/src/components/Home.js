@@ -12,14 +12,14 @@ class Home extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.refresh !== this.props.refresh) {
-          this.props.getPosts();
+            this.props.getPosts();
         }
     }
 
     render() {
         return (
             <React.Fragment>
-                <h2>Posts</h2>
+                <h2 className='posts-head'>Posts</h2>
                 <div className='post-list'>
                     {this.props.posts.map((post, index) =>
                         <Posts
@@ -28,6 +28,8 @@ class Home extends React.Component {
                             history={this.props.history}
                         />
                     )}
+
+
                 </div>
             </React.Fragment>
         );

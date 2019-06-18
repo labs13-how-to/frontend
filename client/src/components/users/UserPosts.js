@@ -13,7 +13,6 @@ class UserPosts extends React.Component {
     };
 
     render() {
-
         return (
             <div className='post-list'>
                 {this.props.userPosts.map((post, i) => {

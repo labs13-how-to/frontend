@@ -3,20 +3,25 @@ import { NavLink as RouteLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
 import { connect } from "react-redux";
 import {
-  // Collapse,
   Navbar,
-  // NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Button
+  Button,
+  Media,
+  CardImg
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LogoImage from '../../images/logo.png';
+
+
+
 
 class NavComponent extends React.Component {
   constructor(props) {
@@ -52,23 +57,11 @@ class NavComponent extends React.Component {
   render() {
     // console.log("USER ID", this.state.user_id);
     return (
-      <Navbar color="whitesmoke" light expand="md">
-        <NavbarBrand href="/">How-To</NavbarBrand>
+      <Navbar color="white" light expand="md">
+        <NavbarBrand href="/"><img className='logo' src={LogoImage} /></NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavSearch {...this.props} />
-          </NavItem>
-        </Nav>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <RouteLink to="/forms/post/create/">Create Post</RouteLink>
-          </NavItem>
-        </Nav>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
-              Login with google
-            </a>
           </NavItem>
         </Nav>
         <UncontrolledDropdown className="mr-auto" inNavbar>
@@ -84,12 +77,10 @@ class NavComponent extends React.Component {
           </DropdownMenu>
         </UncontrolledDropdown>
         <RouteLink to={`/user/${this.state.auth_id}`}>
-          <Button className="navBtn">Account</Button>
+          {/* <Button className='navBtn'>Account</Button> */}
+          <FontAwesomeIcon icon={faUser} />
         </RouteLink>
-        <RouteLink exact to="/" onClick={this.props.logOut}>
-          Logout
-        </RouteLink>
-      </Navbar>
+      </Navbar >
     );
   }
 }

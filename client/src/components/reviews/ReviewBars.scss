@@ -1,0 +1,44 @@
+// THEME COLORS
+@theme-colors: (
+  orange: #FF851A
+)
+
+
+.bar-container {
+  margin: 10px 10px;
+}
+
+.bar-grid {
+  display: grid;
+  grid-template-columns: 15% 75% 10%;
+  grid-row-gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 30% 50% 20%;
+  }
+}
+
+.bg-orange {
+  background-color: #ff851a;
+}
+
+.review-label {
+  margin: 0 10px;
+  text-align: right;
+}
+
+.review-count {
+  margin: 0 10px;
+}
+
+.progress {
+  height: 30px;
+}
+
+.progress-bar {
+  height: 30px;
+}

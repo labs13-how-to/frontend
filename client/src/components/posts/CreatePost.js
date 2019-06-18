@@ -15,10 +15,29 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: 0,
+            created_by: '',
         };
     }
+    componentDidMount() {
+        this.hydrateStateWithLocalStorage();
+    }
 
+    hydrateStateWithLocalStorage() {
+        // if the key exists in localStorage
+        if (!this.state.created_by) {
+            // get the key's value from localStorage
+            const id = localStorage.getItem('user_id');
+            console.log("ID:", id)
+            try {
+                console.log("ID", id);
+                this.setState({ created_by: `${id}` });
+            } catch (e) {
+                // handle empty string
+                this.setState({ created_by: `${id}` });
+            }
+        }
+
+    }
 
 
     handleChange = e => {
@@ -26,7 +45,7 @@ class CreatePostForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    handleSumbit = async e => {
+    handleSubmit = async e => {
         console.log(this.state);
         e.preventDefault();
         await this.props.addPost(this.state)
@@ -38,9 +57,9 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: 0,
+            created_by: '',
         })
-        console.log(this.props.addId);
+
 
         setTimeout(() => this.props.history.push(`/forms/post/${this.props.addId}/steps`), 600);
     }
@@ -48,7 +67,7 @@ class CreatePostForm extends React.Component {
     render() {
         return (
             <>
-                <Form onSubmit={this.handleSumbit}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
                         <Input

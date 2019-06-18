@@ -6,7 +6,6 @@
 // @include media-breakpoint-up(lg) { ... }
 
 body {
-  background: lightgray;
   text-align: center;
 }
 
@@ -106,10 +105,10 @@ h1, h2{
   justify-content: space-between;
   align-items: center;
 }
-.btn {
-  width: 80%;
-  margin: 0 auto;
-}
+// .btn {
+//   width: 80%;
+//   margin: 0 auto;
+// }
 .post-list {
   display: flex;
   flex-wrap: wrap;

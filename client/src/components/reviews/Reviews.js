@@ -1,15 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getReviews, getUsers, deleteReview } from "../../actions";
-import { Card, CardText, CardBody, CardHeader, Button } from "reactstrap";
+import { getReviews } from "../../actions";
 import ReviewForm from "./ReviewForm";
-import StarRatingComponent from "react-star-rating-component";
+import Review from "./Review";
+import "../../reviews.scss";
 
 class Reviews extends React.Component {
   state = {
-    review: 0,
-    updating: false
-  };
+    update: false
+  }
+
   componentDidMount() {
     this.props.getReviews(this.props.post_id);
     console.log(this.props.post_id);
@@ -18,56 +18,41 @@ class Reviews extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.refresh !== this.props.refresh) {
       this.props.getReviews(this.props.post_id);
+      this.setState({ update: !this.state.update })
     }
   }
 
-  toggleUpdate = () => {
-    this.setState({
-      updating: true
-    });
-  };
-
   render() {
-    console.log("THISPROPSREVIEWS!", this.props.reviews);
     return (
-      <div>
-        <ReviewForm id={this.props.post_id} />
+      <div> 
+        <h2 className="review-header">Reviews</h2>
+        <div className="review-div">
+          <ReviewForm id={this.props.post_id} />
+        </div>
         <div className="review-container">
           {this.props.reviews &&
-            this.props.reviews.map((review, index) => {
-              return (
-                <Card key={index} className="review-cards">
-                  <CardHeader>{review.username}</CardHeader>
-                  <CardBody>
-                    <StarRatingComponent
-                      name="stars"
-                      starCount={5}
-                      value={review.rating}
-                    />
-                    <CardText>{review.review}</CardText>
-                  </CardBody>
-                  <Button onClick={() => this.props.deleteReview(review.id)}>
-                    X
-                  </Button>
-                </Card>
-              );
-            })}
+            this.props.reviews.map((review, index) => (
+              <Review
+                review={review}
+                key={index}
+                post_id={this.props.post_id}
+              />
+            ))}
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps({ reviewsReducer, usersReducer }) {
+function mapStateToProps({ reviewsReducer }) {
   return {
     reviews: reviewsReducer.reviews,
     error: reviewsReducer.error,
-    user: usersReducer.user,
     refresh: reviewsReducer.refresh
   };
 }
 
 export default connect(
   mapStateToProps,
-  { getReviews, getUsers, deleteReview }
+  { getReviews }
 )(Reviews);

@@ -24,11 +24,38 @@ import LogoImage from '../../images/logo.png';
 
 
 class NavComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth_id: "",
+      user_id: null
+    };
+  }
   componentDidMount() {
     this.props.getTag();
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          console.log("VALUE", value);
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   render() {
+    // console.log("USER ID", this.state.user_id);
     return (
       <Navbar color="white" light expand="md">
         <NavbarBrand href="/"><img className='logo' src={LogoImage} /></NavbarBrand>
@@ -49,7 +76,7 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
-        <RouteLink to={"/user/1"}>
+        <RouteLink to={`/user/${this.state.auth_id}`}>
           {/* <Button className='navBtn'>Account</Button> */}
           <FontAwesomeIcon icon={faUser} />
         </RouteLink>

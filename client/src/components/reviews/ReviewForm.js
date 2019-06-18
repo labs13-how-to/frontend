@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addReview, getReviews } from "../../actions";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
 
 class ReviewForm extends React.Component {
@@ -11,8 +11,29 @@ class ReviewForm extends React.Component {
       rating: 0,
       review: "",
       post_id: this.props.id,
-      user_id: 1
+      auth_id: "",
+      user_id: null
     };
+  }
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          console.log("VALUE", value);
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   onStarClick(nextValue, prevValue, name) {
@@ -30,10 +51,10 @@ class ReviewForm extends React.Component {
     console.log("id1!!!!", this.props.id);
     await this.props.addReview(this.props.id, this.state);
 
-    this.setState({
-      rating: 0,
-      review: ""
-    });
+    // this.setState({
+    //   rating: 0,
+    //   review: ""
+    // });
     setTimeout(this.props.getReviews(this.state.post_id), 1000);
   };
 
@@ -42,27 +63,33 @@ class ReviewForm extends React.Component {
     const { rating } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form className="review-form" onSubmit={this.handleSubmit}>
         <FormGroup>
-          <h2>Rating:</h2>
-          <StarRatingComponent
-            name="stars"
-            starCount={5}
-            value={rating}
-            onStarClick={this.onStarClick.bind(this)}
-          />
+          <h5 className="rf-title">How would you rate this project?</h5>
+          <div className="stars-container">
+            <StarRatingComponent
+              className="review-stars"
+              name="stars"
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+          </div>
         </FormGroup>
-        <FormGroup>
-          <Label>Review</Label>
-          <Input
-            type="textarea"
-            name="review"
-            placeholder="Review"
-            onChange={this.handleChange}
-            value={this.state.review}
-          />
-        </FormGroup>
-        <Button type="submit">Post</Button>
+        
+        <Input
+          className="rf-text"
+          type="textarea"
+          name="review"
+          placeholder="What did you think of this project?"
+          onChange={this.handleChange}
+          value={this.state.review}
+          rows="6"
+        />
+
+        <div className="rf-btn-container">
+          <Button className="rf-button" type="submit">Post</Button>
+        </div>
       </Form>
     );
   }

@@ -21,6 +21,7 @@ const initialState = {
   updating: false,
   deleting: false,
   refresh: false,
+  refreshReview: false,
   error: null
 };
 
@@ -31,6 +32,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetching: true,
+        refresh: false,
+        refreshReview: false,
         error: null
       };
     case REVIEW_FETCH_SUCCESS:
@@ -38,7 +41,6 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetching: false,
         reviews: action.payload,
-        refresh: false,
         error: null
       };
     case REVIEW_FETCH_FAILURE:
@@ -80,7 +82,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         updating: false,
-        reviews: action.payload,
+        refresh: true,
+        refreshReview: true,
         error: null
       };
     case REVIEW_UPDATE_FAILURE:

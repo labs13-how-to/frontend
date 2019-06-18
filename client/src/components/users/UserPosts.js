@@ -7,6 +7,8 @@ import { getUserPosts } from '../../actions';
 class UserPosts extends React.Component {
 
     componentDidMount() {
+        console.log("this.props.match:", this.props.match)
+        console.log("get user posts match:", this.props.getUserPosts(this.props.match.params.id))
         this.props.getUserPosts(this.props.match.params.id);
     };
 
@@ -14,6 +16,8 @@ class UserPosts extends React.Component {
         return (
             <div className='post-list'>
                 {this.props.userPosts.map((post, i) => {
+
+                    console.log("PPOOOOOOOSSSSSTTTTT", post)
                     return (
                         <Card key={i}>
                             <CardImg src={post.img_url} alt="Card Image" />

@@ -29,7 +29,6 @@ const initialState =
     deleting: false,
     refresh: false,
     error: null,
-    refresh: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -91,11 +90,11 @@ const reducer = (state = initialState, action) => {
             }
         //delete post conditions
         case POST_DELETE_START:
-                return {
-                    ...state,
-                    deleting: true,
-                    error: null,
-                }
+            return {
+                ...state,
+                deleting: true,
+                error: null,
+            }
         case POST_DELETE_SUCCESS:
             return {
                 ...state,
@@ -146,14 +145,14 @@ const reducer = (state = initialState, action) => {
                 adding: false,
                 error: action.payload
             }
-        
+
         case STEP_DELETE_START:
             return {
                 ...state,
                 deleting: true,
                 error: null,
             }
-        case STEP_DELETE_SUCCESS: 
+        case STEP_DELETE_SUCCESS:
             return {
                 ...state,
                 deleting: false,

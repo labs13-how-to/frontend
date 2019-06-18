@@ -78,7 +78,8 @@ code {
 }
 .tag-section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
 }
 
 .tag-section button {

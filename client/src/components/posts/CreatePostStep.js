@@ -19,7 +19,7 @@ class CreateStepForm extends React.Component {
 
     componentDidMount() {
         this.props.getPost(this.state.post_id)
-        console.log(this.props.currPost)
+        console.log("CURR POST", this.props.currPost)
         if (this.props.currPost.length)
             this.setState({
                 step_num: this.props.currPost.steps.length + 1
@@ -47,8 +47,9 @@ class CreateStepForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    handleSumbit = async e => {
-        console.log(this.state);
+    handleSubmit = async e => {
+        console.log("THIS STATE", this.state);
+        console.log("THIS STATE POST ID", this.state.post_id);
         e.preventDefault();
         await this.props.addStep(this.state.post_id, this.state);
 
@@ -67,7 +68,7 @@ class CreateStepForm extends React.Component {
     render() {
         return (
             <>
-                <Form onSubmit={this.handleSumbit}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
                         <Input

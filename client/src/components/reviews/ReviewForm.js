@@ -11,8 +11,29 @@ class ReviewForm extends React.Component {
       rating: 0,
       review: "",
       post_id: this.props.id,
-      user_id: 1
+      auth_id: "",
+      user_id: null
     };
+  }
+  componentDidMount() {
+    this.hydrateStateWithLocalStorage();
+  }
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          console.log("VALUE", value);
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   onStarClick(nextValue, prevValue, name) {
@@ -30,10 +51,10 @@ class ReviewForm extends React.Component {
     console.log("id1!!!!", this.props.id);
     await this.props.addReview(this.props.id, this.state);
 
-    this.setState({
-      rating: 0,
-      review: ""
-    });
+    // this.setState({
+    //   rating: 0,
+    //   review: ""
+    // });
     setTimeout(this.props.getReviews(this.state.post_id), 1000);
   };
 

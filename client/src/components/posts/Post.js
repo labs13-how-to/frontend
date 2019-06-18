@@ -19,8 +19,12 @@ class Post extends React.Component {
         this.toggleDropDown = this.toggleDropDown.bind(this);
         this.state = {
             dropdownOpen: false,
-            id: Number(this.props.location.pathname.split('/')[2])
+            id: (this.props.location.pathname.split('/')[2])
         };
+        console.log(
+            "this.props.location.pathname",
+            this.state.id
+          );
     }
 
     toggleDropDown() {

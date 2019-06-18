@@ -82,7 +82,7 @@ class CreateStepForm extends React.Component {
                         />
                     )
                 })}
-                <h3>Add Steps, Instructions, and additional Photos/Videos here</h3>
+                <h3 className='ps-section-header'>Add Steps, Instructions, and additional Photos/Videos here</h3>
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>

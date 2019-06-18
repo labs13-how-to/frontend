@@ -1,3 +1,10 @@
+//Parent Container for proper flexbox
+.review-div {
+    display: flex;
+    justify-content: center;
+}
+
+//Section Title
 .review-header {
     color: #FF851A;
     border-bottom: 2px solid #BFBFBF;
@@ -7,12 +14,14 @@
     text-align: left;
 };
 
+//ReviewForm Styling
 .review-form{
     border: 1px solid #FF851A;
     padding-top: 15px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+    width: 56%;
 };
 
 .rf-title {
@@ -23,7 +32,8 @@
 
 .stars-container {
     display: flex;
-    padding-left: 15px;
+    padding-left: 14px;
+    width: 100%;
 }
 
 .review-stars {
@@ -35,10 +45,48 @@
     margin-left: 2.5%;
 }
 
+.rf-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .rf-button {
     background-color: #FF851A;
     width: 70px;
     border: none;
-    margin: 20px 0 20px 600px;
-    justify-content: right;
+    margin: 20px 20px 20px 530px;
+}
+
+//Review Card Styling
+.r-cards {
+    width: 56%;
+    display: flex;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+}
+
+.r-content {
+    display: flex;
+    text-align: left;
+    padding: 0;
+}
+
+.r-text {
+    padding: 15px;
+}
+
+.r-poster {
+    text-align: left;
+    padding: 15px 0 0 15px;
+}
+
+.r-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 15px 15px 0;
+}
+
+.r-button {
+    background-color: #FF851A;
+    width: 70px;
+    border: none;
 }

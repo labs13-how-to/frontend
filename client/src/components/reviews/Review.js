@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteReview, updateReview, getReviews } from "../../actions";
 import { Card, CardText, CardBody, Button, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
+import "../../reviews.scss"
 
 class Review extends React.Component {
     state = {

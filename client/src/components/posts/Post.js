@@ -16,9 +16,8 @@ class Post extends React.Component {
     constructor(props) {
         super(props);
 
-        this.toggleDropDown = this.toggleDropDown.bind(this);
+
         this.state = {
-            dropdownOpen: false,
             id: (this.props.location.pathname.split('/')[2])
         };
         console.log(
@@ -26,12 +25,6 @@ class Post extends React.Component {
             this.state.id
           );
     }
-
-    toggleDropDown() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
-    };
 
     componentDidMount() {
         this.props.getPost(this.state.id)
@@ -48,15 +41,6 @@ class Post extends React.Component {
         this.props.history.push("/");
     };
 
-    handleChange = e => {
-        this.setState({ tag: e.target.value });
-        const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)
-        const isTagged = this.props.currPost.tags.filter(tag => e.target.value === tag.name.toLowerCase())
-        const newTag = { post_id: this.state.id, tag_id: tagId[0].id };
-        isTagged.length
-            ? this.props.removeTag(newTag)
-            : this.props.addTag(newTag);
-    };
 
     render() {
         const {
@@ -80,22 +64,6 @@ class Post extends React.Component {
                         <p className='post-tags'>
                             {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
                         </p>
-                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                            <DropdownToggle split outline />
-                            <DropdownMenu>
-                                <DropdownItem>
-                                    <Form>
-                                        <FormGroup>
-                                            <Label for="exampleSelectMulti">Select Tags</Label>
-                                            <Input onChange={this.handleChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                                {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
-                                            </Input>
-                                        </FormGroup>
-                                    </Form>
-                                </DropdownItem>
-
-                            </DropdownMenu>
-                        </InputGroupButtonDropdown >
                     </div>
 
                     <CardHeader>{title}</CardHeader>
@@ -148,7 +116,6 @@ export default connect(
         getTag,
         getPost,
         deletePost,
-        removeTag,
-        addTag
+
     }
 )(Post);

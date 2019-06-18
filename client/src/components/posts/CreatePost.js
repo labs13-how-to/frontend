@@ -15,7 +15,7 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: '',
+            created_by: 0,
         };
     }
     componentDidMount() {
@@ -59,7 +59,7 @@ class CreatePostForm extends React.Component {
             duration: '',
             skills: '',
             supplies: '',
-            created_by: '',
+            created_by: 0,
         })
         console.log(this.props.addId);
 

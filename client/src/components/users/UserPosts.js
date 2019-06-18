@@ -13,9 +13,12 @@ class UserPosts extends React.Component {
     };
 
     render() {
+
         return (
             <div className='post-list'>
                 {this.props.userPosts.map((post, i) => {
+
+                    console.log("PPOOOOOOOSSSSSTTTTT", post)
                     return (
                         <Card key={i}>
                             <CardImg src={post.img_url} alt="Card Image" />

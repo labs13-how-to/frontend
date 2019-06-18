@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addReview, getReviews } from "../../actions";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
 
 class ReviewForm extends React.Component {
@@ -55,6 +55,7 @@ class ReviewForm extends React.Component {
             />
           </div>
         </FormGroup>
+        
         <Input
           className="rf-text"
           type="textarea"
@@ -64,7 +65,10 @@ class ReviewForm extends React.Component {
           value={this.state.review}
           rows="6"
         />
-        <Button className="rf-button" type="submit">Post</Button>
+
+        <div className="rf-btn-container">
+          <Button className="rf-button" type="submit">Post</Button>
+        </div>
       </Form>
     );
   }

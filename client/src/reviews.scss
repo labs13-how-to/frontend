@@ -10,7 +10,7 @@
     border-bottom: 2px solid #BFBFBF;
     margin: 20px 0;
     padding-bottom: 15px;
-    padding-left: 25px;
+    padding-left: 138px;
     text-align: left;
 };
 
@@ -28,6 +28,7 @@
     color: #FF851A;
     text-align: left;
     padding-left: 15px;
+    margin: 0;
 }
 
 .stars-container {
@@ -71,12 +72,14 @@
 }
 
 .r-text {
-    padding: 15px;
+    padding: 0 15px 15px 15px;
+    width: 100%;
 }
 
 .r-poster {
     text-align: left;
     padding: 15px 0 0 15px;
+    margin: 0;
 }
 
 .r-buttons {

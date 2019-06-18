@@ -138,6 +138,26 @@ export const getUserPosts = id => dispatch => {
     });
 };
 
+//Get User favorites --> Account Page
+export const FAVORITE_POSTS_FETCH = "FAVORITE_POSTS_FETCH";
+export const FAVORITE_POSTS_SUCCESS = "FAVORITE_POSTS_SUCCESS";
+export const FAVORITE_POSTS_FAIL = "FAVORITE_POSTS_FAIL";
+
+export const getFavoritePosts = id => dispatch => {
+  dispatch({ type: FAVORITE_POSTS_FETCH });
+  console.log("fetching FAVORITE posts");
+  axios
+    .get(`https://lambda-how-to.herokuapp.com/users/${id}/favorites`)
+    .then(res => {
+      console.log(res);
+      dispatch({ type: FAVORITE_POSTS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FAVORITE_POSTS_FAIL, payload: err });
+    });
+};
+
+
 // Register Action
 export const REGISTER_START = "REGISTER_START";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";

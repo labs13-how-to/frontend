@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Route } from "react-router-dom";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { 
+    Button, Form, FormGroup, Label, Input,
+    DropdownToggle, DropdownMenu,
+    DropdownItem, InputGroupButtonDropdown } from 'reactstrap';
 import { addPost } from '../../actions';
 import "../../postform.scss";
 
@@ -17,8 +19,15 @@ class CreatePostForm extends React.Component {
             skills: '',
             supplies: '',
             created_by: 0,
+            dropdownOpen: false,
         };
     }
+
+    toggleDropDown() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    };
 
     handleChange = e => {
         console.log(e.target.value);
@@ -67,6 +76,23 @@ class CreatePostForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
+                    <p>Tags</p>
+                    <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                            <DropdownToggle split outline />
+                            <DropdownMenu>
+                                <DropdownItem>
+                                    <Form>
+                                        <FormGroup>
+                                            <Label for="exampleSelectMulti">Select Tags</Label>
+                                            <Input onChange={this.handleChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                                {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                            </Input>
+                                        </FormGroup>
+                                    </Form>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </InputGroupButtonDropdown>
+
                     <FormGroup className = "pf-description">
                         <Label>Introduction</Label>
                         <Input
@@ -114,7 +140,7 @@ class CreatePostForm extends React.Component {
                             name='supplies'
                         />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label></Label>
                         <Input
                             type="number"
@@ -123,16 +149,11 @@ class CreatePostForm extends React.Component {
                             value={this.state.created_by}
                             name='created_by'
                         />
-                    </FormGroup>
-
-                    <Button className = "pf-button" type='submit'>Save</Button>
+                    </FormGroup> */}
+                    <div className="pf-button-container">
+                        <Button className="pf-button" type='submit'>Save</Button>
+                    </div>
                 </Form>
-                {/* <Route path="/one" render={props => (
-                    <>
-                        <h1>New Route!!!</h1>
-                    </>
-                )}
-                /> */}
             </>
         )
     }

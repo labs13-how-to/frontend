@@ -44,7 +44,6 @@ class Post extends React.Component {
         this.props.history.push("/");
     };
 
-
     handleChange = e => {
         this.setState({ tag: e.target.value });
         const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)

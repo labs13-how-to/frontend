@@ -14,10 +14,16 @@
     border: none;
 }
 
+.pf-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .pf-button{
     color: #FFFFFF;
     background: #FF851A;
     font-size: 18px;
     width: 80px;
     margin-bottom: 20px;
+    border: none;
 }

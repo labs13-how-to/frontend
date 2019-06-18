@@ -41,8 +41,6 @@ class CreateStepForm extends React.Component {
 
     }
 
-
-
     handleChange = e => {
         console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
@@ -69,6 +67,7 @@ class CreateStepForm extends React.Component {
         return (
             <>
             <PostStep/>
+                <h3>Add Steps, Instructions, and additional Photos/Videos here</h3>
                 <Form onSubmit={this.handleSumbit}>
                     <FormGroup>
                         <Label>Title</Label>
@@ -98,8 +97,6 @@ class CreateStepForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
-
-
                     <FormGroup>
                         <Label>Video(optional)</Label>
                         <Input
@@ -109,7 +106,6 @@ class CreateStepForm extends React.Component {
                             name='vid_url'
                         />
                     </FormGroup>
-
 
                     <Button type='submit'>Save</Button>
                 </Form>

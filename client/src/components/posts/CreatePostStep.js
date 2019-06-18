@@ -39,6 +39,10 @@ class CreateStepForm extends React.Component {
                 })
             }
 
+            if (prevProps.refresh !== this.props.refresh) {
+                this.props.getPost(this.state.post_id)
+            };
+
     }
 
     handleChange = e => {
@@ -65,11 +69,21 @@ class CreateStepForm extends React.Component {
     }
 
     render() {
+        const {steps} = this.props.currPost;
         return (
             <>
-            <PostStep/>
+                {steps && steps.map((step, index) => {
+                    return (
+                        <PostStep
+                            key={index}
+                            step={step}
+                            index={index}
+                            location={this.props.location}
+                        />
+                    )
+                })}
                 <h3>Add Steps, Instructions, and additional Photos/Videos here</h3>
-                <Form onSubmit={this.handleSumbit}>
+                <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label>Title</Label>
                         <Input
@@ -120,7 +134,8 @@ function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
         currPost: projectsReducer.currPost,
-        posts: projectsReducer.posts
+        posts: projectsReducer.posts,
+        refresh: projectsReducer.refresh,
     }
 }
 

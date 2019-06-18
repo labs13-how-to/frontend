@@ -122,11 +122,13 @@ class Post extends React.Component {
                     <Button onClick={() => this.props.history.push(`/forms/post/${this.state.id}/steps`)}>
                         Add Steps
                     </Button>
-
+                   
+                </Card>
+                <div>
                     <Reviews
                         post_id={this.state.id}
                     />
-                </Card>
+                </div>
             </React.Fragment>
         );
     }

@@ -7,7 +7,6 @@ class PostStep extends React.Component {
 
   render() {
     const {
-      step_num,
       title,
       instruction,
       img_url,

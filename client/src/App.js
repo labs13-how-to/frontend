@@ -82,7 +82,7 @@ class App extends Component {
           />
 
           <Route
-            path="/forms/post/:id/steps"
+            path="/forms/post/edit/:id"
             render={props => <CreateStep {...props} />}
           />
 

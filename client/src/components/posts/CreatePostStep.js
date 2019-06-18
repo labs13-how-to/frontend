@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStep } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
+import { getPost, getPosts } from '../../actions/index';
+import PostStep from './PostStep';
 
 class CreateStepForm extends React.Component {
     constructor(props) {
@@ -67,6 +68,7 @@ class CreateStepForm extends React.Component {
     render() {
         return (
             <>
+            <PostStep/>
                 <Form onSubmit={this.handleSumbit}>
                     <FormGroup>
                         <Label>Title</Label>
@@ -120,7 +122,8 @@ class CreateStepForm extends React.Component {
 function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
-        currPost: projectsReducer.currPost
+        currPost: projectsReducer.currPost,
+        posts: projectsReducer.posts
     }
 }
 
@@ -128,6 +131,7 @@ export default connect(
     mapStateToProps,
     {
         addStep,
-        getPost
+        getPost,
+        getPosts
     }
 )(CreateStepForm);

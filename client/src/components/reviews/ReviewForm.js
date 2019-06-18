@@ -17,13 +17,6 @@ class ReviewForm extends React.Component {
   }
   componentDidMount() {
     this.hydrateStateWithLocalStorage();
-
-    // add event listener to save state to localStorage
-    // when user leaves/refreshes the page
-    // window.addEventListener(
-    //   "beforeunload",
-    //   this.saveStateToLocalStorage.bind(this)
-    // );
   }
   hydrateStateWithLocalStorage() {
     // for all items in state

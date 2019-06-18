@@ -14,6 +14,7 @@ class PostStep extends React.Component {
       id,
       post_id
     } = this.props.step;
+
     return (
       <Card className='post'>
         <CardImg src={img_url} alt="Card image" />

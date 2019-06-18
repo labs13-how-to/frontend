@@ -17,7 +17,6 @@ class Users extends Component {
     console.log("this.props.user:", this.props.user)
     return (
       <React.Fragment>
-
         <h2>{this.props.user.username}'s Posts</h2>
         <UserPosts history={this.props.history} />
       </React.Fragment>

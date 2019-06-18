@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getReviews } from "../../actions";
 import ReviewForm from "./ReviewForm";
 import Review from "./Review";
+import "../../reviews.scss";
 
 class Reviews extends React.Component {
   state = {
@@ -23,8 +24,11 @@ class Reviews extends React.Component {
 
   render() {
     return (
-      < div >
-        <ReviewForm id={this.props.post_id} />
+      <div> 
+        <h2 className="review-header">Reviews</h2>
+        <div className="review-div">
+          <ReviewForm id={this.props.post_id} />
+        </div>
         <div className="review-container">
           {this.props.reviews &&
             this.props.reviews.map((review, index) => (
@@ -35,7 +39,7 @@ class Reviews extends React.Component {
               />
             ))}
         </div>
-      </div >
+      </div>
     );
   }
 }

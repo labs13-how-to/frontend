@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import {
     Card, CardText, CardBody, CardImg, Button,
 } from "reactstrap";
-import { getPost, deletePost } from "../../actions/index";
+import { getPost, deletePost, getUsers, getRefresh } from "../../actions/index";
 import { getTag } from "../../actions/steps-tagsActions";
+
 import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
+import StarRatingComponent from "react-star-rating-component";
+
 import "../../post.scss";
 
 class Post extends React.Component {
@@ -18,7 +21,7 @@ class Post extends React.Component {
         console.log(
             "this.props.location.pathname",
             this.state.id
-          );
+        );
     }
 
     componentDidMount() {
@@ -29,6 +32,11 @@ class Post extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.refresh !== this.props.refresh) {
             this.props.getPost(this.state.id)
+
+        };
+        if (prevProps.refreshUser !== this.props.refreshUser) {
+            this.props.getUsers(this.props.currPost.created_by)
+
         };
     };
     delete() {
@@ -46,8 +54,15 @@ class Post extends React.Component {
             supplies,
             duration,
             tags,
-            steps
+            steps,
+            reviews,
+            created_at
         } = this.props.currPost
+        const review_avg = reviews && reviews.reduce((res, review) => res + review.rating, 0) / reviews.length
+        const review_count = reviews && reviews.length
+        const postDate = created_at && created_at.split('T')[0].split('-')
+        // split supplies into array list
+        const supplyList = supplies && supplies.split(' ')
         return (
             <React.Fragment>
                 <Card className="post-card" id="post">
@@ -61,6 +76,19 @@ class Post extends React.Component {
                                     Edit
                                 </Button>
                             </div>
+                            <div className='post-footer'>
+                                <CardText>{this.props.user.username}</CardText>
+                                <CardText className='date-count'>{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
+                            </div>
+                            <CardBody>
+                                <StarRatingComponent
+                                    className="review-stars post-stars"
+                                    name="stars"
+                                    starCount={5}
+                                    value={Math.round(review_avg)}
+                                /><CardText className='review-count'>{`• \xa0`}{review_count}</CardText>
+
+                            </CardBody>
                         </div>
                         <CardText className="p-description">{description}</CardText>
                         <div className="p-content-container">
@@ -74,7 +102,9 @@ class Post extends React.Component {
                             </div>
                             <div className="p-content-section">
                                 <span className="p-content-label">Supplies</span>
-                                <CardText>{supplies}</CardText>
+                                {/* loop through supplyList and display each item */}
+                                {supplyList && supplyList.map((item, index) => <li key={index}>{item}</li>)}
+
                             </div>
                             <div className="p-content-section">
                                 <span className="p-content-label">Pre-Requisite Skills</span>
@@ -93,7 +123,7 @@ class Post extends React.Component {
                         )
                     })}
 
-                   <CardBody className="post-category">Categories</CardBody>
+                    <CardBody className="post-category">Categories</CardBody>
                     <div className="tag-section">
                         <p className="post-tags post-page">
                             {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
@@ -109,12 +139,14 @@ class Post extends React.Component {
         );
     }
 };
-function mapStateToProps({ projectsReducer }) {
+function mapStateToProps({ projectsReducer, usersReducer }) {
     return {
         error: projectsReducer.error,
         currPost: projectsReducer.currPost,
         allTags: projectsReducer.allTags,
-        refresh: projectsReducer.refresh
+        refresh: projectsReducer.refresh,
+        user: usersReducer.user,
+        refreshUser: projectsReducer.refreshUser
     }
 }
 
@@ -124,6 +156,8 @@ export default connect(
         getTag,
         getPost,
         deletePost,
+        getUsers,
+        getRefresh
 
     }
 )(Post);

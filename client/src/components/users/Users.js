@@ -21,8 +21,7 @@ class Users extends Component {
         console.log("this.props.user:", this.props.user)
         return (
             <React.Fragment>
-                <h2>{this.props.user.username}'s Posts</h2>
-
+                <h2 className="account-header">{this.props.user.username}'s Posts</h2>
                 <UserPosts history={this.props.history} />
                 <Button onClick={() => this.props.history.push(`/user/${this.props.match.params.id}/favorites`)}>Favorites</Button>
             </React.Fragment>

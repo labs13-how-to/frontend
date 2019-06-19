@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { 
+import {
     Button, Form, FormGroup, Label, Input,
     DropdownToggle, DropdownMenu,
-    DropdownItem, InputGroupButtonDropdown } from 'reactstrap';
+    DropdownItem, InputGroupButtonDropdown
+} from 'reactstrap';
 import { updatePost, getPost } from '../../actions';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
 
@@ -96,10 +97,10 @@ class EditPostForm extends React.Component {
             difficulty, duration, skills,
             supplies, created_by
         } = this.state
-        const stateObj = {  
+        const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by 
+            supplies, created_by
         };
         let updatedObj = {}
         for (var property in stateObj) {
@@ -116,8 +117,8 @@ class EditPostForm extends React.Component {
 
         return (
             <>
-                <Form className = "post-form" onSubmit={this.handleSumbit}>
-                    <FormGroup className = "pf-title">
+                <Form className="post-form" onSubmit={this.handleSumbit}>
+                    <FormGroup className="pf-title">
                         <Label>Title</Label>
                         <Input
                             className="pf-title-input"
@@ -127,7 +128,7 @@ class EditPostForm extends React.Component {
                             name='title'
                         />
                     </FormGroup>
-                    <FormGroup className = "pf-img">
+                    <FormGroup className="pf-img">
                         <Label>Main Image</Label>
                         <Input
                             onChange={this.handleChange}
@@ -142,24 +143,24 @@ class EditPostForm extends React.Component {
                             {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
                         </p>
                         <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                            <DropdownToggle split outline />
+                            <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>
-                                    
-                                        <FormGroup>
-                                            <Label for="exampleSelectMulti">Select Tags</Label>
-                                            <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                                {this.props.allTags ? this.props.allTags.map(tag => <option  key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
-                                            </Input>
-                                        </FormGroup>
-                                    
+
+                                    <FormGroup>
+                                        <Label for="exampleSelectMulti">Select Tags</Label>
+                                        <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                        </Input>
+                                    </FormGroup>
+
                                 </DropdownItem>
 
                             </DropdownMenu>
                         </InputGroupButtonDropdown >
                     </div>
 
-                    <FormGroup className = "pf-description">
+                    <FormGroup className="pf-description">
                         <Label>Introduction</Label>
                         <Input
                             type="textarea"
@@ -170,7 +171,7 @@ class EditPostForm extends React.Component {
                             rows="8"
                         />
                     </FormGroup>
-                    <FormGroup className = "pf-difficulty">
+                    <FormGroup className="pf-difficulty">
                         <Label>Difficulty</Label>
                         <Input
                             onChange={this.handleChange}
@@ -179,7 +180,7 @@ class EditPostForm extends React.Component {
                             name='difficulty'
                         />
                     </FormGroup>
-                    <FormGroup className = "pf-duration">
+                    <FormGroup className="pf-duration">
                         <Label>Duration</Label>
                         <Input
                             onChange={this.handleChange}
@@ -188,7 +189,7 @@ class EditPostForm extends React.Component {
                             name='duration'
                         />
                     </FormGroup>
-                    <FormGroup className = "pf-skills">
+                    <FormGroup className="pf-skills">
                         <Label>Prerequisite Skills</Label>
                         <Input
                             onChange={this.handleChange}
@@ -197,7 +198,7 @@ class EditPostForm extends React.Component {
                             name='skills'
                         />
                     </FormGroup>
-                    <FormGroup className = "pf-supplies">
+                    <FormGroup className="pf-supplies">
                         <Label>Tools/Supplies</Label>
                         <Input
                             onChange={this.handleChange}

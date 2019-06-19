@@ -103,16 +103,14 @@ h1, h2{
     text-align: left;
   }
 }
+
 .card-body {
-  display: flex;
+  // top: 900px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
-// .btn {
-//   width: 80%;
-//   margin: 0 auto;
-// }
+
 .post-list {
   display: flex;
   flex-wrap: wrap;
@@ -215,5 +213,3 @@ code {
   }
 
 }
-
-

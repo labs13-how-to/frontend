@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteStep } from '../../actions/steps-tagsActions';
-import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "../../postSteps.scss";
 
 class PostStep extends React.Component {

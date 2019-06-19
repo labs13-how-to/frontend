@@ -116,15 +116,9 @@ class EditPostForm extends React.Component {
     render() {
 
         return (
-<<<<<<< HEAD
-            <>
+            <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSumbit}>
                     <FormGroup className="pf-title">
-=======
-            <div className="pf-container">
-                <Form className = "post-form" onSubmit={this.handleSumbit}>
-                    <FormGroup className = "pf-title">
->>>>>>> master
                         <Label>Title</Label>
                         <Input
                             className="pf-title-input"

@@ -119,20 +119,12 @@ class CreatePostForm extends React.Component {
         }, 300);
     }
 
-<<<<<<< HEAD
     render() {
         console.log(this.state.tags)
         return (
-            <>
+            <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
-=======
-    render() {console.log(this.state.tags)
-        return ( 
-            <div className="pf-container">
-                <Form className = "post-form" onSubmit={this.handleSubmit}>
-                    <FormGroup className = "pf-title">
->>>>>>> master
                         <Label>Title</Label>
                         <Input
                             className="pf-title-input"

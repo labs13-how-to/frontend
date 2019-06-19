@@ -3,45 +3,65 @@ import { NavLink as RouteLink } from "react-router-dom";
 import NavSearch from "./NavSearch";
 import { connect } from "react-redux";
 import {
-  // Collapse,
   Navbar,
-  // NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  // NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Button
+  Button,
+  Media,
+  CardImg
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LogoImage from '../../images/logo.png';
+
+
+
 
 class NavComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth_id: "",
+      user_id: null
+    };
+  }
   componentDidMount() {
     this.props.getTag();
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          console.log("VALUE", value);
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   render() {
+    // console.log("USER ID", this.state.user_id);
     return (
-      <Navbar color="whitesmoke" light expand="md">
-        <NavbarBrand href="/">How-To</NavbarBrand>
+      <Navbar color="white" light expand="md">
+        <NavbarBrand href="/"><img className='logo' src={LogoImage} /></NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavSearch {...this.props} />
-          </NavItem>
-        </Nav>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <RouteLink to="/forms/post/create/">Create Post</RouteLink>
-          </NavItem>
-        </Nav>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
-              Login with google
-            </a>
           </NavItem>
         </Nav>
         <UncontrolledDropdown className="mr-auto" inNavbar>
@@ -56,13 +76,11 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
-        <RouteLink to={"/user/1"}>
-          <Button className='navBtn'>Account</Button>
+        <RouteLink to={`/user/${this.state.auth_id}`}>
+          {/* <Button className='navBtn'>Account</Button> */}
+          <FontAwesomeIcon icon={faUser} />
         </RouteLink>
-        <RouteLink exact to="/" onClick={this.props.logOut}>
-          Logout
-        </RouteLink>
-      </Navbar>
+      </Navbar >
     );
   }
 }

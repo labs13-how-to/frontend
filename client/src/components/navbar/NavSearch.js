@@ -1,6 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { Form, Input } from "reactstrap";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 class NavSearch extends React.Component {
   constructor(props) {
@@ -21,11 +25,11 @@ class NavSearch extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.searchSubmit}>
+      <Form onSubmit={this.searchSubmit} className='nav-search'>
         <Input
           type="text"
           id="search"
-          placeholder="Search"
+          placeholder={` Search`}
           size="50"
           onChange={this.searchChanges}
         />

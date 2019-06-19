@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStep } from '../../actions/steps-tagsActions';
-import { getPost } from '../../actions/index';
+import { getPost, getPosts } from '../../actions/index';
+import PostStep from './PostStep';
 
 class CreateStepForm extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class CreateStepForm extends React.Component {
 
     componentDidMount() {
         this.props.getPost(this.state.post_id)
-        console.log(this.props.currPost)
+        console.log("CURR POST", this.props.currPost)
         if (this.props.currPost.length)
             this.setState({
                 step_num: this.props.currPost.steps.length + 1
@@ -38,17 +39,20 @@ class CreateStepForm extends React.Component {
                 })
             }
 
+            if (prevProps.refresh !== this.props.refresh) {
+                this.props.getPost(this.state.post_id)
+            };
+
     }
-
-
 
     handleChange = e => {
         console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
     };
 
-    handleSumbit = async e => {
-        console.log(this.state);
+    handleSubmit = async e => {
+        console.log("THIS STATE", this.state);
+        console.log("THIS STATE POST ID", this.state.post_id);
         e.preventDefault();
         await this.props.addStep(this.state.post_id, this.state);
 
@@ -65,53 +69,72 @@ class CreateStepForm extends React.Component {
     }
 
     render() {
+        const {steps} = this.props.currPost;
         return (
             <>
-                <Form onSubmit={this.handleSumbit}>
-                    <FormGroup>
-                        <Label>Title</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='title'
-                            value={this.state.title}
-                            name='title'
+                {steps && steps.map((step, index) => {
+                    return (
+                        <PostStep
+                            key={index}
+                            step={step}
+                            index={index}
+                            location={this.props.location}
                         />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>instruction</Label>
-                        <Input
-                            type="textarea"
-                            name='instruction'
-                            onChange={this.handleChange}
-                            value={this.state.instruction}
-                            placeholder='content'></Input>
-
-                    </FormGroup>
-                    <FormGroup>
-                        <Label>image(optional)</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='img_url'
-                            value={this.state.img_url}
-                            name='img_url'
-                        />
-                    </FormGroup>
-
-
-                    <FormGroup>
-                        <Label>Video(optional)</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='vid_url'
-                            value={this.state.vid_url}
-                            name='vid_url'
-                        />
-                    </FormGroup>
-
-
-                    <Button type='submit'>Save</Button>
-                </Form>
-                <Button onClick={() => this.props.history.push(`/posts/${this.state.post_id}`)}>Done</Button>
+                    )
+                })}
+                <h3 className='psf-section-header'>Add Steps, Instructions, and additional Photos/Videos here</h3>
+                <div className='psf-container'>
+                    <Form className='psf' onSubmit={this.handleSubmit}>
+                        <FormGroup>
+                            <Label>Step Title</Label>
+                            <Input
+                                className="psf-title-input"
+                                onChange={this.handleChange}
+                                placeholder='What do you want to name this step?'
+                                value={this.state.title}
+                                name='title'
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label>Instruction</Label>
+                            <Input
+                                type="textarea"
+                                name='instruction'
+                                onChange={this.handleChange}
+                                value={this.state.instruction}
+                                placeholder='Write your instructions here'
+                                rows="4"
+                            />
+                        </FormGroup>
+                        <div className="psf-media">
+                            <FormGroup className="psf-img">
+                                <Label>Image(optional)</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Image URL'
+                                    value={this.state.img_url}
+                                    name='img_url'
+                                />
+                            </FormGroup>
+                            <FormGroup className="psf-vid">
+                                <Label>Video(optional)</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Video Url'
+                                    value={this.state.vid_url}
+                                    name='vid_url'
+                                />
+                            </FormGroup>
+                        </div>
+                        <div className="psf-button-container">
+                            <Button className="psf-button" type='submit'>Add Step</Button>
+                            
+                        </div>
+                    </Form>
+                </div>
+                <div className='publish-button'>
+                    <Button className="psf-button" onClick={() => this.props.history.push(`/posts/${this.state.post_id}`)}>Publish</Button>
+                </div>
             </>
         )
     }
@@ -120,7 +143,9 @@ class CreateStepForm extends React.Component {
 function mapStateToProps({ projectsReducer }) {
     return {
         error: projectsReducer.error,
-        currPost: projectsReducer.currPost
+        currPost: projectsReducer.currPost,
+        posts: projectsReducer.posts,
+        refresh: projectsReducer.refresh,
     }
 }
 
@@ -128,6 +153,7 @@ export default connect(
     mapStateToProps,
     {
         addStep,
-        getPost
+        getPost,
+        getPosts
     }
 )(CreateStepForm);

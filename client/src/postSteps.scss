@@ -1,0 +1,108 @@
+.ps-card-container {
+    display: flex;
+    justify-content: center;
+}
+
+.ps-card {
+    width: 60%;
+    padding: 0 5% 5% 5%;
+    span{
+        justify-self: flex-start;
+        align-self: flex-start;
+        margin-left: 5%;
+        font-size: 1.2rem;
+        color: rgb(165, 165, 165);
+        border-bottom: 1px solid rgb(174, 174, 174);
+        padding-top: 15px;
+    }
+}
+.ps-header {
+    display: flex;
+    justify-content: space-between
+}
+
+.ps-button {
+    border: none;
+    color: #FF851A;
+    background: none;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
+.ps-title {
+    color: #FF851A;
+    font-size: 28px;
+    text-align: left;
+    padding: 15px 0 0 15px;
+    
+}
+
+.ps-text {
+    text-align: left;
+    padding-left: 15px;
+}
+
+//Post-Step-Form Styling
+.psf-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.psf-section-header {
+    border-top: 2px dashed #746D6D;
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 18px;
+    color: #746D6D;
+}
+
+.psf {
+    color: #FF851A;
+    text-align: left;
+    border: 1px solid silver;
+    max-width: 795px;
+    width: 90%;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.form-control.psf-title-input {
+    border: none;
+    // padding: 0;
+    border-bottom: 1px solid black;
+    width: 70%;
+    border-radius: 0;
+}
+
+.psf-media {
+    display: flex;
+    justify-content: space-between;
+}
+
+.psf-img {
+    width: 45%;
+}
+
+.psf-vid {
+    width: 45%;
+}
+
+.psf-button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.publish-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 83px;
+}
+
+.psf-button {
+    width:100px;
+    border: none;
+    background-color: #FF851A;
+    margin: 15px;
+    font-size: 14px;
+}

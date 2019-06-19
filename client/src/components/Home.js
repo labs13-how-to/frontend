@@ -1,7 +1,9 @@
 import React from 'react';
-import Posts from './posts/Posts.js';
+import "./Home.scss";
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import TagsSearch from './posts/TagsSearch';
+import PostList from './posts/PostList.js';
 
 
 class Home extends React.Component {
@@ -12,23 +14,20 @@ class Home extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.refresh !== this.props.refresh) {
-          this.props.getPosts();
+            this.props.getPosts();
         }
     }
 
     render() {
         return (
             <React.Fragment>
-                <h2>Posts</h2>
-                <div className='post-list'>
-                    {this.props.posts.map((post, index) =>
-                        <Posts
-                            post={post}
-                            key={index}
-                            history={this.props.history}
-                        />
-                    )}
+                <div className='cta'>
+
                 </div>
+                <PostList history={this.props.history} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} />
             </React.Fragment>
         );
     }

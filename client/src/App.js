@@ -13,6 +13,9 @@ import SearchResults from "./components/posts/SearchResults";
 import TagsSearch from "./components/posts/TagsSearch";
 import CreateStep from "./components/posts/CreatePostStep";
 import EditPost from "./components/posts/EditPost";
+import Favorites from './components/users/FavoritePosts';
+import UserNav from './components/users/UserNav';
+import PostList from './components/posts/PostList'
 
 import { getTest, login } from "./actions";
 import queryString from "query-string";
@@ -61,12 +64,14 @@ class App extends Component {
             <Nav logOut={this.logOut} />
           </div>
         </header>
-
-        <div className="container">
+        <div className="container main-container">
           <Route exact path="/" render={props => <Home {...props} />} />
 
+          <Route path="/user" render={props => <UserNav {...props} logOut={this.logOut} />} />
           <Route path="/user/:id" render={props => <Users {...props} />} />
+          <Route path="/user/:id/favorites" render={props => <Favorites {...props} />} />
 
+          <Route exact path="/posts" render={props => <PostList {...props} />} />
           <Route path="/posts/:id" render={props => <Post {...props} />} />
 
           <Route
@@ -82,7 +87,7 @@ class App extends Component {
           />
 
           <Route
-            path="/forms/post/:id/steps"
+            path="/forms/post/edit/:id"
             render={props => <CreateStep {...props} />}
           />
 

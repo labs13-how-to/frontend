@@ -1,131 +1,123 @@
-import React from "react";
-import { connect } from "react-redux";
-import Reviews from "./Reviews";
-import ReviewForm from "./ReviewForm";
+import React from 'react';
+import { connect } from 'react-redux';
+import { deleteReview, updateReview, getReviews } from "../../actions";
+import { Card, CardText, CardBody, Button, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
-
-import {
-  getReviews,
-  getUsers,
-  deleteReview,
-  updateReview
-} from "../../actions";
-
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardHeader,
-  Button,
-  Input
-} from "reactstrap";
+import "../../reviews.scss"
 
 class Review extends React.Component {
-  state = {
-    reviews: []
-  };
-
-  componentDidMount() {
-    this.props.getReviews(this.props.post_id);
-    console.log(this.props.post_id);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.refresh !== this.props.refresh) {
-      this.props.getReviews(this.props.post_id);
+    state = {
+        reviews: [],
+        newRating: this.props.review.rating,
+        newReview: this.props.review.review,
+        updating: false,
+        getValues: false
+    };
+    componentDidMount() {
+        this.setState({
+            newRating: this.props.review.rating,
+            newReview: this.props.review.review
+        });
     }
-  }
 
-  //  Austin's old project
-  //   updateMessage = (id, message) => {
-  //     console.log(id);
-  //     this.props.updateMessage(id, message);
-  //   };
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.refresh !== this.props.refresh) {
 
-  handleUpdate = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
+            this.setState({
+                newRating: this.props.review.rating,
+                newReview: this.props.review.review
+            });
+        }
+        if (this.state.getValues) {
 
-  toggleUpdate = () => {
-    this.setState({
-      updating: true
-    });
-  };
+            this.setState({
+                newRating: this.props.review.rating,
+                newReview: this.props.review.review, getValues: false
+            })
+        }
+    };
 
-  update = id => {
-    console.log("ID!", id);
-    this.props.updateReview(id, {
-      newRating: this.state.newRating,
-      newReview: this.state.neReview
-    });
+    handleUpdate = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    };
 
-    this.setState({
-      ...this.state,
-      editing: false
-    });
-  };
+    toggleUpdate = () => {
+        this.state.updating
+            ? this.setState({ updating: false })
+            : this.setState({ updating: true, getValues: true })
+    };
 
-  render() {
-    return (
-      <Card>
-        <CardHeader>{this.props.review.username}</CardHeader>
-        <CardBody>
-          {!this.state.updating ? (
-            <StarRatingComponent
-              name="stars"
-              starCount={5}
-              value={review.rating}
-            />
-          ) : (
-            <Input
-              type="text"
-              name="newRating"
-              value={this.state.newRating}
-              onChange={this.handleUpdate}
-            />
-          )}
-          {!this.state.updating ? (
-            <CardText>{review.review}</CardText>
-          ) : (
-            <Input
-              type="textarea"
-              name="newReview"
-              placeholder="Review"
-              value={this.state.newReview}
-              onChange={this.handleUpdate}
-            />
-          )}
-        </CardBody>
+    update = id => {
+        console.log("ID!", id);
+        this.props.updateReview(id, {
+            rating: this.state.newRating,
+            review: this.state.newReview
+        });
 
-        {!this.state.updating ? (
-          <>
-            <Button onClick={() => this.toggleUpdate(review.id)}>Update</Button>
-            <Button onClick={() => this.props.deleteReview(review.id)}>
-              delete
-            </Button>
-          </>
-        ) : (
-          <Button onClick={() => this.update(review.id)}>update</Button>
-        )}
-        {/* need something for up/down votes */}
-      </Card>
-    );
-  }
-}
+        this.setState({
+            ...this.state,
+            updating: false
+        });
+    };
 
-const mapStateToProps = ({ reviewsReducer, usersReducer }) => {
-  return {
-    reviews: reviewsReducer.reviews,
-    error: reviewsReducer.error,
-    user: usersReducer.user,
-    refresh: reviewsReducer.refresh,
-    updating: reviewsReducer.updating
-  };
+    render() {
+        return (
+            <Card className="r-cards">
+                <h5 className="r-poster">{this.props.review.username}</h5>
+                <CardBody className="r-content">
+                    {!this.state.updating ? (
+                        <div className="stars-container">
+                            <StarRatingComponent
+                                className="review-stars"
+                                name="stars"
+                                starCount={5}
+                                value={this.props.review.rating}
+                            />
+                        </div>
+                    ) : (
+                            <Input
+                                type="text"
+                                name="newRating"
+                                value={this.state.newRating}
+                                onChange={this.handleUpdate}
+                            />
+                        )}
+                    {!this.state.updating ? (
+                        <CardText className="r-text">{this.props.review.review}</CardText>
+                    ) : (
+                            <Input
+                                type="textarea"
+                                name="newReview"
+                                value={this.state.newReview}
+                                onChange={this.handleUpdate}
+                                rows="5"
+                            />
+                        )}
+                </CardBody>
+                {!this.state.updating ? (
+                    <div className="r-buttons">
+                        <Button className="r-button" onClick={() => this.props.deleteReview(this.props.review.id)}>Delete</Button>
+                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Edit</Button>
+                    </div>
+                ) : (
+                    <div className="r-buttons">
+                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Cancel</Button>
+                        <Button className="r-button" onClick={() => this.update(this.props.review.id)}>Save</Button>
+                    </div>
+                )}
+            </Card>
+        )
+    };
 };
 
-export default connect(
-  mapStateToProps,
-  { getReviews, getUsers, deleteReview, updateReview }
-)(Review);
+function mapStateToProps({ reviewsReducer }) {
+    return {
+        reviews: reviewsReducer.reviews,
+        error: reviewsReducer.error,
+        refresh: reviewsReducer.refresh
+    };
+};
+
+export default connect(mapStateToProps, { deleteReview, updateReview, getReviews })(Review);

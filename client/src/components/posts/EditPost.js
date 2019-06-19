@@ -116,9 +116,15 @@ class EditPostForm extends React.Component {
     render() {
 
         return (
+<<<<<<< HEAD
             <>
                 <Form className="post-form" onSubmit={this.handleSumbit}>
                     <FormGroup className="pf-title">
+=======
+            <div className="pf-container">
+                <Form className = "post-form" onSubmit={this.handleSumbit}>
+                    <FormGroup className = "pf-title">
+>>>>>>> master
                         <Label>Title</Label>
                         <Input
                             className="pf-title-input"
@@ -137,7 +143,7 @@ class EditPostForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
-                    <p>Tags</p>
+                    <p>Category <span className='category-span'>(click the same tag to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
                             {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
@@ -211,7 +217,7 @@ class EditPostForm extends React.Component {
                         <Button className="pf-button" type='submit'>Save</Button>
                     </div>
                 </Form>
-            </>
+            </div>
         )
     }
 }

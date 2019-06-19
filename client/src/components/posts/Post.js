@@ -5,11 +5,9 @@ import {
 } from "reactstrap";
 import { getPost, deletePost, getUsers, getRefresh } from "../../actions/index";
 import { getTag } from "../../actions/steps-tagsActions";
-
 import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
 import StarRatingComponent from "react-star-rating-component";
-
 import "../../post.scss";
 
 class Post extends React.Component {
@@ -60,9 +58,9 @@ class Post extends React.Component {
         } = this.props.currPost
         const review_avg = reviews && reviews.reduce((res, review) => res + review.rating, 0) / reviews.length
         const review_count = reviews && reviews.length
-        const postDate = created_at && created_at.split('T')[0].split('-')
+        const postDate = created_at && created_at.split("T")[0].split("-")
         // split supplies into array list
-        const supplyList = supplies && supplies.split(' ')
+        const supplyList = supplies && supplies.split(" ")
         return (
             <React.Fragment>
                 <Card className="post-card" id="post">
@@ -76,19 +74,19 @@ class Post extends React.Component {
                                     Edit
                                 </Button>
                             </div>
-                            <div className='post-footer'>
-                                <CardText>{this.props.user.username}</CardText>
-                                <CardText className='date-count'>{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
-                            </div>
-                            <CardBody>
-                                <StarRatingComponent
-                                    className="review-stars post-stars"
-                                    name="stars"
-                                    starCount={5}
-                                    value={Math.round(review_avg)}
-                                /><CardText className='review-count'>{`• \xa0`}{review_count}</CardText>
-
-                            </CardBody>
+                        </div>
+                        <div className="p-rating">
+                            <StarRatingComponent
+                                className="review-stars post-stars"
+                                name="stars"
+                                starCount={5}
+                                value={Math.round(review_avg)}
+                            />
+                            <CardText className="review-count post-review">{`• \xa0`}{review_count} Reviews</CardText>
+                        </div>
+                        <div className="p-created">
+                            <CardText className="p-user">{this.props.user.username}</CardText>
+                            <CardText className="date-count">{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
                         </div>
                         <CardText className="p-description">{description}</CardText>
                         <div className="p-content-container">

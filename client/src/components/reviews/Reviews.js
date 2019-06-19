@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { getReviews } from "../../actions";
 import ReviewForm from "./ReviewForm";
 import Review from "./Review";
+import ReviewBars from './ReviewBars';
 import "../../reviews.scss";
 
 class Reviews extends React.Component {
@@ -26,6 +27,7 @@ class Reviews extends React.Component {
     return (
       <div> 
         <h2 className="review-header">Reviews</h2>
+        <ReviewBars reviews={this.props.reviews}/>
         <div className="review-div">
           <ReviewForm id={this.props.post_id} />
         </div>

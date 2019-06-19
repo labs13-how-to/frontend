@@ -133,7 +133,7 @@ class CreatePostForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
-                    <p>Category <span className='category-span'>(click the same tag to unselect)</span></p>
+                    <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
                             {this.state.tags && this.state.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}

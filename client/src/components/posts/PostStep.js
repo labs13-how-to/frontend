@@ -31,12 +31,13 @@ class PostStep extends React.Component {
     return (
       <div className='ps-card-container'>
         <Card className='ps-card'>
-          <CardText className='ps-title'>Step {this.props.index + 1}: {title}</CardText>
-         
+          <div className='ps-header'>
+            <span>Step {this.props.index +1}</span>
+            {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}
+          </div>
+          <CardText className='ps-title'> {title}</CardText>
             <CardText className='ps-text'>{instruction}</CardText>
-         
           <CardImg className='ps-img' src={img_url} alt="Card image" />
-          {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>X</Button>}
         </Card>
       </div>
       

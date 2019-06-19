@@ -1,24 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import {
-    Card, CardText, CardBody, CardHeader, CardImg, Button,
-    FormGroup, Label, Input, DropdownToggle, DropdownMenu,
-    DropdownItem, InputGroupButtonDropdown, Form
-} from 'reactstrap';
-import { getPost, deletePost } from '../../actions/index';
-import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
-
-
-import PostStep from './PostStep';
+    Card, CardText, CardBody, CardImg, Button,
+} from "reactstrap";
+import { getPost, deletePost } from "../../actions/index";
+import { getTag } from "../../actions/steps-tagsActions";
+import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
+import "../../post.scss";
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
-
-
         this.state = {
-            id: (this.props.location.pathname.split('/')[2])
+            id: (this.props.location.pathname.split("/")[2])
         };
         console.log(
             "this.props.location.pathname",
@@ -41,7 +36,6 @@ class Post extends React.Component {
         this.props.history.push("/");
     };
 
-
     render() {
         const {
             title,
@@ -56,28 +50,36 @@ class Post extends React.Component {
         } = this.props.currPost
         return (
             <React.Fragment>
-                <Card id='post'>
-
+                <Card className="post-card" id="post">
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
-                    <CardBody>Tags:</CardBody>
-                    <div className='tag-section'>
-                        <p className='post-tags'>
-                            {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
-                        </p>
-                    </div>
-
-                    <CardHeader>{title}</CardHeader>
                     <CardBody>
-                        <CardText>{description}</CardText>
-                        <CardText>Difficulty: {difficulty}</CardText>
-                        <CardText>duration: {duration}</CardText>
-                        <CardText>skills: {skills}</CardText>
-                        <CardText>supplies: {supplies}</CardText>
-                        <div className="btn-group" role="group">
-                            <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
-                                Edit
-                            </Button>
-                            <Button className="edit-button" onClick={() => this.delete()}>X</Button>
+                        <div className="p-header">
+                            <CardText className="p-title">{title}</CardText>
+                            <div className="p-buttons">
+                                <Button className="edit-button" onClick={() => this.delete()}>Delete</Button>
+                                <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
+                                    Edit
+                                </Button>
+                            </div>
+                        </div>
+                        <CardText className="p-description">{description}</CardText>
+                        <div className="p-content-container">
+                            <div className="p-content-section">
+                                <span className="p-content-label">Difficulty</span>
+                                <CardText>{difficulty}</CardText>
+                            </div>
+                            <div className="p-content-section">
+                                <span className="p-content-label">Duration</span>
+                                <CardText>{duration}</CardText>
+                            </div>
+                            <div className="p-content-section">
+                                <span className="p-content-label">Supplies</span>
+                                <CardText>{supplies}</CardText>
+                            </div>
+                            <div className="p-content-section">
+                                <span className="p-content-label">Pre-Requisite Skills</span>
+                                <CardText>{skills}</CardText>
+                            </div>
                         </div>
                     </CardBody>
 
@@ -90,7 +92,13 @@ class Post extends React.Component {
                             />
                         )
                     })}
-                   
+
+                   <CardBody className="post-category">Categories</CardBody>
+                    <div className="tag-section">
+                        <p className="post-tags post-page">
+                            {tags && tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                        </p>
+                    </div>
                 </Card>
                 <div>
                     <Reviews

@@ -30,7 +30,7 @@ class PostStep extends React.Component {
 
     return (
       <div className='ps-card-container'>
-        <Card className='ps-card'>
+        <Card className={this.props.isEdit ? 'ps-card' : 'ps-card p-page'}>
           <div className='ps-header'>
             <span>Step {this.props.index +1}</span>
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}

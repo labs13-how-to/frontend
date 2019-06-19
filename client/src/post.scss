@@ -2,7 +2,7 @@
     border: none;
 }
 
-.card.ps-card {
+.ps-card.p-page {
     width: 90%;
 }
 .post-card {
@@ -18,6 +18,22 @@
 .p-title {
     color: #ff851a;
     font-size: 35px;
+}
+
+.review-count.post-review {
+    margin-top: 7px;
+}
+
+.p-created {
+    display: flex;
+}
+
+.p-user {
+    padding-right: 20px;
+}
+
+.p-rating {
+    display: flex;
 }
 
 .p-description {

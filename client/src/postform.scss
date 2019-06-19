@@ -1,3 +1,8 @@
+.pf-container {
+    display: flex;
+    justify-content: center;
+}
+
 .post-form {
     color: #FF851A;
     // border-bottom: 2px dashed #746D6D;
@@ -12,6 +17,11 @@
 }
 .form-control.pf-title-input{
     border: none;
+}
+
+.category-span {
+    font-size: 15px;
+    color: grey;
 }
 
 .pf-button-container {

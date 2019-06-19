@@ -152,20 +152,20 @@ code {
   flex-direction: row-reverse;
 }
 
-.tag-section button {
-  width: 40px;
-  height: 30px;
+.tag-section .dropdown-toggle {
+  width: 100%;
+  height: 40px;
 }
-.tag-section button select {
-  width: 200px;
-}
-.tag-section .dropdown-item {
-  width: 200px;
-}
-.tag-section .dropdown-menu {
-  width: 250px;
-  height: 170px;
-}
+// .tag-section button select {
+//   width: 200px;
+// }
+// .tag-section .dropdown-item {
+//   width: 200px;
+// }
+// .tag-section .dropdown-menu {
+//   width: 250px;
+//   height: 170px;
+// }
 
 #post .review-cards {
   width: 80%;

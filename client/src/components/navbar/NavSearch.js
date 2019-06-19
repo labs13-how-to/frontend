@@ -29,7 +29,7 @@ class NavSearch extends React.Component {
         <Input
           type="text"
           id="search"
-          placeholder={`🔍 Search`}
+          placeholder={` Search`}
           size="50"
           onChange={this.searchChanges}
         />

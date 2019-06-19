@@ -11,7 +11,7 @@ import {
 } from "../actions";
 
 const initialState = {
-  user: { message: "wow" },
+  user: {},
   fetching: false,
   adding: false,
   error: null,

@@ -107,12 +107,12 @@ class CreatePostForm extends React.Component {
                 this.props.addTag(newTag);
             })
             this.props.history.push(`/forms/post/edit/${this.props.addId}`)
-        }, 2000);
+        }, 300);
     }
 
     render() {console.log(this.state.tags)
         return ( 
-            <>
+            <div className="pf-container">
                 <Form className = "post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className = "pf-title">
                         <Label>Title</Label>
@@ -133,7 +133,7 @@ class CreatePostForm extends React.Component {
                             name='img_url'
                         />
                     </FormGroup>
-                    <p>Tags</p>
+                    <p>Category <span className='category-span'>(click the same tag to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
                             {this.state.tags && this.state.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
@@ -203,20 +203,11 @@ class CreatePostForm extends React.Component {
                             name='supplies'
                         />
                     </FormGroup>
-                    {/* <FormGroup>
-                        <Label></Label>
-                        <Input
-                            type="number"
-                            placeholder='created_by'
-                            value={this.state.created_by}
-                            name='created_by'
-                        />
-                    </FormGroup> */}
                     <div className="pf-button-container">
                         <Button className="pf-button" type='submit'>Save</Button>
                     </div>
                 </Form>
-            </>
+            </div>
         )
     }
 }

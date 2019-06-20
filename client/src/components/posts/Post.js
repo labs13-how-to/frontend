@@ -69,7 +69,7 @@ class Post extends React.Component {
                         <div className="p-header">
                             <CardText className="p-title">{title}</CardText>
                             <div className="p-buttons">
-                                <Button className="edit-button" onClick={() => this.delete()}>Delete</Button>
+                                <Button className="delete-button" onClick={() => this.delete()}>Delete</Button>
                                 <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
                                     Edit
                                 </Button>

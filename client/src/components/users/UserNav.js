@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import {
     Nav,
     NavItem,
+    Button
 } from "reactstrap";
-import { NavLink as RouteLink } from "react-router-dom";
 import "./account.scss";
 
 class UserNav extends Component {
@@ -11,16 +11,13 @@ class UserNav extends Component {
         return (
             <div className="account-buttons">
                 <Nav>
-                    <NavItem>
-                        <RouteLink to="/forms/post/create/">Create Post</RouteLink>
-                    </NavItem>
-
+                    <Button className="create-button" onClick={() => this.props.history.push("/forms/post/create/")}>Create post</Button>
                     {/* <NavItem>
                         <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
                             Login with google
                         </a>
                     </NavItem> */}
-                    <RouteLink className="logout-button" exact to="/" onClick={this.props.logOut}>Logout</RouteLink>
+                    <Button className="logout-button" onClick={this.props.logOut}>Logout</Button>
                 </Nav>
             </div>
         )

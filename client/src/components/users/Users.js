@@ -23,7 +23,12 @@ class Users extends Component {
         const posts_count = userPosts && userPosts.length
         return (
             <React.Fragment>
-                <h2 className="account-header">{this.props.user.username}'s <span>Posts<li>{posts_count}</li></span></h2>
+                <div className="account-header">
+                    <h2>{this.props.user.username}</h2>
+                    <div className="account-posts">
+                        <p>Posts <span>( {posts_count} )</span></p>
+                    </div>
+                </div>
                 <UserPosts history={this.props.history} userPosts={userPosts} />
                 <Button onClick={() => this.props.history.push(`/user/${this.props.match.params.id}/favorites`)}>Favorites</Button>
             </React.Fragment>

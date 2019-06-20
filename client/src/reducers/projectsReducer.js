@@ -4,7 +4,8 @@ import {
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
     POST_DELETE_START, POST_DELETE_SUCCESS, POST_DELETE_FAILURE,
     UPDATE_FETCH, UPDATE_SUCCESS, UPDATE_FAILURE,
-    USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL
+    USER_POSTS_FETCH, USER_POSTS_SUCCESS, USER_POSTS_FAIL,
+    IMAGE_FETCH, IMAGE_SUCCESS, IMAGE_FAILURE, POSTREFRESH,
 } from "../actions";
 import {
     ADDSTEP_FETCH, ADDSTEP_SUCCESS, ADDSTEP_FAILURE,
@@ -22,12 +23,15 @@ const initialState =
     currPost: {},
     allTags: [],
     message: 'default',
+    uploadedImage: null,
     addId: 0,
     addMsg: '',
     fetching: false,
     adding: false,
     deleting: false,
+    uploading: false,
     refresh: false,
+    submitRefresh: false,
     error: null,
 };
 
@@ -73,14 +77,16 @@ const reducer = (state = initialState, action) => {
         case ADD_FETCH:
             return {
                 ...state,
-                adding: true
+                adding: true,
+                submitRefresh: false,
             }
         case ADD_SUCCESS:
             return {
                 ...state,
                 error: null,
                 adding: false,
-                addId: action.payload.id
+                addId: action.payload.id,
+                uploadedImage: null,
             }
         case ADD_FAILURE:
             return {
@@ -130,7 +136,9 @@ const reducer = (state = initialState, action) => {
         case ADDSTEP_FETCH:
             return {
                 ...state,
-                adding: true
+                adding: true,
+                submitRefresh: false,
+                uploadedImage: null
             }
         case ADDSTEP_SUCCESS:
             return {
@@ -138,7 +146,7 @@ const reducer = (state = initialState, action) => {
                 error: null,
                 adding: false,
                 addMsg: action.payload.id,
-                refresh:true
+                refresh: true,
             }
         case ADDSTEP_FAILURE:
             return {
@@ -242,6 +250,27 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 fetching: false,
                 userPosts: [],
+                error: action.payload
+            }
+
+        //Image Uploading
+        case IMAGE_FETCH:
+            return {
+                ...state,
+                // uploading: true
+            }
+        case IMAGE_SUCCESS:
+            return {
+                ...state,
+                error: null,
+                uploading: true,
+                uploadedImage: action.payload,
+                submitRefresh: true,
+            }
+        case IMAGE_FAILURE:
+            return {
+                ...state,
+                // uploading: false,
                 error: action.payload
             }
 

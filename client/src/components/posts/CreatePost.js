@@ -13,10 +13,11 @@ class CreatePostForm extends React.Component {
     constructor(props) {
         super(props);
         this.toggleDropDown = this.toggleDropDown.bind(this);
-        this.toggleDifficluty = this.toggleDifficluty.bind(this);
+        this.toggleDifficulty = this.toggleDifficulty.bind(this);
         this.state = {
             title: '',
             img_url: '',
+            vid_url: '',
             description: '',
             difficulty: '',
             duration: '',
@@ -64,7 +65,7 @@ class CreatePostForm extends React.Component {
             dropdownOpen: !this.state.dropdownOpen
         });
     };
-    toggleDifficluty() {
+    toggleDifficulty() {
         this.setState({
             difficultyDropdown: !this.state.difficultyDropdown
         });
@@ -171,6 +172,15 @@ class CreatePostForm extends React.Component {
                             disabled={this.state.disabled}
                         />
                     </FormGroup>
+                    <FormGroup className="pf-img">
+                        <Label>Youtube Video (optional)</Label>
+                        <Input
+                            onChange={this.handleChange}
+                            placeholder='Include a YouTube video here'
+                            value={this.state.vid_url}
+                            name='vid_url'
+                        />
+                    </FormGroup>
                     <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
@@ -207,7 +217,7 @@ class CreatePostForm extends React.Component {
                     </FormGroup>
                     <FormGroup className="pf-difficulty">
                         <Label>Difficulty</Label>
-                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.difficultyDropdown} toggle={this.toggleDifficluty}>
+                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.difficultyDropdown} toggle={this.toggleDifficulty}>
                             <DropdownToggle split outline >{this.state.difficulty ? `${this.state.difficulty} \xa0\xa0` : 'Select Difficulty\xa0'} </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>

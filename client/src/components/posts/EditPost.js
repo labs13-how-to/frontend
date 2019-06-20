@@ -15,6 +15,7 @@ class EditPostForm extends React.Component {
         this.state = {
             title: '',
             img_url: '',
+            vid_url: '',
             description: '',
             difficulty: '',
             duration: '',
@@ -39,7 +40,7 @@ class EditPostForm extends React.Component {
             const {
                 title, img_url, description,
                 difficulty, duration, skills,
-                supplies, created_by
+                supplies, created_by, vid_url
             } = this.props.currPost
             this.setState({
                 title: title,
@@ -50,6 +51,7 @@ class EditPostForm extends React.Component {
                 skills: skills,
                 supplies: supplies,
                 created_by: created_by,
+                vid_url: vid_url
             })
         }
     }
@@ -58,7 +60,7 @@ class EditPostForm extends React.Component {
             const {
                 title, img_url, description,
                 difficulty, duration, skills,
-                supplies, created_by
+                supplies, created_by, vid_url
             } = this.props.currPost
             this.setState({
                 title: title,
@@ -69,6 +71,7 @@ class EditPostForm extends React.Component {
                 skills: skills,
                 supplies: supplies,
                 created_by: created_by,
+                vid_url: vid_url
             })
         }
         if (prevProps.refresh !== this.props.refresh) {
@@ -101,12 +104,12 @@ class EditPostForm extends React.Component {
         const {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by
+            supplies, created_by, vid_url
         } = this.state
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by
+            supplies, created_by, vid_url
         };
         let updatedObj = {}
         for (var property in stateObj) {
@@ -154,6 +157,15 @@ class EditPostForm extends React.Component {
 
 
                         <Button className='pf-button image-button' onClick={() => this.props.uploadImageHandler(this.state.postImage)}>Save Image</Button>
+                    </FormGroup>
+                    <FormGroup className="pf-img">
+                        <Label>Youtube Video (optional)</Label>
+                        <Input
+                            onChange={this.handleChange}
+                            placeholder='Include a YouTube video here'
+                            value={this.state.vid_url}
+                            name='vid_url'
+                        />
                     </FormGroup>
                     <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
                     <div className='tag-section'>

@@ -5,7 +5,7 @@ import {
     DropdownToggle, DropdownMenu,
     DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
-import { updatePost, getPost } from '../../actions';
+import { updatePost, getPost, uploadImageHandler } from '../../actions';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
 
 class EditPostForm extends React.Component {
@@ -76,6 +76,11 @@ class EditPostForm extends React.Component {
         };
     }
 
+    handleImageChange = e => {
+        e.preventDefault();
+        this.setState({ postImage: e.target.files[0] });
+    };
+
     handleTagsChange = e => {
         this.setState({ tag: e.target.value });
         const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)
@@ -89,6 +94,7 @@ class EditPostForm extends React.Component {
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
+
 
     handleSumbit = async e => {
         e.preventDefault();
@@ -130,12 +136,24 @@ class EditPostForm extends React.Component {
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Main Image</Label>
-                        <Input
+                        {/* <Input
                             onChange={this.handleChange}
                             placeholder='img_url'
                             value={this.state.img_url}
                             name='img_url'
+                        /> */}
+                        <img className='img-fluid' src={this.props.currPost.img_url} />
+                        <Input
+                            type="file"
+                            name="img_url"
+                            id="img_url"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleImageChange}
+                            disabled={this.state.disabled}
                         />
+
+
+                        <Button className='pf-button image-button' onClick={() => this.props.uploadImageHandler(this.state.postImage)}>Save Image</Button>
                     </FormGroup>
                     <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
                     <div className='tag-section'>
@@ -222,7 +240,9 @@ function mapStateToProps({ projectsReducer }) {
         message: projectsReducer.message,
         currPost: projectsReducer.currPost,
         refresh: projectsReducer.refresh,
-        allTags: projectsReducer.allTags
+        allTags: projectsReducer.allTags,
+        uploadedImage: projectsReducer.uploadedImage,
+        submitRefresh: projectsReducer.submitRefresh
     }
 }
 
@@ -233,6 +253,7 @@ export default connect(
         getPost,
         removeTag,
         addTag,
-        getTag
+        getTag,
+        uploadImageHandler
     }
 )(EditPostForm);

@@ -26,11 +26,11 @@ class Users extends Component {
                 <div className="account-header">
                     <h2>{this.props.user.username}</h2>
                     <div className="account-posts">
-                        <p>Posts <span>( {posts_count} )</span></p>
+                        <p>Posts <span>{` • `}{posts_count}</span></p>
                     </div>
                 </div>
                 <UserPosts history={this.props.history} userPosts={userPosts} />
-                <Button onClick={() => this.props.history.push(`/user/${this.props.match.params.id}/favorites`)}>Favorites</Button>
+                {/* <Button onClick={() => this.props.history.push(`/user/${this.props.match.params.id}/favorites`)}>Favorites</Button> */}
             </React.Fragment>
         )
     }

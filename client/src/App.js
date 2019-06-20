@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
 // import Register from "./components/users/Register";
 
+import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import Nav from "./components/navbar/Nav";
 import Users from "./components/users/Users";
@@ -55,7 +56,10 @@ class App extends Component {
   };
 
   render() {
+
     console.log("PROPS", this.props);
+    console.log()
+
     return (
       <div className="App">
 
@@ -65,8 +69,10 @@ class App extends Component {
           </div>
         </header>
         <div className="container main-container">
-          <Route exact path="/" render={props => <Home {...props} />} />
-
+          {localStorage.hasOwnProperty('jwt') ?
+            (<Route exact path="/" render={props => <Home {...props} />} />)
+            : (<Route exact path="/" render={props => <LandingPage {...props} />} />)}
+            
           <Route path="/user" render={props => <UserNav {...props} logOut={this.logOut} />} />
           <Route path="/user/:id" render={props => <Users {...props} />} />
           <Route path="/user/:id/favorites" render={props => <Favorites {...props} />} />

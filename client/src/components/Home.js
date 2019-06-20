@@ -2,8 +2,11 @@ import React from 'react';
 import "./Home.scss";
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import { Button } from 'reactstrap';
+
 import TagsSearch from './posts/TagsSearch';
 import PostList from './posts/PostList.js';
+import ExamplePost from '../images/example-post-img.png';
 
 
 class Home extends React.Component {
@@ -22,6 +25,13 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 <div className='cta'>
+                    <div className='cta-text'>
+                        <h2>Never made a How To post before? We'll help you learn how</h2>
+                        <Button>Learn How</Button>
+                    </div>
+                    <div className='cta-img'>
+                        <img src={ExamplePost}></img>
+                    </div>
 
                 </div>
                 <PostList history={this.props.history} isHome={true} />

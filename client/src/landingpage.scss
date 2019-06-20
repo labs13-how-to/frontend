@@ -1,0 +1,320 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+
+// Media Queries
+// @include media-breakpoint-up(sm) { ... }
+// @include media-breakpoint-up(md) { ... }
+// @include media-breakpoint-up(lg) { ... }
+
+
+.cta-content {
+    display:flex;
+    width: 100%;
+    background-color: #ffdec2;
+    overflow: hidden;
+    @include media-breakpoint-down(sm) {
+        
+        height: 250px;
+        overflow: hidden;
+        margin-top: 30px;
+        padding: 0;
+      }
+}
+
+.p-and-btn {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 50px 50px 35px;
+    @include media-breakpoint-down(sm) {
+        overflow: hidden;
+        margin: 10px;
+      }
+}
+
+.cta-text1 {
+    font-family: 'Nunito', sans-serif;
+    color: #494949;
+    font-weight: bold;
+    font-size: 40px;
+    text-align: left;
+    line-height: 54px;
+    padding-left: 5px;
+    @include media-breakpoint-down(sm) {
+        overflow: hidden;
+        font-size: 25px;
+        line-height: 30px;
+        margin-bottom: 0px; 
+      }
+}
+
+.cta-text2 {
+    font-family: 'Nunito', sans-serif;
+    color: #494949;	
+    font-size: 26px;	
+    line-height: 35px;
+    text-align: left;
+    margin-right: 50px;
+    @include media-breakpoint-down(sm) {
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 20px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        padding: 10px 0;
+      }
+}
+
+.join-btn-div {
+    width: 100%;
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+        }
+}
+
+.join-btn {
+    font-family: 'Nunito', sans-serif;
+    background-color: white;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FF851A;
+    width: 112px;
+    border: 1px solid #FF851A;
+    margin: 0;
+    float: left;
+}
+
+.bathroom-img {
+    width: 45%;
+    float: right
+}
+
+.upper-content {
+    width: 95%;
+    margin: 30px auto 50px auto;
+    display: flex;
+    justify-content: space-around;
+
+    @include media-breakpoint-down(sm) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow: hidden;
+      }
+
+}
+
+.upper-content-section {
+   width: 30%;
+   padding: 10px;
+
+   h3 {
+    font-family: 'Nunito', sans-serif;
+    color: #FF851A;
+    font-size: 30px;
+
+    @include media-breakpoint-down(sm) {
+        text-align: center;
+        font-size: 25px;
+      }
+   }
+   
+   p {
+    padding: 5px;
+    font-family: 'Nunito', sans-serif;
+    color: #494949;	
+    font-size: 20px;	
+    line-height: 27px;
+    text-align: left;
+
+    @include media-breakpoint-down(sm) {
+        font-size: 18px
+      }
+   }
+
+   .join-btn2-div {
+    width: 100%;
+    margin-top: 40px;
+    @include media-breakpoint-down(sm) {
+        display: none;
+      }
+    }
+
+   .join-btn2 {
+    font-family: 'Nunito', sans-serif;
+    background-color: #FF851A;
+    font-size: 20px;
+    line-height: 27px;
+    color: white;
+    width: 112px;
+    border: none;
+   }
+
+   .join-btn3-div {
+    display: none;
+    @include media-breakpoint-down(sm) {
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+    }
+   }
+
+   .join-btn3 {
+    font-family: 'Nunito', sans-serif;
+    background-color: #FF851A;
+    font-size: 20px;
+    line-height: 27px;
+    color: white;
+    width: 300px;
+    border: none;
+   }
+
+   @include media-breakpoint-down(sm) {
+    width: 90%;
+    }
+}
+
+
+.middle-content {
+    border-top: 1px solid #979797;
+    border-bottom: 1px solid #979797;
+    
+    h2 {
+        text-align: center;
+        margin: 30px auto;
+        padding: 20px 0;
+        color: #FF851A;
+        font-family: 'Nunito', sans-serif;
+        font-size: 40px;	
+        line-height: 54px;
+        @include media-breakpoint-down(sm) {
+            font-size: 35px;
+            }
+
+    }
+    h3 {
+        color: #FF851A;
+        text-align: left;
+        font-family: 'Nunito', sans-serif;
+        font-size: 30px;
+        line-height: 41px;
+        @include media-breakpoint-down(sm) {
+            font-size: 25px;
+            }
+    }
+    p {
+        font-family: 'Nunito', sans-serif;
+        color: #494949; 
+        font-size: 20px;	
+        line-height: 27px;
+        text-align: left;
+    }
+    @include media-breakpoint-down(sm) {
+        margin: 0 auto;
+        width: 90%;
+      }
+
+}
+
+.middle-content-section {
+    
+}
+
+.middle-content-main {
+    overflow: hidden;
+    padding: 0 13%;
+    padding-bottom: 40px;
+
+    @include media-breakpoint-down(sm) {
+        width: 90%;
+        }
+
+    .iphone-img {
+        @include media-breakpoint-down(sm) {
+            display: none;
+            }
+    }
+    
+}
+
+.iphone-img {
+    width: 200px;
+    height: 400px;
+    float: left;
+}
+
+.middle-content-main2 {
+    display: flex;
+    flex-direction: column;
+    padding-left: 88px;
+    margin: 0 auto 40px auto;
+    
+    .mobile-store {
+     margin-top: 15px;
+     text-align: left;
+    }
+}
+
+.bottom-content {
+    h2 {
+        text-align: center;
+        margin: 30px auto;
+        padding-top: 30px;
+        color: #FF851A;
+        font-family: 'Nunito', sans-serif;
+        font-size: 40px;	
+        line-height: 54px;
+
+    }
+    h3 {
+        padding-top: 15px;
+        margin-bottom: 0px;
+        color: #FF851A;
+        text-align: center;
+        font-family: 'Nunito', sans-serif;
+        font-size: 30px;
+        line-height: 41px;
+    }
+    h4 {
+        font-family: 'Nunito', sans-serif;
+        color: #494949; 
+        font-size: 22px;	
+        font-weight: bold;	
+        line-height: 30px;
+    }
+
+}
+.bottom-content-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 3% 100px 3%;
+}
+
+.bottom-content-section {
+    width: 30%;
+    padding-left: 20px;
+    padding-top: 30px;
+
+    p {
+    margin-right: 10px;
+    font-family: 'Nunito', sans-serif;
+    color: #494949; 
+    text-align: left;
+    font-size: 20px;	
+    line-height: 27px;
+    display: list-item;                                              
+    list-style-type: disc;      
+    list-style-position: outside;
+    }
+    
+    .nick-img {
+        width: 152px;
+        height: 152px
+    }
+}
+

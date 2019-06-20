@@ -1,0 +1,39 @@
+.account-buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.logout-button {
+    padding: 0 20px;
+    background: #FF851A;
+    border: none;
+    margin-left: 15px;
+}
+
+.create-button {
+    color: #FF851A;
+    background-color: white;
+    border: 1px solid #FF851A;
+}
+
+.account-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-bottom: 1px solid #979797;
+    padding-bottom: 20px;
+}
+
+.account-posts {
+    display:flex;
+
+    p {
+        font-size: 25px;
+    }
+
+    span {
+        color: #ACACAC;
+        font-size: 18px;
+    }
+}

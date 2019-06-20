@@ -104,6 +104,7 @@ h1, h2{
   }
 }
 
+
 .card-body {
   // top: 900px;
   flex-direction: column;
@@ -129,20 +130,21 @@ code {
   position: relative;
 }
 .btn-group{
- 
   align-self: flex-end;
 }
 .post-tags {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .post-tags span {
-  padding: 2px;
-  border: 1px solid black;
-  border-radius: 3px;
+  padding: 5px 15px;
+  border: 1px solid #FF851A;
+  border-radius: 20px;
   margin: 2px;
+  font-size: 20px;
+  color: #FF851A;
+  margin-left: 15px;
 }
 .tag-section {
   display: flex;
@@ -164,16 +166,7 @@ code {
 //   width: 250px;
 //   height: 170px;
 // }
-.edit-button {
-  justify-self: flex-end;
-  align-self: flex-end;
-  background: #FF851A;
-  border: 1px solid white;
-  width: 50px;
-  // position: absolute;
-  font-size: 0.75rem;
-  // top: 900px;
-}
+
 #post .review-cards {
   width: 80%;
 }

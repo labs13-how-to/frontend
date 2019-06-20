@@ -121,6 +121,7 @@ class CreateStepForm extends React.Component {
                             step={step}
                             index={index}
                             location={this.props.location}
+                            isEdit={true}
                         />
                     )
                 })}

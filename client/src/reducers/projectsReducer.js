@@ -1,5 +1,5 @@
 import {
-    TEST,
+    TEST, REFRESH,
     FETCH, SUCCESS, SUCCESS_ID, FAILURE,
     ADD_FETCH, ADD_SUCCESS, ADD_FAILURE,
     POST_DELETE_START, POST_DELETE_SUCCESS, POST_DELETE_FAILURE,
@@ -32,12 +32,19 @@ const initialState =
     uploading: false,
     refresh: false,
     submitRefresh: false,
+    refreshUser: false,
     error: null,
 };
 
 const reducer = (state = initialState, action) => {
 
     switch (action.type) {
+
+        case REFRESH:
+            return {
+                ...state,
+                refreshUser: false
+            }
 
         case FETCH:
             return {
@@ -65,6 +72,7 @@ const reducer = (state = initialState, action) => {
                 fetching: false,
                 currPost: action.payload,
                 refresh: false,
+                refreshUser: true,
             }
         case FAILURE:
             return {

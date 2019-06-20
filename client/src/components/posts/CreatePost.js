@@ -5,7 +5,7 @@ import {
     DropdownToggle, DropdownMenu,
     DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
-import { addPost } from '../../actions';
+import { addPost, uploadImageHandler } from '../../actions';
 import { addTag, getTag } from '../../actions/steps-tagsActions';
 import "../../postform.scss";
 
@@ -26,11 +26,20 @@ class CreatePostForm extends React.Component {
             dropdownOpen: false,
             difficultyDropdown: false,
             tags: [],
+            postImage: null,
+            submit: false,
         };
     }
+
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
         this.props.getTag();
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.submitRefresh !== this.props.submitRefresh) {
+            this.handlePostSubmit()
+        }
+
     }
 
     hydrateStateWithLocalStorage() {
@@ -49,6 +58,7 @@ class CreatePostForm extends React.Component {
         }
     }
 
+    //toggle functions
     toggleDropDown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -61,14 +71,12 @@ class CreatePostForm extends React.Component {
     };
 
     handleChange = e => {
-        console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
     };
     handleTagsChange = e => {
-        // this.setState({ tag: e.target.value });
+        // grabs tag id, then checks if its already tagged to the post
         const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)
         const isTagged = this.state.tags.filter(tag => e.target.value === tag.name.toLowerCase())
-        // const newTag = { post_id: this.state.id, tag_id: tagId[0].id };
         const newTag = { tag_id: tagId[0].id, name: e.target.value };
         console.log('isTagged', isTagged)
         console.log('newtag', newTag)
@@ -79,48 +87,65 @@ class CreatePostForm extends React.Component {
             console.log(filteredAry)
             this.setState({ tags: filteredAry })
         }
-
-
     };
 
-    handleSubmit = async e => {
-        const newPost = {
-            title: this.state.title,
-            img_url: this.state.img_url,
-            description: this.state.description,
-            difficulty: this.state.difficulty,
-            duration: this.state.duration,
-            skills: this.state.skills,
-            supplies: this.state.supplies,
-            created_by: this.state.created_by,
-        }
-        console.log('before submit', newPost);
+    // handles file change for image
+    handleImageChange = e => {
         e.preventDefault();
-        await this.props.addPost(newPost)
+        this.setState({ postImage: e.target.files[0] });
+    };
 
-        this.setState({
-            title: '',
-            img_url: '',
-            description: '',
-            difficulty: '',
-            duration: '',
-            skills: '',
-            supplies: '',
-            created_by: '',
-        })
+    // submit image and form
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.uploadImageHandler(this.state.postImage);
+        this.setState({ submit: true })
 
-        console.log(this.props.addId)
-        setTimeout(() => {
-            this.state.tags.forEach((tag) => {
-                const newTag = { tag_id: tag.tag_id, post_id: this.props.addId }
-                this.props.addTag(newTag);
+    }
+
+    //submit post after image
+    handlePostSubmit = async () => {
+        if (this.state.submit) {
+            this.setState({ submit: false })
+            const newPost = {
+                title: this.state.title,
+                img_url: this.props.uploadedImage,
+                description: this.state.description,
+                difficulty: this.state.difficulty,
+                duration: this.state.duration,
+                skills: this.state.skills,
+                supplies: this.state.supplies,
+                created_by: this.state.created_by,
+            }
+            console.log('before submit', newPost);
+
+            await this.props.addPost(newPost)
+
+            this.setState({
+                title: '',
+                img_url: '',
+                description: '',
+                difficulty: '',
+                duration: '',
+                skills: '',
+                supplies: '',
+                created_by: '',
             })
-            this.props.history.push(`/forms/post/edit/${this.props.addId}`)
-        }, 300);
+
+            console.log(this.props.addId)
+            setTimeout(() => {
+                this.state.tags.forEach((tag) => {
+                    const newTag = { tag_id: tag.tag_id, post_id: this.props.addId }
+                    this.props.addTag(newTag);
+                })
+                this.props.history.push(`/forms/post/edit/${this.props.addId}`)
+            }, 300);
+        }
     }
 
     render() {
-        console.log(this.state.tags)
+        console.log('IMAGE', this.props.uploadedImage)
+
         return (
             <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
@@ -133,20 +158,23 @@ class CreatePostForm extends React.Component {
                             value={this.state.title}
                             name='title'
                         />
+
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Main Image</Label>
                         <Input
-                            onChange={this.handleChange}
-                            placeholder='Image URL'
-                            value={this.state.img_url}
-                            name='img_url'
+                            type="file"
+                            name="img_url"
+                            id="img_url"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleImageChange}
+                            disabled={this.state.disabled}
                         />
                     </FormGroup>
                     <p>Category <span className='category-span'>(click the same tag to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
-                            {this.state.tags && this.state.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                            {this.state.tags && this.state.tags.map((tag, index) => <span key={index}>{tag.name}</span>)}
                         </p>
                         <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                             <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
@@ -242,6 +270,9 @@ function mapStateToProps({ projectsReducer }) {
         error: projectsReducer.error,
         addId: projectsReducer.addId,
         allTags: projectsReducer.allTags,
+        uploadedImage: projectsReducer.uploadedImage,
+        submitRefresh: projectsReducer.submitRefresh
+
     }
 }
 
@@ -250,6 +281,7 @@ export default connect(
     {
         addPost,
         addTag,
-        getTag
+        getTag,
+        uploadImageHandler
     }
 )(CreatePostForm);

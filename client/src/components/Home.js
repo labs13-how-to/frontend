@@ -1,7 +1,12 @@
 import React from 'react';
-import Posts from './posts/Posts.js';
+import "./Home.scss";
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import { Button } from 'reactstrap';
+
+import TagsSearch from './posts/TagsSearch';
+import PostList from './posts/PostList.js';
+import ExamplePost from '../images/example-post-img.png';
 
 
 class Home extends React.Component {
@@ -19,18 +24,20 @@ class Home extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <h2 className='posts-head'>Posts</h2>
-                <div className='post-list'>
-                    {this.props.posts.map((post, index) =>
-                        <Posts
-                            post={post}
-                            key={index}
-                            history={this.props.history}
-                        />
-                    )}
-
+                <div className='cta'>
+                    <div className='cta-text'>
+                        <h2>Never made a How To post before? We'll help you learn how</h2>
+                        <Button>Learn How</Button>
+                    </div>
+                    <div className='cta-img'>
+                        <img src={ExamplePost}></img>
+                    </div>
 
                 </div>
+                <PostList history={this.props.history} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} />
             </React.Fragment>
         );
     }

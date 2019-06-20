@@ -1,21 +1,51 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
+import StarRatingComponent from "react-star-rating-component";
 
 
-const Posts = props => {
-    const { title, difficulty, img_url, id } = props.post
-    return (
-        <Card>
-            <CardImg className="img-fluid" src={img_url} alt="Card image" />
-            <CardHeader>{title}</CardHeader>
-            <CardBody>
-                <CardText>{difficulty}</CardText>
-                <Button onClick={() => props.history.push(`/posts/${id}`)}>
-                    Learn More
-                </Button>
-            </CardBody>
-        </Card>
-    );
+class Posts extends React.Component {
+    state = {
+        id: this.props.post.id
+    }
+    getDate(cardDate) {
+        if (cardDate) {
+            let currDate = cardDate.split('T')[0];
+            currDate = currDate.split('-');
+            return currDate;
+        }
+
+    }
+
+
+    render() {
+
+        // console.log(this.props.post)
+        const { title, difficulty, img_url, id, reviews } = this.props.post
+        const cardDate = this.getDate(this.props.post.created_at);
+        return (
+            < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
+            }>
+                <CardImg className="img-fluid" src={img_url} alt="Card image" />
+                <CardHeader>{title}</CardHeader>
+                <CardBody>
+                    <StarRatingComponent
+                        className="review-stars post-stars"
+                        name="stars"
+                        starCount={5}
+                        value={Math.round(this.props.post.review_avg)}
+                    /><CardText className='review-count'>{`• \xa0`}{this.props.post.review_count}</CardText>
+
+                </CardBody>
+                <CardBody>
+                    <div className='post-footer'>
+                        {this.props.post.username}
+                        {`\xa0 • \xa0`}
+                        <CardText className='date-count'>{cardDate && `${cardDate[1][1]}/${cardDate[2]}/${cardDate[0]}`}</CardText>
+                    </div>
+                </CardBody>
+            </Card >
+        );
+    }
 };
 
 export default Posts;

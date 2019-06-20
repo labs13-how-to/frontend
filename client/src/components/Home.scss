@@ -1,0 +1,101 @@
+.cta{
+    height: 410px;
+    background:#FFDEC2;
+    display: flex;
+    padding: 50px;
+    .cta-text{
+        display:flex;
+        flex-direction: column;
+
+        h2{
+        color: #494949;
+        line-height: 3.5rem;
+        font-size: 2.5rem;
+        margin: 30px 100px;
+        }
+        .btn{
+            margin: 0 100px;
+            width: 130px;
+            background: white;
+            color: #FF851A;
+            border: 1px solid #FF851A;
+            font-size: 1.2rem;
+            padding: 5px 15px;
+        }
+    }
+    
+    .cta-img{
+        width: 60%;
+        padding-right: 90px;
+        img{
+            width:100%;
+        }
+    }
+}
+
+h2.posts-head{
+    margin: 50px 30px 20px;
+    cursor: pointer;
+    font-size: 2.5rem;
+}
+.post-list{
+    margin-bottom: 30px;
+}
+
+.card.display-posts{
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    // max-height: 400px;
+    display:flex;
+    color: gray;
+    :hover{
+        cursor: pointer
+    }
+    .card-header{
+        border-bottom: none;
+        background: none;
+        padding:0 0 0 15px;
+        max-height: 72px;
+        height: 72px;
+    }
+    .card-body{
+        padding:0 0 0 15px;
+        display:flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: baseline;
+        .dv-star-rating-star{
+            margin: 0;
+            height: 20px;
+        }
+        .review-count{
+            margin-top: 12px;
+            font-size: 1rem;
+            color: gray;
+        }
+        .post-footer{
+            display: flex;
+            font-size: 1.2rem;
+            padding-bottom: 12px;
+            .date-count{
+                font-size: 1rem;
+                color: gray;
+            }
+        }
+    }
+    .card-img{
+        height: 240px;
+        width: 300%;
+        border-bottom: 1px solid lightgray;
+        background: #FFDEC2
+    }
+    .post-stars{
+        justify-self: flex-start;
+        align-self: flex-start;
+        // margin-left: 20px;
+    }
+
+}

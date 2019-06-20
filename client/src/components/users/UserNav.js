@@ -2,31 +2,24 @@ import React, { Component } from "react";
 import {
     Nav,
     NavItem,
-
+    Button
 } from "reactstrap";
-import { NavLink as RouteLink } from "react-router-dom";
-
+import "./account.scss";
 
 class UserNav extends Component {
-
     render() {
         return (
-            <React.Fragment>
-                <RouteLink exact to="/" onClick={this.props.logOut}>
-                    Logout
-                    </RouteLink>
-
-                <Nav className="mr-auto" navbar>
-                    <NavItem>
-                        <RouteLink to="/forms/post/create/">Create Post</RouteLink>
-                    </NavItem>
-                    <NavItem>
+            <div className="account-buttons">
+                <Nav>
+                    <Button className="create-button" onClick={() => this.props.history.push("/forms/post/create/")}>Create post</Button>
+                    {/* <NavItem>
                         <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
                             Login with google
                         </a>
-                    </NavItem>
+                    </NavItem> */}
+                    <Button className="logout-button" onClick={this.props.logOut}>Logout</Button>
                 </Nav>
-            </React.Fragment>
+            </div>
         )
     }
 };

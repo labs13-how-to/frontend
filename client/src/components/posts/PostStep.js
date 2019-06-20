@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteStep } from '../../actions/steps-tagsActions';
-import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "../../postSteps.scss";
 
 class PostStep extends React.Component {
@@ -30,7 +30,7 @@ class PostStep extends React.Component {
 
     return (
       <div className='ps-card-container'>
-        <Card className='ps-card'>
+        <Card className={this.props.isEdit ? 'ps-card' : 'ps-card p-page'}>
           <div className='ps-header'>
             <span>Step {this.props.index +1}</span>
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}

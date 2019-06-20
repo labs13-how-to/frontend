@@ -8,6 +8,9 @@ export const FETCH = "FETCH";
 export const SUCCESS = "SUCCESS";
 export const SUCCESS_ID = "SUCCESS_ID";
 export const FAILURE = "FAILURE";
+export const REFRESH = "REFRESH";
+
+export const getRefresh = () => dispatch => dispatch({ type: REFRESH });
 
 export const getTest = () => dispatch => {
   dispatch({ type: FETCH });

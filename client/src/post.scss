@@ -1,0 +1,96 @@
+.card.post-card {
+    border: none;
+}
+
+.ps-card.p-page {
+    width: 90%;
+}
+.post-card {
+    text-align: left;
+    font-size: 20px;
+}
+
+.p-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-title {
+    color: #ff851a;
+    font-size: 35px;
+}
+
+.review-count.post-review {
+    margin-top: 7px;
+}
+
+.p-created {
+    display: flex;
+}
+
+.p-user {
+    padding-right: 20px;
+}
+
+.p-rating {
+    display: flex;
+}
+
+.p-description {
+    border-bottom: 1px solid #8F8F8F;
+    padding: 20px 0;
+}
+
+.post-category {
+    color: #ff851a;
+    font-size: 25px;
+}
+
+.p-content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 1px solid #8F8F8F;
+}
+
+.p-content-section {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 40px 0;
+}
+
+.p-content-label {
+    color: #ff851a;
+    font-size: 25px;
+}
+
+//2nd class name for tags on post-page
+.post-page {
+    margin-left: 10px;
+}
+
+.post-page span {
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 15px 15px 0 0;
+    color: black;
+    border: 1px solid black;
+}
+
+.edit-button {
+    background: #FF851A;
+    border: 1px solid white;
+    width: 80px;
+    font-size: 16px;
+    margin: 10px 0 0 10px;
+}
+
+.delete-button {
+    color: #FF851A;
+    background-color: white;
+    border: 1px solid #FF851A;
+    width: 80px;
+    font-size: 16px;
+    margin: 10px 0 0 10px;
+}

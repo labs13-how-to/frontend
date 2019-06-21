@@ -111,6 +111,7 @@ class CreatePostForm extends React.Component {
             const newPost = {
                 title: this.state.title,
                 img_url: this.props.uploadedImage,
+                vid_url: this.state.vid_url,
                 description: this.state.description,
                 difficulty: this.state.difficulty,
                 duration: this.state.duration,
@@ -125,6 +126,7 @@ class CreatePostForm extends React.Component {
             this.setState({
                 title: '',
                 img_url: '',
+                vid_url: '',
                 description: '',
                 difficulty: '',
                 duration: '',

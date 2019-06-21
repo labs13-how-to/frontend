@@ -5,18 +5,18 @@ import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "../../postSteps.scss";
 
 class PostStep extends React.Component {
-  state={
-    isForm:false
+  state = {
+    isForm: false
   }
 
-  componentDidMount(){
-    if(this.props.location){
+  componentDidMount() {
+    if (this.props.location) {
       let isForm = this.props.location.pathname.split('/')[1] === 'forms';
-    this.setState({
-      isForm: isForm
-    })
+      this.setState({
+        isForm: isForm
+      })
     }
-    
+
   }
 
   render() {
@@ -32,15 +32,15 @@ class PostStep extends React.Component {
       <div className='ps-card-container'>
         <Card className={this.props.isEdit ? 'ps-card' : 'ps-card p-page'}>
           <div className='ps-header'>
-            <span>Step {this.props.index +1}</span>
+            <span>Step {this.props.index + 1}</span>
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}
           </div>
           <CardText className='ps-title'> {title}</CardText>
-            <CardText className='ps-text'>{instruction}</CardText>
-          <CardImg className='ps-img' src={img_url} alt="Card image" />
+          <CardText className='ps-text'>{instruction}</CardText>
+          {img_url && <CardImg className='ps-img' src={img_url} alt="Card image" />}
         </Card>
       </div>
-      
+
     )
   }
 }

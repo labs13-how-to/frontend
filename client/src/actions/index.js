@@ -69,6 +69,34 @@ export const addPost = newPost => dispatch => {
     });
 };
 
+//Uploading an IMage from post
+export const IMAGE_FETCH = "IMAGE_FETCH";
+export const IMAGE_SUCCESS = "IMAGE_SUCCESS";
+export const IMAGE_FAILURE = "IMAGE_FAILURE";
+
+export const uploadImageHandler = newImage => dispatch => {
+  dispatch({ type: IMAGE_FETCH });
+  const fd = new FormData();
+  fd.append('image', newImage, newImage.name);
+
+  axios
+    .post(`${backendUrl}/upload`, fd, {
+      onUploadProgress: progressEvent => {
+        console.log('Upload Progress: ', Math.round((progressEvent.loaded / progressEvent.total) * 100), '%')
+      }
+    })
+    .then(response => {
+      console.log("RESPONSE", response)
+      console.log("RESPONSE DATA", response.data.img_url.img_url)
+      dispatch({ type: IMAGE_SUCCESS, payload: response.data.img_url.img_url });
+    })
+    .catch(err => {
+      console.log(err)
+      dispatch({ type: IMAGE_FAILURE, payload: err });
+    });
+};
+
+
 export const POST_DELETE_START = "POST_DELETE_START";
 export const POST_DELETE_SUCCESS = "POST_DELETE_SUCCESS";
 export const POST_DELETE_FAILURE = "POST_DELETE_FAILURE";

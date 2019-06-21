@@ -43,7 +43,8 @@ const reducer = (state = initialState, action) => {
         case REFRESH:
             return {
                 ...state,
-                refreshUser: false
+                refreshUser: false,
+                uploadedImage: null
             }
 
         case FETCH:
@@ -73,6 +74,8 @@ const reducer = (state = initialState, action) => {
                 currPost: action.payload,
                 refresh: false,
                 refreshUser: true,
+                submitRefresh: false,
+                // uploadedImage: null,
             }
         case FAILURE:
             return {

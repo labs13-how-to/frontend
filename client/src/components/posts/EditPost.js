@@ -5,7 +5,7 @@ import {
     DropdownToggle, DropdownMenu,
     DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
-import { updatePost, getPost, uploadImageHandler } from '../../actions';
+import { updatePost, getPost, uploadImageHandler, getRefresh } from '../../actions';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
 
 class EditPostForm extends React.Component {
@@ -74,15 +74,23 @@ class EditPostForm extends React.Component {
                 vid_url: vid_url
             })
         }
-        if (prevProps.refresh !== this.props.refresh) {
+        if (prevProps.refresh !== this.props.refresh || prevProps.submitRefresh !== this.props.submitRefresh) {
             this.props.getPost(this.state.id)
         };
+        if (this.state.imageSubmitted) {
+            this.setState({ imageSubmitted: false, img_url: this.props.uploadedImage })
+            this.props.getRefresh();
+        }
     }
 
     handleImageChange = e => {
         e.preventDefault();
         this.setState({ postImage: e.target.files[0] });
     };
+    submitImage = e => {
+        this.props.uploadImageHandler(this.state.postImage)
+        setTimeout(() => this.setState({ imageSubmitted: true }), 900);
+    }
 
     handleTagsChange = e => {
         this.setState({ tag: e.target.value });
@@ -123,7 +131,7 @@ class EditPostForm extends React.Component {
     }
 
     render() {
-
+        console.log(this.props.uploadedImage)
         return (
             <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSumbit}>
@@ -145,7 +153,7 @@ class EditPostForm extends React.Component {
                             value={this.state.img_url}
                             name='img_url'
                         /> */}
-                        <img className='img-fluid' src={this.props.currPost.img_url} />
+                        <img className='img-fluid' src={this.state.img_url} />
                         <Input
                             type="file"
                             name="img_url"
@@ -156,7 +164,7 @@ class EditPostForm extends React.Component {
                         />
 
 
-                        <Button className='pf-button image-button' onClick={() => this.props.uploadImageHandler(this.state.postImage)}>Save Image</Button>
+                        <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button>
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Youtube Video (optional)</Label>
@@ -266,6 +274,7 @@ export default connect(
         removeTag,
         addTag,
         getTag,
-        uploadImageHandler
+        uploadImageHandler,
+        getRefresh
     }
 )(EditPostForm);

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { addStep } from '../../actions/steps-tagsActions';
-import { getPost, getPosts } from '../../actions/index';
+import { getPost, getPosts, uploadImageHandler } from '../../actions/index';
 import PostStep from './PostStep';
 
 class CreateStepForm extends React.Component {
@@ -14,7 +14,9 @@ class CreateStepForm extends React.Component {
             title: '',
             instruction: '',
             img_url: '',
-            vid_url: ''
+            vid_url: '',
+            submit: false,
+            postImage: undefined,
         };
     }
 
@@ -27,7 +29,7 @@ class CreateStepForm extends React.Component {
             })
     }
     componentDidUpdate(prevProps, prevS) {
-
+        //refresh steps
         if (this.props.currPost)
             if (prevProps.currPost === undefined) {
                 this.setState({
@@ -39,9 +41,16 @@ class CreateStepForm extends React.Component {
                 })
             }
 
-            if (prevProps.refresh !== this.props.refresh) {
-                this.props.getPost(this.state.post_id)
-            };
+        //refresh post
+        if (prevProps.refresh !== this.props.refresh) {
+            this.props.getPost(this.state.post_id)
+        };
+
+        //handle submit after image upload
+        if (prevProps.submitRefresh !== this.props.submitRefresh) {
+            this.handleStepSubmit()
+        };
+
 
     }
 
@@ -49,27 +58,60 @@ class CreateStepForm extends React.Component {
         console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
     };
-
-    handleSubmit = async e => {
-        console.log("THIS STATE", this.state);
-        console.log("THIS STATE POST ID", this.state.post_id);
+    handleImageChange = e => {
         e.preventDefault();
-        await this.props.addStep(this.state.post_id, this.state);
+        console.log(e.target.value)
+        this.setState({ postImage: e.target.files[0] });
+    };
 
-        this.setState({
-            step_num: this.state.step_num + 1,
-            title: '',
-            instruction: '',
-            img_url: '',
-            vid_url: ''
-        })
+    handleSubmit = e => {
+        this.setState({ submit: true })
+        e.preventDefault();
+        if (!this.state.postImage) {
+            console.log('done')
+            setTimeout(() => this.handleStepSubmit(), 100);
+        } else {
+            setTimeout(() => this.props.uploadImageHandler(this.state.postImage), 100);
 
-        console.log(this.props.currPost)
-        setTimeout(() => this.props.getPost(this.state.post_id), 300);
+        }
+
+    }
+
+    handleStepSubmit = async (e) => {
+        // e.preventDefault();
+        console.log('submitRan', this.state.submit)
+
+        if (this.state.submit) {
+            this.setState({ submit: false })
+            console.log('done')
+            const newStep = {
+                post_id: this.state.post_id,
+                step_num: this.state.step_num,
+                title: this.state.title,
+                instruction: this.state.instruction,
+                img_url: this.props.uploadedImage,
+                vid_url: this.state.vid_url
+            }
+            await this.props.addStep(this.state.post_id, newStep);
+
+            this.setState({
+                step_num: this.state.step_num + 1,
+                title: '',
+                instruction: '',
+                img_url: '',
+                vid_url: '',
+                postImage: null,
+            })
+            document.getElementById("img_url").value = "";
+            console.log(this.props.currPost)
+            setTimeout(() => this.props.getPost(this.state.post_id), 300);
+        }
     }
 
     render() {
-        const {steps} = this.props.currPost;
+        console.log('IMAGE', this.props.uploadedImage)
+        console.log('IMAGEPOST', this.state.postImage)
+        const { steps } = this.props.currPost;
         return (
             <>
                 {steps && steps.map((step, index) => {
@@ -110,11 +152,20 @@ class CreateStepForm extends React.Component {
                         <div className="psf-media">
                             <FormGroup className="psf-img">
                                 <Label>Image(optional)</Label>
-                                <Input
+                                {/* <Input
                                     onChange={this.handleChange}
                                     placeholder='Image URL'
                                     value={this.state.img_url}
                                     name='img_url'
+                                /> */}
+                                <Input
+                                    type="file"
+                                    name="img_url"
+                                    id="img_url"
+                                    accept="image/png, image/jpeg"
+                                    onChange={this.handleImageChange}
+                                    disabled={this.state.disabled}
+                                // value={this.state.postImage.name}
                                 />
                             </FormGroup>
                             {/* <FormGroup className="psf-vid">
@@ -129,7 +180,7 @@ class CreateStepForm extends React.Component {
                         </div>
                         <div className="psf-button-container">
                             <Button className="psf-button" type='submit'>Add Step</Button>
-                            
+
                         </div>
                     </Form>
                 </div>
@@ -147,6 +198,8 @@ function mapStateToProps({ projectsReducer }) {
         currPost: projectsReducer.currPost,
         posts: projectsReducer.posts,
         refresh: projectsReducer.refresh,
+        uploadedImage: projectsReducer.uploadedImage,
+        submitRefresh: projectsReducer.submitRefresh
     }
 }
 
@@ -155,6 +208,7 @@ export default connect(
     {
         addStep,
         getPost,
-        getPosts
+        getPosts,
+        uploadImageHandler
     }
 )(CreateStepForm);

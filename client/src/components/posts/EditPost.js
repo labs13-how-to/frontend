@@ -5,7 +5,7 @@ import {
     DropdownToggle, DropdownMenu,
     DropdownItem, InputGroupButtonDropdown
 } from 'reactstrap';
-import { updatePost, getPost } from '../../actions';
+import { updatePost, getPost, uploadImageHandler, getRefresh } from '../../actions';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
 
 class EditPostForm extends React.Component {
@@ -74,9 +74,22 @@ class EditPostForm extends React.Component {
                 vid_url: vid_url
             })
         }
-        if (prevProps.refresh !== this.props.refresh) {
+        if (prevProps.refresh !== this.props.refresh || prevProps.submitRefresh !== this.props.submitRefresh) {
             this.props.getPost(this.state.id)
         };
+        if (this.state.imageSubmitted) {
+            this.setState({ imageSubmitted: false, img_url: this.props.uploadedImage })
+            this.props.getRefresh();
+        }
+    }
+
+    handleImageChange = e => {
+        e.preventDefault();
+        this.setState({ postImage: e.target.files[0] });
+    };
+    submitImage = e => {
+        this.props.uploadImageHandler(this.state.postImage)
+        setTimeout(() => this.setState({ imageSubmitted: true }), 900);
     }
 
     handleTagsChange = e => {
@@ -92,6 +105,7 @@ class EditPostForm extends React.Component {
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
+
 
     handleSumbit = async e => {
         e.preventDefault();
@@ -117,7 +131,7 @@ class EditPostForm extends React.Component {
     }
 
     render() {
-
+        console.log(this.props.uploadedImage)
         return (
             <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSumbit}>
@@ -133,12 +147,24 @@ class EditPostForm extends React.Component {
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Main Image</Label>
-                        <Input
+                        {/* <Input
                             onChange={this.handleChange}
                             placeholder='img_url'
                             value={this.state.img_url}
                             name='img_url'
+                        /> */}
+                        <img className='img-fluid' src={this.state.img_url} />
+                        <Input
+                            type="file"
+                            name="img_url"
+                            id="img_url"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleImageChange}
+                            disabled={this.state.disabled}
                         />
+
+
+                        <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button>
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Youtube Video (optional)</Label>
@@ -234,7 +260,9 @@ function mapStateToProps({ projectsReducer }) {
         message: projectsReducer.message,
         currPost: projectsReducer.currPost,
         refresh: projectsReducer.refresh,
-        allTags: projectsReducer.allTags
+        allTags: projectsReducer.allTags,
+        uploadedImage: projectsReducer.uploadedImage,
+        submitRefresh: projectsReducer.submitRefresh
     }
 }
 
@@ -245,6 +273,8 @@ export default connect(
         getPost,
         removeTag,
         addTag,
-        getTag
+        getTag,
+        uploadImageHandler,
+        getRefresh
     }
 )(EditPostForm);

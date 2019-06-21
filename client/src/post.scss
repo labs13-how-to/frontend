@@ -36,11 +36,6 @@
     display: flex;
 }
 
-.p-description {
-    border-bottom: 1px solid #8F8F8F;
-    padding: 20px 0;
-}
-
 .post-category {
     color: #ff851a;
     font-size: 25px;
@@ -50,7 +45,9 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-top: 1px solid #8F8F8F;
     border-bottom: 1px solid #8F8F8F;
+    margin-top: 50px;
 }
 
 .p-content-section {

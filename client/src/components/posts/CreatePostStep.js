@@ -117,7 +117,7 @@ class CreateStepForm extends React.Component {
                                     name='img_url'
                                 />
                             </FormGroup>
-                            <FormGroup className="psf-vid">
+                            {/* <FormGroup className="psf-vid">
                                 <Label>Video(optional)</Label>
                                 <Input
                                     onChange={this.handleChange}
@@ -125,7 +125,7 @@ class CreateStepForm extends React.Component {
                                     value={this.state.vid_url}
                                     name='vid_url'
                                 />
-                            </FormGroup>
+                            </FormGroup> */}
                         </div>
                         <div className="psf-button-container">
                             <Button className="psf-button" type='submit'>Add Step</Button>

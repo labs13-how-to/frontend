@@ -8,6 +8,7 @@ import { getTag } from "../../actions/steps-tagsActions";
 import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
 import StarRatingComponent from "react-star-rating-component";
+import Animation from '../animation/Animation';
 import "../../post.scss";
 
 class Post extends React.Component {
@@ -54,7 +55,8 @@ class Post extends React.Component {
             tags,
             steps,
             reviews,
-            created_at
+            created_at,
+            vid_url
         } = this.props.currPost
         const review_avg = reviews && reviews.reduce((res, review) => res + review.rating, 0) / reviews.length
         const review_count = reviews && reviews.length
@@ -65,6 +67,7 @@ class Post extends React.Component {
             <React.Fragment>
                 <Card className="post-card" id="post">
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
+                    
                     <CardBody>
                         <div className="p-header">
                             <CardText className="p-title">{title}</CardText>
@@ -86,9 +89,12 @@ class Post extends React.Component {
                         </div>
                         <div className="p-created">
                             <CardText className="p-user">{this.props.user.username}</CardText>
-                            <CardText className="date-count">{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
+                            <CardText className="date-count">{` • \xa0`}{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
                         </div>
                         <CardText className="p-description">{description}</CardText>
+                        {/* youtube video embedding component here*/}
+                        <Animation vid_url={vid_url}/>
+
                         <div className="p-content-container">
                             <div className="p-content-section">
                                 <span className="p-content-label">Difficulty</span>

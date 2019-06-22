@@ -111,7 +111,7 @@ class CreatePostForm extends React.Component {
             const newPost = {
                 title: this.state.title,
                 img_url: this.props.uploadedImage,
-                vid_url: this.state.vid_url,
+                vid_url: this.state.vid_url.split('&')[0],
                 description: this.state.description,
                 difficulty: this.state.difficulty,
                 duration: this.state.duration,

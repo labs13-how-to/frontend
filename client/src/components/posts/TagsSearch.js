@@ -4,9 +4,13 @@ import Posts from './Posts.js';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions';
 import { getTag } from '../../actions/steps-tagsActions';
+import { NavLink } from 'react-router-dom';
 
 
 class TagSearch extends React.Component {
+    state = {
+        toLong: false
+    }
     componentDidMount() {
         this.props.getPosts();
     }
@@ -17,15 +21,18 @@ class TagSearch extends React.Component {
         console.log(query.toLowerCase())
         console.log('POSTS', this.props.posts)
         return (
-            <React.Fragment>
-                <h2 className='posts-head' >{query}</h2>
+            <div className='posts-section'>
+                <h2 className='posts-head' onClick={() => this.props.history.push(`/categories/search?q=${query}`)}>{query}</h2>
                 <div className='post-list'>
                     {this.props.posts.reduce((posts, post, index) => {
 
                         // Checks if a post title exists w/ query string, ignoring case
                         // if (this.props.isHome && posts == []) if (posts.length > 6) return null;
                         if (post.tags && post.tags.reduce((acc, tag, index) => tag.name.toLowerCase() === query.toLowerCase() ? true : acc, false)) {
-                            if (this.props.isHome && posts.length > 5) return posts;
+                            if (this.props.isHome && posts.length > 5) {
+                                this.state.toLong = true;
+                                return posts;
+                            }
                             return [
                                 ...posts,
                                 (<Posts
@@ -43,7 +50,8 @@ class TagSearch extends React.Component {
                     }, []
                     )}
                 </div>
-            </React.Fragment>
+                {this.props.isHome && this.state.toLong ? <NavLink className='posts-button' to={`/categories/search?q=${query}`}>See More</NavLink> : null}
+            </div>
         );
     }
 

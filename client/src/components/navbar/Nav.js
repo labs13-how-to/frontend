@@ -11,9 +11,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Button,
-  Media,
-  CardImg
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -55,10 +52,9 @@ class NavComponent extends React.Component {
   }
 
   render() {
-    // console.log("USER ID", this.state.user_id);
     return (
       <Navbar color="white" light expand="md">
-        <NavbarBrand href="/"><img className='logo' src={LogoImage} /></NavbarBrand>
+        <NavbarBrand href="/"><img className='logo' src={LogoImage} alt ='logo'/></NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavSearch {...this.props} />
@@ -77,7 +73,6 @@ class NavComponent extends React.Component {
           </DropdownMenu>
         </UncontrolledDropdown>
         <RouteLink to={`/user/${this.state.auth_id}`}>
-          {/* <Button className='navBtn'>Account</Button> */}
           <FontAwesomeIcon icon={faUser} />
         </RouteLink>
       </Navbar >

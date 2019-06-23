@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import { withRouter } from "react-router";
-// import Register from "./components/users/Register";
 
+//Components
 import LandingPage from "./components/LandingPage";
 import Home from "./components/Home";
 import Nav from "./components/navbar/Nav";
@@ -18,6 +18,7 @@ import Favorites from './components/users/FavoritePosts';
 import UserNav from './components/users/UserNav';
 import PostList from './components/posts/PostList'
 
+//SearchBar
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
@@ -28,7 +29,6 @@ class App extends Component {
     });
 
     var query = queryString.parse(this.props.location.search);
-    console.log("query:", query);
     if (query.token && query.user) {
       window.localStorage.setItem("jwt", query.token);
       window.localStorage.setItem("user_id", query.user);
@@ -44,7 +44,6 @@ class App extends Component {
   };
 
   logOut = () => {
-    console.log("logout");
     this.setState({
       ...this.state,
       token: null
@@ -56,10 +55,6 @@ class App extends Component {
   };
 
   render() {
-
-    console.log("PROPS", this.props);
-    console.log()
-
     return (
       <div className="App">
 

@@ -7,6 +7,7 @@ const Animation = (props) => {
     return (
         <div className="video-container">
             <iframe 
+                title="YouTube Link"
                 width="560" 
                 height="315" 
                 src={`https://www.youtube.com/embed/${source}`}

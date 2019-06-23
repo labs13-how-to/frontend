@@ -50,7 +50,6 @@ class Review extends React.Component {
     };
 
     update = id => {
-        console.log("ID!", id);
         this.props.updateReview(id, {
             rating: this.state.newRating,
             review: this.state.newReview

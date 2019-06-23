@@ -13,7 +13,6 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     this.props.getReviews(this.props.post_id);
-    console.log(this.props.post_id);
   }
 
   componentDidUpdate(prevProps, prevState) {

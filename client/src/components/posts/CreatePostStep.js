@@ -22,7 +22,6 @@ class CreateStepForm extends React.Component {
 
     componentDidMount() {
         this.props.getPost(this.state.post_id)
-        console.log("CURR POST", this.props.currPost)
         if (this.props.currPost.length)
             this.setState({
                 step_num: this.props.currPost.steps.length + 1
@@ -55,12 +54,11 @@ class CreateStepForm extends React.Component {
     }
 
     handleChange = e => {
-        console.log(e.target.value);
         this.setState({ [e.target.name]: e.target.value });
     };
+
     handleImageChange = e => {
         e.preventDefault();
-        console.log(e.target.value)
         this.setState({ postImage: e.target.files[0] });
     };
 
@@ -68,7 +66,6 @@ class CreateStepForm extends React.Component {
         this.setState({ submit: true })
         e.preventDefault();
         if (!this.state.postImage) {
-            console.log('done')
             setTimeout(() => this.handleStepSubmit(), 100);
         } else {
             setTimeout(() => this.props.uploadImageHandler(this.state.postImage), 100);
@@ -78,12 +75,9 @@ class CreateStepForm extends React.Component {
     }
 
     handleStepSubmit = async (e) => {
-        // e.preventDefault();
-        console.log('submitRan', this.state.submit)
-
         if (this.state.submit) {
             this.setState({ submit: false })
-            console.log('done')
+
             const newStep = {
                 post_id: this.state.post_id,
                 step_num: this.state.step_num,
@@ -103,14 +97,11 @@ class CreateStepForm extends React.Component {
                 postImage: null,
             })
             document.getElementById("img_url").value = "";
-            console.log(this.props.currPost)
             setTimeout(() => this.props.getPost(this.state.post_id), 300);
         }
     }
 
     render() {
-        console.log('IMAGE', this.props.uploadedImage)
-        console.log('IMAGEPOST', this.state.postImage)
         const { steps } = this.props.currPost;
         return (
             <>

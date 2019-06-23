@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   login = event => {
-    event.preventDefault();
+    // event.preventDefault();
     this.props.login();
   };
 

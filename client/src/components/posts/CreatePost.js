@@ -48,9 +48,8 @@ class CreatePostForm extends React.Component {
         if (!this.state.created_by) {
             // get the key's value from localStorage
             const id = localStorage.getItem('user_id');
-            console.log("ID:", id)
+            
             try {
-                console.log("ID", id);
                 this.setState({ created_by: `${id}` });
             } catch (e) {
                 // handle empty string

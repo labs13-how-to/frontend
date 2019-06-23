@@ -41,7 +41,6 @@ class NavComponent extends React.Component {
         // get the key's value from localStorage
         let value = localStorage.getItem(user_id);
         try {
-          console.log("VALUE", value);
           this.setState({ auth_id: `${value}` });
         } catch (e) {
           // handle empty string

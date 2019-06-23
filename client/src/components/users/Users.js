@@ -2,20 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsers, getPosts } from "../../actions/index";
 import UserPosts from './UserPosts';
-import {
-    Button
-} from "reactstrap";
-import Favorites from "./FavoritePosts";
+// import {
+//     Button
+// } from "reactstrap";
+// import Favorites from "./FavoritePosts";
 
 class Users extends Component {
     componentDidMount() {
         this.props.getPosts();
         const id = (this.props.location.pathname.split("/")[2]);
         this.props.getUsers(id);
-        console.log(
-            "this.props.location.pathname",
-            id
-        );
     }
 
     render() {

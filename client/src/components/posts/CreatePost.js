@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import { addPost, uploadImageHandler } from '../../actions';
 import { addTag, getTag } from '../../actions/steps-tagsActions';
-import "../../postform.scss";
+import "./postform.scss";
 
 class CreatePostForm extends React.Component {
     constructor(props) {

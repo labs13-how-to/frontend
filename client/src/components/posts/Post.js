@@ -9,7 +9,7 @@ import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
 import StarRatingComponent from "react-star-rating-component";
 import Animation from '../animation/Animation';
-import "../../post.scss";
+import "./post.scss";
 
 class Post extends React.Component {
     constructor(props) {

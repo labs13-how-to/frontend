@@ -31,6 +31,7 @@ class CreatePostForm extends React.Component {
             tags: [],
             postImage: null,
             submit: false,
+            supplyList: [],
         };
     }
 
@@ -87,6 +88,14 @@ class CreatePostForm extends React.Component {
             this.setState({ tags: filteredAry })
         }
     };
+    handleSupplies = e => {
+        // console.log(e)
+        if (e.key === 'Enter') {
+            // console.log(e.target.value)
+            this.setState({ supplyList: [...this.state.supplyList, this.state.supplies] });
+            this.setState({ supplies: '' });
+        }
+    }
 
     // handles file change for image
     handleImageChange = e => {
@@ -114,7 +123,7 @@ class CreatePostForm extends React.Component {
                 difficulty: this.state.difficulty,
                 duration: this.state.duration,
                 skills: this.state.skills,
-                supplies: this.state.supplies,
+                supplies: this.state.supplyList.join(' _ '),
                 created_by: this.state.created_by,
             }
 
@@ -143,6 +152,7 @@ class CreatePostForm extends React.Component {
     }
 
     render() {
+        console.log(this.state.supplyList.join('_'))
         return (
             <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
@@ -184,8 +194,9 @@ class CreatePostForm extends React.Component {
                                 let currTag = tag.name.split('');
                                 currTag[0] = currTag[0].toUpperCase();
                                 currTag = currTag.join('')
-                                return <span key={index}>{currTag}</span>
+                                return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >🗴</span></span>
                             })}
+
                         </p>
                         <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                             <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
@@ -260,7 +271,21 @@ class CreatePostForm extends React.Component {
                     </FormGroup>
                     <FormGroup className="pf-supplies">
                         <Label>Tools/Supplies</Label>
+                        <p className='post-tags'>
+                            {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                let currSup = sup.split('');
+                                currSup[0] = currSup[0].toUpperCase();
+                                currSup = currSup.join('')
+                                return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                    let supList = this.state.supplyList;
+                                    supList.splice(index, 1)
+                                    this.setState({ supplyList: supList })
+                                }} >🗴</span></span>
+                            })}
+
+                        </p>
                         <Input
+                            onKeyDown={this.handleSupplies}
                             onChange={this.handleChange}
                             placeholder='Necessary Supplies'
                             value={this.state.supplies}
@@ -268,7 +293,7 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <div className="pf-button-container">
-                        <Button className="pf-button" type='submit'>Save</Button>
+                        <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>
                 </Form>
             </div>

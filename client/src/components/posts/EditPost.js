@@ -112,8 +112,9 @@ class EditPostForm extends React.Component {
         const {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by, vid_url
+            supplies, created_by,
         } = this.state
+        const vid_url = this.state.vid_url.split('&')[0];
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,

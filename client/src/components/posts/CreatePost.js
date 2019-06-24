@@ -9,6 +9,8 @@ import { addPost, uploadImageHandler } from '../../actions';
 import { addTag, getTag } from '../../actions/steps-tagsActions';
 import "./postform.scss";
 
+import ProtectedRoute from '../ProtectedRoute.js';
+
 class CreatePostForm extends React.Component {
     constructor(props) {
         super(props);
@@ -48,7 +50,7 @@ class CreatePostForm extends React.Component {
         if (!this.state.created_by) {
             // get the key's value from localStorage
             const id = localStorage.getItem('user_id');
-            
+
             try {
                 this.setState({ created_by: `${id}` });
             } catch (e) {
@@ -178,7 +180,12 @@ class CreatePostForm extends React.Component {
                     <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
                     <div className='tag-section'>
                         <p className='post-tags'>
-                            {this.state.tags && this.state.tags.map((tag, index) => <span key={index}>{tag.name}</span>)}
+                            {this.state.tags && this.state.tags.map((tag, index) => {
+                                let currTag = tag.name.split('');
+                                currTag[0] = currTag[0].toUpperCase();
+                                currTag = currTag.join('')
+                                return <span key={index}>{currTag}</span>
+                            })}
                         </p>
                         <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                             <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
@@ -280,7 +287,7 @@ function mapStateToProps({ projectsReducer }) {
     }
 }
 
-export default connect(
+export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt') ? connect(
     mapStateToProps,
     {
         addPost,
@@ -288,4 +295,5 @@ export default connect(
         getTag,
         uploadImageHandler
     }
-)(CreatePostForm);
+)(CreatePostForm)
+    : ProtectedRoute;

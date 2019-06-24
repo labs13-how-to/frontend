@@ -53,6 +53,7 @@ class Post extends React.Component {
             steps,
             reviews,
             created_at,
+            created_by,
             vid_url
         } = this.props.currPost
 
@@ -65,16 +66,19 @@ class Post extends React.Component {
             <React.Fragment>
                 <Card className="post-card" id="post">
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
-                    
+
                     <CardBody>
                         <div className="p-header">
                             <CardText className="p-title">{title}</CardText>
-                            <div className="p-buttons">
-                                <Button className="delete-button" onClick={() => this.delete()}>Delete</Button>
-                                <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
-                                    Edit
+
+                            {created_by === window.localStorage.getItem('user_id') &&
+                                <div className="p-buttons">
+                                    <Button className="delete-button" onClick={() => this.delete()}>Delete</Button>
+                                    <Button className="edit-button" onClick={() => this.props.history.push(`/forms/post/edit/${this.state.id}`)}>
+                                        Edit
                                 </Button>
-                            </div>
+                                </div>}
+
                         </div>
                         <div className="p-rating">
                             <StarRatingComponent
@@ -92,7 +96,7 @@ class Post extends React.Component {
                         <CardText className="p-description">{description}</CardText>
 
                         {/* youtube video embedding component here*/}
-                        <Animation vid_url={vid_url}/>
+                        <Animation vid_url={vid_url} />
 
                         <div className="p-content-container">
                             <div className="p-content-section">

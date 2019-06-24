@@ -1,42 +1,52 @@
+// filepond styles
+.filepond--root {
+  .filepond--drip-blob {
+    background-color: #ff851a;
+  }
+  .filepond--panel-root {
+    background-color: #f2f2f2;
+  }
+}
+
 .pf-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .post-form {
-    color: #FF851A;
-    // border-bottom: 2px dashed #746D6D;
-    text-align: left;
-    font-size: 28px;
-    width: 80%;
-};
+  color: #ff851a;
+  // border-bottom: 2px dashed #746D6D;
+  text-align: left;
+  font-size: 28px;
+  width: 80%;
+}
 
 .pf-title {
-    font-size: 36px;
-    border-bottom: 1px solid black;
+  font-size: 36px;
+  border-bottom: 1px solid black;
 }
-.form-control.pf-title-input{
-    border: none;
+.form-control.pf-title-input {
+  border: none;
 }
 
 .category-span {
-    font-size: 15px;
-    color: grey;
+  font-size: 15px;
+  color: grey;
 }
 
 .pf-button-container {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.pf-button{
-    color: #FFFFFF;
-    background: #FF851A;
-    font-size: 18px;
-    width: 80px;
-    margin-bottom: 20px;
-    border: none;
+.pf-button {
+  color: #ffffff;
+  background: #ff851a;
+  font-size: 18px;
+  width: 80px;
+  margin-bottom: 20px;
+  border: none;
 }
-.image-button{
-    width: 140px;
+.image-button {
+  width: 140px;
 }

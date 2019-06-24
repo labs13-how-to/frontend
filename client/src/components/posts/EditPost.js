@@ -7,9 +7,27 @@ import {
 } from 'reactstrap';
 import { updatePost, getPost, uploadImageHandler, getRefresh } from '../../actions';
 import { getTag, addTag, removeTag } from '../../actions/steps-tagsActions';
-
+// Import React FilePond
+import { FilePond, registerPlugin } from "react-filepond";
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+// Import the Image EXIF Orientation and Image Preview plugins
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import FilePondPluginFileEncode from "filepond-plugin-file-encode";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+// Register FilePond the plugins
 import ProtectedRoute from '../ProtectedRoute.js';
 import CreateStep from './CreatePostStep.js';
+registerPlugin(
+  FilePondPluginFileEncode,
+  FilePondPluginFileValidateType,
+  FilePondPluginImageExifOrientation,
+  FilePondPluginImagePreview
+);
+
+
 
 
 class EditPostForm extends React.Component {
@@ -135,6 +153,10 @@ class EditPostForm extends React.Component {
         setTimeout(() => this.props.history.push(`/posts/${this.state.id}`), 400);
     }
 
+    handleInit() {
+        console.log("FilePond instance has initialised", this.pond);
+      }
+
     render() {
         return (
             <>{this.state.created_by === window.localStorage.getItem('user_id') ?
@@ -152,19 +174,56 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup className="pf-img">
-                                <Label>Main Image</Label>
-                                <img className='img-fluid' src={this.state.img_url} alt='main upload' />
-                                <Input
-                                    type="file"
-                                    name="img_url"
-                                    id="img_url"
-                                    accept="image/png, image/jpeg"
-                                    onChange={this.handleImageChange}
-                                    disabled={this.state.disabled}
-                                />
-                                <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button>
-
-                            </FormGroup>
+                        <Label>Main Image</Label>
+                        {/* <Input
+                            onChange={this.handleChange}
+                            placeholder='img_url'
+                            value={this.state.img_url}
+                            name='img_url'
+                        /> */}
+                        <img className='img-fluid' src={this.state.img_url} />
+                        {/* <Input
+                            type="file"
+                            name="img_url"
+                            id="img_url"
+                            accept="image/png, image/jpeg"
+                            onChange={this.handleImageChange}
+                            disabled={this.state.disabled}
+                        /> */}
+                        <Label>Upload New Image</Label>
+                        <FilePond
+                            ref={ref => (this.pond = ref)}
+                            name="image"
+                            id="image"
+                            acceptedFileTypes={["image/png", "image/jpeg"]}
+                            disabled={this.state.disabled}
+                            allowMultiple={false}
+                            allowRevert={false}
+                            server={{
+                            // Sends image to be uploaded to cloudinary right after drag/dropped
+                            process: {
+                                url: `${process.env.REACT_APP_BE_URL}/upload`,
+                                onload: response => {
+                                const json = JSON.parse(response);
+                                console.log(json);
+                                this.setState({
+                                    img_url: json.img_url.img_url
+                                });
+                                }
+                            }
+                            }}
+                            oninit={() => this.handleInit()}
+                            // allowFileEncode={true}
+                            onupdatefiles={fileItems => {
+                            console.log("FILE ITEMS", fileItems);
+                            // Set current file object to this.state
+                            this.setState({
+                                postImage: fileItems[0].file
+                            });
+                            }}
+                        />
+                        {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
+                    </FormGroup>
                             <FormGroup className="pf-img">
                                 <Label>Youtube Video (optional)</Label>
                                 <Input

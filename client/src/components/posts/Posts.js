@@ -18,9 +18,7 @@ class Posts extends React.Component {
 
 
     render() {
-
-        // console.log(this.props.post)
-        const { title, difficulty, img_url, id, reviews } = this.props.post
+        const { title, img_url, id } = this.props.post
         const cardDate = this.getDate(this.props.post.created_at);
         return (
             < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
@@ -33,8 +31,8 @@ class Posts extends React.Component {
                         name="stars"
                         starCount={5}
                         value={Math.round(this.props.post.review_avg)}
-                    /><CardText className='review-count'>{`• \xa0`}{this.props.post.review_count}</CardText>
-
+                    />
+                    <CardText className='review-count'>{`• \xa0`}{this.props.post.review_count}</CardText>
                 </CardBody>
                 <CardBody>
                     <div className='post-footer'>

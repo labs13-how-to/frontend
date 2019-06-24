@@ -4,7 +4,7 @@ import { getReviews } from "../../actions";
 import ReviewForm from "./ReviewForm";
 import Review from "./Review";
 import ReviewBars from './ReviewBars';
-import "../../reviews.scss";
+import "./reviews.scss";
 
 class Reviews extends React.Component {
   state = {
@@ -13,7 +13,6 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     this.props.getReviews(this.props.post_id);
-    console.log(this.props.post_id);
   }
 
   componentDidUpdate(prevProps, prevState) {

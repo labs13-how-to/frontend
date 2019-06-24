@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
     Nav,
-    NavItem,
     Button
 } from "reactstrap";
 import "./account.scss";

@@ -26,7 +26,6 @@ class ReviewForm extends React.Component {
         // get the key's value from localStorage
         let value = localStorage.getItem(user_id);
         try {
-          console.log("VALUE", value);
           this.setState({ auth_id: `${value}` });
         } catch (e) {
           // handle empty string
@@ -48,7 +47,6 @@ class ReviewForm extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    console.log("id1!!!!", this.props.id);
     await this.props.addReview(this.props.id, this.state);
 
     this.setState({

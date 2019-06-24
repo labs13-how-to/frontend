@@ -40,3 +40,18 @@
 .image-button{
     width: 140px;
 }
+#tag-delete{
+    border: none;
+    padding: 0;
+    width:10px;
+    color: gray;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    :hover{
+        cursor: pointer;
+    }
+}
+#tag-delete:hover{
+    cursor: pointer;
+}

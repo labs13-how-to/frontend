@@ -107,7 +107,7 @@ class EditPostForm extends React.Component {
     };
 
 
-    handleSumbit = async e => {
+    handleSubmit = async e => {
         e.preventDefault();
         const {
             title, img_url, description,
@@ -132,10 +132,9 @@ class EditPostForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.uploadedImage)
         return (
             <div className="pf-container">
-                <Form className="post-form" onSubmit={this.handleSumbit}>
+                <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
                         <Label>Title</Label>
                         <Input
@@ -154,7 +153,7 @@ class EditPostForm extends React.Component {
                             value={this.state.img_url}
                             name='img_url'
                         /> */}
-                        <img className='img-fluid' src={this.state.img_url} />
+                        <img className='img-fluid' src={this.state.img_url} alt='main upload'/>
                         <Input
                             type="file"
                             name="img_url"
@@ -163,9 +162,8 @@ class EditPostForm extends React.Component {
                             onChange={this.handleImageChange}
                             disabled={this.state.disabled}
                         />
-
-
                         <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button>
+
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label>Youtube Video (optional)</Label>

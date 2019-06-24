@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
-import { Card, CardText, CardBody, CardHeader, CardImg, Button } from 'reactstrap';
+import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
 import { getUserPosts, getPosts } from '../../actions';
 import StarRatingComponent from "react-star-rating-component";
 
@@ -27,7 +27,8 @@ class FavoritePosts extends React.Component {
                                     name="stars"
                                     starCount={5}
                                     value={Math.round(post.review_avg)}
-                                /><CardText className='review-count'>{`• \xa0`}{post.review_count}</CardText>
+                                />
+                                <CardText className='review-count'>{`• \xa0`}{post.review_count}</CardText>
                             </CardBody>
                             <CardBody>
                                 <div className='post-footer'>
@@ -50,8 +51,6 @@ function mapStateToProps({ projectsReducer }) {
         posts: projectsReducer.posts,
     };
 };
-
-
 
 
 export default withRouter(connect(mapStateToProps, { getUserPosts, getPosts })(FavoritePosts));

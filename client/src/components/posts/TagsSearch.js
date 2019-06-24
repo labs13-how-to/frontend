@@ -18,8 +18,7 @@ class TagSearch extends React.Component {
     render() {
         // Grabs query string out of URL params
         const query = this.props.query ? this.props.query : queryString.parse(this.props.location.search).q;
-        console.log(query.toLowerCase())
-        console.log('POSTS', this.props.posts)
+
         return (
             <div className='posts-section'>
                 <h2 className='posts-head' onClick={() => this.props.history.push(`/categories/search?q=${query}`)}>{query}</h2>
@@ -45,8 +44,6 @@ class TagSearch extends React.Component {
                             return posts
                         }
 
-
-
                     }, []
                     )}
                 </div>
@@ -60,7 +57,6 @@ class TagSearch extends React.Component {
 function mapStateToProps({ projectsReducer }) {
     return {
         posts: projectsReducer.posts
-
     }
 }
 

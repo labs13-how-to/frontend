@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import { addPost, uploadImageHandler } from '../../actions';
 import { addTag, getTag } from '../../actions/steps-tagsActions';
-import "../../postform.scss";
+import "./postform.scss";
 
 class CreatePostForm extends React.Component {
     constructor(props) {
@@ -48,9 +48,8 @@ class CreatePostForm extends React.Component {
         if (!this.state.created_by) {
             // get the key's value from localStorage
             const id = localStorage.getItem('user_id');
-            console.log("ID:", id)
+            
             try {
-                console.log("ID", id);
                 this.setState({ created_by: `${id}` });
             } catch (e) {
                 // handle empty string
@@ -79,13 +78,10 @@ class CreatePostForm extends React.Component {
         const tagId = this.props.allTags.filter((tag) => e.target.value === tag.name.toLowerCase() && tag.id)
         const isTagged = this.state.tags.filter(tag => e.target.value === tag.name.toLowerCase())
         const newTag = { tag_id: tagId[0].id, name: e.target.value };
-        console.log('isTagged', isTagged)
-        console.log('newtag', newTag)
         if (!isTagged.length) {
             this.setState({ tags: [...this.state.tags, newTag] })
         } else {
             const filteredAry = this.state.tags.filter(tag => tag.tag_id !== newTag.tag_id)
-            console.log(filteredAry)
             this.setState({ tags: filteredAry })
         }
     };
@@ -119,7 +115,6 @@ class CreatePostForm extends React.Component {
                 supplies: this.state.supplies,
                 created_by: this.state.created_by,
             }
-            console.log('before submit', newPost);
 
             await this.props.addPost(newPost)
 
@@ -135,7 +130,6 @@ class CreatePostForm extends React.Component {
                 created_by: '',
             })
 
-            console.log(this.props.addId)
             setTimeout(() => {
                 this.state.tags.forEach((tag) => {
                     const newTag = { tag_id: tag.tag_id, post_id: this.props.addId }
@@ -147,8 +141,6 @@ class CreatePostForm extends React.Component {
     }
 
     render() {
-        console.log('IMAGE', this.props.uploadedImage)
-
         return (
             <div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>

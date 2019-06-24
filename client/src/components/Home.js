@@ -31,7 +31,7 @@ class Home extends React.Component {
                         <Button>Learn How</Button>
                     </div>
                     <div className='cta-img'>
-                        <img src={ExamplePost}></img>
+                        <img src={ExamplePost} alt='example'></img>
                     </div>
 
                 </div>

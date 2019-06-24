@@ -9,7 +9,7 @@ import PostStep from "./PostStep";
 import Reviews from "../reviews/Reviews";
 import StarRatingComponent from "react-star-rating-component";
 import Animation from '../animation/Animation';
-import "../../post.scss";
+import "./post.scss";
 
 class Post extends React.Component {
     constructor(props) {
@@ -17,17 +17,13 @@ class Post extends React.Component {
         this.state = {
             id: (this.props.location.pathname.split("/")[2])
         };
-        console.log(
-            "this.props.location.pathname",
-            this.state.id
-        );
     }
 
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
-        console.log("IDDD", this.state.id)
     };
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.refresh !== this.props.refresh) {
             this.props.getPost(this.state.id)
@@ -38,6 +34,7 @@ class Post extends React.Component {
 
         };
     };
+
     delete() {
         this.props.deletePost(this.state.id);
         this.props.history.push("/");
@@ -58,6 +55,7 @@ class Post extends React.Component {
             created_at,
             vid_url
         } = this.props.currPost
+
         const review_avg = reviews && reviews.reduce((res, review) => res + review.rating, 0) / reviews.length
         const review_count = reviews && reviews.length
         const postDate = created_at && created_at.split("T")[0].split("-")
@@ -92,6 +90,7 @@ class Post extends React.Component {
                             <CardText className="date-count">{` • \xa0`}{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
                         </div>
                         <CardText className="p-description">{description}</CardText>
+
                         {/* youtube video embedding component here*/}
                         <Animation vid_url={vid_url}/>
 
@@ -108,7 +107,6 @@ class Post extends React.Component {
                                 <span className="p-content-label">Supplies</span>
                                 {/* loop through supplyList and display each item */}
                                 {supplyList && supplyList.map((item, index) => <li key={index}>{item}</li>)}
-
                             </div>
                             <div className="p-content-section">
                                 <span className="p-content-label">Pre-Requisite Skills</span>
@@ -162,6 +160,5 @@ export default connect(
         deletePost,
         getUsers,
         getRefresh
-
     }
 )(Post);

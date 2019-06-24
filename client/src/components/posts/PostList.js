@@ -5,12 +5,8 @@ import { getPosts } from '../../actions';
 
 
 class PostList extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
-
         this.props.getPosts();
     }
 
@@ -21,7 +17,6 @@ class PostList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <>
                 <h2 className='posts-head' onClick={() => this.props.history.push('/posts')}>{this.props.isHome ? 'Trending' : 'Posts'}</h2>

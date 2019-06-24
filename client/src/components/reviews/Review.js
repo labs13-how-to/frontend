@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { deleteReview, updateReview, getReviews } from "../../actions";
 import { Card, CardText, CardBody, Button, Input } from "reactstrap";
 import StarRatingComponent from "react-star-rating-component";
-import "../../reviews.scss"
+import "./reviews.scss"
 
 class Review extends React.Component {
     state = {
@@ -50,7 +50,6 @@ class Review extends React.Component {
     };
 
     update = id => {
-        console.log("ID!", id);
         this.props.updateReview(id, {
             rating: this.state.newRating,
             review: this.state.newReview

@@ -165,7 +165,7 @@ class EditPostForm extends React.Component {
 
                     </FormGroup>
                     <FormGroup className="pf-img">
-                        <Label>Youtube Video (optional)</Label>
+                        <Label>Youtube Video <span className='video-span'>(optional)</span></Label>
                         <Input
                             onChange={this.handleChange}
                             placeholder='Include a YouTube video here'
@@ -173,28 +173,31 @@ class EditPostForm extends React.Component {
                             name='vid_url'
                         />
                     </FormGroup>
-                    <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
-                    <div className='tag-section'>
-                        <p className='post-tags'>
-                            {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
-                        </p>
-                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                            <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>
 
-                                    <FormGroup>
-                                        <Label for="exampleSelectMulti">Select Tags</Label>
-                                        <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
-                                        </Input>
-                                    </FormGroup>
+                    <div className='category-container'>
+                        <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
+                        <div className='tag-section'>
+                            <p className='post-tags'>
+                                {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                            </p>
+                            <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                                <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem>
 
-                                </DropdownItem>
+                                        <FormGroup>
+                                            <Label for="exampleSelectMulti">Select Tags</Label>
+                                            <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                                {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                            </Input>
+                                        </FormGroup>
 
-                            </DropdownMenu>
-                        </InputGroupButtonDropdown >
-                    </div>
+                                    </DropdownItem>
+
+                                </DropdownMenu>
+                            </InputGroupButtonDropdown >
+                        </div>
+                        </div>
 
                     <FormGroup className="pf-description">
                         <Label>Introduction</Label>

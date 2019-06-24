@@ -167,7 +167,7 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <FormGroup className="pf-img">
-                        <Label>Youtube Video (optional)</Label>
+                        <Label>Youtube Video <span className='video-span'>(optional)</span></Label>
                         <Input
                             onChange={this.handleChange}
                             placeholder='Include a YouTube video here'
@@ -219,11 +219,11 @@ class CreatePostForm extends React.Component {
                                     <FormGroup>
                                         <Label for="exampleSelectMulti">Select Difficulty</Label>
                                         <Input onChange={this.handleChange} type="select" name="difficulty" id="exampleSelectMulti" multiple>
+                                            <option value={`Very Easy`}>Very Easy</option>
                                             <option value={`Easy`}>Easy</option>
-                                            <option value={`Intermediate`}>Intermediate</option>
+                                            <option value={`Moderate`}>Moderate</option>
                                             <option value={`Hard`}>Hard</option>
                                             <option value={`Very Hard`}>Very Hard</option>
-                                            <option value={`Impossible`}>Impossible</option>
                                         </Input>
                                     </FormGroup>
 
@@ -237,7 +237,7 @@ class CreatePostForm extends React.Component {
                         <Label>Duration</Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder='Estimated Time to Complete'
+                            placeholder='How long did it take to complete this project?'
                             value={this.state.duration}
                             name='duration'
                         />
@@ -246,7 +246,7 @@ class CreatePostForm extends React.Component {
                         <Label>Prerequisite Skills</Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder='Skills Needed for this Project'
+                            placeholder='Are there any skills needed to complete this project?'
                             value={this.state.skills}
                             name='skills'
                         />
@@ -255,7 +255,7 @@ class CreatePostForm extends React.Component {
                         <Label>Tools/Supplies</Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder='Necessary Supplies'
+                            placeholder='What tools or supplies did you use for this project?'
                             value={this.state.supplies}
                             name='supplies'
                         />

@@ -41,6 +41,9 @@ class NavComponent extends React.Component {
   }
 
   render() {
+    const isLogged =
+      window.localStorage.getItem("user_id") &&
+      window.localStorage.getItem("jwt");
     return (
       <Navbar color="white" light expand="md">
         <NavbarBrand href="/">
@@ -63,10 +66,15 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
-        <RouteLink to={`/user/${this.props.auth_id}`}>
-          {/* <Button className='navBtn'>Account</Button> */}
-          <FontAwesomeIcon icon={faUser} />
-        </RouteLink>
+        {isLogged ? (
+          <RouteLink to={`/user/${this.props.auth_id}`}>
+            <FontAwesomeIcon icon={faUser} />
+          </RouteLink>
+        ) : (
+          <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
+            <FontAwesomeIcon icon={faUser} />
+          </a>
+        )}
       </Navbar>
     );
   }

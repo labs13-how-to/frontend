@@ -125,13 +125,14 @@ class EditPostForm extends React.Component {
     };
 
 
-    handleSumbit = async e => {
+    handleSubmit = async e => {
         e.preventDefault();
         const {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by, vid_url
+            supplies, created_by,
         } = this.state
+        const vid_url = this.state.vid_url.split('&')[0];
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
@@ -153,10 +154,9 @@ class EditPostForm extends React.Component {
       }
 
     render() {
-        console.log(this.props.uploadedImage)
         return (
             <div className="pf-container">
-                <Form className="post-form" onSubmit={this.handleSumbit}>
+                <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
                         <Label>Title</Label>
                         <Input
@@ -216,8 +216,6 @@ class EditPostForm extends React.Component {
                             });
                             }}
                         />
-
-
                         {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
                     </FormGroup>
                     <FormGroup className="pf-img">

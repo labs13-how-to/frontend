@@ -1,5 +1,5 @@
 import React from 'react';
-import Posts from './posts/Posts.js';
+// import Posts from './posts/Posts.js';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
 import { Button } from "reactstrap";
@@ -16,7 +16,7 @@ import angel from '../images/angel.png'
 import nick from '../images/nick.png'
 import matt from '../images/matt.png'
 import MobileStoreButton from 'react-mobile-store-button';
-import NavSearchMobile from './navbar/NavSearch.js';
+// import NavSearchMobile from './navbar/NavSearch.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';

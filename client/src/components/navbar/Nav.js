@@ -10,10 +10,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
-  Button,
-  Media,
-  CardImg
+  DropdownItem
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -23,15 +20,31 @@ import LogoImage from "../../images/logo.png";
 class NavComponent extends React.Component {
   componentDidMount() {
     this.props.getTag();
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   render() {
-    // console.log("USER ID", this.state.user_id);
-    console.log("NAV PROPS", this.props);
     return (
       <Navbar color="white" light expand="md">
         <NavbarBrand href="/">
-          <img className="logo" src={LogoImage} />
+          <img className="logo" src={LogoImage} alt="logo" />
         </NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>

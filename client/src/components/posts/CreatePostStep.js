@@ -69,14 +69,12 @@ class CreateStepForm extends React.Component {
       this.handleStepSubmit();
     }
   }
-
   handleChange = e => {
-    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
+
   handleImageChange = e => {
     e.preventDefault();
-    console.log(e.target.value);
     this.setState({ postImage: e.target.files[0] });
   };
 
@@ -84,7 +82,6 @@ class CreateStepForm extends React.Component {
     this.setState({ submit: true });
     e.preventDefault();
     if (!this.state.postImage) {
-      console.log("done");
       setTimeout(() => this.handleStepSubmit(), 100);
     } else {
       setTimeout(
@@ -99,12 +96,9 @@ class CreateStepForm extends React.Component {
   }
 
   handleStepSubmit = async e => {
-    // e.preventDefault();
-    console.log("submitRan", this.state.submit);
-
     if (this.state.submit) {
       this.setState({ submit: false });
-      console.log("done");
+
       const newStep = {
         post_id: this.state.post_id,
         step_num: this.state.step_num,
@@ -124,14 +118,12 @@ class CreateStepForm extends React.Component {
         postImage: null
       });
       document.getElementById("image").value = "";
-      console.log(this.props.currPost);
+
       setTimeout(() => this.props.getPost(this.state.post_id), 300);
     }
   };
 
   render() {
-    console.log("IMAGE", this.props.uploadedImage);
-    console.log("IMAGEPOST", this.state.postImage);
     const { steps } = this.props.currPost;
     return (
       <>
@@ -177,20 +169,21 @@ class CreateStepForm extends React.Component {
               <FormGroup className="psf-img">
                 <Label>Image(optional)</Label>
                 {/* <Input
-                  onChange={this.handleChange}
-                  placeholder="Image URL"
-                  value={this.state.img_url}
-                  name="img_url"
-                /> */}
+                      onChange={this.handleChange}
+                      placeholder='Image URL'
+                      value={this.state.img_url}
+                      name='img_url'
+                  /> */}
                 {/* <Input
-                                    type="file"
-                                    name="img_url"
-                                    id="img_url"
-                                    accept="image/png, image/jpeg"
-                                    onChange={this.handleImageChange}
-                                    disabled={this.state.disabled}
-                                // value={this.state.postImage.name}
-                                /> */}
+                  type="file"
+                  name="img_url"
+                  id="img_url"
+                  accept="image/png, image/jpeg"
+                  onChange={this.handleImageChange}
+                  disabled={this.state.disabled}
+                  // value={this.state.postImage.name}
+                />{" "}
+                */}
                 <FilePond
                   ref={ref => (this.pond = ref)}
                   name="image"

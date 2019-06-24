@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { addPost, uploadImageHandler } from "../../actions";
 import { addTag, getTag } from "../../actions/steps-tagsActions";
-import "../../postform.scss";
+import "./postform.scss";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 // Import FilePond styles
@@ -97,6 +97,7 @@ class CreatePostForm extends React.Component {
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   handleTagsChange = e => {
     // grabs tag id, then checks if its already tagged to the post
     const tagId = this.props.allTags.filter(
@@ -139,7 +140,7 @@ class CreatePostForm extends React.Component {
       const newPost = {
         title: this.state.title,
         img_url: this.props.uploadedImage,
-        vid_url: this.state.vid_url,
+        vid_url: this.state.vid_url.split("&")[0],
         description: this.state.description,
         difficulty: this.state.difficulty,
         duration: this.state.duration,
@@ -147,7 +148,6 @@ class CreatePostForm extends React.Component {
         supplies: this.state.supplies,
         created_by: this.state.created_by
       };
-      console.log("before submit", newPost);
 
       await this.props.addPost(newPost);
 

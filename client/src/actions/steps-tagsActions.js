@@ -11,7 +11,6 @@ export const addStep = (id, newStep) => dispatch => {
     axios
         .post(`${backendUrl}/posts/${id}/steps`, newStep)
         .then(response => {
-            console.log(response.data)
             dispatch({ type: ADDSTEP_SUCCESS, payload: response.data })
         })
         .catch(err => {
@@ -28,7 +27,6 @@ export const deleteStep = (id, step_id) => dispatch => {
     axios
         .delete(`${backendUrl}/posts/${id}/steps/${step_id}`)
         .then(res => {
-            console.log(res);
             dispatch({ type: STEP_DELETE_SUCCESS, payload: res.data });
         })
         .catch(err => {
@@ -45,7 +43,6 @@ export const getTag = () => dispatch => {
     axios
         .get(`${backendUrl}/tags`)
         .then(response => {
-            console.log(response.data)
             dispatch({ type: GETTAG_SUCCESS, payload: response.data })
         })
         .catch(err => {
@@ -62,7 +59,6 @@ export const addTag = (tag) => dispatch => {
     axios
         .post(`${backendUrl}/posts/${tag.post_id}/tags`, tag)
         .then(response => {
-            console.log(response.data)
             dispatch({ type: ADDTAG_SUCCESS, payload: response.data })
         })
         .catch(err => {
@@ -79,7 +75,6 @@ export const removeTag = (tag) => dispatch => {
     axios
         .delete(`${backendUrl}/posts/${tag.post_id}/tags/${tag.tag_id}`)
         .then(response => {
-            console.log(response.data)
             dispatch({ type: REMOVETAG_SUCCESS, payload: response.data })
         })
         .catch(err => {

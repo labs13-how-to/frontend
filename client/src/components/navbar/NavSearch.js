@@ -1,9 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { Form, Input } from "reactstrap";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 
 
 class NavSearch extends React.Component {

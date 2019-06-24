@@ -14,7 +14,6 @@ export const getRefresh = () => dispatch => dispatch({ type: REFRESH });
 
 export const getTest = () => dispatch => {
   dispatch({ type: FETCH });
-  console.log("fetched");
   axios
     .get(backendUrl)
     .then(res => {
@@ -27,7 +26,6 @@ export const getTest = () => dispatch => {
 
 export const getPosts = () => dispatch => {
   dispatch({ type: FETCH });
-  console.log("fetched");
   axios
     .get(`${backendUrl}/posts/`)
     .then(res => {
@@ -40,7 +38,6 @@ export const getPosts = () => dispatch => {
 
 export const getPost = id => dispatch => {
   dispatch({ type: FETCH });
-  console.log("fetched");
   axios
     .get(`${backendUrl}/posts/${id}`)
     .then(res => {
@@ -60,8 +57,6 @@ export const addPost = newPost => dispatch => {
   axios
     .post(`${backendUrl}/posts/`, newPost)
     .then(response => {
-      console.log("RESPONSE", response);
-      console.log("RESPONSE DATA", response.data);
       dispatch({ type: ADD_SUCCESS, payload: { id: response.data } });
     })
     .catch(err => {
@@ -90,12 +85,9 @@ export const uploadImageHandler = newImage => dispatch => {
       }
     })
     .then(response => {
-      console.log("RESPONSE", response);
-      console.log("RESPONSE DATA", response.data.img_url.img_url);
       dispatch({ type: IMAGE_SUCCESS, payload: response.data.img_url.img_url });
     })
     .catch(err => {
-      console.log(err);
       dispatch({ type: IMAGE_FAILURE, payload: err });
     });
 };
@@ -109,7 +101,6 @@ export const deletePost = id => dispatch => {
   axios
     .delete(`${backendUrl}/posts/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: POST_DELETE_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -127,7 +118,6 @@ export const updatePost = (id, updatedPost) => dispatch => {
   axios
     .put(`${backendUrl}/posts/${id}`, updatedPost)
     .then(response => {
-      console.log("response", response.data);
       dispatch({ type: UPDATE_SUCCESS, payload: response.data });
     })
     .catch(err => {
@@ -142,11 +132,9 @@ export const USER_FAIL = "USER_FAIL";
 
 export const getUsers = id => dispatch => {
   dispatch({ type: USER_FETCH });
-  console.log("fetched");
   axios
     .get(`${backendUrl}/users/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: USER_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -161,11 +149,9 @@ export const USER_POSTS_FAIL = "USER_POSTS_FAIL";
 
 export const getUserPosts = id => dispatch => {
   dispatch({ type: USER_POSTS_FETCH });
-  console.log("fetching user posts");
   axios
     .get(`${backendUrl}/users/${id}/posts`)
     .then(res => {
-      console.log(res);
       dispatch({ type: USER_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -180,11 +166,9 @@ export const FAVORITE_POSTS_FAIL = "FAVORITE_POSTS_FAIL";
 
 export const getFavoritePosts = id => dispatch => {
   dispatch({ type: FAVORITE_POSTS_FETCH });
-  console.log("fetching FAVORITE posts");
   axios
     .get(`https://lambda-how-to.herokuapp.com/users/${id}/favorites`)
     .then(res => {
-      console.log(res);
       dispatch({ type: FAVORITE_POSTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -199,11 +183,9 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const register = creds => dispatch => {
   dispatch({ type: REGISTER_START });
-  console.log(creds);
   return axios
     .post(`${backendUrl}/auth/register`, creds)
     .then(res => {
-      console.log("Register!", res.data);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data });
     })
     .catch(err => dispatch({ type: REGISTER_FAILURE, payload: err }));
@@ -219,11 +201,9 @@ export const login = () => dispatch => {
   return axios
     .get(`${backendUrl}/auth/google`)
     .then(res => {
-      console.log(res);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      console.log(err.message);
       dispatch({ type: LOGIN_FAILURE });
     });
 };
@@ -247,7 +227,6 @@ export const getReviews = id => dispatch => {
   axios
     .get(`${backendUrl}/posts/${id}/reviews`)
     .then(res => {
-      console.log(res);
       dispatch({ type: REVIEW_FETCH_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -260,12 +239,10 @@ export const REVIEW_ADD_SUCCESS = "REVIEW_ADD_SUCCESS";
 export const REVIEW_ADD_FAILURE = "REVIEW_ADD_FAILURE";
 
 export const addReview = (id, newPost) => dispatch => {
-  console.log("NEWPOSTT!", newPost);
   dispatch({ type: REVIEW_ADD_START });
   axiosWithAuth()
     .post(`${backendUrl}/posts/${id}/reviews`, newPost)
     .then(res => {
-      console.log("res.data", res.data);
       dispatch({ type: REVIEW_ADD_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -282,7 +259,6 @@ export const updateReview = (id, updatedPost) => dispatch => {
   axios
     .put(`${backendUrl}/posts/reviews/${id}`, updatedPost)
     .then(res => {
-      console.log(res);
       dispatch({ type: REVIEW_UPDATE_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -299,7 +275,6 @@ export const deleteReview = id => dispatch => {
   axios
     .delete(`${backendUrl}/posts/reviews/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({ type: REVIEW_DELETE_SUCCESS, payload: res.data });
     })
     .catch(err => {

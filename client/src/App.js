@@ -14,15 +14,23 @@ import SearchResults from "./components/posts/SearchResults";
 import TagsSearch from "./components/posts/TagsSearch";
 import CreateStep from "./components/posts/CreatePostStep";
 import EditPost from "./components/posts/EditPost";
-import Favorites from './components/users/FavoritePosts';
-import UserNav from './components/users/UserNav';
-import PostList from './components/posts/PostList'
+import Favorites from "./components/users/FavoritePosts";
+import UserNav from "./components/users/UserNav";
+import PostList from "./components/posts/PostList";
 
 //SearchBar
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth_id: "",
+      user_id: null
+    };
+  }
+
   componentDidMount() {
     this.setState({
       ...this.state
@@ -36,6 +44,25 @@ class App extends Component {
     }
 
     this.props.getTest();
+    this.hydrateStateWithLocalStorage();
+  }
+
+  hydrateStateWithLocalStorage() {
+    // for all items in state
+    for (let user_id in this.state) {
+      // if the key exists in localStorage
+      if (localStorage.hasOwnProperty(user_id)) {
+        // get the key's value from localStorage
+        let value = localStorage.getItem(user_id);
+        try {
+          console.log("VALUE", value);
+          this.setState({ auth_id: `${value}` });
+        } catch (e) {
+          // handle empty string
+          this.setState({ auth_id: `${value}` });
+        }
+      }
+    }
   }
 
   login = event => {
@@ -57,22 +84,41 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <header className="App-header">
           <div className="container">
-            <Nav logOut={this.logOut} />
+            <Nav
+              logOut={this.logOut}
+              auth_id={this.state.auth_id}
+              user_id={this.state.user_id}
+            />
           </div>
         </header>
         <div className="container main-container">
-          {localStorage.hasOwnProperty('jwt') ?
-            (<Route exact path="/" render={props => <Home {...props} />} />)
-            : (<Route exact path="/" render={props => <LandingPage {...props} />} />)}
-            
-          <Route path="/user" render={props => <UserNav {...props} logOut={this.logOut} />} />
-          <Route path="/user/:id" render={props => <Users {...props} />} />
-          <Route path="/user/:id/favorites" render={props => <Favorites {...props} />} />
+          {localStorage.hasOwnProperty("jwt") ? (
+            <Route exact path="/" render={props => <Home {...props} />} />
+          ) : (
+            <Route
+              exact
+              path="/"
+              render={props => <LandingPage {...props} />}
+            />
+          )}
 
-          <Route exact path="/posts" render={props => <PostList {...props} />} />
+          <Route
+            path="/user"
+            render={props => <UserNav {...props} logOut={this.logOut} />}
+          />
+          <Route path="/user/:id" render={props => <Users {...props} />} />
+          <Route
+            path="/user/:id/favorites"
+            render={props => <Favorites {...props} />}
+          />
+
+          <Route
+            exact
+            path="/posts"
+            render={props => <PostList {...props} />}
+          />
           <Route path="/posts/:id" render={props => <Post {...props} />} />
 
           <Route
@@ -80,11 +126,10 @@ class App extends Component {
             render={props => <CreatePost {...props} />}
           />
 
-          <Route exact path="/forms/post/edit/:id" render={props => (
-            <EditPost
-              {...props}
-            />
-          )}
+          <Route
+            exact
+            path="/forms/post/edit/:id"
+            render={props => <EditPost {...props} />}
           />
 
           <Route

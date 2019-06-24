@@ -52,7 +52,7 @@ a:focus {
   @include media-breakpoint-down(sm) {
     display: block;
     height: 500px;
-    background-image: url("./images/tinted-bathroom.jpg");
+    background-image: url("../images/bee-img-mobile.jpg");
     background-repeat: no-repeat;
     background-size: contain;
     overflow: hidden;
@@ -149,7 +149,7 @@ a:focus {
   float: left;
 }
 
-.bathroom-img {
+.bee-img {
   width: 45%;
   float: right;
 }

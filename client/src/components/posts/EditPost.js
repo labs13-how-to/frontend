@@ -197,7 +197,7 @@ class EditPostForm extends React.Component {
                                 </DropdownMenu>
                             </InputGroupButtonDropdown >
                         </div>
-                        </div>
+                    </div>
 
                     <FormGroup className="pf-description">
                         <Label>Introduction</Label>

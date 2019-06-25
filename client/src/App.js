@@ -12,7 +12,6 @@ import Post from "./components/posts/Post";
 import CreatePost from "./components/posts/CreatePost.js";
 import SearchResults from "./components/posts/SearchResults";
 import TagsSearch from "./components/posts/TagsSearch";
-import CreateStep from "./components/posts/CreatePostStep";
 import EditPost from "./components/posts/EditPost";
 import Favorites from "./components/users/FavoritePosts";
 import UserNav from "./components/users/UserNav";

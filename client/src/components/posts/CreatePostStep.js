@@ -121,12 +121,15 @@ class CreateStepForm extends React.Component {
 
             setTimeout(() => this.props.getPost(this.state.post_id), 300);
         }
-    };
+    }
 
     render() {
         const { steps } = this.props.currPost;
         return (
             <>
+                <h3 id='step-form' className="psf-section-header">
+                    Add steps, instructions, and additional photos here
+                </h3>
                 {steps &&
                     steps.map((step, index) => {
                         return (
@@ -139,10 +142,7 @@ class CreateStepForm extends React.Component {
                             />
                         );
                     })}
-                <h3 className="psf-section-header">
-                    Add Steps, Instructions, and additional Photos/Videos here
-        </h3>
-                <div id='step-form' className="psf-container">
+                <div className="psf-container">
                     <Form className="psf" onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <Label>Step Title</Label>
@@ -167,27 +167,8 @@ class CreateStepForm extends React.Component {
                         </FormGroup>
                         <div className="psf-media">
                             <FormGroup className="psf-img">
-                                <Label>Image(optional)
+                                <Label>Image<span className="video-span"> (Optional)</span></Label>
 
-                                </Label><p className="category-span">
-                                    (drag and drop to add new image)
-                                    </p>
-                                {/* <Input
-                      onChange={this.handleChange}
-                      placeholder='Image URL'
-                      value={this.state.img_url}
-                      name='img_url'
-                  /> */}
-                                {/* <Input
-                  type="file"
-                  name="img_url"
-                  id="img_url"
-                  accept="image/png, image/jpeg"
-                  onChange={this.handleImageChange}
-                  disabled={this.state.disabled}
-                  // value={this.state.postImage.name}
-                />{" "}
-                */}
                                 <FilePond
                                     ref={ref => (this.pond = ref)}
                                     name="image"
@@ -218,20 +199,11 @@ class CreateStepForm extends React.Component {
                                     }}
                                 />
                             </FormGroup>
-                            {/* <FormGroup className="psf-vid">
-                                <Label>Video(optional)</Label>
-                                <Input
-                                    onChange={this.handleChange}
-                                    placeholder='Video Url'
-                                    value={this.state.vid_url}
-                                    name='vid_url'
-                                />
-                            </FormGroup> */}
                         </div>
                         <div className="psf-button-container">
                             <Button className="psf-button" type="submit">
                                 Add Step
-              </Button>
+                            </Button>
                         </div>
                     </Form>
                 </div>
@@ -243,12 +215,13 @@ class CreateStepForm extends React.Component {
                         }
                     >
                         Publish
-          </Button>
+                    </Button>
                 </div>
             </>
         );
     }
 }
+
 
 function mapStateToProps({ projectsReducer }) {
     return {

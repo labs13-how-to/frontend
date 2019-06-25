@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoImage from "../../images/logo.png";
 
@@ -47,13 +48,18 @@ class NavComponent extends React.Component {
     return (
       <Navbar color="white" light expand="md">
         <NavbarBrand href="/">
+          <div className="logo-container">
           <img className="logo" src={LogoImage} alt="logo" />
+          </div>
         </NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavSearch {...this.props} />
           </NavItem>
         </Nav>
+        <div className="nav-section">
+        <div className="categories">
+          <div className="desktop-dropdown">
         <UncontrolledDropdown className="mr-auto" inNavbar>
           <DropdownToggle nav caret>
             Categories
@@ -66,6 +72,23 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
+        </div>
+        <div className="mobile-dropdown">
+          <UncontrolledDropdown className="mr-auto" inNavbar>
+          <DropdownToggle nav>
+             <FontAwesomeIcon className="bars" icon={faBars} />
+          </DropdownToggle>
+          <DropdownMenu>
+            {this.props.allTags.map(tag => (
+              <RouteLink to={`/categories/search?q=${tag.name}`} key={tag.id}>
+                <DropdownItem>{tag.name}</DropdownItem>
+              </RouteLink>
+            ))}
+          </DropdownMenu>
+        </UncontrolledDropdown>
+        </div>
+        </div>
+        <div className="profile">
         {isLogged ? (
           <RouteLink to={`/user/${this.props.auth_id}`}>
             <FontAwesomeIcon icon={faUser} />
@@ -75,6 +98,8 @@ class NavComponent extends React.Component {
             <FontAwesomeIcon icon={faUser} />
           </a>
         )}
+        </div>
+        </div>
       </Navbar>
     );
   }

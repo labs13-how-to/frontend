@@ -149,7 +149,7 @@ class EditPostForm extends React.Component {
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies: this.state.supplyList.join(' _ '), created_by, vid_url
+            supplies: this.state.supplyList && this.state.supplyList.join(' _ '), created_by, vid_url
         };
         let updatedObj = {}
         for (var property in stateObj) {
@@ -201,42 +201,44 @@ class EditPostForm extends React.Component {
                             onChange={this.handleImageChange}
                             disabled={this.state.disabled}
                         /> */}
-                                <Label>Upload New Image</Label>
-                                <FilePond
-                                    ref={ref => (this.pond = ref)}
-                                    name="image"
-                                    id="image"
-                                    acceptedFileTypes={["image/png", "image/jpeg"]}
-                                    disabled={this.state.disabled}
-                                    allowMultiple={false}
-                                    allowRevert={false}
-                                    server={{
-                                        // Sends image to be uploaded to cloudinary right after drag/dropped
-                                        process: {
-                                            url: `${process.env.REACT_APP_BE_URL}/upload`,
-                                            onload: response => {
-                                                const json = JSON.parse(response);
-                                                console.log(json);
-                                                this.setState({
-                                                    img_url: json.img_url.img_url
-                                                });
+                                <FormGroup>
+                                    <Label className='new-img'>Upload New Image</Label>
+                                    <FilePond
+                                        ref={ref => (this.pond = ref)}
+                                        name="image"
+                                        id="image"
+                                        acceptedFileTypes={["image/png", "image/jpeg"]}
+                                        disabled={this.state.disabled}
+                                        allowMultiple={false}
+                                        allowRevert={false}
+                                        server={{
+                                            // Sends image to be uploaded to cloudinary right after drag/dropped
+                                            process: {
+                                                url: `${process.env.REACT_APP_BE_URL}/upload`,
+                                                onload: response => {
+                                                    const json = JSON.parse(response);
+                                                    console.log(json);
+                                                    this.setState({
+                                                        img_url: json.img_url.img_url
+                                                    });
+                                                }
                                             }
-                                        }
-                                    }}
-                                    oninit={() => this.handleInit()}
-                                    // allowFileEncode={true}
-                                    onupdatefiles={fileItems => {
-                                        console.log("FILE ITEMS", fileItems);
-                                        // Set current file object to this.state
-                                        this.setState({
-                                            postImage: fileItems[0].file
-                                        });
-                                    }}
-                                />
+                                        }}
+                                        oninit={() => this.handleInit()}
+                                        // allowFileEncode={true}
+                                        onupdatefiles={fileItems => {
+                                            console.log("FILE ITEMS", fileItems);
+                                            // Set current file object to this.state
+                                            this.setState({
+                                                postImage: fileItems[0].file
+                                            });
+                                        }}
+                                    />
+                                </FormGroup>
                                 {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
                             </FormGroup>
                             <FormGroup className="pf-img">
-                                <Label>Youtube Video (optional)</Label>
+                                <Label>Youtube Video <span className="video-span">(Optional)</span></Label>
                                 <Input
                                     onChange={this.handleChange}
                                     placeholder='Include a YouTube video here'
@@ -244,29 +246,30 @@ class EditPostForm extends React.Component {
                                     name='vid_url'
                                 />
                             </FormGroup>
-                            <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
-                            <div className='tag-section'>
-                                <p className='post-tags'>
-                                    {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
-                                </p>
-                                <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                                    <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem>
+                            <FormGroup>
+                                <p>Category</p>
+                                <div className='tag-section'>
+                                    <p className='post-tags'>
+                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
+                                    </p>
+                                    <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                                        <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem>
 
-                                            <FormGroup>
-                                                <Label for="exampleSelectMulti">Select Tags</Label>
-                                                <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                                    {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
-                                                </Input>
-                                            </FormGroup>
+                                                <FormGroup>
+                                                    {/* <Label for="exampleSelectMulti">Select Categories</Label> */}
+                                                    <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                                        {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                                    </Input>
+                                                </FormGroup>
 
-                                        </DropdownItem>
+                                            </DropdownItem>
 
-                                    </DropdownMenu>
-                                </InputGroupButtonDropdown >
-                            </div>
-
+                                        </DropdownMenu>
+                                    </InputGroupButtonDropdown >
+                                </div>
+                            </FormGroup>
                             <FormGroup className="pf-description">
                                 <Label>Introduction</Label>
                                 <Input

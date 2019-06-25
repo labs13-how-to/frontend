@@ -14,13 +14,12 @@ body {
   height: 95vh;
 }
 
-
 .App-header{
   width: 100%;
   background: white;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
   z-index: 100;
- position: fixed;
+  position: fixed;
 }
 .container{
   min-height: 100%;
@@ -29,7 +28,7 @@ body {
   padding: 0 30px ;
   @include media-breakpoint-up(xl) {
     width: 1040px;
-    padding: 0 30px ;
+    padding: 0 30px;
   }
 }
 .main-container{
@@ -41,17 +40,92 @@ h1, h2{
   color:#FF851A;
 }
 .posts-head{
-    margin: 0 0 0 3%;
+  margin: 0 0 0 3%;
   }
+
+///////// NAV /////////////
+
+.nav-section {
+  display: flex;
+  align-items: center;
+
+  .categories {
+    padding: 0 40px;
+
+    @include media-breakpoint-down(sm) {
+    padding: 0px;
+    }
+    .nav-link {
+      padding: 0px;
+    }
+    .desktop-dropdown {
+      @media (max-width: 505px) {
+        display: none;
+      }
+    }
+    .mobile-dropdown {
+      display: none;
+
+      @media (max-width: 505px) {
+        display: block;
+
+        a.nav-link{
+          padding-bottom: 0px;
+        }
+      }
+      .bars {
+        @media (max-width: 505px) {
+          font-size: 2.2rem;
+        }
+        @media (max-width: 430px) {
+          font-size: 2.2rem;
+        }
+    
+        @media (max-width: 325px) {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
 /////////////////////// nav///////////////////
 .navbar{
- color: #FF851A;
+  color: #FF851A;
   position: relative;
+
+  .nav-search {
+    @include media-breakpoint-down(sm) { 
+      padding-top: 0px;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-bottom: 10px;
+  }
+
   ul{
     margin: 0 0 0 20px;
     width: 60%;
+
+    @include media-breakpoint-down(sm) { 
+      order: 1;
+      margin: 0px;
+      width: 100%; 
+      margin-top: 15px;   
+    }
+
     li{
       width: 100%;
+
       input{
         padding: 20px;
         color: #FF851A;
@@ -63,7 +137,26 @@ h1, h2{
     color: #FF851A;
   }
   .fa-user{
-    font-size: 2.5rem;
+   
+    font-size: 2.2rem;
+    @include media-breakpoint-down(sm) {
+     margin-top: 0px;
+     font-size: 3rem;
+     display: block;
+     padding-bottom: 5px;
+    }
+    @media (max-width: 505px) {
+      font-size: 2.4rem;
+    }
+
+    @media (max-width: 430px) {
+      font-size: 2.3rem;
+    }
+
+    @media (max-width: 325px) {
+      font-size: 2rem;
+    }
+
   }
   .logo{
     width: 100%
@@ -71,21 +164,64 @@ h1, h2{
   .navbar-brand{
     width:10%;
     margin-right:0;
+    @include media-breakpoint-down(sm) { 
+     width: 25%;
+     order: 1;
+     position: relative;
+     top: -20px;
+     padding-top: 0px;
+     padding-bottom: 0px;
+     margin: -18px;
+    }
+    @media (max-width: 430px) {
+      top: -17px;
+    }
+    @media (max-width: 325px) {
+      top: -15px;
+    }
+
   }
   .dropdown{
     position: static;
+  
   }
   .dropdown-menu{
+    @include media-breakpoint-down(sm) { 
+      font-size: 1rem;
+    }
+    @media (max-width: 430px) { 
+      font-size: 1rem;
+      padding: 10px;
+    }
+    @media (max-width: 380px) { 
+      font-size: .9rem;
+      padding: 0px;
+    }
+    @media (max-width: 325px) { 
+      font-size: .8rem;
+      padding: 3px 0;
+    }
     width: 90%;
     left: 5%;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
     font-size: 1.3rem;
     padding: 20px 0;
+
     a{
       margin: 5px 5px;
+    
       button{
         color:gray;
         
+        @media (max-width: 995px) { 
+          padding: 10px;
+        }
+        @include media-breakpoint-down(sm) { 
+          padding: 5px;
+        }
+        @media (max-width: 325px) { 
+          padding: 2px;
+        }
       }
     }
     option:hover{
@@ -167,10 +303,10 @@ code {
   padding: 5px 5px 5px 15px;
   border: 1px solid #FF851A;
   border-radius: 20px;
-  margin: 2px;
+  margin: 2px 2px 2px 10px;
   font-size: 20px;
   color: #FF851A;
-  margin-left: 15px;
+  margin-right: 15px;
 }
 .tag-section {
   display: flex;
@@ -184,7 +320,6 @@ code {
 .tag-section .dropdown-toggle {
   width: 100%;
   height: 42px;
-  
 }
 // .tag-section button select {
 //   width: 200px;
@@ -204,6 +339,10 @@ code {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.form-group {
+  margin-bottom: 2.5rem;
 }
 
 // // large tablet

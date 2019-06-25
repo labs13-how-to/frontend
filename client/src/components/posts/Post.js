@@ -99,7 +99,7 @@ class Post extends React.Component {
                         <CardText className="p-description">{description}</CardText>
 
                         {/* youtube video embedding component here*/}
-                        <Animation vid_url={vid_url} />
+                        {vid_url ? <Animation vid_url={vid_url} /> : null }
 
                         <div className="p-content-container">
                             <div className="p-content-section">

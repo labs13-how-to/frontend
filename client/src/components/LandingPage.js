@@ -55,7 +55,6 @@ class LandingPage extends React.Component {
                     </div>
 
                     <div className='upper-content'>
-                        <img className='mobile-logo' src={mobileLogo} alt='Mobile Logo'></img>
                         <div className='upper-content-section' id='one'>
                             <div className='img-content'>
                                 <img className='category-example' src={categoryExample} alt='category'></img>

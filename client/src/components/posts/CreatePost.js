@@ -27,67 +27,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 import ProtectedRoute from '../ProtectedRoute.js';
 
-// class CreatePostForm extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.toggleDropDown = this.toggleDropDown.bind(this);
-//         this.toggleDifficulty = this.toggleDifficulty.bind(this);
-//         this.state = {
-//             title: '',
-//             img_url: '',
-//             vid_url: '',
-//             description: '',
-//             difficulty: '',
-//             duration: '',
-//             skills: '',
-//             supplies: '',
-//             created_by: '',
-//             dropdownOpen: false,
-//             difficultyDropdown: false,
-//             tags: [],
-//             postImage: null,
-//             submit: false,
-//         };
-//     }
 
-//     componentDidMount() {
-//         this.hydrateStateWithLocalStorage();
-//         this.props.getTag();
-//     }
-//     componentDidUpdate(prevProps, prevState) {
-//         if (prevProps.submitRefresh !== this.props.submitRefresh) {
-//             this.handlePostSubmit()
-//         }
-
-//     }
-
-//     hydrateStateWithLocalStorage() {
-//         // if the key exists in localStorage
-//         if (!this.state.created_by) {
-//             // get the key's value from localStorage
-//             const id = localStorage.getItem('user_id');
-
-//             try {
-//                 this.setState({ created_by: `${id}` });
-//             } catch (e) {
-//                 // handle empty string
-//                 this.setState({ created_by: `${id}` });
-//             }
-//         }
-//     }
-
-//     //toggle functions
-//     toggleDropDown() {
-//         this.setState({
-//             dropdownOpen: !this.state.dropdownOpen
-//         });
-//     };
-//     toggleDifficulty() {
-//         this.setState({
-//             difficultyDropdown: !this.state.difficultyDropdown
-//         });
-//     };
-// Register FilePond the plugins
 registerPlugin(
     FilePondPluginFileEncode,
     FilePondPluginFileValidateType,
@@ -254,9 +194,9 @@ class CreatePostForm extends React.Component {
     render() {
         console.log("IMAGE", this.props.uploadedImage);
         console.log("THIS STATE", this.state);
-
-        return (
-            <div className="pf-container">
+        const hasLoggedIn = localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt');
+        return hasLoggedIn ?
+            (<div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
                         <Label>Title</Label>
@@ -328,7 +268,7 @@ class CreatePostForm extends React.Component {
             </span>
                     </p>
                     <div className="tag-section">
-                        <p className="post-tags">
+                        <p className="post-tags form-tags">
                             {this.state.tags && this.state.tags.map((tag, index) => {
                                 let currTag = tag.name.split('');
                                 currTag[0] = currTag[0].toUpperCase();
@@ -464,7 +404,9 @@ class CreatePostForm extends React.Component {
                     </div>
                 </Form>
             </div>
-        );
+            ) :
+            (<ProtectedRoute />)
+            ;
     }
 }
 
@@ -478,7 +420,8 @@ function mapStateToProps({ projectsReducer }) {
     };
 }
 
-export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt') ? connect(
+
+export default connect(
     mapStateToProps,
     {
         addPost,
@@ -487,4 +430,3 @@ export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProp
         uploadImageHandler
     }
 )(CreatePostForm)
-    : ProtectedRoute;

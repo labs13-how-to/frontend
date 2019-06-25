@@ -37,9 +37,14 @@
     display: flex;
 }
 
+.p-description {
+    margin: 2rem 0;
+}
+
 .post-category {
     color: #ff851a;
     font-size: 25px;
+    padding-bottom: 0;
 }
 
 .p-content-container {
@@ -71,9 +76,9 @@
 .post-page span {
     padding: 5px 15px;
     border-radius: 20px;
-    margin: 15px 15px 0 0;
-    color: black;
-    border: 1px solid black;
+    margin: 15px 15px 20px 10px;
+    color: #746D6D;
+    border: 1px solid #746D6D;
 }
 
 .edit-button {

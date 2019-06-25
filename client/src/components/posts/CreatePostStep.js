@@ -167,7 +167,7 @@ class CreateStepForm extends React.Component {
             </FormGroup>
             <div className="psf-media">
               <FormGroup className="psf-img">
-                <Label>Image(optional)</Label>
+                <Label>Image<span className="video-span"> (Optional)</span></Label>
                 {/* <Input
                       onChange={this.handleChange}
                       placeholder='Image URL'

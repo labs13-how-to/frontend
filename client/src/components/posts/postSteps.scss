@@ -9,7 +9,7 @@
     span{
         justify-self: flex-start;
         align-self: flex-start;
-        margin-left: 5%;
+        margin-left: 3%;
         font-size: 1.2rem;
         color: rgb(165, 165, 165);
         border-bottom: 1px solid rgb(174, 174, 174);
@@ -41,6 +41,7 @@
 .ps-text {
     text-align: left;
     padding-left: 15px;
+    font-size: 18px;
 }
 
 //Post-Step-Form Styling
@@ -82,7 +83,7 @@
 }
 
 .psf-img {
-    width: 45%;
+    width: 100%;
 }
 
 .psf-vid {
@@ -105,5 +106,5 @@
     border: none;
     background-color: #FF851A;
     margin: 15px;
-    font-size: 14px;
+    font-size: 16px;
 }

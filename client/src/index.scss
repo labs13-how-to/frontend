@@ -158,7 +158,7 @@ code {
 
 .tag-section .dropdown-toggle {
   width: 100%;
-  height: 40px;
+  height: 42px;
 }
 // .tag-section button select {
 //   width: 200px;
@@ -178,6 +178,10 @@ code {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+}
+
+.form-group {
+  margin-bottom: 2.5rem;
 }
 
 // // large tablet

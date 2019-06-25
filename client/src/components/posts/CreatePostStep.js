@@ -108,6 +108,18 @@ class CreateStepForm extends React.Component {
               vid_url: this.state.vid_url
           };
           await this.props.addStep(this.state.post_id, newStep);
+
+          this.setState({
+            step_num: this.state.step_num + 1,
+            title: "",
+            instruction: "",
+            img_url: "",
+            vid_url: "",
+            postImage: null
+        });
+        document.getElementById("image").value = "";
+
+        setTimeout(() => this.props.getPost(this.state.post_id), 300);
       }
     }
 

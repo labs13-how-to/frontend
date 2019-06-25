@@ -149,7 +149,7 @@ class EditPostForm extends React.Component {
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies: this.state.supplyList.join(' _ '), created_by, vid_url
+            supplies: this.state.supplyList && this.state.supplyList.join(' _ '), created_by, vid_url
         };
         let updatedObj = {}
         for (var property in stateObj) {

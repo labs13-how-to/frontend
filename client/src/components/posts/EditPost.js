@@ -46,6 +46,7 @@ class EditPostForm extends React.Component {
             created_by: 0,
             id: Number(this.props.match.params.id),
             dropdownOpen: false,
+            supplyList: [],
         };
     }
 
@@ -71,7 +72,7 @@ class EditPostForm extends React.Component {
                 difficulty: difficulty,
                 duration: duration,
                 skills: skills,
-                supplies: supplies,
+                supplyList: supplies && supplies.split(' _ '),
                 created_by: created_by,
                 vid_url: vid_url
             })
@@ -91,7 +92,7 @@ class EditPostForm extends React.Component {
                 difficulty: difficulty,
                 duration: duration,
                 skills: skills,
-                supplies: supplies,
+                supplyList: supplies && supplies.split(' _ '),
                 created_by: created_by,
                 vid_url: vid_url
             })
@@ -127,6 +128,14 @@ class EditPostForm extends React.Component {
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
+    handleSupplies = e => {
+        // console.log(e)
+        if (e.key === 'Enter') {
+            // console.log(e.target.value)
+            this.setState({ supplyList: [...this.state.supplyList, this.state.supplies] });
+            this.setState({ supplies: '' });
+        }
+    }
 
 
     handleSubmit = async e => {
@@ -140,7 +149,7 @@ class EditPostForm extends React.Component {
         const stateObj = {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by, vid_url
+            supplies: this.state.supplyList.join(' _ '), created_by, vid_url
         };
         let updatedObj = {}
         for (var property in stateObj) {
@@ -158,11 +167,12 @@ class EditPostForm extends React.Component {
       }
 
     render() {
+        console.log(this.state.supplyList)
         return (
             <>{this.state.created_by === window.localStorage.getItem('user_id') ?
                 <>
                     <div className="pf-container">
-                        <Form className="post-form" onSubmit={this.handleSubmit}>
+                        <Form className="post-form" >
                             <FormGroup className="pf-title">
                                 <Label>Title</Label>
                                 <Input
@@ -299,7 +309,21 @@ class EditPostForm extends React.Component {
                             </FormGroup>
                             <FormGroup className="pf-supplies">
                                 <Label>Tools/Supplies</Label>
+                                <p className='post-tags'>
+                                    {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                        let currSup = sup.split('');
+                                        currSup[0] = currSup[0].toUpperCase();
+                                        currSup = currSup.join('')
+                                        return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                            let supList = this.state.supplyList;
+                                            supList.splice(index, 1)
+                                            this.setState({ supplyList: supList })
+                                        }} >🗴</span></span>
+                                    })}
+
+                                </p>
                                 <Input
+                                    onKeyDown={this.handleSupplies}
                                     onChange={this.handleChange}
                                     placeholder='supplies'
                                     value={this.state.supplies}
@@ -307,7 +331,7 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <div className="pf-button-container">
-                                <Button className="pf-button" type='submit'>Save</Button>
+                                <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                             </div>
                         </Form>
                     </div>

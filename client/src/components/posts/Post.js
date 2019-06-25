@@ -61,7 +61,7 @@ class Post extends React.Component {
         const review_count = reviews && reviews.length
         const postDate = created_at && created_at.split("T")[0].split("-")
         // split supplies into array list
-        const supplyList = supplies && supplies.split(" ")
+        const supplyList = supplies && supplies.split(" _ ")
         return (
             <React.Fragment>
                 <Card className="post-card" id="post">
@@ -137,8 +137,10 @@ class Post extends React.Component {
                     </div>
                 </Card>
                 <div>
+                    {/* created_by === window.localStorage.getItem('user_id') */}
                     <Reviews
                         post_id={this.state.id}
+
                     />
                 </div>
             </React.Fragment>

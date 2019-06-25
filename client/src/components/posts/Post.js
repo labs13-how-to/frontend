@@ -137,8 +137,10 @@ class Post extends React.Component {
                     </div>
                 </Card>
                 <div>
+                    {/* created_by === window.localStorage.getItem('user_id') */}
                     <Reviews
                         post_id={this.state.id}
+
                     />
                 </div>
             </React.Fragment>

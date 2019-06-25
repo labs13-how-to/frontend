@@ -62,6 +62,8 @@ class Review extends React.Component {
     };
 
     render() {
+        console.log(this.props.review)
+
         return (
             <Card className="r-cards">
                 <h5 className="r-poster">{this.props.review.username}</h5>
@@ -95,17 +97,18 @@ class Review extends React.Component {
                             />
                         )}
                 </CardBody>
-                {!this.state.updating ? (
-                    <div className="r-buttons">
-                        <Button className="r-button" onClick={() => this.props.deleteReview(this.props.review.id)}>Delete</Button>
-                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Edit</Button>
-                    </div>
-                ) : (
-                    <div className="r-buttons">
-                        <Button className="r-button" onClick={() => this.toggleUpdate()}>Cancel</Button>
-                        <Button className="r-button" onClick={() => this.update(this.props.review.id)}>Save</Button>
-                    </div>
-                )}
+                {this.props.review.auth_id === window.localStorage.getItem('user_id') &&
+                    (!this.state.updating ? (
+                        <div className="r-buttons">
+                            <Button className="r-button" onClick={() => this.props.deleteReview(this.props.review.id)}>Delete</Button>
+                            <Button className="r-button" onClick={() => this.toggleUpdate()}>Edit</Button>
+                        </div>
+                    ) : (
+                            <div className="r-buttons">
+                                <Button className="r-button" onClick={() => this.toggleUpdate()}>Cancel</Button>
+                                <Button className="r-button" onClick={() => this.update(this.props.review.id)}>Save</Button>
+                            </div>
+                        ))}
             </Card>
         )
     };

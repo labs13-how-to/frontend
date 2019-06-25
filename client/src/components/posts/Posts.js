@@ -36,7 +36,7 @@ class Posts extends React.Component {
                 </CardBody>
                 <CardBody>
                     <div className='post-footer'>
-                        {this.props.post.username}
+                        {this.props.post.username && this.props.post.username.length > 16 ? this.props.post.username.slice(0, 16) + '...' : this.props.post.username}
                         {`\xa0 • \xa0`}
                         <CardText className='date-count'>{cardDate && `${cardDate[1][1]}/${cardDate[2]}/${cardDate[0]}`}</CardText>
                     </div>

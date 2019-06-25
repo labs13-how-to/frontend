@@ -94,20 +94,11 @@ class App extends Component {
           </div>
         </header>
         <div className="container main-container">
-          {localStorage.hasOwnProperty("jwt") ? (
-            <Route exact path="/" render={props => <Home {...props} />} />
-          ) : (
-            <Route
-              exact
-              path="/"
-              render={props => <LandingPage {...props} />}
-            />
-          )}
+          {localStorage.hasOwnProperty('jwt') ?
+            (<Route exact path="/" render={props => <Home {...props} />} />)
+            : (<Route exact path="/" render={props => <LandingPage {...props} />} />)}
 
-          <Route
-            path="/user"
-            render={props => <UserNav {...props} logOut={this.logOut} />}
-          />
+          <Route path="/user" render={props => <UserNav {...props} logOut={this.logOut} />} />
           <Route path="/user/:id" render={props => <Users {...props} />} />
           <Route
             path="/user/:id/favorites"
@@ -132,10 +123,10 @@ class App extends Component {
             render={props => <EditPost {...props} />}
           />
 
-          <Route
+          {/* <Route
             path="/forms/post/edit/:id"
             render={props => <CreateStep {...props} />}
-          />
+          /> */}
 
           <Route
             path="/search"

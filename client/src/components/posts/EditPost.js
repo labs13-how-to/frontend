@@ -17,14 +17,18 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-
 // Register FilePond the plugins
+import ProtectedRoute from '../ProtectedRoute.js';
+import CreateStep from './CreatePostStep.js';
 registerPlugin(
   FilePondPluginFileEncode,
   FilePondPluginFileValidateType,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview
 );
+
+
+
 
 class EditPostForm extends React.Component {
     constructor(props) {
@@ -155,19 +159,21 @@ class EditPostForm extends React.Component {
 
     render() {
         return (
-            <div className="pf-container">
-                <Form className="post-form" onSubmit={this.handleSubmit}>
-                    <FormGroup className="pf-title">
-                        <Label>Title</Label>
-                        <Input
-                            className="pf-title-input"
-                            onChange={this.handleChange}
-                            placeholder='title'
-                            value={this.state.title}
-                            name='title'
-                        />
-                    </FormGroup>
-                    <FormGroup className="pf-img">
+            <>{this.state.created_by === window.localStorage.getItem('user_id') ?
+                <>
+                    <div className="pf-container">
+                        <Form className="post-form" onSubmit={this.handleSubmit}>
+                            <FormGroup className="pf-title">
+                                <Label>Title</Label>
+                                <Input
+                                    className="pf-title-input"
+                                    onChange={this.handleChange}
+                                    placeholder='title'
+                                    value={this.state.title}
+                                    name='title'
+                                />
+                            </FormGroup>
+                            <FormGroup className="pf-img">
                         <Label>Main Image</Label>
                         {/* <Input
                             onChange={this.handleChange}
@@ -218,90 +224,97 @@ class EditPostForm extends React.Component {
                         />
                         {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
                     </FormGroup>
-                    <FormGroup className="pf-img">
-                        <Label>Youtube Video (optional)</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='Include a YouTube video here'
-                            value={this.state.vid_url}
-                            name='vid_url'
-                        />
-                    </FormGroup>
-                    <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
-                    <div className='tag-section'>
-                        <p className='post-tags'>
-                            {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
-                        </p>
-                        <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
-                            <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>
+                            <FormGroup className="pf-img">
+                                <Label>Youtube Video (optional)</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Include a YouTube video here'
+                                    value={this.state.vid_url}
+                                    name='vid_url'
+                                />
+                            </FormGroup>
+                            <p>Category <span className='category-span'>(click the same category to unselect)</span></p>
+                            <div className='tag-section'>
+                                <p className='post-tags'>
+                                    {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                                </p>
+                                <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                                    <DropdownToggle split outline >{'Add/Delete Tags\xa0'} </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>
 
-                                    <FormGroup>
-                                        <Label for="exampleSelectMulti">Select Tags</Label>
-                                        <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-                                            {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
-                                        </Input>
-                                    </FormGroup>
+                                            <FormGroup>
+                                                <Label for="exampleSelectMulti">Select Tags</Label>
+                                                <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
+                                                    {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
+                                                </Input>
+                                            </FormGroup>
 
-                                </DropdownItem>
+                                        </DropdownItem>
 
-                            </DropdownMenu>
-                        </InputGroupButtonDropdown >
+                                    </DropdownMenu>
+                                </InputGroupButtonDropdown >
+                            </div>
+
+                            <FormGroup className="pf-description">
+                                <Label>Introduction</Label>
+                                <Input
+                                    type="textarea"
+                                    name='description'
+                                    onChange={this.handleChange}
+                                    value={this.state.description}
+                                    placeholder='Please Provide an Introduction to this Project'
+                                    rows="8"
+                                />
+                            </FormGroup>
+                            <FormGroup className="pf-difficulty">
+                                <Label>Difficulty</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Select Difficulty'
+                                    value={this.state.difficulty}
+                                    name='difficulty'
+                                />
+                            </FormGroup>
+                            <FormGroup className="pf-duration">
+                                <Label>Duration</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Estimated Time to Complete'
+                                    value={this.state.duration}
+                                    name='duration'
+                                />
+                            </FormGroup>
+                            <FormGroup className="pf-skills">
+                                <Label>Prerequisite Skills</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='Skills Needed for this Project'
+                                    value={this.state.skills}
+                                    name='skills'
+                                />
+                            </FormGroup>
+                            <FormGroup className="pf-supplies">
+                                <Label>Tools/Supplies</Label>
+                                <Input
+                                    onChange={this.handleChange}
+                                    placeholder='supplies'
+                                    value={this.state.supplies}
+                                    name='supplies'
+                                />
+                            </FormGroup>
+                            <div className="pf-button-container">
+                                <Button className="pf-button" type='submit'>Save</Button>
+                            </div>
+                        </Form>
                     </div>
+                    <CreateStep history={this.props.history} match={this.props.match} />
+                </>
+                :
+                <ProtectedRoute />
+            }
+            </>
 
-                    <FormGroup className="pf-description">
-                        <Label>Introduction</Label>
-                        <Input
-                            type="textarea"
-                            name='description'
-                            onChange={this.handleChange}
-                            value={this.state.description}
-                            placeholder='Please Provide an Introduction to this Project'
-                            rows="8"
-                        />
-                    </FormGroup>
-                    <FormGroup className="pf-difficulty">
-                        <Label>Difficulty</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='Select Difficulty'
-                            value={this.state.difficulty}
-                            name='difficulty'
-                        />
-                    </FormGroup>
-                    <FormGroup className="pf-duration">
-                        <Label>Duration</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='Estimated Time to Complete'
-                            value={this.state.duration}
-                            name='duration'
-                        />
-                    </FormGroup>
-                    <FormGroup className="pf-skills">
-                        <Label>Prerequisite Skills</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='Skills Needed for this Project'
-                            value={this.state.skills}
-                            name='skills'
-                        />
-                    </FormGroup>
-                    <FormGroup className="pf-supplies">
-                        <Label>Tools/Supplies</Label>
-                        <Input
-                            onChange={this.handleChange}
-                            placeholder='supplies'
-                            value={this.state.supplies}
-                            name='supplies'
-                        />
-                    </FormGroup>
-                    <div className="pf-button-container">
-                        <Button className="pf-button" type='submit'>Save</Button>
-                    </div>
-                </Form>
-            </div>
         )
     }
 }
@@ -329,4 +342,4 @@ export default connect(
         uploadImageHandler,
         getRefresh
     }
-)(EditPostForm);
+)(EditPostForm)

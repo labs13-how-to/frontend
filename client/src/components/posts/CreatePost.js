@@ -25,6 +25,68 @@ import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
+import ProtectedRoute from '../ProtectedRoute.js';
+
+// class CreatePostForm extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.toggleDropDown = this.toggleDropDown.bind(this);
+//         this.toggleDifficulty = this.toggleDifficulty.bind(this);
+//         this.state = {
+//             title: '',
+//             img_url: '',
+//             vid_url: '',
+//             description: '',
+//             difficulty: '',
+//             duration: '',
+//             skills: '',
+//             supplies: '',
+//             created_by: '',
+//             dropdownOpen: false,
+//             difficultyDropdown: false,
+//             tags: [],
+//             postImage: null,
+//             submit: false,
+//         };
+//     }
+
+//     componentDidMount() {
+//         this.hydrateStateWithLocalStorage();
+//         this.props.getTag();
+//     }
+//     componentDidUpdate(prevProps, prevState) {
+//         if (prevProps.submitRefresh !== this.props.submitRefresh) {
+//             this.handlePostSubmit()
+//         }
+
+//     }
+
+//     hydrateStateWithLocalStorage() {
+//         // if the key exists in localStorage
+//         if (!this.state.created_by) {
+//             // get the key's value from localStorage
+//             const id = localStorage.getItem('user_id');
+
+//             try {
+//                 this.setState({ created_by: `${id}` });
+//             } catch (e) {
+//                 // handle empty string
+//                 this.setState({ created_by: `${id}` });
+//             }
+//         }
+//     }
+
+//     //toggle functions
+//     toggleDropDown() {
+//         this.setState({
+//             dropdownOpen: !this.state.dropdownOpen
+//         });
+//     };
+//     toggleDifficulty() {
+//         this.setState({
+//             difficultyDropdown: !this.state.difficultyDropdown
+//         });
+//     };
 // Register FilePond the plugins
 registerPlugin(
   FilePondPluginFileEncode,
@@ -387,12 +449,13 @@ function mapStateToProps({ projectsReducer }) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  {
-    addPost,
-    addTag,
-    getTag,
-    uploadImageHandler
-  }
-)(CreatePostForm);
+export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt') ? connect(
+    mapStateToProps,
+    {
+        addPost,
+        addTag,
+        getTag,
+        uploadImageHandler
+    }
+)(CreatePostForm)
+    : ProtectedRoute;

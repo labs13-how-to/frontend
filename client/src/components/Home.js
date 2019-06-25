@@ -28,7 +28,7 @@ class Home extends React.Component {
                 <div className='cta'>
                     <div className='cta-text'>
                         <h2>Never made a How To post before? We'll help you learn how</h2>
-                        <Button>Learn How</Button>
+                        <Button onClick={() => this.props.history.push('/posts/1')}>Learn How</Button>
                     </div>
                     <div className='cta-img'>
                         <img src={ExamplePost} alt='example'></img>

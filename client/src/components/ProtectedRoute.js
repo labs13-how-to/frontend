@@ -7,7 +7,7 @@ const PostList = (props) => {
 
     return (
         <>
-            <h1>this is a restricted Route</h1>
+            <h1>this is a Restricted Route</h1>
             {window.localStorage.getItem('user_id') && window.localStorage.getItem('jwt') ?
                 <div className='join-btn-div-mobile'>
                     <Button className="join-btn join-btn-mobile" href={`/`}>Home</Button>

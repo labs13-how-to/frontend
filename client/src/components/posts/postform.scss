@@ -15,7 +15,6 @@
 
 .post-form {
   color: #ff851a;
-  // border-bottom: 2px dashed #746D6D;
   text-align: left;
   font-size: 28px;
   width: 80%;
@@ -39,14 +38,29 @@
   justify-content: flex-end;
 }
 
-.pf-button {
-  color: #ffffff;
-  background: #ff851a;
-  font-size: 18px;
-  width: 80px;
-  margin-bottom: 20px;
-  border: none;
+.pf-button{
+    color: #FFFFFF;
+    background: #FF851A;
+    font-size: 18px;
+    width: 80px;
+    margin-bottom: 20px;
+    border: none;
 }
-.image-button {
-  width: 140px;
+.image-button{
+    width: 140px;
+}
+#tag-delete{
+    border: none;
+    padding: 0;
+    width:10px;
+    color: gray;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    :hover{
+        cursor: pointer;
+    }
+}
+#tag-delete:hover{
+    cursor: pointer;
 }

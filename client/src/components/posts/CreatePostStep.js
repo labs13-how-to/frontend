@@ -142,7 +142,7 @@ class CreateStepForm extends React.Component {
                 <h3 className="psf-section-header">
                     Add Steps, Instructions, and additional Photos/Videos here
         </h3>
-                <div className="psf-container">
+                <div id='step-form' className="psf-container">
                     <Form className="psf" onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <Label>Step Title</Label>

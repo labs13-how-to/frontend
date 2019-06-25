@@ -127,6 +127,9 @@ class CreateStepForm extends React.Component {
     const { steps } = this.props.currPost;
     return (
       <>
+        <h3 className="psf-section-header">
+          Add steps, instructions, and additional photos here
+        </h3>
         {steps &&
           steps.map((step, index) => {
             return (
@@ -138,10 +141,7 @@ class CreateStepForm extends React.Component {
                 isEdit={true}
               />
             );
-          })}
-        <h3 className="psf-section-header">
-          Add Steps, Instructions, and additional Photos/Videos here
-        </h3>
+        })}
         <div className="psf-container">
           <Form className="psf" onSubmit={this.handleSubmit}>
             <FormGroup>

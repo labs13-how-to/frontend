@@ -10,24 +10,14 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem,
+  DropdownItem
 } from "reactstrap";
 import { getTag } from "../../actions/steps-tagsActions";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import LogoImage from '../../images/logo.png';
-
-
-
+import LogoImage from "../../images/logo.png";
 
 class NavComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth_id: "",
-      user_id: null
-    };
-  }
   componentDidMount() {
     this.props.getTag();
     this.hydrateStateWithLocalStorage();
@@ -51,9 +41,14 @@ class NavComponent extends React.Component {
   }
 
   render() {
+    const isLogged =
+      window.localStorage.getItem("user_id") &&
+      window.localStorage.getItem("jwt");
     return (
       <Navbar color="white" light expand="md">
-        <NavbarBrand href="/"><img className='logo' src={LogoImage} alt ='logo'/></NavbarBrand>
+        <NavbarBrand href="/">
+          <img className="logo" src={LogoImage} alt="logo" />
+        </NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavSearch {...this.props} />
@@ -71,10 +66,16 @@ class NavComponent extends React.Component {
             ))}
           </DropdownMenu>
         </UncontrolledDropdown>
-        <RouteLink to={`/user/${this.state.auth_id}`}>
-          <FontAwesomeIcon icon={faUser} />
-        </RouteLink>
-      </Navbar >
+        {isLogged ? (
+          <RouteLink to={`/user/${this.props.auth_id}`}>
+            <FontAwesomeIcon icon={faUser} />
+          </RouteLink>
+        ) : (
+          <a href={`${process.env.REACT_APP_BE_URL}/auth/google`}>
+            <FontAwesomeIcon icon={faUser} />
+          </a>
+        )}
+      </Navbar>
     );
   }
 }

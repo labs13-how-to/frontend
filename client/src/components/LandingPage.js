@@ -39,7 +39,7 @@ class LandingPage extends React.Component {
                             <Button className="join-btn" href={`${process.env.REACT_APP_BE_URL}/auth/google`}>Join Now</Button>
                         </div>
                     </div>
-                    <img className='bee-img' src={beeImg} alt='Bee Image'></img>
+                    <img className='bee-img' src={beeImg} alt='Bee'></img>
                 </div>
 
                 <div className='cta-content-mobile'>
@@ -54,7 +54,6 @@ class LandingPage extends React.Component {
                 </div>
 
                 <div className='upper-content'>
-                    <img className='mobile-logo' src={mobileLogo} alt='Mobile Logo'></img>
                     <div className='upper-content-section' id='one'>
                         <div className='img-content'>
                             <img className='category-example' src={categoryExample} alt='category'></img>

@@ -7,6 +7,7 @@
 // @include media-breakpoint-up(md) { ... }
 // @include media-breakpoint-up(lg) { ... }
 
+
 a:link,
 a:visited,
 a:hover,
@@ -17,7 +18,7 @@ a:focus {
 
 @include media-breakpoint-down(sm) {
   .container {
-    padding: 0.5px;
+    padding: 0.2px;
   }
 }
 
@@ -204,7 +205,7 @@ a:focus {
     font-size: 30px;
     line-height: 41px;
     color: white;
-    width: 400px;
+    width: 90%;
     border: none;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -268,16 +269,81 @@ a:focus {
     height: 280px;
     width: 269px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+    @media (max-width: 430px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 380px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 325px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
   }
   .review-example {
     height: 200px;
     width: 355px;
     box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.4);
+    @media (max-width: 430px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 380px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 325px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    
   }
   .post-example {
     height: 292px;
     width: 263px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    @media (max-width: 430px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 380px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    @media (max-width: 325px) {
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+    
   }
 
   h3 {

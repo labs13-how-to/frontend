@@ -96,142 +96,114 @@ class CreateStepForm extends React.Component {
     }
 
     handleStepSubmit = async e => {
-        if (this.state.submit) {
-            this.setState({ submit: false });
+      if (this.state.submit) {
+          this.setState({ submit: false });
 
-            const newStep = {
-                post_id: this.state.post_id,
-                step_num: this.state.step_num,
-                title: this.state.title,
-                instruction: this.state.instruction,
-                img_url: this.props.uploadedImage,
-                vid_url: this.state.vid_url
-            };
-            await this.props.addStep(this.state.post_id, newStep);
+          const newStep = {
+              post_id: this.state.post_id,
+              step_num: this.state.step_num,
+              title: this.state.title,
+              instruction: this.state.instruction,
+              img_url: this.props.uploadedImage,
+              vid_url: this.state.vid_url
+          };
+          await this.props.addStep(this.state.post_id, newStep);
 
-            this.setState({
-                step_num: this.state.step_num + 1,
-                title: "",
-                instruction: "",
-                img_url: "",
-                vid_url: "",
-                postImage: null
-            });
-            document.getElementById("image").value = "";
+          this.setState({
+            step_num: this.state.step_num + 1,
+            title: "",
+            instruction: "",
+            img_url: "",
+            vid_url: "",
+            postImage: null
+        });
+        document.getElementById("image").value = "";
 
-            setTimeout(() => this.props.getPost(this.state.post_id), 300);
-        }
-    };
+        setTimeout(() => this.props.getPost(this.state.post_id), 300);
+      }
+    }
 
-    render() {
-        const { steps } = this.props.currPost;
-        return (
-            <>
-                {steps &&
-                    steps.map((step, index) => {
-                        return (
-                            <PostStep
-                                key={index}
-                                step={step}
-                                index={index}
-                                location={this.props.location}
-                                isEdit={true}
-                            />
-                        );
-                    })}
-                <h3 className="psf-section-header">
-                    Add Steps, Instructions, and additional Photos/Videos here
+  render() {
+    const { steps } = this.props.currPost;
+    return (
+      <>
+        <h3 className="psf-section-header">
+          Add steps, instructions, and additional photos here
         </h3>
-                <div className="psf-container">
-                    <Form className="psf" onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <Label>Step Title</Label>
-                            <Input
-                                className="psf-title-input"
-                                onChange={this.handleChange}
-                                placeholder="What do you want to name this step?"
-                                value={this.state.title}
-                                name="title"
-                            />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label>Instruction</Label>
-                            <Input
-                                type="textarea"
-                                name="instruction"
-                                onChange={this.handleChange}
-                                value={this.state.instruction}
-                                placeholder="Write your instructions here"
-                                rows="4"
-                            />
-                        </FormGroup>
-                        <div className="psf-media">
-                            <FormGroup className="psf-img">
-                                <Label>Image(optional)
-
-                                </Label><p className="category-span">
-                                    (drag and drop to add new image)
-                                    </p>
-                                {/* <Input
-                      onChange={this.handleChange}
-                      placeholder='Image URL'
-                      value={this.state.img_url}
-                      name='img_url'
-                  /> */}
-                                {/* <Input
-                  type="file"
-                  name="img_url"
-                  id="img_url"
-                  accept="image/png, image/jpeg"
-                  onChange={this.handleImageChange}
-                  disabled={this.state.disabled}
-                  // value={this.state.postImage.name}
-                />{" "}
-                */}
-                                <FilePond
-                                    ref={ref => (this.pond = ref)}
-                                    name="image"
-                                    id="image"
-                                    acceptedFileTypes={["image/png", "image/jpeg"]}
-                                    disabled={this.state.disabled}
-                                    allowMultiple={false}
-                                    allowRevert={false}
-                                    server={{
-                                        // Sends image to be uploaded to cloudinary right after drag/dropped
-                                        process: {
-                                            url: `${process.env.REACT_APP_BE_URL}/upload`,
-                                            onload: response => {
-                                                const json = JSON.parse(response);
-                                                this.setState({
-                                                    img_url: json.img_url.img_url
-                                                });
-                                            }
+        {steps &&
+          steps.map((step, index) => {
+            return (
+              <PostStep
+                key={index}
+                step={step}
+                index={index}
+                location={this.props.location}
+                isEdit={true}
+              />
+            );
+        })}
+        <div className="psf-container">
+          <Form className="psf" onSubmit={this.handleSubmit}>
+            <FormGroup>
+              <Label>Step Title</Label>
+              <Input
+                className="psf-title-input"
+                onChange={this.handleChange}
+                placeholder="What do you want to name this step?"
+                value={this.state.title}
+                name="title"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Instruction</Label>
+              <Input
+                type="textarea"
+                name="instruction"
+                onChange={this.handleChange}
+                value={this.state.instruction}
+                placeholder="Write your instructions here"
+                rows="4"
+              />
+            </FormGroup>
+            <div className="psf-media">
+              <FormGroup className="psf-img">
+                <Label>Image<span className="video-span"> (Optional)</span></Label>
+               
+                            <FilePond
+                                ref={ref => (this.pond = ref)}
+                                name="image"
+                                id="image"
+                                acceptedFileTypes={["image/png", "image/jpeg"]}
+                                disabled={this.state.disabled}
+                                allowMultiple={false}
+                                allowRevert={false}
+                                server={{
+                                    // Sends image to be uploaded to cloudinary right after drag/dropped
+                                    process: {
+                                        url: `${process.env.REACT_APP_BE_URL}/upload`,
+                                        onload: response => {
+                                            const json = JSON.parse(response);
+                                            this.setState({
+                                                img_url: json.img_url.img_url
+                                            });
                                         }
-                                    }}
-                                    oninit={() => this.handleInit()}
-                                    // allowFileEncode={true}
-                                    onupdatefiles={fileItems => {
-                                        // Set current file object to this.state
-                                        this.setState({
-                                            postImage: fileItems[0].file
-                                        });
-                                    }}
-                                />
+                                    }
+                                }}
+                                oninit={() => this.handleInit()}
+                                // allowFileEncode={true}
+                                onupdatefiles={fileItems => {
+                                    // Set current file object to this.state
+                                    this.setState({
+                                        postImage: fileItems[0].file
+                                    });
+                                }}
+                            />
                             </FormGroup>
-                            {/* <FormGroup className="psf-vid">
-                                <Label>Video(optional)</Label>
-                                <Input
-                                    onChange={this.handleChange}
-                                    placeholder='Video Url'
-                                    value={this.state.vid_url}
-                                    name='vid_url'
-                                />
-                            </FormGroup> */}
                         </div>
                         <div className="psf-button-container">
                             <Button className="psf-button" type="submit">
                                 Add Step
-              </Button>
+                            </Button>
                         </div>
                     </Form>
                 </div>
@@ -243,12 +215,13 @@ class CreateStepForm extends React.Component {
                         }
                     >
                         Publish
-          </Button>
+                    </Button>
                 </div>
             </>
         );
     }
 }
+
 
 function mapStateToProps({ projectsReducer }) {
     return {

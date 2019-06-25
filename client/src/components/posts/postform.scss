@@ -51,11 +51,39 @@
 .pf-button {
   color: #ffffff;
   background: #ff851a;
-  font-size: 18px;
+  font-size: 16px;
   width: 80px;
   margin-bottom: 20px;
   border: none;
 }
 .image-button {
   width: 140px;
+}
+
+#tag-delete{
+    border: none;
+    padding: 0;
+    width:10px;
+    color: gray;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+    :hover{
+        cursor: pointer;
+    }
+}
+#tag-delete:hover{
+    cursor: pointer;
+}
+
+.post-tags.form-tags{
+  margin-bottom: 0;
+  span{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.new-img {
+    margin-top: 2.5rem
 }

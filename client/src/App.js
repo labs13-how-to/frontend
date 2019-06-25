@@ -17,6 +17,7 @@ import EditPost from "./components/posts/EditPost";
 import Favorites from "./components/users/FavoritePosts";
 import UserNav from "./components/users/UserNav";
 import PostList from "./components/posts/PostList";
+import Footer from "./components/Footer.js";
 
 //SearchBar
 import { getTest, login } from "./actions";
@@ -138,6 +139,7 @@ class App extends Component {
             render={props => <TagsSearch {...props} />}
           />
         </div>
+        <Footer />
       </div>
     );
   }

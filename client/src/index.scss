@@ -8,7 +8,7 @@
 
 body {
   text-align: center;
-  background: #FFDEC2;
+  background: #DDD6C9;
 }
 .App{
   height: 95vh;
@@ -22,18 +22,25 @@ body {
   position: fixed;
 }
 .container{
+  
   min-height: 100%;
   width: 100%;
   font-size: 1.5rem;
   padding: 0 30px ;
+  
   @include media-breakpoint-up(xl) {
     width: 1040px;
     padding: 0 30px;
   }
 }
 .main-container{
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
+  overflow: hidden;
   background: white;
-  padding-top: 100px;
+  padding-top: 60px;
+  @include media-breakpoint-down(sm) { 
+    padding-top: 125px;
+   }
 }
 h1, h2{
   text-align: left;
@@ -244,6 +251,8 @@ h1, h2{
   text-align: left;
   width: 100%;
   margin: 0 auto;
+  background: #FFDEC2;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
   p{
     margin-bottom: 0;
   }

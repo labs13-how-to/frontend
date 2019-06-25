@@ -9,6 +9,9 @@ body {
   text-align: center;
   background: whitesmoke;
 }
+.App{
+  height: 95vh;
+}
 
 .App-header{
   width: 100%;
@@ -18,6 +21,7 @@ body {
   position: fixed;
 }
 .container{
+  min-height: 100%;
   width: 100%;
   font-size: 1.5rem;
   @include media-breakpoint-up(xl) {

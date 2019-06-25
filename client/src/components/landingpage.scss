@@ -6,6 +6,9 @@
 // @include media-breakpoint-up(sm) { ... }
 // @include media-breakpoint-up(md) { ... }
 // @include media-breakpoint-up(lg) { ... }
+html {
+  font-size: 62.5%;
+}
 
 a:link,
 a:visited,

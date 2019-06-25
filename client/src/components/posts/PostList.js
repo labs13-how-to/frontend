@@ -19,7 +19,7 @@ class PostList extends React.Component {
     render() {
         return (
             <>
-                <h2 className='posts-head' onClick={() => this.props.history.push('/posts')}>{this.props.isHome ? 'Trending' : 'Posts'}</h2>
+                <h2 className='posts-head' onClick={() => this.props.history.push('/posts')}>{this.props.isHome ? 'Trending' : 'Trending'}</h2>
                 <div className='post-list'>
                     {this.props.posts.sort((a, b) => (a.review_count > b.review_count) ? -1 : 1).map((post, index) => {
                         if (this.props.isHome && index > 5) return null;

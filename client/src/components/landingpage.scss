@@ -1,6 +1,6 @@
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
-@import "node_modules/bootstrap/scss/mixins/_breakpoints";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints"; 
 
 // Media Queries
 // @include media-breakpoint-up(sm) { ... }
@@ -18,7 +18,11 @@ a:focus {
 
 @include media-breakpoint-down(sm) {
   .container {
-    padding: 0.2px;
+    padding-left:  0.2px;
+    padding-right: 0.2px;
+    .cta-content-mobile{
+      margin-top: 0;
+    }
   }
 }
 
@@ -26,9 +30,13 @@ a:focus {
 
 .cta-content {
   display: flex;
-  width: 100%;
+
+  padding: 0 5%;
+  width: 110%;
   background-color: #ffdec2;
   overflow: hidden;
+  position: relative;
+  right: 5%;
   @include media-breakpoint-down(sm) {
     display: none;
   }
@@ -40,10 +48,18 @@ a:focus {
     align-items: center;
     justify-content: center;
     margin: 70px 50px 50px 35px;
+    @include media-breakpoint-down(md) {
+      p{
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+      }
+      
+    }
     @include media-breakpoint-down(sm) {
       overflow: hidden;
       margin: 10px;
     }
+    
   }
 }
 

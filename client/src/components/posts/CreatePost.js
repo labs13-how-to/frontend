@@ -27,6 +27,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 import ProtectedRoute from '../ProtectedRoute.js';
 
+
 registerPlugin(
     FilePondPluginFileEncode,
     FilePondPluginFileValidateType,
@@ -183,8 +184,9 @@ class CreatePostForm extends React.Component {
     }
 
     render() {
-        return (
-            <div className="pf-container">
+        const hasLoggedIn = localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt');
+        return hasLoggedIn ?
+            (<div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
                         <Label>Title</Label>
@@ -240,7 +242,7 @@ class CreatePostForm extends React.Component {
                             />
                         </div>
                     </FormGroup>
-                    
+
                     <FormGroup className="pf-img">
                         <Label>Youtube Video <span className="video-span">(Optional)</span></Label>
                         <Input
@@ -390,7 +392,9 @@ class CreatePostForm extends React.Component {
                     </div>
                 </Form>
             </div>
-        );
+            ) :
+            (<ProtectedRoute />)
+            ;
     }
 }
 
@@ -404,7 +408,8 @@ function mapStateToProps({ projectsReducer }) {
     };
 }
 
-export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt') ? connect(
+
+export default connect(
     mapStateToProps,
     {
         addPost,
@@ -413,4 +418,3 @@ export default localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProp
         uploadImageHandler
     }
 )(CreatePostForm)
-    : ProtectedRoute;

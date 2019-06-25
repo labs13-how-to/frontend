@@ -22,6 +22,7 @@ class Post extends React.Component {
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
+        window.scrollTo(0, 0);
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -80,7 +81,8 @@ class Post extends React.Component {
                                 </div>}
 
                         </div>
-                        <div className="p-rating">
+                        <a className="p-rating" href='#review-section'>
+
                             <StarRatingComponent
                                 className="review-stars post-stars"
                                 name="stars"
@@ -88,7 +90,8 @@ class Post extends React.Component {
                                 value={Math.round(review_avg)}
                             />
                             <CardText className="review-count post-review">{`• \xa0`}{review_count} Reviews</CardText>
-                        </div>
+
+                        </a>
                         <div className="p-created">
                             <CardText className="p-user">{this.props.user.username}</CardText>
                             <CardText className="date-count">{` • \xa0`}{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
@@ -136,7 +139,7 @@ class Post extends React.Component {
                         </p>
                     </div>
                 </Card>
-                <div>
+                <div id='review-section'>
                     {/* created_by === window.localStorage.getItem('user_id') */}
                     <Reviews
                         post_id={this.state.id}

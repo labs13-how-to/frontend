@@ -1,6 +1,13 @@
 .card.post-card {
     border: none;
+    li {
+        list-style-type: disc;
+        list-style-position: inside;
+        text-indent: -1.4em;
+        padding-left: 1.4em;
+    }
 }
+
 
 .ps-card.p-page {
     width: 90%;

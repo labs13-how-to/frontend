@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
 import { Button } from "reactstrap";
-import bathroomImg from '../images/checker-bathroom.png'
+import beeImg from '../images/bee-img.png'
 import mobileLogo from '../images/mobile-logo.jpg'
 import categoryExample from '../images/category-example.jpg'
 import postExample from '../images/post-example.jpg'
@@ -20,7 +20,7 @@ import MobileStoreButton from 'react-mobile-store-button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import "../landingpage.scss"
+import "./landingpage.scss"
 
 
 class LandingPage extends React.Component {
@@ -34,12 +34,12 @@ class LandingPage extends React.Component {
                 <div className='cta-content'>
                     <div className='p-and-btn'>
                         <p className='cta-text1'>Looking for the perfect DIY project?</p>
-                        <p className='cta-text2'>Whether you’re looking to fix your toilet or to learn how to keep bees, you can find highly-rated solutions reviewed and tested by people like you.</p>
+                        <p className='cta-text2'>Find highly-rated projects reviewed by people like you! Whether you’re looking to fix your toilet or learn to keep bees, you’ll find your solutions here.</p>
                         <div className='join-btn-div'>
                             <Button className="join-btn" href={`${process.env.REACT_APP_BE_URL}/auth/google`}>Join Now</Button>
                         </div>
                     </div>
-                    <img className='checkered-bathroom-img' src={bathroomImg} alt='Checkered Bathroom'></img>
+                    <img className='bee-img' src={beeImg} alt='Bee Image'></img>
                 </div>
 
                 <div className='cta-content-mobile'>

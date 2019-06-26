@@ -257,6 +257,14 @@ h1, h2{
 
 }
 
+.form-control {
+  option:hover{
+    color: #FF851A;
+  }
+}
+
+
+
 ///////////////////footer///////////////////////////
 
 .footer{
@@ -341,6 +349,10 @@ code {
   option:hover{
     color: #FF851A;
   }
+}
+
+#exampleSelectMulti {
+
 }
 
 .tag-section .dropdown-toggle {

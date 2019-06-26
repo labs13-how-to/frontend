@@ -66,8 +66,9 @@ class Review extends React.Component {
 
         return (
             <Card className="r-cards">
-                <h5 className="r-poster">{this.props.review.username}</h5>
+                
                 <CardBody className="r-content">
+                    <h5 className="r-poster">{this.props.review.username}</h5>
                     {!this.state.updating ? (
                         <div className="stars-container">
                             <StarRatingComponent

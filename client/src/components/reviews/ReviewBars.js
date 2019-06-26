@@ -15,7 +15,7 @@ const ReviewBars = props => {
   const calcd = calcRev(reviews);
 
   return (
-    <div className="bar-container">
+    <div className="bar-container" style={{width:'75%', margin:'0 auto', marginBottom: "20px"}}>
       <div className="bar-grid">
         <ReviewBar stars={5} total={reviews.length} ammount={calcd[5]} />
         <ReviewBar stars={4} total={reviews.length} ammount={calcd[4]} />

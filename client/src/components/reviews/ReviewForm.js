@@ -82,7 +82,7 @@ class ReviewForm extends React.Component {
           placeholder="What did you think of this project?"
           onChange={this.handleChange}
           value={this.state.review}
-          rows="6"
+          rows="4"
         />
 
         <div className="rf-btn-container">

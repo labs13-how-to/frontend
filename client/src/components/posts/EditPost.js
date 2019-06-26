@@ -47,6 +47,7 @@ class EditPostForm extends React.Component {
             id: Number(this.props.match.params.id),
             dropdownOpen: false,
             supplyList: [],
+            successAlert: false,
         };
     }
 
@@ -126,6 +127,7 @@ class EditPostForm extends React.Component {
     };
 
     handleChange = e => {
+        if (this.state.successAlert) this.setState({ successAlert: false })
         this.setState({ [e.target.name]: e.target.value });
     };
     handleSupplies = e => {
@@ -152,14 +154,20 @@ class EditPostForm extends React.Component {
             supplies: this.state.supplyList && this.state.supplyList.join(' _ '), created_by, vid_url
         };
         let updatedObj = {}
+        let hasUpdatedObj = false;
         for (var property in stateObj) {
             if (stateObj[property] !== this.props.currPost[property]) {
                 updatedObj = { ...updatedObj, [property]: stateObj[property] }
+                hasUpdatedObj = true;
             }
         }
-        await this.props.updatePost(this.state.id, updatedObj)
+        if (hasUpdatedObj) {
+            this.setState({ successAlert: true })
+            await this.props.updatePost(this.state.id, updatedObj)
+        }
 
-        setTimeout(() => this.props.history.push(`/posts/${this.state.id}`), 400);
+
+        // setTimeout(() => this.props.history.push(`/posts/${this.state.id}`), 400);
     }
 
     handleInit() {
@@ -167,15 +175,14 @@ class EditPostForm extends React.Component {
     }
 
     render() {
-        console.log(this.state.supplyList)
         return (
             <>{this.state.created_by === window.localStorage.getItem('user_id') ?
                 <>
-                    <p><a href="#step-form">Jump to create step</a></p>
+
                     <div className="pf-container">
                         <Form className="post-form" >
                             <FormGroup className="pf-title">
-                                <Label>Title</Label>
+                                <Label className='form-start'>Title</Label>
                                 <Input
                                     className="pf-title-input"
                                     onChange={this.handleChange}
@@ -221,17 +228,17 @@ class EditPostForm extends React.Component {
                                                     this.setState({
                                                         img_url: json.img_url.img_url
                                                     });
+                                                    this.pond.removeFiles();
                                                 }
                                             }
                                         }}
                                         oninit={() => this.handleInit()}
                                         // allowFileEncode={true}
                                         onupdatefiles={fileItems => {
-                                            console.log("FILE ITEMS", fileItems);
                                             // Set current file object to this.state
-                                            this.setState({
-                                                postImage: fileItems[0].file
-                                            });
+                                            if (fileItems[0]) {
+                                                this.setState({ postImage: fileItems[0].file })
+                                            };
                                         }}
                                     />
                                 </FormGroup>
@@ -331,8 +338,12 @@ class EditPostForm extends React.Component {
                                     name='supplies'
                                 />
                             </FormGroup>
+
                             <div className="pf-button-container">
                                 <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
+                            </div>
+                            <div class={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">
+                                Your Post info has been successfully edited!
                             </div>
                         </Form>
                     </div>

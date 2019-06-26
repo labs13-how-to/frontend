@@ -70,7 +70,7 @@ a:focus {
     display: block;
     background-image: url("../images/bee-img-mobile.jpg");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 100%;
     overflow: hidden;
     // margin-top: 110px;
     padding: 0;
@@ -78,23 +78,23 @@ a:focus {
 
   .p-and-btn-mobile {
     display: block;
-    margin-top: 60px;
-    margin-left: 30px;
-    margin-right: 30px;
+    // margin-top: 60px;
+    // margin-left: 30px;
+    // margin-right: 30px;
 
     h1 {
       text-align: center;
       color: white;
       font-family: "Nunito", sans-serif;
-      font-size: 35px;
-      line-height: 47px;
+      font-size: 30px;
+      // line-height: 41px;
     }
 
     h2 {
       color: white;
       font-family: "Nunito", sans-serif;
       font-size: 50px;
-      line-height: 69px;
+      // line-height: 69px;
       text-align: center;
     }
     .join-btn-div-mobile {
@@ -109,6 +109,57 @@ a:focus {
       width: 112px;
       border: none;
       margin: 0;
+    }
+
+    @media (max-width: 430px) {
+      background-size: 100%;
+      padding: 18% 12%;
+   
+      h1 { 
+        font-size: 25px;
+      }
+      h2 {
+        font-size: 30px;
+        line-height: 50px;
+       }
+       .join-btn-div-mobile { 
+
+       }
+       .join-btn-mobile { 
+
+       }
+    }
+    @media (max-width: 380px) { 
+      padding: 15% 8%;
+      h1 { 
+
+      }
+      h2 {
+
+       }
+       .join-btn-div-mobile { 
+
+       }
+       .join-btn-mobile { 
+         
+       }
+    }
+    @media (max-width: 325px) {
+      // padding-top: 109px;
+      padding: 15% 9%;
+      h1 { 
+        font-size: 20px;
+      }
+      h2 {
+        font-size: 25px;
+        line-height: 40px;
+       }
+       .join-btn-div-mobile { 
+
+       }
+       .join-btn-mobile { 
+         
+       }
     }
   }
 }
@@ -215,7 +266,7 @@ a:focus {
     @include media-breakpoint-down(sm) {
       display: block;
       text-align: center;
-      margin-top: 40px;
+      margin-top: 60px;
     }
   }
 
@@ -246,6 +297,20 @@ a:focus {
     padding-top: 65px;
     padding-bottom: 35px;
   }
+  @media (max-width: 430px) {
+    .img-content {
+      align-self: center;
+      margin-right: 0%;
+      width: 70%;
+    }
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  @media (max-width: 380px) {
+  }
+  @media (max-width: 325px) {
+  }
 }
 #two {
   flex-direction: row-reverse;
@@ -267,11 +332,25 @@ a:focus {
     border: none;
     padding: 35px 0 35px 0;
   }
+  @media (max-width: 430px) {
+    .img-content {
+      margin-right: 0%;
+        align-self: center;
+        margin-right: 0%;
+        width: 80%;
+      }
+      .text-content {
+        margin-right: 0%;
+      }
+  }
+  @media (max-width: 380px) {
+  }
+  @media (max-width: 325px) {
+  }
 }
 
 #three {
   padding: 60px 0;
-  // padding-right: 60px;
 
   .text-content {
     padding-left: 40px;
@@ -287,6 +366,24 @@ a:focus {
     flex-direction: column-reverse;
     padding-top: 35px;
     padding-bottom: 0px;
+  }
+  @media (max-width: 430px) {
+    .text-content {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .post-example {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    .img-content {
+        align-self: center;
+        width: 65%;
+      }
+  }
+  @media (max-width: 380px) {
+  }
+  @media (max-width: 325px) {
   }
 }
 
@@ -440,7 +537,11 @@ a:focus {
     @include media-breakpoint-down(sm) {
       font-size: 35px;
     }
+    @media (max-width: 380px) {
+      font-size: 30px;
+    }
   }
+
   h3 {
     color: #ff851a;
     text-align: left;
@@ -449,6 +550,9 @@ a:focus {
     line-height: 41px;
     @include media-breakpoint-down(sm) {
       font-size: 25px;
+    }
+    @media (max-width: 380px) {
+      font-size: 22px;
     }
   }
   p {

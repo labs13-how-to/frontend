@@ -1,20 +1,19 @@
 ***Must create .env file inside of client folder and include environment variables provided below***
 
-# How-To
+# Review It Yourself (formerly How To)
 
 1️⃣ You can find the deployed project at [https://how-tutor.netlify.com/](https://how-tutor.netlify.com/).
 
 ## 4️⃣ Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
 |                                       [Patrick Steveson](https://github.com/Mrsteveson)                                        |                                       [Matt Poloni](https://github.com/matt-poloni)                                        |                                       [Austin James](https://github.com/AJLambda)                                        |                                       [Nick Stricker](https://github.com/NickStrick)                                        |                                       [Meera Anderson](https://github.com/meera-andersen)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/Mrsteveson)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/matt-poloni)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/AJLambda)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/NickStrick)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/meera-andersen)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mrsteveson)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/matt-poloni)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AJLambda)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NickStrick)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/meera-andersen)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/patricktsteveson/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-<br>
+<br> 
 <br>
 
 🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
@@ -22,7 +21,7 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://how-tutor.netlify.com/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 🚫 more info on using badges [here](https://github.com/badges/shields)
@@ -31,9 +30,9 @@
 
 1️⃣ [Trello Board](https://trello.com/b/vZ0hvT9Q/labs-13-how-to)
 
-1️⃣ [Product Canvas](https://docs.google.com/document/d/175olB_zZ7dd4bmDLb2WfAMQfk81Ej3lKhnXlmTIpP5A/edit#heading=h.gg2qc9jbcbvg)
+1️⃣ [Product Canvas](https://docs.google.com/document/d/15nZaRpPzZzk1_5YSAk8HZCX6QhrLdlSqTy4NZZlJHSU/edit?usp=sharing)
 
-1️⃣ [UX Design files](https://invis.io/P4S6N4XWEC7), (https://whimsical.com/YUtnHkNyd6fEnYrJ6oyMLi)
+1️⃣ [UX Design files](https://invis.io/P4S6N4XWEC7), [UX Whimsical](https://whimsical.com/YUtnHkNyd6fEnYrJ6oyMLi)
 
 This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top. 
 
@@ -75,7 +74,7 @@ How To aims to provide a central location for anyone looking to find reliable, h
 -    easy customization
 
 
-#### Front end deployed to `netlify`.
+#### Front end deployed to `Netlify`.
 
 #### [Back end](https://github.com/labs13-how-to/backend) built using:
 
@@ -88,13 +87,13 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 #### Postgres
 
--    works better with our deployment sites
--    large scale, can hold lots of data 
+-    Works better with our deployment sites
+-    Large scale, can hold lots of data 
 
 #### Cloudinary
 
--    Mangaes our images and videos
--    large scale, can hold lots of data 
+-    Manages our images and videos
+-    Large scale, can hold lots of data 
 
 🚫 List the rest of the back end features and libraries in the same format as the framework above
 
@@ -106,9 +105,9 @@ Passport is authentication middleware for Node.js. Extremely flexible and modula
 
 ## 2️⃣ Payment API here
 
-🚫Replace text below with a description of the API
+## Stripe
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+Future releases are intending to implement stripe for any new features that require payment.
 
 ## Cloudinary
 
@@ -130,22 +129,8 @@ Volunteering your time; it pays you and your whole community fantastic dividends
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
- - REACT_APP_BE_URL=http://localhost:5000
- - REACT_APP_FE_ROOT=http://localhost:3000
-
-
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+- REACT_APP_BE_URL=http://localhost:5000
+- REACT_APP_FE_ROOT=http://localhost:3000
 
 # 5️⃣ Content Licenses
 
@@ -158,6 +143,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 # 4️⃣ Testing
 
+Interal QA
 🚫Document what you used for testing and why
 
 # 4️⃣ Installation Instructions

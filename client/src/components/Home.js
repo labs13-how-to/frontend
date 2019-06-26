@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 import TagsSearch from './posts/TagsSearch';
 import PostList from './posts/PostList.js';
-import ExamplePost from '../images/example-post-img.png';
+import ExamplePost from '../images/bike_cta.png';
 
 
 class Home extends React.Component {
@@ -39,9 +39,21 @@ class Home extends React.Component {
                     <PostList history={this.props.history} isHome={true} />
                     <NavLink to='/posts' className='posts-button'>See More</NavLink>
                 </div>
-                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Art'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Apparel'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Appliances'} isHome={true} />
                 <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Baby'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Beauty'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Cooking'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Crafts'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Electronics'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Furniture'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Home Improvement'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Pets'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Toys'} isHome={true} />
             </React.Fragment>
         );
     }

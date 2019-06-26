@@ -8,7 +8,7 @@ const Footer = (props) => {
             <p>© 2019 Review It Yourself</p>
             <p>iPhone App</p>
             <p>License MIT</p>
-            <p>View Source</p>
+            <a href="https://github.com/labs13-how-to"><p>View Source</p></a>
         </div>
     )
 }

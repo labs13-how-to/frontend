@@ -143,7 +143,7 @@ class EditPostForm extends React.Component {
         const {
             title, img_url, description,
             difficulty, duration, skills,
-            supplies, created_by,
+            created_by,
         } = this.state
         const vid_url = this.state.vid_url.split('&')[0];
         const stateObj = {
@@ -171,7 +171,7 @@ class EditPostForm extends React.Component {
         return (
             <>{this.state.created_by === window.localStorage.getItem('user_id') ?
                 <>
-                    <p><a href="#step-form">Jump to create step</a></p>
+
                     <div className="pf-container">
                         <Form className="post-form" >
                             <FormGroup className="pf-title">
@@ -192,7 +192,7 @@ class EditPostForm extends React.Component {
                             value={this.state.img_url}
                             name='img_url'
                         /> */}
-                                <img className='img-fluid' src={this.state.img_url} />
+                                <img className='img-fluid' src={this.state.img_url} alt="upload"/>
                                 {/* <Input
                             type="file"
                             name="img_url"

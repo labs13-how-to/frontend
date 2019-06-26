@@ -4,9 +4,6 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { addStep } from "../../actions/steps-tagsActions";
 import { getPost, getPosts, uploadImageHandler } from "../../actions/index";
 import PostStep from "./PostStep";
-//React Scroll
-import * as Scroll from 'react-scroll';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 // Import FilePond styles
@@ -207,22 +204,6 @@ class CreateStepForm extends React.Component {
                             <Button className="psf-button" type="submit">
                                 Add Step
                             </Button>
-                            {/* <Link
-                                // className="psf-button" 
-                                // activeClass="active" 
-                                className="btn"
-                                value="Test 2" 
-                                to="test2" 
-                                spy={true} 
-                                smooth={true} 
-                                // offset={50}
-                                // duration={500}
-                                type="submit"
-                                onClick={this.handleSubmit}
-                                delay={5000}
-                                 >
-                                Add Step
-                                </Link> */}
                         </div>
                     </Form>
                 </div>

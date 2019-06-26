@@ -1,11 +1,9 @@
 import React from 'react';
 // import Posts from './posts/Posts.js';
 import { connect } from 'react-redux';
-import Posts from './posts/Posts.js';
 import { getPosts } from '../actions';
 import { Button } from "reactstrap";
 import beeImg from '../images/bee-img.png'
-import mobileLogo from '../images/mobile-logo.jpg'
 import categoryExample from '../images/category-example.jpg'
 import postExample from '../images/post-example.jpg'
 import reviewExample from '../images/review-example.jpg'

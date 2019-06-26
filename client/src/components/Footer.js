@@ -5,8 +5,10 @@ const Footer = (props) => {
 
     return (
         <div className='footer'>
-            <p>© Copyright 2019</p>
-            <p>By Lambda School's How-To team</p>
+            <p>© 2019 Review It Yourself</p>
+            <p>iPhone App</p>
+            <p>License MIT</p>
+            <a href="https://github.com/labs13-how-to"><p>View Source</p></a>
         </div>
     )
 }

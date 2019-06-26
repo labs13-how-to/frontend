@@ -48,6 +48,7 @@ class EditPostForm extends React.Component {
             dropdownOpen: false,
             supplyList: [],
             successAlert: false,
+            difficultyDropdown: false,
         };
     }
 
@@ -56,6 +57,13 @@ class EditPostForm extends React.Component {
             dropdownOpen: !this.state.dropdownOpen
         });
     };
+
+    toggleDifficulty = () => {
+        console.log(this.state)
+        this.setState({
+            difficultyDropdown: !this.state.difficultyDropdown
+        });
+    }
 
     componentDidMount() {
 
@@ -199,7 +207,7 @@ class EditPostForm extends React.Component {
                             value={this.state.img_url}
                             name='img_url'
                         /> */}
-                                <img className='img-fluid' src={this.state.img_url} alt="upload"/>
+                                <img className='img-fluid' src={this.state.img_url} alt="upload" />
                                 {/* <Input
                             type="file"
                             name="img_url"
@@ -259,7 +267,7 @@ class EditPostForm extends React.Component {
                                     <p className='post-tags'>
                                         {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
                                     </p>
-                                    <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
+                                    <InputGroupButtonDropdown className='desktop-select' addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                         <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem>
@@ -275,6 +283,22 @@ class EditPostForm extends React.Component {
 
                                         </DropdownMenu>
                                     </InputGroupButtonDropdown >
+                                    <select
+                                        className='form-control mobile-select '
+                                        multiple={false}
+                                        onChange={this.handleTagsChange}
+                                        name="taginput"
+                                        id="exampleSelectMulti"
+                                    >
+                                        <option value={""}>&nbsp;Select Categories&nbsp;</option>
+                                        {this.props.allTags
+                                            ? this.props.allTags.map(tag => (
+                                                <option key={tag.id} value={tag.name.toLowerCase()}>
+                                                    {tag.name}
+                                                </option>
+                                            ))
+                                            : null}
+                                    </select>
                                 </div>
                             </FormGroup>
                             <FormGroup className="pf-description">
@@ -290,13 +314,57 @@ class EditPostForm extends React.Component {
                             </FormGroup>
                             <FormGroup className="pf-difficulty">
                                 <Label>Difficulty</Label>
-                                <Input
+                                <InputGroupButtonDropdown
+                                    className='desktop-select'
+                                    addonType="append"
+                                    isOpen={this.state.difficultyDropdown}
+                                    toggle={this.toggleDifficulty}
+                                >
+                                    <DropdownToggle split outline>
+                                        {this.state.difficulty
+                                            ? `${this.state.difficulty} \xa0\xa0`
+                                            : "Select Difficulty\xa0"}{" "}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>
+                                            <FormGroup>
+                                                <Label for="exampleSelectMulti">Select Difficulty</Label>
+
+                                                <Input
+                                                    className="form-control"
+                                                    onChange={this.handleChange}
+                                                    type="select"
+                                                    name="difficulty"
+                                                    id="exampleSelectMulti"
+                                                    multiple
+                                                >
+                                                    <option value={`Very Easy`}>Very Easy</option>
+                                                    <option value={`Easy`}>Easy</option>
+                                                    <option value={`Moderate`}>Moderate</option>
+                                                    <option value={`Hard`}>Hard</option>
+                                                    <option value={`Very Hard`}>Very Hard</option>
+                                                </Input>
+
+                                            </FormGroup>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </InputGroupButtonDropdown>
+                                <select
+                                    className='form-control mobile-select'
+                                    multiple={false}
                                     onChange={this.handleChange}
-                                    placeholder='Select Difficulty'
+                                    name="difficulty"
                                     value={this.state.difficulty}
-                                    name='difficulty'
-                                />
+                                    id="exampleSelectMulti"
+                                >
+                                    <option value={`Very Easy`}>Very Easy</option>
+                                    <option value={`Easy`}>Easy</option>
+                                    <option value={`Moderate`}>Moderate</option>
+                                    <option value={`Hard`}>Hard</option>
+                                    <option value={`Very Hard`}>Very Hard</option>
+                                </select>
                             </FormGroup>
+
                             <FormGroup className="pf-duration">
                                 <Label>Duration</Label>
                                 <Input

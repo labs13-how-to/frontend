@@ -125,13 +125,14 @@ class CreateStepForm extends React.Component {
             setTimeout(() => this.props.getPost(this.state.post_id), 300);
         }
     }
+
     render() {
         const { steps } = this.props.currPost;
         return (
             <>
-                <h3 className="psf-section-header">
-                    Add Steps, Instructions, and additional Photos/Videos here
-        </h3>
+                <h3 id='step-form' className="psf-section-header">
+                    Add steps, instructions, and additional photos here
+                </h3>
                 {steps &&
                     steps.map((step, index) => {
                         return (

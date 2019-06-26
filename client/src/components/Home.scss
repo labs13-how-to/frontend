@@ -1,8 +1,18 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints"; 
+// @include media-breakpoint-up(sm) { ... }
+// @include media-breakpoint-up(md) { ... }
+// @include media-breakpoint-up(lg) { ... }
 .cta{
+    position: relative;
     height: 410px;
     background:#FFDEC2;
     display: flex;
     padding: 50px;
+    width: 110%;
+    right: 5%;
+    
     .cta-text{
         display:flex;
         flex-direction: column;
@@ -28,10 +38,58 @@
         width: 60%;
         padding-right: 90px;
         img{
-            width:100%;
+            width:80%;
         }
     }
+    @include media-breakpoint-down(md) { 
+        height: 410px;
+        background:#FFDEC2;
+        display: flex;
+        padding: 10px;
+        width: 110%;
+        // right: 50px;
+        overflow: hidden;
+        
+        .cta-text{
+            display:flex;
+            flex-direction: column;
+            width: 100%;
+            margin: 0;
+            h2{
+                width: 70%;
+                // height: 500px;
+            color: #494949;
+            line-height: 3.5rem;
+            font-size: 2rem;
+            margin: 30px 100px;
+            }
+            .btn{
+                margin: 0 100px;
+                width: 130px;
+                background: white;
+                color: #FF851A;
+                border: 1px solid #FF851A;
+                font-size: 1.2rem;
+                padding: 5px 15px;
+            }
+        }
+        
+     }
+     @include media-breakpoint-down(sm) { 
+        width: 120%;
+        right: 10%;
+        .cta-img{
+            height: 100%;
+            // width: 60%;
+            // padding-right: 90px;
+            display: none;
+            img{
+                // display: none
+            }
+        }
+     }
 }
+
 
 h2.posts-head{
     margin: 60px 30px 20px;
@@ -90,7 +148,7 @@ h2.posts-head{
     .card-img{
         height: 240px;
         width: 300%;
-        border-bottom: 1px solid lightgray;
+        // border-bottom: 1px solid lightgray;
         background: #FFDEC2
     }
     .post-stars{

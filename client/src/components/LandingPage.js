@@ -1,6 +1,7 @@
 import React from 'react';
 // import Posts from './posts/Posts.js';
 import { connect } from 'react-redux';
+import Posts from './posts/Posts.js';
 import { getPosts } from '../actions';
 import { Button } from "reactstrap";
 import beeImg from '../images/bee-img.png'
@@ -95,7 +96,7 @@ class LandingPage extends React.Component {
                     <h2>Browse From Your Phone</h2>
                     <div className="middle-content-main">
                         <div className="iphone-div">
-                        <img className='iphone-img' src={iphone} alt='iPhone'></img>
+                            <img className='iphone-img' src={iphone} alt='iPhone'></img>
                         </div>
                         <div className='middle-content-main2'>
                             <div className='middle-content-section'></div>
@@ -124,104 +125,104 @@ class LandingPage extends React.Component {
 
                         <div className='bottom-content-section' id="angel">
                             <div className='about-img'>
-                            <img className='profile-img' src={angel} alt='angel'></img>
+                                <img className='profile-img' src={angel} alt='angel'></img>
                             </div>
                             <div className="about-info">
-                            <h3>Angel Buenrostro</h3>
-                            <h4>iOS Developer</h4>
-                            <a href="https://github.com/angelbuenrostro">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
-                            </a>
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                                <h3>Angel Buenrostro</h3>
+                                <h4>iOS Developer</h4>
+                                <a href="https://github.com/angelbuenrostro">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
-                            
+
 
                         </div>
                         <div className='bottom-content-section' id="patrick">
                             <div className='about-img'>
-                            <img className='profile-img' src={patrick} alt='patrick'></img>
+                                <img className='profile-img' src={patrick} alt='patrick'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Patrick Steveson</h3>
-                            <h4>Web Developer</h4>
-                            <a href="https://github.com/Mrsteveson">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
-                            </a>
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                            <div className="about-info">
+                                <h3>Patrick Steveson</h3>
+                                <h4>Web Developer</h4>
+                                <a href="https://github.com/Mrsteveson">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
 
                         </div>
                         <div className='bottom-content-section' id="nick">
                             <div className='about-img'>
-                            <img className='profile-img' src={nick} alt='nick'></img>
+                                <img className='profile-img' src={nick} alt='nick'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Nick Stricker</h3>
-                            <h4>Web Developer</h4>
-                            <a href="https://github.com/NickStrick">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}}  />
-                            </a>
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                            <div className="about-info">
+                                <h3>Nick Stricker</h3>
+                                <h4>Web Developer</h4>
+                                <a href="https://github.com/NickStrick">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
 
                         </div>
                         <div className='bottom-content-section' id="matt">
                             <div className='about-img'>
-                            <img className='profile-img' src={matt} alt='matt'></img>
+                                <img className='profile-img' src={matt} alt='matt'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Matt Poloni</h3>
-                            <h4>Web Developer</h4>
-                            <a href="https://github.com/matt-poloni">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}}/>
-                            </a>
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                            <div className="about-info">
+                                <h3>Matt Poloni</h3>
+                                <h4>Web Developer</h4>
+                                <a href="https://github.com/matt-poloni">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
 
                         </div>
                         <div className='bottom-content-section' id="austin">
                             <div className='about-img'>
-                            <img className='profile-img' src={austin} alt='austin'></img>
+                                <img className='profile-img' src={austin} alt='austin'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Austin James</h3>
-                            <h4>Web Developer</h4>
-                            <a href="https://github.com/AJLambda">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
-                            </a>
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                            <div className="about-info">
+                                <h3>Austin James</h3>
+                                <h4>Web Developer</h4>
+                                <a href="https://github.com/AJLambda">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
 
                         </div>
                         <div className='bottom-content-section'>
                             <div className='about-img'>
-                            <img className='profile-img' src={meera} alt='meera'></img>
+                                <img className='profile-img' src={meera} alt='meera'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Meera Andersen</h3>
-                            <h4>UX Designer</h4>
-                            <a href="https://github.com/meera-andersen">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/meera-andersen-6a57a0178/">
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
-                            </a>
+                            <div className="about-info">
+                                <h3>Meera Andersen</h3>
+                                <h4>UX Designer</h4>
+                                <a href="https://github.com/meera-andersen">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <a href="https://www.linkedin.com/in/meera-andersen-6a57a0178/">
+                                    <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                                </a>
                             </div>
 
                         </div>
-                         <div className='bottom-content-section' id="kevin">
+                        <div className='bottom-content-section' id="kevin">
                             <div className='about-img'>
-                            <img className='profile-img' src={kevin} alt='kevin'></img>
+                                <img className='profile-img' src={kevin} alt='kevin'></img>
                             </div>
-                             <div className="about-info">
-                            <h3>Kevin Brack</h3>
-                            <h4>Team Lead</h4>
-                            <a href="https://github.com/KevinBrack">
-                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
-                            </a>
-                            <a href="https://www.linkedin.com/in/kevin-brack-273a25a0/">
-                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
-                            </a>
+                            <div className="about-info">
+                                <h3>Kevin Brack</h3>
+                                <h4>Team Lead</h4>
+                                <a href="https://github.com/KevinBrack">
+                                    <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{ marginRight: '20px' }} />
+                                </a>
+                                <a href="https://www.linkedin.com/in/kevin-brack-273a25a0/">
+                                    <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                                </a>
                             </div>
 
                         </div>

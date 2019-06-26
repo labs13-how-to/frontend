@@ -21,10 +21,10 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import ProtectedRoute from '../ProtectedRoute.js';
 import CreateStep from './CreatePostStep.js';
 registerPlugin(
-  FilePondPluginFileEncode,
-  FilePondPluginFileValidateType,
-  FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview
+    FilePondPluginFileEncode,
+    FilePondPluginFileValidateType,
+    FilePondPluginImageExifOrientation,
+    FilePondPluginImagePreview
 );
 
 
@@ -164,13 +164,14 @@ class EditPostForm extends React.Component {
 
     handleInit() {
         console.log("FilePond instance has initialised", this.pond);
-      }
+    }
 
     render() {
         console.log(this.state.supplyList)
         return (
             <>{this.state.created_by === window.localStorage.getItem('user_id') ?
                 <>
+                    <p><a href="#step-form">Jump to create step</a></p>
                     <div className="pf-container">
                         <Form className="post-form" >
                             <FormGroup className="pf-title">
@@ -184,15 +185,15 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup className="pf-img">
-                        <Label>Main Image</Label>
-                        {/* <Input
+                                <Label>Main Image</Label>
+                                {/* <Input
                             onChange={this.handleChange}
                             placeholder='img_url'
                             value={this.state.img_url}
                             name='img_url'
                         /> */}
-                        <img className='img-fluid' src={this.state.img_url} />
-                        {/* <Input
+                                <img className='img-fluid' src={this.state.img_url} />
+                                {/* <Input
                             type="file"
                             name="img_url"
                             id="img_url"
@@ -200,42 +201,42 @@ class EditPostForm extends React.Component {
                             onChange={this.handleImageChange}
                             disabled={this.state.disabled}
                         /> */}
-                        <FormGroup>
-                            <Label className='new-img'>Upload New Image</Label>
-                            <FilePond
-                                ref={ref => (this.pond = ref)}
-                                name="image"
-                                id="image"
-                                acceptedFileTypes={["image/png", "image/jpeg"]}
-                                disabled={this.state.disabled}
-                                allowMultiple={false}
-                                allowRevert={false}
-                                server={{
-                                // Sends image to be uploaded to cloudinary right after drag/dropped
-                                process: {
-                                    url: `${process.env.REACT_APP_BE_URL}/upload`,
-                                    onload: response => {
-                                    const json = JSON.parse(response);
-                                    console.log(json);
-                                    this.setState({
-                                        img_url: json.img_url.img_url
-                                    });
-                                    }
-                                }
-                                }}
-                                oninit={() => this.handleInit()}
-                                // allowFileEncode={true}
-                                onupdatefiles={fileItems => {
-                                console.log("FILE ITEMS", fileItems);
-                                // Set current file object to this.state
-                                this.setState({
-                                    postImage: fileItems[0].file
-                                });
-                                }}
-                            />
-                        </FormGroup>
-                        {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
-                    </FormGroup>
+                                <FormGroup>
+                                    <Label className='new-img'>Upload New Image</Label>
+                                    <FilePond
+                                        ref={ref => (this.pond = ref)}
+                                        name="image"
+                                        id="image"
+                                        acceptedFileTypes={["image/png", "image/jpeg"]}
+                                        disabled={this.state.disabled}
+                                        allowMultiple={false}
+                                        allowRevert={false}
+                                        server={{
+                                            // Sends image to be uploaded to cloudinary right after drag/dropped
+                                            process: {
+                                                url: `${process.env.REACT_APP_BE_URL}/upload`,
+                                                onload: response => {
+                                                    const json = JSON.parse(response);
+                                                    console.log(json);
+                                                    this.setState({
+                                                        img_url: json.img_url.img_url
+                                                    });
+                                                }
+                                            }
+                                        }}
+                                        oninit={() => this.handleInit()}
+                                        // allowFileEncode={true}
+                                        onupdatefiles={fileItems => {
+                                            console.log("FILE ITEMS", fileItems);
+                                            // Set current file object to this.state
+                                            this.setState({
+                                                postImage: fileItems[0].file
+                                            });
+                                        }}
+                                    />
+                                </FormGroup>
+                                {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
+                            </FormGroup>
                             <FormGroup className="pf-img">
                                 <Label>Youtube Video <span className="video-span">(Optional)</span></Label>
                                 <Input
@@ -249,7 +250,7 @@ class EditPostForm extends React.Component {
                                 <p>Category</p>
                                 <div className='tag-section'>
                                     <p className='post-tags'>
-                                        {this.props.currPost.tags && this.props.currPost.tags.map(tag => <span key={tag.id}>{tag.name}</span>)}
+                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
                                     </p>
                                     <InputGroupButtonDropdown addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                         <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
@@ -335,7 +336,7 @@ class EditPostForm extends React.Component {
                             </div>
                         </Form>
                     </div>
-                    <CreateStep history={this.props.history} match={this.props.match} />
+                    <CreateStep history={this.props.history} match={this.props.match} location={this.props.location} />
                 </>
                 :
                 <ProtectedRoute />

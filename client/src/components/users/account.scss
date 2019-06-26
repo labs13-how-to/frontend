@@ -1,7 +1,12 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints"; 
+
 .account-buttons {
     display: flex;
     justify-content: flex-end;
     padding-right: 20px;
+    margin-top: 30px;
 }
 
 .logout-button {
@@ -23,6 +28,9 @@
     justify-content: flex-start;
     border-bottom: 1px solid #979797;
     padding-bottom: 20px;
+    @include media-breakpoint-down(sm) { 
+        margin-left: 20px;
+    }
 }
 
 .account-posts {

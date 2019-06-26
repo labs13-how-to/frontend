@@ -57,6 +57,7 @@ class CreatePostForm extends React.Component {
             postImage: null,
             submit: false,
             supplyList: [],
+            showAlert: false,
         };
     }
 
@@ -97,6 +98,7 @@ class CreatePostForm extends React.Component {
     }
 
     handleChange = e => {
+        if (this.state.showAlert) this.setState({ showAlert: false })
         this.setState({ [e.target.name]: e.target.value });
     };
 
@@ -135,8 +137,19 @@ class CreatePostForm extends React.Component {
     // submit image and form
     handleSubmit = e => {
         e.preventDefault();
-        this.props.uploadImageHandler(this.state.postImage);
-        this.setState({ submit: true });
+        if (this.state.created_by
+            && this.state.title
+            && this.state.postImage
+            && this.state.description
+            && this.state.duration
+            && this.state.difficulty
+            && this.state.tags[0]) {
+
+            this.props.uploadImageHandler(this.state.postImage);
+            this.setState({ submit: true, showAlert: false });
+        } else {
+            this.setState({ showAlert: true })
+        }
     };
 
     //submit post after image
@@ -154,6 +167,7 @@ class CreatePostForm extends React.Component {
                 supplies: this.state.supplyList.join(' _ '),
                 created_by: this.state.created_by
             };
+
 
             await this.props.addPost(newPost);
 
@@ -177,6 +191,10 @@ class CreatePostForm extends React.Component {
                 });
                 this.props.history.push(`/forms/post/edit/${this.props.addId}`);
             }, 300);
+
+
+
+
         }
     };
 
@@ -190,7 +208,7 @@ class CreatePostForm extends React.Component {
             (<div className="pf-container">
                 <Form className="post-form" onSubmit={this.handleSubmit}>
                     <FormGroup className="pf-title">
-                        <Label>Title</Label>
+                        <Label className='form-start'>Title</Label>
                         <Input
                             className="pf-title-input"
                             onChange={this.handleChange}
@@ -254,7 +272,7 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <FormGroup>
-                        <p>Category{" "}</p>
+                        <p>Category</p>
                         <div className="tag-section">
                             <p className="post-tags form-tags">
                                 {this.state.tags && this.state.tags.map((tag, index) => {
@@ -357,7 +375,7 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <FormGroup className="pf-skills">
-                        <Label>Prerequisite Skills</Label>
+                        <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                         <Input
                             onChange={this.handleChange}
                             placeholder="Are there any skills needed to complete this project?"
@@ -366,10 +384,11 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <FormGroup className="pf-supplies">
-                        <Label>Tools/Supplies{" "}
+                        <Label>Tools/Supplies{" "}<span className="video-span">(Optional)</span>{" "}
                             <span className="category-span">
                                 (Type your item and press Enter)
                             </span>
+
                         </Label>
                         <p className='post-tags'>
                             {this.state.supplyList && this.state.supplyList.map((sup, index) => {
@@ -392,6 +411,9 @@ class CreatePostForm extends React.Component {
                             name='supplies'
                         />
                     </FormGroup>
+                    <div class={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                        * You Must Fill in the required fields to submit a post! *
+                    </div>
                     <div className="pf-button-container">
                         <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>

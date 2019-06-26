@@ -34,13 +34,13 @@ class CreateStepForm extends React.Component {
             img_url: "",
             vid_url: "",
             submit: false,
-            postImage: undefined
+            postImage: undefined,
+            showAlert: false,
         };
     }
 
     componentDidMount() {
         this.props.getPost(this.state.post_id);
-        console.log("CURR POST", this.props.currPost);
         if (this.props.currPost.length)
             this.setState({
                 step_num: this.props.currPost.steps.length + 1
@@ -70,6 +70,7 @@ class CreateStepForm extends React.Component {
         }
     }
     handleChange = e => {
+        if (this.state.showAlert) this.setState({ showAlert: false })
         this.setState({ [e.target.name]: e.target.value });
     };
 
@@ -79,16 +80,25 @@ class CreateStepForm extends React.Component {
     };
 
     handleSubmit = e => {
-        this.setState({ submit: true });
         e.preventDefault();
-        if (!this.state.postImage) {
-            setTimeout(() => this.handleStepSubmit(), 100);
+        if (this.state.title
+            && this.state.instruction
+            && this.state.post_id) {
+
+            this.setState({ submit: true });
+
+            if (!this.state.postImage) {
+                setTimeout(() => this.handleStepSubmit(), 100);
+            } else {
+                setTimeout(
+                    () => this.props.uploadImageHandler(this.state.postImage),
+                    100
+                );
+            }
         } else {
-            setTimeout(
-                () => this.props.uploadImageHandler(this.state.postImage),
-                100
-            );
+            this.setState({ showAlert: true });
         }
+
     };
 
     handleInit() {
@@ -118,8 +128,10 @@ class CreateStepForm extends React.Component {
                 postImage: null
             });
             document.getElementById("image").value = "";
-
-            setTimeout(() => this.props.getPost(this.state.post_id), 300);
+            setTimeout(() => {
+                this.props.getPost(this.state.post_id)
+                this.pond.removeFiles();
+            }, 300);
         }
     }
 
@@ -193,13 +205,15 @@ class CreateStepForm extends React.Component {
                                     // allowFileEncode={true}
                                     onupdatefiles={fileItems => {
                                         // Set current file object to this.state
-                                        this.setState({
-                                            postImage: fileItems[0].file
-                                        });
+                                        if (fileItems[0]) this.setState({ postImage: fileItems[0].file });
+
                                     }}
                                 />
                             </FormGroup>
                         </div>
+                        <div class={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                            * You Must Fill in the required fields to submit a post! *
+                    </div>
                         <div className="psf-button-container">
                             <Button className="psf-button" type="submit">
                                 Add Step

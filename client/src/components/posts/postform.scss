@@ -8,6 +8,10 @@
   }
 }
 
+.form-start{
+  margin-top: 50px;
+}
+
 .pf-container {
   display: flex;
   justify-content: center;
@@ -91,4 +95,15 @@
 
 .new-img {
     margin-top: 2.5rem
+}
+.alert{
+  font-size: 1.1rem;
+  padding: 30px;
+  display: none;
+}
+.alert-success{
+  padding: 15px;
+}
+.show-alert{
+  display: block;
 }

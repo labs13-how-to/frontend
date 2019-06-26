@@ -41,6 +41,20 @@ body {
   @include media-breakpoint-down(sm) { 
     padding-top: 125px;
    }
+
+  //  @media (max-width: 505px) {
+  //   padding-top: 125px;
+  // }
+
+  @media (max-width: 430px) {
+    padding-top: 118px;
+  }
+  @media (max-width: 380px) { 
+    padding-top: 113px;
+  }
+  @media (max-width: 325px) {
+    padding-top: 109px;
+  }
 }
 h1, h2{
   text-align: left;

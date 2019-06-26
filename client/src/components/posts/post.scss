@@ -117,3 +117,28 @@ pre {
     font-size: 16px;
     margin: 10px 0 0 10px;
 }
+
+.p-buttons{
+    display: flex;
+    justify-content: center;
+}
+.desc-btn{
+    background: none;
+    border: none;
+    color: #FF851A;
+    box-shadow: none;
+    border-color: white;
+    margin-bottom: 60px;
+}
+
+
+.desc-btn:active,
+.desc-btn:focus,
+.desc-btn:focus:active {
+  background-image: none;
+  outline: 0;
+  box-shadow: none;
+}
+.desc-btn:hover{
+    text-decoration: underline;
+}

@@ -68,6 +68,8 @@
     width: 140px;
 }
 
+
+
 #tag-delete{
     border: none;
     padding: 0;
@@ -99,23 +101,6 @@
 .new-img {
     margin-top: 2.5rem
 }
-
-.desktop-select{
-  display: flex;
-}
-.mobile-select{
-  display: none;
-  font-size: 1rem;
-  width: 80%;
-}
-@include media-breakpoint-down(xs){
-  .desktop-select{
-    display: none;
-  }
-  .mobile-select{
-    display: flex;
-  }
-}
 .alert{
   font-size: 1.1rem;
   padding: 30px;
@@ -126,4 +111,25 @@
 }
 .show-alert{
   display: block;
+}
+
+.desktop-select{
+  display: flex;
+}
+.mobile-select{
+  display: none;
+  font-size: 1rem;
+  width: 80%;
+  margin-bottom: 20px;
+}
+@include media-breakpoint-down(xs){
+  .desktop-select{
+    display: none;
+  }
+  .mobile-select{
+    display: flex;
+  }
+  .tag-section{
+    flex-direction: column-reverse;
+  }
 }

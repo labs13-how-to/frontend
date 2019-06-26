@@ -277,6 +277,7 @@ class CreatePostForm extends React.Component {
                                         <FormGroup>
                                             {/* <Label for="exampleSelectMulti">Select Tags</Label> */}
                                             <Input
+                                                className="form-control"
                                                 onChange={this.handleTagsChange}
                                                 type="select"
                                                 name="selectMulti"
@@ -325,7 +326,9 @@ class CreatePostForm extends React.Component {
                                 <DropdownItem>
                                     <FormGroup>
                                         <Label for="exampleSelectMulti">Select Difficulty</Label>
+
                                         <Input
+                                            className="form-control"
                                             onChange={this.handleChange}
                                             type="select"
                                             name="difficulty"
@@ -338,6 +341,7 @@ class CreatePostForm extends React.Component {
                                             <option value={`Hard`}>Hard</option>
                                             <option value={`Very Hard`}>Very Hard</option>
                                         </Input>
+
                                     </FormGroup>
                                 </DropdownItem>
                             </DropdownMenu>

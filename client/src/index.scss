@@ -8,7 +8,7 @@
 
 body {
   text-align: center;
-  background: #DDD6C9;
+  background-image: url('./images/cork-wallet.png');
 }
 .App{
   height: 95vh;
@@ -37,7 +37,8 @@ body {
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
   overflow: hidden;
   background: white;
-  padding-top: 60px;
+  padding-top: 65px;
+  padding-bottom: 60px;
   @include media-breakpoint-down(sm) { 
     padding-top: 125px;
    }
@@ -366,7 +367,7 @@ code {
 // Tablet view
 @include media-breakpoint-down(md) {
   .card{
-      width: 31%;
+      width: 45%;
       margin: 10px auto;
   }
   #post, #post .post {

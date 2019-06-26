@@ -445,7 +445,7 @@ class CreatePostForm extends React.Component {
                             name='supplies'
                         />
                     </FormGroup>
-                    <div class={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                    <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
                         * You Must Fill in the required fields to submit a post! *
                     </div>
                     <div className="pf-button-container">

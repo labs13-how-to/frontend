@@ -15,6 +15,7 @@ import meera from '../images/meera.png'
 import angel from '../images/angel.png'
 import nick from '../images/nick.png'
 import matt from '../images/matt.png'
+import kevin from '../images/kevin.jpg'
 import MobileStoreButton from 'react-mobile-store-button';
 // import NavSearchMobile from './navbar/NavSearch.js';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -203,6 +204,22 @@ class LandingPage extends React.Component {
                             <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
                             </a>
                             <a href="https://www.linkedin.com/in/meera-andersen-6a57a0178/">
+                            <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
+                            </a>
+                            </div>
+
+                        </div>
+                         <div className='bottom-content-section' id="kevin">
+                            <div className='about-img'>
+                            <img className='profile-img' src={kevin} alt='kevin'></img>
+                            </div>
+                             <div className="about-info">
+                            <h3>Kevin Brack</h3>
+                            <h4>Team Lead</h4>
+                            <a href="https://github.com/KevinBrack">
+                            <FontAwesomeIcon icon={faGithubSquare} size={'2x'} style={{marginRight: '20px'}} />
+                            </a>
+                            <a href="https://www.linkedin.com/in/kevin-brack-273a25a0/">
                             <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </a>
                             </div>

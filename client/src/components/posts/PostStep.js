@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { deleteStep } from '../../actions/steps-tagsActions';
 import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "./postSteps.scss";
+//React Scroll
+import * as Scroll from 'react-scroll';
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 class PostStep extends React.Component {
   state = {
@@ -29,17 +32,19 @@ class PostStep extends React.Component {
     } = this.props.step;
 
     return (
+      <Element name="test2" className="element">
       <div className='ps-card-container'>
         <Card className={this.props.isEdit ? 'ps-card' : 'ps-card p-page'}>
           <div className='ps-header'>
             <span>Step {this.props.index + 1}</span>
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}
           </div>
-          <CardText className='ps-title'> {title}</CardText>
+          <CardText className='ps-title' id="card"> {title}</CardText>
           <CardText className='ps-text'>{instruction}</CardText>
           {img_url && <CardImg className='ps-img' src={img_url} alt="Card image" />}
         </Card>
       </div>
+       </Element>
 
     )
   }

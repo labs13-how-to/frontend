@@ -14,6 +14,9 @@ import {
 import { addPost, uploadImageHandler } from "../../actions";
 import { addTag, getTag } from "../../actions/steps-tagsActions";
 import "./postform.scss";
+//React Scroll
+import * as Scroll from 'react-scroll';
+import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 // Import FilePond styles

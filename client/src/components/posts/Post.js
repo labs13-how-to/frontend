@@ -96,7 +96,7 @@ class Post extends React.Component {
                             <CardText className="p-user">{this.props.user.username}</CardText>
                             <CardText className="date-count">{` • \xa0`}{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
                         </div>
-                        <CardText className="p-description">{description}</CardText>
+                        <pre className="p-description">{description}</pre>
 
                         {/* youtube video embedding component here*/}
                         {vid_url ? <Animation vid_url={vid_url} /> : null }

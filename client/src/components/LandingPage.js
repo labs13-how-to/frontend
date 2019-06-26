@@ -24,16 +24,6 @@ import "./landingpage.scss"
 
 import {
     Button,
-    Form,
-    FormGroup,
-    // FormControl,
-    Label,
-    Input,
-    Select,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    InputGroupButtonDropdown
 } from "reactstrap";
 
 

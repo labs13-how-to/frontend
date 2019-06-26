@@ -11,6 +11,10 @@
   }
 }
 
+.form-start{
+  margin-top: 50px;
+}
+
 .pf-container {
   display: flex;
   justify-content: center;
@@ -111,4 +115,15 @@
   .mobile-select{
     display: flex;
   }
+}
+.alert{
+  font-size: 1.1rem;
+  padding: 30px;
+  display: none;
+}
+.alert-success{
+  padding: 15px;
+}
+.show-alert{
+  display: block;
 }

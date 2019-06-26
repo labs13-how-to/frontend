@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: flex-start;
     border-bottom: 1px solid #979797;
-    padding-bottom: 20px;
+    margin-top: 30px;
     @include media-breakpoint-down(sm) { 
         margin-left: 20px;
     }
@@ -35,13 +35,14 @@
 
 .account-posts {
     display:flex;
+    padding-top: 30px;
 
     p {
         font-size: 25px;
     }
 
     span {
-        color: #ACACAC;
+        color: gray;
         font-size: 18px;
     }
 }

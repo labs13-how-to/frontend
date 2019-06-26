@@ -15,7 +15,8 @@ class Post extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: (this.props.location.pathname.split("/")[2])
+            id: (this.props.location.pathname.split("/")[2]),
+            readMore: false,
         };
     }
 
@@ -96,10 +97,12 @@ class Post extends React.Component {
                             <CardText className="p-user">{this.props.user.username}</CardText>
                             <CardText className="date-count">{` • \xa0`}{postDate && `${postDate[1][1]}/${postDate[2]}/${postDate[0]}`}</CardText>
                         </div>
-                        <CardText className="p-description">{description}</CardText>
-
+                        <pre className="p-description">{description && description.length > 729 && !this.state.readMore ? description.slice(0, 729) + '...' : description}</pre>
+                        <div className='p-buttons'>
+                            {description && description.length > 729 && <button className='posts-button desc-btn' onClick={() => this.setState({ readMore: !this.state.readMore })}>{this.state.readMore ? 'Show Less' : 'Read More'} </button>}
+                        </div>
                         {/* youtube video embedding component here*/}
-                        {vid_url ? <Animation vid_url={vid_url} /> : null }
+                        {vid_url ? <Animation vid_url={vid_url} /> : null}
 
                         <div className="p-content-container">
                             <div className="p-content-section">

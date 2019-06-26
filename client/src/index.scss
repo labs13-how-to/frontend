@@ -37,7 +37,8 @@ body {
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
   overflow: hidden;
   background: white;
-  padding-top: 60px;
+  padding-top: 65px;
+  padding-bottom: 60px;
   @include media-breakpoint-down(sm) { 
     padding-top: 125px;
    }
@@ -268,15 +269,18 @@ h1, h2{
 ///////////////////footer///////////////////////////
 
 .footer{
-  height: 150px;
-  padding: 50px 20px;
+  height: 45px;
+  padding: 20px 100px 40px 100px;
   text-align: left;
+  font-size: 14px;
   width: 100%;
   margin: 0 auto;
   background: #FFDEC2;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: space-between;
   p{
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
   @include media-breakpoint-up(lg) { 
     width:1040px;
@@ -392,7 +396,7 @@ code {
 // Tablet view
 @include media-breakpoint-down(md) {
   .card{
-      width: 31%;
+      width: 45%;
       margin: 10px auto;
   }
   #post, #post .post {

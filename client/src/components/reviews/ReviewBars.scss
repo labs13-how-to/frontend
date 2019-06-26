@@ -4,21 +4,22 @@
 )
 
 
-.bar-container {
-  margin: 10px 10px;
+div.bar-container {
+  margin: 0 auto;
+  width: 75%;
 }
 
 .bar-grid {
   display: grid;
-  grid-template-columns: 15% 75% 10%;
+  grid-template-columns: 12.5% 82.5% 5%;
   grid-row-gap: 10px;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 
   @media screen and (max-width: 500px) {
-    grid-template-columns: 30% 50% 20%;
+    grid-template-columns: 40% 40% 20%;
   }
 }
 

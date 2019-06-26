@@ -184,7 +184,7 @@ a:focus {
 
 .cta-text2 {
   font-family: "Nunito", sans-serif;
-  color:  #ff851a;
+  color:  #494949;
   font-size: 24px;
   line-height: 32px;
   text-align: left;
@@ -669,6 +669,9 @@ a:focus {
     grid-template-columns: 1fr;
     text-align: center;
     margin-top: 100px;
+    #kevin {
+      grid-column: 1;
+     }
   }
 }
 
@@ -726,6 +729,10 @@ a:focus {
       top: -125px;
     }
   }
+}
+
+#kevin {
+ grid-column: 2;
 }
 
 

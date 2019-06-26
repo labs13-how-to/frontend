@@ -8,7 +8,7 @@
 
 body {
   text-align: center;
-  background-image: url('./images/cork-wallet.png');
+  background-image: url("./images/cork-wallet.png")
 }
 .App{
   height: 95vh;
@@ -42,6 +42,20 @@ body {
   @include media-breakpoint-down(sm) { 
     padding-top: 125px;
    }
+
+  //  @media (max-width: 505px) {
+  //   padding-top: 125px;
+  // }
+
+  @media (max-width: 430px) {
+    padding-top: 118px;
+  }
+  @media (max-width: 380px) { 
+    padding-top: 113px;
+  }
+  @media (max-width: 325px) {
+    padding-top: 109px;
+  }
 }
 h1, h2{
   text-align: left;
@@ -244,6 +258,14 @@ h1, h2{
 
 }
 
+.form-control {
+  option:hover{
+    color: #FF851A;
+  }
+}
+
+
+
 ///////////////////footer///////////////////////////
 
 .footer{
@@ -325,6 +347,10 @@ code {
   option:hover{
     color: #FF851A;
   }
+}
+
+#exampleSelectMulti {
+
 }
 
 .tag-section .dropdown-toggle {

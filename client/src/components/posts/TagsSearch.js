@@ -29,7 +29,7 @@ class TagSearch extends React.Component {
                         // if (this.props.isHome && posts == []) if (posts.length > 6) return null;
                         if (post.tags && post.tags.reduce((acc, tag, index) => tag.name.toLowerCase() === query.toLowerCase() ? true : acc, false)) {
                             if (this.props.isHome && posts.length > 5) {
-                                this.state.toLong = true;
+                                this.setState({ toLong: true });
                                 return posts;
                             }
                             return [

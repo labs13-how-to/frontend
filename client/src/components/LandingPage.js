@@ -44,7 +44,7 @@ class LandingPage extends React.Component {
         this.toggleDifficulty = this.toggleDifficulty.bind(this);
         this.state = {
 
-            difficulty: "hard",
+            difficulty: "",
             duration: "",
             dropdownOpen: false,
             difficultyDropdown: false,
@@ -93,64 +93,6 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Form>
-                    <FormGroup className="pf-difficulty">
-                        <Label>Difficulty</Label>
-                        <InputGroupButtonDropdown
-                            addonType="append"
-                            isOpen={this.state.difficultyDropdown}
-                            toggle={this.toggleDifficulty}
-                        >
-                            <DropdownToggle split outline>
-                                {this.state.difficulty
-                                    ? `${this.state.difficulty} \xa0\xa0`
-                                    : "Select Difficulty\xa0"}{" "}
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem>
-                                    <FormGroup>
-                                        <Input
-                                            // className="form-control"
-                                            onChange={this.handleChange}
-                                            // type="select"
-                                            name="difficulty"
-                                            // value={this.state.difficulty}
-                                            id="exampleSelectMulti"
-                                            multiple
-                                        >
-
-                                        </Input>
-                                        <select>
-                                            <option value={`Very Easy`}>Very Easy</option>
-                                            <option value={`Easy`}>Easy</option>
-                                            <option value={`Moderate`}>Moderate</option>
-                                            <option value={`Hard`}>Hard</option>
-                                            <option value={`Very Hard`}>Very Hard</option>
-                                        </select>
-                                        
-
-                                    </FormGroup>
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </InputGroupButtonDropdown>
-                    </FormGroup>
-                </Form>
-                <Form>
-                    <FormGroup>
-                        <DropdownMenu>
-                            <DropdownItem>
-                                <select>
-                                    <option selected="selected">Open this select menu</option>
-                                    <option value={`Very Easy`}>Very Easy</option>
-                                    <option value={`Easy`}>Easy</option>
-                                    <option value={`Moderate`}>Moderate</option>
-                                    <option value={`Hard`}>Hard</option>
-                                    <option value={`Very Hard`}>Very Hard</option>
-                                </select>
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </FormGroup>
-                </Form>
                 <div className='upper-content'>
                     <div className='upper-content-section' id='one'>
                         <div className='img-content'>

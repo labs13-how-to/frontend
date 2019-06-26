@@ -117,6 +117,7 @@ class CreatePostForm extends React.Component {
             );
             this.setState({ tags: filteredAry });
         }
+        e.target.value = '';
     };
 
     handleSupplies = e => {
@@ -265,6 +266,7 @@ class CreatePostForm extends React.Component {
                                 })}
                             </p>
                             <InputGroupButtonDropdown
+                                className='desktop-select'
                                 addonType="append"
                                 isOpen={this.state.dropdownOpen}
                                 toggle={this.toggleDropDown}
@@ -277,7 +279,7 @@ class CreatePostForm extends React.Component {
                                         <FormGroup>
                                             {/* <Label for="exampleSelectMulti">Select Tags</Label> */}
                                             <Input
-                                                className="form-control"
+                                                className="form-control "
                                                 onChange={this.handleTagsChange}
                                                 type="select"
                                                 name="selectMulti"
@@ -296,6 +298,22 @@ class CreatePostForm extends React.Component {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </InputGroupButtonDropdown>
+                            <select
+                                className='form-control mobile-select '
+                                multiple={false}
+                                onChange={this.handleTagsChange}
+                                name="taginput"
+                                id="exampleSelectMulti"
+                            >
+                                <option value={""}>&nbsp;Select Categories&nbsp;</option>
+                                {this.props.allTags
+                                    ? this.props.allTags.map(tag => (
+                                        <option key={tag.id} value={tag.name.toLowerCase()}>
+                                            {tag.name}
+                                        </option>
+                                    ))
+                                    : null}
+                            </select>
                         </div>
                     </FormGroup>
 
@@ -313,6 +331,7 @@ class CreatePostForm extends React.Component {
                     <FormGroup className="pf-difficulty">
                         <Label>Difficulty</Label>
                         <InputGroupButtonDropdown
+                            className='desktop-select'
                             addonType="append"
                             isOpen={this.state.difficultyDropdown}
                             toggle={this.toggleDifficulty}
@@ -346,6 +365,21 @@ class CreatePostForm extends React.Component {
                                 </DropdownItem>
                             </DropdownMenu>
                         </InputGroupButtonDropdown>
+                        <select
+                            className='form-control mobile-select'
+                            multiple={false}
+                            onChange={this.handleChange}
+                            name="difficulty"
+                            value={this.state.difficulty}
+                            id="exampleSelectMulti"
+                        >
+                            <option value={""}>--Please choose an option--</option>
+                            <option value={`Very Easy`}>Very Easy</option>
+                            <option value={`Easy`}>Easy</option>
+                            <option value={`Moderate`}>Moderate</option>
+                            <option value={`Hard`}>Hard</option>
+                            <option value={`Very Hard`}>Very Hard</option>
+                        </select>
                     </FormGroup>
                     <FormGroup className="pf-duration">
                         <Label>Duration</Label>

@@ -66,6 +66,7 @@ class EditPostForm extends React.Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0, 600);
 
         this.props.getPost(this.state.id)
         if (this.props.currPost.title) {

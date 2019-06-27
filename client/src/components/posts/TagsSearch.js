@@ -13,6 +13,7 @@ class TagSearch extends React.Component {
     }
     componentDidMount() {
         this.props.getPosts();
+        window.scrollTo(0, 0);
     }
 
     render() {

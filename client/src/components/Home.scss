@@ -90,12 +90,21 @@
 
 
 h2.posts-head {
-    margin: 40px 30px 20px;
+    margin: 55px 30px 20px;
     cursor: pointer;
     font-size: 2.5rem;
+    @media (max-width: 430px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 380px) {
+       
+      }
+      @media (max-width: 325px) {
+        font-size: 1.6rem;
+      }
 }
 .post-list {
-    margin-bottom: 10px;
+ 
     display: grid;
 
     @include media-breakpoint-up(lg) {
@@ -174,5 +183,14 @@ h2.posts-head {
         margin: 0;
         margin-right: 6%;
         color: #FF851A;
+        @media (max-width: 430px) {
+            font-size: 1.2rem;
+          }
+          @media (max-width: 380px) {
+            // font-size: 1.1rem;
+          }
+          @media (max-width: 325px) {
+    
+          }
     }
 }

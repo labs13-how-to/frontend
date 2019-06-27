@@ -14,6 +14,7 @@ pre {
 .card.post-card {
     border: none;
     li {
+        font-family: 'Amiri', serif;
         list-style-type: disc;
         list-style-position: inside;
         text-indent: -1.4em;
@@ -39,14 +40,17 @@ pre {
     color: #ff851a;
     font-size: 35px;
     width: 70%;
+    font-family: "Nunito", sans-serif;
 }
 
 .review-count.post-review {
-    margin-top: 7px;
+    margin-top: 11px;
+    font-family: "Nunito", sans-serif;
 }
 
 .p-created {
     display: flex;
+    font-family: "Nunito", sans-serif;
 }
 
 .p-user {
@@ -65,6 +69,7 @@ pre {
     color: #ff851a;
     font-size: 25px;
     padding-bottom: 0;
+    font-family: "Nunito", sans-serif;
 }
 
 .p-content-container {
@@ -81,11 +86,18 @@ pre {
     flex-direction: column;
     width: 50%;
     margin: 40px 0;
+    .card-text {
+        font-family: 'Amiri', serif;
+    }
+    li {
+        font-family: 'Amiri', serif;
+    }
 }
 
 .p-content-label {
     color: #ff851a;
     font-size: 25px;
+    font-family: "Nunito", sans-serif;
 }
 
 //2nd class name for tags on post-page
@@ -99,6 +111,7 @@ pre {
     margin: 15px 15px 20px 10px;
     color: #746D6D;
     border: 1px solid #746D6D;
+     font-family: "Nunito", sans-serif;
 }
 
 .edit-button {
@@ -106,7 +119,7 @@ pre {
     border: 1px solid white;
     width: 80px;
     font-size: 16px;
-    margin: 10px 0 0 10px;
+    margin: 5px 0 15px 10px;
 }
 
 .delete-button {
@@ -115,12 +128,14 @@ pre {
     border: 1px solid #FF851A;
     width: 80px;
     font-size: 16px;
-    margin: 10px 0 0 10px;
+    margin: 5px 0 15px 10px;
 }
 
 .p-buttons{
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 .desc-btn{
     background: none;

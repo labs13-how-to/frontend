@@ -11,20 +11,16 @@
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
 |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/Mrsteveson)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/matt-poloni)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/AJLambda)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/NickStrick)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/meera-andersen)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mrsteveson)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/matt-poloni)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AJLambda)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NickStrick)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/meera-andersen)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/patricktsteveson/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/patricktsteveson/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/austin-james27/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/meera-andersen-6a57a0178) |
 
 <br> 
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://how-tutor.netlify.com/)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
+![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://how-tutor.netlify.com/)
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Project Overview
 
@@ -43,12 +39,13 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 -    Ability to register an account and login
 -    Ability to create/view/edit/delete posts
+-    Ability to add steps on posts and delete them
 -    Ability to upload images for those posts
 -    Ability to leave reviews
--    Ability to embed a youtube video
+-    Ability to embed a YouTube video
 -    Ability to search
 -    Ability to view account info and user specific posts
--    Ability to add tags to posts
+-    Ability to add categories to posts
 
 ## 1️⃣ Tech Stack
 
@@ -56,22 +53,22 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 #### React.js
 
--    easy to use and flexable
--    team is most familiar with it
--    resuable components
--    fast rendering with virtual DOM
+-    Easy to use and flexable to suit our needs
+-    Team is most familiar with it
+-    Reusable components greatly increase efficiency
+-    Fast rendering with virtual DOM
 
 #### Redux
 
--    total seperation of data and presentation
--    stops cluttered passing down of props
--    state management and orginization
+-    Total separation of data and presentation
+-    Stops cluttered passing down of props
+-    State management and organization
 
 #### Bootstrap
 
 -    Saves time and is easy to use
 -    Consistency in styling
--    easy customization
+-    Easy customization
 
 
 #### Front end deployed to `Netlify`.
@@ -95,11 +92,10 @@ How To aims to provide a central location for anyone looking to find reliable, h
 -    Manages our images and videos
 -    Large scale, can hold lots of data 
 
-🚫 List the rest of the back end features and libraries in the same format as the framework above
 
 # APIs
 
-## Pass[port.js]
+## Passport.js
 
 Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
 
@@ -111,19 +107,7 @@ Future releases are intending to implement stripe for any new features that requ
 
 ## Cloudinary
 
-a cloud-based image and video management solution. It enables users to upload, store, manage, manipulate and deliver images and video for websites and apps.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
+A cloud-based image and video management solution. It enables users to upload, store, manage, manipulate and deliver images and video for websites and apps.
 
 # 3️⃣ Environment Variables
 
@@ -132,32 +116,21 @@ In order for the app to function correctly, the user must set up their own envir
 - REACT_APP_BE_URL=http://localhost:5000
 - REACT_APP_FE_ROOT=http://localhost:3000
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
 # 4️⃣ Testing
 
 Interal QA
-🚫Document what you used for testing and why
 
 # 4️⃣ Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+In order to properly install this project, a user must either use yarn or npm. To install using yarn, simply enter the command yarn install in your terminal and allow the necessary dependencies to be installed. Upon a successful installation, then input the command yarn start to prompt your react-app to load into your browser. For additional information on how to do this process using NPM please see the README.md file within our client folder for a full list of instructions.
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+* typecheck - runs the TypeScript compiler
+* build - creates a build of the application
+* start - starts the production server after a build is created
+* test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 

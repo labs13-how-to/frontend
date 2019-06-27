@@ -285,6 +285,11 @@ h1, h2{
   @include media-breakpoint-up(lg) { 
     width:1040px;
   }
+  @include media-breakpoint-down(xs) { 
+    height: 150px;
+    padding: 20px 5% 40px 5%;
+    flex-direction: column;
+  }
 }
 
 ///////////////////Desktop view////////////////////

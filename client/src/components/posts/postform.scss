@@ -67,6 +67,15 @@
 .image-button{
     width: 140px;
 }
+.pf-img{
+  display: flex;
+  flex-direction: column;
+  img{
+    align-self: center;
+    width: 60%;
+    height: 60%;
+  }
+}
 
 
 

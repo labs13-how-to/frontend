@@ -1,10 +1,15 @@
 @import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins/_breakpoints"; 
+
 // @include media-breakpoint-up(sm) { ... }
 // @include media-breakpoint-up(md) { ... }
 // @include media-breakpoint-up(lg) { ... }
-.cta{
+
+.btn {
+    font-family: "Nunito", sans-serif;
+}
+.cta {
     position: relative;
     height: 410px;
     background:#FFDEC2;
@@ -13,17 +18,18 @@
     width: 110%;
     right: 5%;
     
-    .cta-text{
+    .cta-text {
         display:flex;
         flex-direction: column;
 
-        h2{
+        h2 { 
         color: #494949;
         line-height: 3.5rem;
         font-size: 2.5rem;
         margin: 30px 100px;
         }
-        .btn{
+
+        .btn {
             margin: 0 100px;
             width: 130px;
             background: white;
@@ -34,36 +40,36 @@
         }
     }
     
-    .cta-img{
+    .cta-img {
         width: 60%;
         padding-right: 90px;
-        img{
+        img {
             width:80%;
         }
     }
+    
     @include media-breakpoint-down(md) { 
         height: 410px;
         background:#FFDEC2;
         display: flex;
         padding: 10px;
         width: 110%;
-        // right: 50px;
         overflow: hidden;
         
-        .cta-text{
+        .cta-text {
             display:flex;
             flex-direction: column;
             width: 100%;
             margin: 0;
-            h2{
+
+            h2 {
                 width: 70%;
-                // height: 500px;
-            color: #494949;
-            line-height: 3.5rem;
-            font-size: 2rem;
-            margin: 30px 100px;
+                color: #494949;
+                line-height: 3.5rem;
+                font-size: 2rem;
+                margin: 30px 100px;
             }
-            .btn{
+            .btn {
                 margin: 0 100px;
                 width: 130px;
                 background: white;
@@ -73,98 +79,135 @@
                 padding: 5px 15px;
             }
         }
-        
-     }
-     @include media-breakpoint-down(sm) { 
+    }
+     
+    @include media-breakpoint-down(sm) { 
         width: 120%;
         right: 10%;
         .cta-img{
             height: 100%;
-            // width: 60%;
-            // padding-right: 90px;
             display: none;
         }
-     }
+    }
 }
 
 
-h2.posts-head{
-    margin: 40px 30px 20px;
+h2.posts-head {
+    margin: 65px 35px 20px;
     cursor: pointer;
     font-size: 2.5rem;
+    @media (max-width: 800px) {
+        margin-left: 7%;
+    }
+    @media (max-width: 430px) {
+        margin-left: 20%;
+        margin-right: 13%;
+        font-size: 2rem;
+      }
+      @media (max-width: 380px) {
+        margin-left: 16%;
+      }
+      @media (max-width: 325px) {
+        margin-left: 13%;
+        font-size: 1.6rem;
+      }
 }
-.post-list{
-    margin-bottom: 10px;
+.post-list {
+ 
+    display: grid;
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include media-breakpoint-down(med) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @include media-breakpoint-down(sm) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 430px) {
+        grid-template-columns: 1fr;
+    }
 }
 
-.card.display-posts{
+.card.display-posts {
     box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
-    // max-height: 400px;
-    display:flex;
     color: gray;
-    :hover{
+    font-family: "Nunito", sans-serif;
+    :hover {
         cursor: pointer
     }
-    .card-header{
+    .card-header {
         border-bottom: none;
         background: none;
         padding:0 0 0 15px;
         max-height: 72px;
         height: 72px;
     }
-    .card-body{
+    .card-body {
         padding:0 0 0 15px;
         display:flex;
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: flex-start;
         align-items: baseline;
-        .dv-star-rating-star{
+        .dv-star-rating-star {
             margin: 0;
             height: 20px;
         }
-        .review-count{
+        .review-count {
             margin-top: 12px;
             font-size: 1rem;
             color: gray;
         }
-        .post-footer{
+        .post-footer {
             display: flex;
             font-size: 1rem;
             padding-bottom: 12px;
             margin-top: 10px;
-            .date-count{
+            .date-count {
                 font-size: 1rem;
                 color: gray;
             }
         }
     }
-    .card-img{
+    .card-img {
         height: 240px;
         width: 300%;
-        // border-bottom: 1px solid lightgray;
         background: #FFDEC2
     }
-    .post-stars{
+    .post-stars {
         justify-self: flex-start;
         align-self: flex-start;
-        // margin-left: 20px;
     }
 
 }
-.posts-section{
-    display: flex;
-    flex-direction: column;
+.posts-section {
 
-    .posts-button{
-    align-self: flex-end;
-    justify-self: flex-end;
-    text-align: right;
-    margin: 0;
-    margin-right: 6%;
-    color: #FF851A;
+    .posts-button {
+        float: right;
+        text-align: right;
+        margin: 0;
+        margin-right: 3%;
+        margin-top: -5px;
+        color: #FF851A;
+        font-family: "Nunito", sans-serif;
+        @media (max-width: 800px) {
+            margin-right: 5%;
+        }
+        @media (max-width: 430px) {
+            margin-right: 19%;
+            font-size: 1.2rem;
+          }
+          @media (max-width: 380px) {
+            margin-right: 15%;
+            
+          }
+          @media (max-width: 325px) {
+            margin-right: 12%;
+          }
     }
 }

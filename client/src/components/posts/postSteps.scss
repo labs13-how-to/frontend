@@ -1,6 +1,10 @@
 .ps-card-container {
     display: flex;
     justify-content: center;
+
+    .ps-text {
+        font-family: 'Amiri', serif;
+    }
 }
 
 .ps-card {
@@ -14,6 +18,7 @@
         color: rgb(165, 165, 165);
         border-bottom: 1px solid rgb(174, 174, 174);
         padding-top: 15px;
+        font-family: "Nunito", sans-serif;
     }
 }
 
@@ -35,6 +40,7 @@
     font-size: 25px;
     text-align: left;
     padding: 15px 0 0 15px;
+    font-family: "Nunito", sans-serif;
     
 }
 
@@ -42,6 +48,7 @@
     text-align: left;
     padding-left: 15px;
     font-size: 18px;
+  
 }
 
 //Post-Step-Form Styling
@@ -55,8 +62,9 @@
     border-top: 2px dashed #746D6D;
     margin-top: 20px;
     padding-top: 20px;
-    font-size: 18px;
+    oitfont-size: 18px;
     color: #746D6D;
+    font-family: "Nunito", sans-serif;
 }
 
 .psf {
@@ -67,6 +75,10 @@
     width: 90%;
     padding: 20px;
     margin-bottom: 30px;
+
+    label {
+        font-family: "Nunito", sans-serif;
+    }
 }
 
 .form-control.psf-title-input {

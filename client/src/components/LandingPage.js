@@ -28,34 +28,7 @@ import {
 
 
 class LandingPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.toggleDropDown = this.toggleDropDown.bind(this);
-        this.toggleDifficulty = this.toggleDifficulty.bind(this);
-        this.state = {
 
-            difficulty: "",
-            duration: "",
-            dropdownOpen: false,
-            difficultyDropdown: false,
-
-        };
-    }
-
-    handleChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
-
-    toggleDropDown(e) {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
-    };
-    toggleDifficulty(e) {
-        this.setState({
-            difficultyDropdown: !this.state.difficultyDropdown
-        });
-    }
     render() {
         const iOSurl = 'https://apps.apple.com/us/app/wikihow/id309209200'
 
@@ -163,7 +136,6 @@ class LandingPage extends React.Component {
                                 </a>
                                 <FontAwesomeIcon icon={faLinkedin} size={'2x'} color="#0073ae" />
                             </div>
-
 
                         </div>
                         <div className='bottom-content-section' id="patrick">

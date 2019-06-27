@@ -90,16 +90,22 @@
 
 
 h2.posts-head {
-    margin: 55px 30px 20px;
+    margin: 65px 35px 20px;
     cursor: pointer;
     font-size: 2.5rem;
+    @media (max-width: 800px) {
+        margin-left: 7%;
+    }
     @media (max-width: 430px) {
+        margin-left: 20%;
+        margin-right: 13%;
         font-size: 2rem;
       }
       @media (max-width: 380px) {
-       
+        margin-left: 16%;
       }
       @media (max-width: 325px) {
+        margin-left: 13%;
         font-size: 1.6rem;
       }
 }
@@ -181,16 +187,22 @@ h2.posts-head {
         float: right;
         text-align: right;
         margin: 0;
-        margin-right: 6%;
+        margin-right: 3%;
+        margin-top: -5px;
         color: #FF851A;
+        @media (max-width: 800px) {
+            margin-right: 5%;
+        }
         @media (max-width: 430px) {
+            margin-right: 19%;
             font-size: 1.2rem;
           }
           @media (max-width: 380px) {
-            // font-size: 1.1rem;
+            margin-right: 15%;
+            
           }
           @media (max-width: 325px) {
-    
+            margin-right: 12%;
           }
     }
 }

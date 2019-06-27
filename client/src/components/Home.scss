@@ -6,6 +6,9 @@
 // @include media-breakpoint-up(md) { ... }
 // @include media-breakpoint-up(lg) { ... }
 
+.btn {
+    font-family: "Nunito", sans-serif;
+}
 .cta {
     position: relative;
     height: 410px;
@@ -133,6 +136,7 @@ h2.posts-head {
     border-top-right-radius: 10px;
     overflow: hidden;
     color: gray;
+    font-family: "Nunito", sans-serif;
     :hover {
         cursor: pointer
     }
@@ -190,6 +194,7 @@ h2.posts-head {
         margin-right: 3%;
         margin-top: -5px;
         color: #FF851A;
+        font-family: "Nunito", sans-serif;
         @media (max-width: 800px) {
             margin-right: 5%;
         }

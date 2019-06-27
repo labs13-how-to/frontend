@@ -1,3 +1,4 @@
+
 @import "~bootstrap/scss/bootstrap";
 
 // Media Queries
@@ -55,6 +56,7 @@ body {
 h1, h2{
   text-align: left;
   color:#FF851A;
+  font-family: "Nunito", sans-serif;
 }
 .posts-head{
   margin: 0 0 0 3%;
@@ -65,9 +67,11 @@ h1, h2{
 .nav-section {
   display: flex;
   align-items: center;
+ 
 
   .categories {
     padding: 0 40px;
+     font-family: "Nunito", sans-serif;
 
     @include media-breakpoint-down(sm) {
     padding: 0px;
@@ -117,6 +121,7 @@ h1, h2{
   position: relative;
 
   .nav-search {
+    font-family: "Nunito", sans-serif;
     @include media-breakpoint-down(sm) { 
       padding-top: 0px;
     }
@@ -306,6 +311,7 @@ h1, h2{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
 }
 
 

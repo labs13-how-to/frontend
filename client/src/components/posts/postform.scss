@@ -25,11 +25,16 @@
   text-align: left;
   font-size: 28px;
   width: 80%;
+
+  label {
+    font-family: "Nunito", sans-serif;
+  }
 }
 
 .pf-title {
   font-size: 36px;
   border-bottom: 1px solid black;
+ 
 }
 .form-control.pf-title-input {
   border: none;

@@ -53,7 +53,7 @@ How To aims to provide a central location for anyone looking to find reliable, h
 
 #### React.js
 
--    Easy to use and flexable to suit our needs
+-    Easy to use and flexible to suit our needs
 -    Team is most familiar with it
 -    Reusable components greatly increase efficiency
 -    Fast rendering with virtual DOM
@@ -119,7 +119,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 # 4️⃣ Testing
 
-Interal QA, we utilized manual testing as a form of quality control in order to prompt quick reaction times to bug fixes and necessary on the fly adjustments under our strict time constraints.
+Internal QA, we utilized manual testing as a form of quality control in order to prompt quick reaction times to bug fixes and necessary on the fly adjustments under our strict time constraints.
 
 # 4️⃣ Installation Instructions
 

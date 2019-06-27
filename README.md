@@ -2,9 +2,9 @@
 
 # Review It Yourself (formerly How To)
 
-1️⃣ You can find the deployed project at [https://how-tutor.netlify.com/](https://how-tutor.netlify.com/).
+You can find the deployed project at [https://how-tutor.netlify.com/](https://how-tutor.netlify.com/).
 
-## 4️⃣ Contributors
+## Contributors
 
 
 |                                       [Patrick Steveson](https://github.com/Mrsteveson)                                        |                                       [Matt Poloni](https://github.com/matt-poloni)                                        |                                       [Austin James](https://github.com/AJLambda)                                        |                                       [Nick Stricker](https://github.com/NickStrick)                                        |                                       [Meera Anderson](https://github.com/meera-andersen)                                        |
@@ -19,23 +19,22 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 ![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://how-tutor.netlify.com/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://how-tutor.netlify.com/)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## Project Overview
 
-1️⃣ [Trello Board](https://trello.com/b/vZ0hvT9Q/labs-13-how-to)
+[Trello Board](https://trello.com/b/vZ0hvT9Q/labs-13-how-to)
 
-1️⃣ [Product Canvas](https://docs.google.com/document/d/15nZaRpPzZzk1_5YSAk8HZCX6QhrLdlSqTy4NZZlJHSU/edit?usp=sharing)
+[Product Canvas](https://docs.google.com/document/d/15nZaRpPzZzk1_5YSAk8HZCX6QhrLdlSqTy4NZZlJHSU/edit?usp=sharing)
 
-1️⃣ [UX Design files](https://invis.io/P4S6N4XWEC7), [UX Whimsical](https://whimsical.com/YUtnHkNyd6fEnYrJ6oyMLi)
+[UX Design files](https://invis.io/P4S6N4XWEC7), [UX Whimsical](https://whimsical.com/YUtnHkNyd6fEnYrJ6oyMLi)
 
 This web app will target people who want to get up and get productive and learn different skills to do projects themselves.  There will be a rating system on which one is better. This will lead to the tutorials that are accurate and precise to be on top. 
 
 How To aims to provide a central location for anyone looking to find reliable, highly-rated projects reviewed and tested by users like them. Users can find and become apart of a community that has similar passions to their own, where they can read, follow, and post about projects they are interested in.
 
-
-### 4️⃣ Key Features
+### Key Features
 
 -    Ability to register an account and login
 -    Ability to create/view/edit/delete posts
@@ -47,7 +46,7 @@ How To aims to provide a central location for anyone looking to find reliable, h
 -    Ability to view account info and user specific posts
 -    Ability to add categories to posts
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
@@ -70,7 +69,6 @@ How To aims to provide a central location for anyone looking to find reliable, h
 -    Consistency in styling
 -    Easy customization
 
-
 #### Front end deployed to `Netlify`.
 
 #### [Back end](https://github.com/labs13-how-to/backend) built using:
@@ -92,14 +90,11 @@ How To aims to provide a central location for anyone looking to find reliable, h
 -    Manages our images and videos
 -    Large scale, can hold lots of data 
 
-
 # APIs
 
 ## Passport.js
 
 Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.
-
-## 2️⃣ Payment API here
 
 ## Stripe
 
@@ -109,19 +104,18 @@ Future releases are intending to implement stripe for any new features that requ
 
 A cloud-based image and video management solution. It enables users to upload, store, manage, manipulate and deliver images and video for websites and apps.
 
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
 - REACT_APP_BE_URL=http://localhost:5000
 - REACT_APP_FE_ROOT=http://localhost:3000
 
-
-# 4️⃣ Testing
+# Testing
 
 Internal QA, we utilized manual testing as a form of quality control in order to prompt quick reaction times to bug fixes and necessary on the fly adjustments under our strict time constraints.
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
 In order to properly install this project, a user must either use yarn or npm. To install using yarn, simply enter the command yarn install in your terminal and allow the necessary dependencies to be installed. Upon a successful installation, then input the command yarn start to prompt your react-app to load into your browser. For additional information on how to do this process using NPM please see the README.md file within our client folder for a full list of instructions.
 
@@ -140,11 +134,11 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 ## Issue/Bug Request
    
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 

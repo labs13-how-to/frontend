@@ -119,7 +119,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 # 4️⃣ Testing
 
-Interal QA
+Interal QA, we utilized manual testing as a form of quality control in order to prompt quick reaction times to bug fixes and necessary on the fly adjustments under our strict time constraints.
 
 # 4️⃣ Installation Instructions
 

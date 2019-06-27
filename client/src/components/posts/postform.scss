@@ -1,3 +1,6 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins/_breakpoints"; 
 // filepond styles
 .filepond--root {
   .filepond--drip-blob {
@@ -65,6 +68,8 @@
     width: 140px;
 }
 
+
+
 #tag-delete{
     border: none;
     padding: 0;
@@ -106,4 +111,25 @@
 }
 .show-alert{
   display: block;
+}
+
+.desktop-select{
+  display: flex;
+}
+.mobile-select{
+  display: none;
+  font-size: 1rem;
+  width: 80%;
+  margin-bottom: 20px;
+}
+@include media-breakpoint-down(xs){
+  .desktop-select{
+    display: none;
+  }
+  .mobile-select{
+    display: flex;
+  }
+  .tag-section{
+    flex-direction: column-reverse;
+  }
 }

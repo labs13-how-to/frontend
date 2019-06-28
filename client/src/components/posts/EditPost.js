@@ -329,7 +329,7 @@ class EditPostForm extends React.Component {
                                     <DropdownMenu>
                                         <DropdownItem>
                                             <FormGroup>
-                                                <Label for="exampleSelectMulti">Select Difficulty</Label>
+                                                {/* <Label for="exampleSelectMulti">Select Difficulty</Label> */}
 
                                                 <Input
                                                     className="form-control"
@@ -376,7 +376,7 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup className="pf-skills">
-                                <Label>Prerequisite Skills</Label>
+                                <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                                 <Input
                                     onChange={this.handleChange}
                                     placeholder='Skills Needed for this Project'
@@ -385,7 +385,11 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup className="pf-supplies">
-                                <Label>Tools/Supplies</Label>
+                                <Label>Tools/Supplies{" "}<span className="video-span">(Optional)</span>{" "}
+                                    <span className="category-span">
+                                        (Type your item and press Enter)
+                            </span>
+                                </Label>
                                 <p className='post-tags'>
                                     {this.state.supplyList && this.state.supplyList.map((sup, index) => {
                                         let currSup = sup.split('');

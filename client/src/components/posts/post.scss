@@ -34,6 +34,10 @@ pre {
 .p-header {
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 }
 
 .p-title {
@@ -41,6 +45,10 @@ pre {
     font-size: 35px;
     width: 70%;
     font-family: "Nunito", sans-serif;
+
+    @media (max-width: 800px) {
+        width: 100%;
+    }
 }
 
 .review-count.post-review {
@@ -84,14 +92,25 @@ pre {
 .p-content-section {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 45%;
     margin: 40px 0;
+
     .card-text {
         font-family: 'Amiri', serif;
     }
     li {
+        width: 100%;
         font-family: 'Amiri', serif;
+        
     }
+    @media (max-width: 430px) { 
+
+    }
+    @media (max-width: 380px) { 
+
+    }
+    @media (max-width: 325px) {
+    } 
 }
 
 .p-content-label {
@@ -129,13 +148,21 @@ pre {
     width: 80px;
     font-size: 16px;
     margin: 5px 0 15px 10px;
+
+    @media (max-width: 380px) {
+        margin: 5px 0 15px 0px;
+    }
 }
 
 .p-buttons{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-self: flex-start;
     margin-bottom: 1rem;
+
+    @media (max-width: 800px) {
+        align-self: center;
+    }
 }
 .desc-btn{
     background: none;

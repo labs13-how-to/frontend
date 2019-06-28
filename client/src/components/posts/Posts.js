@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
 import StarRatingComponent from "react-star-rating-component";
 
+// import { AnimateOnChange } from 'react-animation';
 
 class Posts extends React.Component {
     state = {
@@ -13,7 +14,6 @@ class Posts extends React.Component {
             currDate = currDate.split('-');
             return currDate;
         }
-
     }
 
 
@@ -21,6 +21,7 @@ class Posts extends React.Component {
         const { title, img_url, id } = this.props.post
         const cardDate = this.getDate(this.props.post.created_at);
         return (
+
             < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
             }>
                 <CardImg className="img-fluid" src={img_url} alt="Card image" />
@@ -43,6 +44,7 @@ class Posts extends React.Component {
                     </div>
                 </CardBody>
             </Card >
+
         );
     }
 };

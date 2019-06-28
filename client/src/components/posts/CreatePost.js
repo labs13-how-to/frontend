@@ -280,7 +280,7 @@ class CreatePostForm extends React.Component {
                                     let currTag = tag.name.split('');
                                     currTag[0] = currTag[0].toUpperCase();
                                     currTag = currTag.join('')
-                                    return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >🗴</span></span>
+                                    return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >x</span></span>
                                 })}
                             </p>
                             <InputGroupButtonDropdown
@@ -362,7 +362,7 @@ class CreatePostForm extends React.Component {
                             <DropdownMenu>
                                 <DropdownItem>
                                     <FormGroup>
-                                        <Label for="exampleSelectMulti">Select Difficulty</Label>
+                                        {/* <Label for="exampleSelectMulti">Select Difficulty</Label> */}
 
                                         <Input
                                             className="form-control"

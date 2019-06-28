@@ -98,7 +98,10 @@ class CreateStepForm extends React.Component {
         } else {
             this.setState({ showAlert: true });
         }
-
+        setTimeout(function () {
+            const element = document.getElementById("step-form");
+            element.scrollIntoView({ behavior: 'smooth' });
+        }, 2000)
     };
 
     handleInit() {
@@ -139,9 +142,11 @@ class CreateStepForm extends React.Component {
         const { steps } = this.props.currPost;
         return (
             <>
+
                 <h3 id='step-form' className="psf-section-header">
                     Add steps, instructions, and additional photos here
                 </h3>
+
                 {steps &&
                     steps.map((step, index) => {
                         return (
@@ -224,6 +229,7 @@ class CreateStepForm extends React.Component {
                 <div className="publish-button">
                     <Button
                         className="psf-button"
+                        id="publish"
                         onClick={() =>
                             this.props.history.push(`/posts/${this.state.post_id}`)
                         }

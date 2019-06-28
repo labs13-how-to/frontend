@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getPosts } from '../actions';
 import { Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-
 import TagsSearch from './posts/TagsSearch';
 import PostList from './posts/PostList.js';
 import ExamplePost from '../images/bike_cta.png';
@@ -24,17 +23,20 @@ class Home extends React.Component {
 
     render() {
         return (
+
             <React.Fragment>
                 <div className='cta'>
                     <div className='cta-text'>
                         <h2>Never made a how to post before? We'll help you learn how</h2>
                         <Button onClick={() => this.props.history.push('/posts/1')}>Learn How</Button>
                     </div>
+
                     <div className='cta-img'>
                         <img src={ExamplePost} alt='example'></img>
                     </div>
 
                 </div>
+
                 <div className='posts-section'>
                     <PostList history={this.props.history} isHome={true} />
                     <NavLink to='/posts' className='posts-button'>See More</NavLink>
@@ -54,7 +56,7 @@ class Home extends React.Component {
                 <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
                 <TagsSearch history={this.props.history} query={'Pets'} isHome={true} />
                 <TagsSearch history={this.props.history} query={'Toys'} isHome={true} />
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 

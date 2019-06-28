@@ -225,7 +225,7 @@ class CreatePostForm extends React.Component {
                         <Input
                             className="pf-title-input"
                             onChange={this.handleChange}
-                            placeholder="What do you want to name your project?"
+                            placeholder="Give your project a name"
                             value={this.state.title}
                             name="title"
                         />
@@ -402,7 +402,7 @@ class CreatePostForm extends React.Component {
                         <Label>Duration</Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder="How long did it take to complete this project?"
+                            placeholder="How long did it take to complete?"
                             value={this.state.duration}
                             name="duration"
                         />
@@ -411,7 +411,7 @@ class CreatePostForm extends React.Component {
                         <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder="Are there any skills needed to complete this project?"
+                            placeholder="Are there any skills needed to complete it?"
                             value={this.state.skills}
                             name="skills"
                         />
@@ -441,7 +441,7 @@ class CreatePostForm extends React.Component {
                                 className="supply-input"
                                 onKeyDown={this.handleSupplies}
                                 onChange={this.handleChange}
-                                placeholder='What tools or supplies did you use for this project?'
+                                placeholder='What tools or supplies did you use?'
                                 value={this.state.supplies}
                                 name='supplies'
                             />

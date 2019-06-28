@@ -196,7 +196,7 @@ class EditPostForm extends React.Component {
                                 <Input
                                     className="pf-title-input"
                                     onChange={this.handleChange}
-                                    placeholder='title'
+                                    placeholder='Give your project a name'
                                     value={this.state.title}
                                     name='title'
                                 />
@@ -291,7 +291,7 @@ class EditPostForm extends React.Component {
                                     name='description'
                                     onChange={this.handleChange}
                                     value={this.state.description}
-                                    placeholder='Please Provide an Introduction to this Project'
+                                    placeholder='What do you want people to know about your project?'
                                     rows="8"
                                 />
                             </FormGroup>
@@ -350,7 +350,7 @@ class EditPostForm extends React.Component {
                                 <Label>Duration</Label>
                                 <Input
                                     onChange={this.handleChange}
-                                    placeholder='Estimated Time to Complete'
+                                    placeholder='How long did it take to complete?'
                                     value={this.state.duration}
                                     name='duration'
                                 />
@@ -359,7 +359,7 @@ class EditPostForm extends React.Component {
                                 <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                                 <Input
                                     onChange={this.handleChange}
-                                    placeholder='Skills Needed for this Project'
+                                    placeholder='Are there any skills needed to complete it?'
                                     value={this.state.skills}
                                     name='skills'
                                 />
@@ -388,7 +388,7 @@ class EditPostForm extends React.Component {
                                         className="supply-input"
                                         onKeyDown={this.handleSupplies}
                                         onChange={this.handleChange}
-                                        placeholder='supplies'
+                                        placeholder='What tools or supplies did you use?'
                                         value={this.state.supplies}
                                         name='supplies'
                                     />

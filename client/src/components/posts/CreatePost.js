@@ -61,15 +61,20 @@ class CreatePostForm extends React.Component {
         };
     }
 
+
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
-        this.props.getTag();
+        this.props.getTag()
+
     }
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.submitRefresh !== this.props.submitRefresh) {
             this.handlePostSubmit();
         }
     }
+
+
 
     hydrateStateWithLocalStorage() {
         // if the key exists in localStorage
@@ -135,9 +140,17 @@ class CreatePostForm extends React.Component {
         this.setState({ postImage: e.target.files[0] });
     };
 
+    scrollWin() {
+        let element = document.getElementById("step-form");
+        element.scrollIntoView();
+        window.scrollBy(0, -100);
+    }
+
     // submit image and form
     handleSubmit = e => {
+
         e.preventDefault();
+
         if (this.state.created_by
             && this.state.title
             && this.state.postImage
@@ -152,7 +165,6 @@ class CreatePostForm extends React.Component {
             this.setState({ showAlert: true })
         }
     };
-
     //submit post after image
     handlePostSubmit = async () => {
         if (this.state.submit) {
@@ -191,19 +203,19 @@ class CreatePostForm extends React.Component {
                     this.props.addTag(newTag);
                 });
                 this.props.history.push(`/forms/post/edit/${this.props.addId}`);
+                this.scrollWin()
             }, 300);
-
-
-
 
         }
     };
+
 
     handleInit() {
         console.log("FilePond instance has initialised", this.pond);
     }
 
     render() {
+
         const hasLoggedIn = localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt');
         return hasLoggedIn ?
             (<div className="pf-container">
@@ -220,14 +232,6 @@ class CreatePostForm extends React.Component {
                     </FormGroup>
                     <FormGroup className="pf-img">
                         <Label className="main-image-label">Main Image</Label>
-                        {/* <Input
-                                type="file"
-                                // name="img_url"
-                                // id="img_url"
-                                accept="image/png, image/jpeg"
-                                onChange={this.handleImageChange}
-                                disabled={this.state.disabled}
-                            /> */}
                         <div className="filepond-container">
                             <FilePond
                                 ref={ref => (this.pond = ref)}
@@ -251,7 +255,6 @@ class CreatePostForm extends React.Component {
                                     }
                                 }}
                                 oninit={() => this.handleInit()}
-                                // allowFileEncode={true}
                                 onupdatefiles={fileItems => {
                                     console.log("FILE ITEMS", fileItems);
                                     // Set current file object to this.state
@@ -295,7 +298,6 @@ class CreatePostForm extends React.Component {
                                 <DropdownMenu>
                                     <DropdownItem>
                                         <FormGroup>
-                                            {/* <Label for="exampleSelectMulti">Select Tags</Label> */}
                                             <Input
                                                 className="form-control "
                                                 onChange={this.handleTagsChange}
@@ -362,8 +364,6 @@ class CreatePostForm extends React.Component {
                             <DropdownMenu>
                                 <DropdownItem>
                                     <FormGroup>
-                                        {/* <Label for="exampleSelectMulti">Select Difficulty</Label> */}
-
                                         <Input
                                             className="form-control"
                                             onChange={this.handleChange}
@@ -378,7 +378,6 @@ class CreatePostForm extends React.Component {
                                             <option value={`Hard`}>Hard</option>
                                             <option value={`Very Hard`}>Very Hard</option>
                                         </Input>
-
                                     </FormGroup>
                                 </DropdownItem>
                             </DropdownMenu>
@@ -454,6 +453,7 @@ class CreatePostForm extends React.Component {
                     <div className="pf-button-container">
                         <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>
+                    <element id="mock"></element>
                 </Form>
             </div>
             ) :

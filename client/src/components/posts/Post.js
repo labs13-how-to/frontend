@@ -23,10 +23,10 @@ class Post extends React.Component {
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
-        window.scrollTo(0, 0);
     };
 
     componentDidUpdate(prevProps, prevState) {
+
         if (prevProps.refresh !== this.props.refresh) {
             this.props.getPost(this.state.id)
 
@@ -35,6 +35,7 @@ class Post extends React.Component {
             this.props.getUsers(this.props.currPost.created_by)
 
         };
+
     };
 
     delete() {

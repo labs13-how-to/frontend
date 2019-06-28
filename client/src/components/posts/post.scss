@@ -24,7 +24,7 @@ pre {
 
 
 .ps-card.p-page {
-    width: 90%;
+    width: 100%;
 }
 .post-card {
     text-align: left;
@@ -148,7 +148,7 @@ pre {
     border: 1px solid #FF851A;
     width: 80px;
     font-size: 16px;
-    margin: 5px 0 15px 10px;
+    margin: 5px 0 15px 0px;
 
     @media (max-width: 380px) {
         margin: 5px 0 15px 0px;
@@ -162,7 +162,8 @@ pre {
     margin-bottom: 1rem;
 
     @media (max-width: 800px) {
-        align-self: center;
+        align-self: flex-start;
+        margin-left: 0;
     }
 }
 .desc-btn{

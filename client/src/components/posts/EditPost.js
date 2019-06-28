@@ -20,6 +20,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 // Register FilePond the plugins
 import ProtectedRoute from '../ProtectedRoute.js';
 import CreateStep from './CreatePostStep.js';
+
 registerPlugin(
     FilePondPluginFileEncode,
     FilePondPluginFileValidateType,
@@ -52,6 +53,7 @@ class EditPostForm extends React.Component {
         };
     }
 
+   
     toggleDropDown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -65,8 +67,8 @@ class EditPostForm extends React.Component {
         });
     }
 
+
     componentDidMount() {
-        window.scrollTo(0, 600);
 
         this.props.getPost(this.state.id)
         if (this.props.currPost.title) {
@@ -114,6 +116,7 @@ class EditPostForm extends React.Component {
             this.setState({ imageSubmitted: false, img_url: this.props.uploadedImage })
             this.props.getRefresh();
         }
+
     }
 
     handleImageChange = e => {
@@ -280,6 +283,7 @@ class EditPostForm extends React.Component {
                                     </select>
                                 </div>
                             </FormGroup>
+
                             <FormGroup className="pf-description">
                                 <Label>Introduction</Label>
                                 <Input
@@ -394,7 +398,7 @@ class EditPostForm extends React.Component {
                             <div className="pf-button-container">
                                 <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                             </div>
-                            <div class={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">
+                            <div className={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">
                                 Your Post info has been successfully edited!
                             </div>
                         </Form>

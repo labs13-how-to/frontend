@@ -20,6 +20,12 @@
         padding-top: 15px;
         font-family: "Nunito", sans-serif;
     }
+    @media (max-width: 430px) {
+        width: 100%;
+        padding: 0 5% 5% 5%;
+        margin-left: 7%;
+        margin-right: 7%;
+    }
 }
 
 .ps-header {

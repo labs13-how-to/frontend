@@ -82,6 +82,9 @@
   }
 }
 
+.main-img-label {
+  margin-bottom: 20px;
+}
 
 
 #tag-delete{
@@ -91,24 +94,31 @@
     color: #FF851A;
     font-size: 1.2rem;
     margin-bottom: 10px;
-    text-align: center;
+    margin-right: 5px;
+    font-weight: bold;
+  //  vertical-align: top;
     :hover{
         cursor: pointer;
     }
 }
 
-.post-tags.form-tags{
-  margin-bottom: 0;
-  span{
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+.supplies-tags{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.supply-input {
+  margin-bottom: 20px;
 }
 .post-tags.form-tags{
   margin-bottom: 0;
+  @media (max-width: 500px) {
+    margin-bottom: 3px;
+  }
   span{
+    
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 10px;
   }
 }
 
@@ -129,6 +139,8 @@
 
 .desktop-select{
   display: flex;
+  width: auto;
+  margin-right: 15px;
 }
 .mobile-select{
   display: none;

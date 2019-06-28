@@ -24,7 +24,7 @@ pre {
 
 
 .ps-card.p-page {
-    width: 90%;
+    width: 100%;
 }
 .post-card {
     text-align: left;
@@ -34,6 +34,10 @@ pre {
 .p-header {
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 800px) {
+        flex-direction: column;
+    }
 }
 
 .p-title {
@@ -41,6 +45,11 @@ pre {
     font-size: 35px;
     width: 70%;
     font-family: "Nunito", sans-serif;
+
+    @media (max-width: 800px) {
+        width: 100%;
+       
+    }
 }
 
 .review-count.post-review {
@@ -84,14 +93,25 @@ pre {
 .p-content-section {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 45%;
     margin: 40px 0;
+
     .card-text {
         font-family: 'Amiri', serif;
     }
     li {
+        width: 100%;
         font-family: 'Amiri', serif;
+        
     }
+    @media (max-width: 430px) { 
+
+    }
+    @media (max-width: 380px) { 
+
+    }
+    @media (max-width: 325px) {
+    } 
 }
 
 .p-content-label {
@@ -108,7 +128,7 @@ pre {
 .post-page span {
     padding: 5px 15px;
     border-radius: 20px;
-    margin: 15px 15px 20px 10px;
+    margin: 15px 10px 20px 10px;
     color: #746D6D;
     border: 1px solid #746D6D;
      font-family: "Nunito", sans-serif;
@@ -128,14 +148,23 @@ pre {
     border: 1px solid #FF851A;
     width: 80px;
     font-size: 16px;
-    margin: 5px 0 15px 10px;
+    margin: 5px 0 15px 0px;
+
+    @media (max-width: 380px) {
+        margin: 5px 0 15px 0px;
+    }
 }
 
 .p-buttons{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-self: flex-start;
     margin-bottom: 1rem;
+
+    @media (max-width: 800px) {
+        align-self: flex-start;
+        margin-left: 0;
+    }
 }
 .desc-btn{
     background: none;

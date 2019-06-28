@@ -15,6 +15,12 @@ import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
+/////// IF YOU REMOVE THESE WARNINGS IT WILL BREAK THE ANIMATION ///////
+import * as Scroll from 'react-scroll';
+import { animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Element } from 'react-scroll'
+/////// IF YOU REMOVE THESE WARNINGS IT WILL BREAK THE ANIMATION ///////
+
 // Register FilePond the plugins
 registerPlugin(
     FilePondPluginFileEncode,
@@ -46,7 +52,9 @@ class CreateStepForm extends React.Component {
                 step_num: this.props.currPost.steps.length + 1
             });
     }
+
     componentDidUpdate(prevProps, prevS) {
+
         //refresh steps
         if (this.props.currPost)
             if (prevProps.currPost === undefined) {
@@ -68,6 +76,7 @@ class CreateStepForm extends React.Component {
         if (prevProps.submitRefresh !== this.props.submitRefresh) {
             this.handleStepSubmit();
         }
+
     }
     handleChange = e => {
         if (this.state.showAlert) this.setState({ showAlert: false })
@@ -80,6 +89,7 @@ class CreateStepForm extends React.Component {
     };
 
     handleSubmit = e => {
+
         e.preventDefault();
         if (this.state.title
             && this.state.instruction
@@ -95,11 +105,20 @@ class CreateStepForm extends React.Component {
                     100
                 );
             }
+
         } else {
             this.setState({ showAlert: true });
         }
-
+        this.scrollTo()
     };
+
+    scrollTo() {
+        scroller.scrollTo("myScrollToElement", {
+            duration: 1300,
+            delay: 199,
+            smooth: true
+        })
+    }
 
     handleInit() {
         console.log("FilePond instance has initialised", this.pond);
@@ -139,9 +158,12 @@ class CreateStepForm extends React.Component {
         const { steps } = this.props.currPost;
         return (
             <>
+
                 <h3 id='step-form' className="psf-section-header">
                     Add steps, instructions, and additional photos here
                 </h3>
+
+
                 {steps &&
                     steps.map((step, index) => {
                         return (
@@ -157,11 +179,13 @@ class CreateStepForm extends React.Component {
                 <div className="psf-container">
                     <Form className="psf" onSubmit={this.handleSubmit}>
                         <FormGroup>
-                            <Label>Step Title</Label>
+                            <Element name="myScrollToElement2" className="element">
+                                <Label>Step Title</Label>
+                            </Element>
                             <Input
                                 className="psf-title-input"
                                 onChange={this.handleChange}
-                                placeholder="What do you want to name this step?"
+                                placeholder="Name your step"
                                 value={this.state.title}
                                 name="title"
                             />
@@ -201,8 +225,7 @@ class CreateStepForm extends React.Component {
                                             }
                                         }
                                     }}
-                                    oninit={() => this.handleInit()}
-                                    // allowFileEncode={true}
+                                    oninit={() => this.handleInit()}                          
                                     onupdatefiles={fileItems => {
                                         // Set current file object to this.state
                                         if (fileItems[0]) this.setState({ postImage: fileItems[0].file });
@@ -211,7 +234,7 @@ class CreateStepForm extends React.Component {
                                 />
                             </FormGroup>
                         </div>
-                        <div class={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                        <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
                             * You Must Fill in the required fields to submit a post! *
                     </div>
                         <div className="psf-button-container">
@@ -224,6 +247,7 @@ class CreateStepForm extends React.Component {
                 <div className="publish-button">
                     <Button
                         className="psf-button"
+                        id="publish"
                         onClick={() =>
                             this.props.history.push(`/posts/${this.state.post_id}`)
                         }

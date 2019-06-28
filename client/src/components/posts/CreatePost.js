@@ -61,15 +61,20 @@ class CreatePostForm extends React.Component {
         };
     }
 
+
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
-        this.props.getTag();
+        this.props.getTag()
+
     }
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.submitRefresh !== this.props.submitRefresh) {
             this.handlePostSubmit();
         }
     }
+
+
 
     hydrateStateWithLocalStorage() {
         // if the key exists in localStorage
@@ -135,9 +140,17 @@ class CreatePostForm extends React.Component {
         this.setState({ postImage: e.target.files[0] });
     };
 
+    scrollWin() {
+        let element = document.getElementById("step-form");
+        element.scrollIntoView();
+        window.scrollBy(0, -100);
+    }
+
     // submit image and form
     handleSubmit = e => {
+
         e.preventDefault();
+
         if (this.state.created_by
             && this.state.title
             && this.state.postImage
@@ -152,7 +165,6 @@ class CreatePostForm extends React.Component {
             this.setState({ showAlert: true })
         }
     };
-
     //submit post after image
     handlePostSubmit = async () => {
         if (this.state.submit) {
@@ -191,19 +203,19 @@ class CreatePostForm extends React.Component {
                     this.props.addTag(newTag);
                 });
                 this.props.history.push(`/forms/post/edit/${this.props.addId}`);
+                this.scrollWin()
             }, 300);
-
-
-
 
         }
     };
+
 
     handleInit() {
         console.log("FilePond instance has initialised", this.pond);
     }
 
     render() {
+
         const hasLoggedIn = localStorage.hasOwnProperty('user_id') && localStorage.hasOwnProperty('jwt');
         return hasLoggedIn ?
             (<div className="pf-container">
@@ -213,21 +225,13 @@ class CreatePostForm extends React.Component {
                         <Input
                             className="pf-title-input"
                             onChange={this.handleChange}
-                            placeholder="What do you want to name your project?"
+                            placeholder="Give your project a name"
                             value={this.state.title}
                             name="title"
                         />
                     </FormGroup>
                     <FormGroup className="pf-img">
-                        <Label>Main Image</Label>
-                        {/* <Input
-                                type="file"
-                                // name="img_url"
-                                // id="img_url"
-                                accept="image/png, image/jpeg"
-                                onChange={this.handleImageChange}
-                                disabled={this.state.disabled}
-                            /> */}
+                        <Label className="main-image-label">Main Image</Label>
                         <div className="filepond-container">
                             <FilePond
                                 ref={ref => (this.pond = ref)}
@@ -251,7 +255,6 @@ class CreatePostForm extends React.Component {
                                     }
                                 }}
                                 oninit={() => this.handleInit()}
-                                // allowFileEncode={true}
                                 onupdatefiles={fileItems => {
                                     console.log("FILE ITEMS", fileItems);
                                     // Set current file object to this.state
@@ -280,7 +283,7 @@ class CreatePostForm extends React.Component {
                                     let currTag = tag.name.split('');
                                     currTag[0] = currTag[0].toUpperCase();
                                     currTag = currTag.join('')
-                                    return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >🗴</span></span>
+                                    return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >x</span></span>
                                 })}
                             </p>
                             <InputGroupButtonDropdown
@@ -295,7 +298,6 @@ class CreatePostForm extends React.Component {
                                 <DropdownMenu>
                                     <DropdownItem>
                                         <FormGroup>
-                                            {/* <Label for="exampleSelectMulti">Select Tags</Label> */}
                                             <Input
                                                 className="form-control "
                                                 onChange={this.handleTagsChange}
@@ -362,8 +364,6 @@ class CreatePostForm extends React.Component {
                             <DropdownMenu>
                                 <DropdownItem>
                                     <FormGroup>
-                                        <Label for="exampleSelectMulti">Select Difficulty</Label>
-
                                         <Input
                                             className="form-control"
                                             onChange={this.handleChange}
@@ -378,7 +378,6 @@ class CreatePostForm extends React.Component {
                                             <option value={`Hard`}>Hard</option>
                                             <option value={`Very Hard`}>Very Hard</option>
                                         </Input>
-
                                     </FormGroup>
                                 </DropdownItem>
                             </DropdownMenu>
@@ -403,7 +402,7 @@ class CreatePostForm extends React.Component {
                         <Label>Duration</Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder="How long did it take to complete this project?"
+                            placeholder="How long did it take to complete?"
                             value={this.state.duration}
                             name="duration"
                         />
@@ -412,7 +411,7 @@ class CreatePostForm extends React.Component {
                         <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                         <Input
                             onChange={this.handleChange}
-                            placeholder="Are there any skills needed to complete this project?"
+                            placeholder="Are there any skills needed to complete it?"
                             value={this.state.skills}
                             name="skills"
                         />
@@ -424,26 +423,29 @@ class CreatePostForm extends React.Component {
                             </span>
 
                         </Label>
-                        <p className='post-tags'>
-                            {this.state.supplyList && this.state.supplyList.map((sup, index) => {
-                                let currSup = sup.split('');
-                                currSup[0] = currSup[0].toUpperCase();
-                                currSup = currSup.join('')
-                                return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
-                                    let supList = this.state.supplyList;
-                                    supList.splice(index, 1)
-                                    this.setState({ supplyList: supList })
-                                }} >🗴</span></span>
-                            })}
+                        <div className='supplies-tags'>
+                            <p className='post-tags'>
+                                {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                    let currSup = sup.split('');
+                                    currSup[0] = currSup[0].toUpperCase();
+                                    currSup = currSup.join('');
+                                    return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                        let supList = this.state.supplyList;
+                                        supList.splice(index, 1)
+                                        this.setState({ supplyList: supList })
+                                    }} >x</span></span>
+                                })}
 
-                        </p>
-                        <Input
-                            onKeyDown={this.handleSupplies}
-                            onChange={this.handleChange}
-                            placeholder='What tools or supplies did you use for this project?'
-                            value={this.state.supplies}
-                            name='supplies'
-                        />
+                            </p>
+                            <Input
+                                className="supply-input"
+                                onKeyDown={this.handleSupplies}
+                                onChange={this.handleChange}
+                                placeholder='What tools or supplies did you use?'
+                                value={this.state.supplies}
+                                name='supplies'
+                            />
+                        </div>
                     </FormGroup>
                     <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
                         * You Must Fill in the required fields to submit a post! *
@@ -451,6 +453,7 @@ class CreatePostForm extends React.Component {
                     <div className="pf-button-container">
                         <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>
+              
                 </Form>
             </div>
             ) :

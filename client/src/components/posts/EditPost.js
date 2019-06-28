@@ -20,6 +20,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 // Register FilePond the plugins
 import ProtectedRoute from '../ProtectedRoute.js';
 import CreateStep from './CreatePostStep.js';
+
 registerPlugin(
     FilePondPluginFileEncode,
     FilePondPluginFileValidateType,
@@ -52,6 +53,7 @@ class EditPostForm extends React.Component {
         };
     }
 
+   
     toggleDropDown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -65,8 +67,8 @@ class EditPostForm extends React.Component {
         });
     }
 
+
     componentDidMount() {
-        window.scrollTo(0, 600);
 
         this.props.getPost(this.state.id)
         if (this.props.currPost.title) {
@@ -114,6 +116,7 @@ class EditPostForm extends React.Component {
             this.setState({ imageSubmitted: false, img_url: this.props.uploadedImage })
             this.props.getRefresh();
         }
+
     }
 
     handleImageChange = e => {
@@ -140,9 +143,7 @@ class EditPostForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     };
     handleSupplies = e => {
-        // console.log(e)
         if (e.key === 'Enter') {
-            // console.log(e.target.value)
             this.setState({ supplyList: [...this.state.supplyList, this.state.supplies] });
             this.setState({ supplies: '' });
         }
@@ -195,28 +196,14 @@ class EditPostForm extends React.Component {
                                 <Input
                                     className="pf-title-input"
                                     onChange={this.handleChange}
-                                    placeholder='title'
+                                    placeholder='Give your project a name'
                                     value={this.state.title}
                                     name='title'
                                 />
                             </FormGroup>
                             <FormGroup className="pf-img">
-                                <Label>Main Image</Label>
-                                {/* <Input
-                            onChange={this.handleChange}
-                            placeholder='img_url'
-                            value={this.state.img_url}
-                            name='img_url'
-                        /> */}
+                                <Label className="main-img-label">Main Image</Label>
                                 <img className='img-fluid' src={this.state.img_url} alt="upload" />
-                                {/* <Input
-                            type="file"
-                            name="img_url"
-                            id="img_url"
-                            accept="image/png, image/jpeg"
-                            onChange={this.handleImageChange}
-                            disabled={this.state.disabled}
-                        /> */}
                                 <FormGroup>
                                     <Label className='new-img'>Upload New Image</Label>
                                     <FilePond
@@ -242,7 +229,6 @@ class EditPostForm extends React.Component {
                                             }
                                         }}
                                         oninit={() => this.handleInit()}
-                                        // allowFileEncode={true}
                                         onupdatefiles={fileItems => {
                                             // Set current file object to this.state
                                             if (fileItems[0]) {
@@ -251,7 +237,6 @@ class EditPostForm extends React.Component {
                                         }}
                                     />
                                 </FormGroup>
-                                {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
                             </FormGroup>
                             <FormGroup className="pf-img">
                                 <Label>Youtube Video <span className="video-span">(Optional)</span></Label>
@@ -266,22 +251,18 @@ class EditPostForm extends React.Component {
                                 <p>Category</p>
                                 <div className='tag-section'>
                                     <p className='post-tags'>
-                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
+                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >x</span></span>)}
                                     </p>
                                     <InputGroupButtonDropdown className='desktop-select' addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                         <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem>
-
                                                 <FormGroup>
-                                                    {/* <Label for="exampleSelectMulti">Select Categories</Label> */}
                                                     <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
                                                         {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
                                                     </Input>
                                                 </FormGroup>
-
                                             </DropdownItem>
-
                                         </DropdownMenu>
                                     </InputGroupButtonDropdown >
                                     <select
@@ -302,6 +283,7 @@ class EditPostForm extends React.Component {
                                     </select>
                                 </div>
                             </FormGroup>
+
                             <FormGroup className="pf-description">
                                 <Label>Introduction</Label>
                                 <Input
@@ -309,7 +291,7 @@ class EditPostForm extends React.Component {
                                     name='description'
                                     onChange={this.handleChange}
                                     value={this.state.description}
-                                    placeholder='Please Provide an Introduction to this Project'
+                                    placeholder='What do you want people to know about your project?'
                                     rows="8"
                                 />
                             </FormGroup>
@@ -329,8 +311,6 @@ class EditPostForm extends React.Component {
                                     <DropdownMenu>
                                         <DropdownItem>
                                             <FormGroup>
-                                                <Label for="exampleSelectMulti">Select Difficulty</Label>
-
                                                 <Input
                                                     className="form-control"
                                                     onChange={this.handleChange}
@@ -370,48 +350,55 @@ class EditPostForm extends React.Component {
                                 <Label>Duration</Label>
                                 <Input
                                     onChange={this.handleChange}
-                                    placeholder='Estimated Time to Complete'
+                                    placeholder='How long did it take to complete?'
                                     value={this.state.duration}
                                     name='duration'
                                 />
                             </FormGroup>
                             <FormGroup className="pf-skills">
-                                <Label>Prerequisite Skills</Label>
+                                <Label>Prerequisite Skills{" "}<span className="video-span">(Optional)</span></Label>
                                 <Input
                                     onChange={this.handleChange}
-                                    placeholder='Skills Needed for this Project'
+                                    placeholder='Are there any skills needed to complete it?'
                                     value={this.state.skills}
                                     name='skills'
                                 />
                             </FormGroup>
                             <FormGroup className="pf-supplies">
-                                <Label>Tools/Supplies</Label>
-                                <p className='post-tags'>
-                                    {this.state.supplyList && this.state.supplyList.map((sup, index) => {
-                                        let currSup = sup.split('');
-                                        currSup[0] = currSup[0].toUpperCase();
-                                        currSup = currSup.join('')
-                                        return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
-                                            let supList = this.state.supplyList;
-                                            supList.splice(index, 1)
-                                            this.setState({ supplyList: supList })
-                                        }} >🗴</span></span>
-                                    })}
+                                <Label>Tools/Supplies{" "}<span className="video-span">(Optional)</span>{" "}
+                                    <span className="category-span">
+                                        (Type your item and press Enter)
+                            </span>
+                                </Label>
+                                <div className='supplies-tags'>
+                                    <p className='post-tags'>
+                                        {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                            let currSup = sup.split('');
+                                            currSup[0] = currSup[0].toUpperCase();
+                                            currSup = currSup.join('')
+                                            return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                                let supList = this.state.supplyList;
+                                                supList.splice(index, 1)
+                                                this.setState({ supplyList: supList })
+                                            }} >x</span></span>
+                                        })}
+                                    </p>
 
-                                </p>
-                                <Input
-                                    onKeyDown={this.handleSupplies}
-                                    onChange={this.handleChange}
-                                    placeholder='supplies'
-                                    value={this.state.supplies}
-                                    name='supplies'
-                                />
+                                    <Input
+                                        className="supply-input"
+                                        onKeyDown={this.handleSupplies}
+                                        onChange={this.handleChange}
+                                        placeholder='What tools or supplies did you use?'
+                                        value={this.state.supplies}
+                                        name='supplies'
+                                    />
+                                </div>
                             </FormGroup>
 
                             <div className="pf-button-container">
                                 <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                             </div>
-                            <div class={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">
+                            <div className={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">
                                 Your Post info has been successfully edited!
                             </div>
                         </Form>

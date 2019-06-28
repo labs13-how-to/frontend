@@ -45,6 +45,11 @@ class CreateStepForm extends React.Component {
             this.setState({
                 step_num: this.props.currPost.steps.length + 1
             });
+        if (window.localStorage.getItem('fromCreatePost')) {
+
+            setTimeout(() => document.querySelector('#edit-save').scrollIntoView(), 10);
+            setTimeout(() => window.localStorage.removeItem('fromCreatePost'), 100);
+        }
     }
     componentDidUpdate(prevProps, prevS) {
         //refresh steps
@@ -108,7 +113,6 @@ class CreateStepForm extends React.Component {
     handleStepSubmit = async e => {
         if (this.state.submit) {
             this.setState({ submit: false });
-
             const newStep = {
                 post_id: this.state.post_id,
                 step_num: this.state.step_num,

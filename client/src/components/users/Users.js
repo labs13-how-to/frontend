@@ -12,6 +12,7 @@ class Users extends Component {
     this.props.getPosts();
     const id = this.props.location.pathname.split("/")[2];
     this.props.getUsers(id);
+    window.scrollTo(0, 0);
   }
 
   render() {

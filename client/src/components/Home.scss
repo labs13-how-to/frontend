@@ -41,6 +41,8 @@
     }
     
     .cta-img {
+        color: white;
+        display:block;
         width: 60%;
         padding-right: 90px;
         img {
@@ -96,6 +98,7 @@
             }
         }
         .cta-img{
+            color: black;
             height: 100%;
             display: none;
         }

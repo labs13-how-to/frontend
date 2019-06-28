@@ -424,26 +424,29 @@ class CreatePostForm extends React.Component {
                             </span>
 
                         </Label>
-                        <p className='post-tags'>
-                            {this.state.supplyList && this.state.supplyList.map((sup, index) => {
-                                let currSup = sup.split('');
-                                currSup[0] = currSup[0].toUpperCase();
-                                currSup = currSup.join('')
-                                return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
-                                    let supList = this.state.supplyList;
-                                    supList.splice(index, 1)
-                                    this.setState({ supplyList: supList })
-                                }} >🗴</span></span>
-                            })}
+                        <div className='supplies-tags'>
+                            <p className='post-tags'>
+                                {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                    let currSup = sup.split('');
+                                    currSup[0] = currSup[0].toUpperCase();
+                                    currSup = currSup.join('');
+                                    return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                        let supList = this.state.supplyList;
+                                        supList.splice(index, 1)
+                                        this.setState({ supplyList: supList })
+                                    }} >x</span></span>
+                                })}
 
-                        </p>
-                        <Input
-                            onKeyDown={this.handleSupplies}
-                            onChange={this.handleChange}
-                            placeholder='What tools or supplies did you use for this project?'
-                            value={this.state.supplies}
-                            name='supplies'
-                        />
+                            </p>
+                            <Input
+                                className="supply-input"
+                                onKeyDown={this.handleSupplies}
+                                onChange={this.handleChange}
+                                placeholder='What tools or supplies did you use for this project?'
+                                value={this.state.supplies}
+                                name='supplies'
+                            />
+                        </div>
                     </FormGroup>
                     <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
                         * You Must Fill in the required fields to submit a post! *

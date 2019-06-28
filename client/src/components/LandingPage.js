@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../actions';
 import { Button } from "reactstrap";
 import beeImg from '../images/bee-img.png'
-import categoryExample from '../images/category-example.jpg'
+import categoryExample from '../images/landingpage-gardening.png'
 import postExample from '../images/post-example.jpg'
 import reviewExample from '../images/review-example.jpg'
 import iphone from '../images/iphone-img.png'

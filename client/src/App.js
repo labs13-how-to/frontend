@@ -22,7 +22,7 @@ import Footer from "./components/Footer.js";
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
-import { animations } from 'react-animation'
+// import { animations } from 'react-animation'
 import 'react-animation/dist/keyframes.css'
 
 class App extends Component {

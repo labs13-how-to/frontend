@@ -159,6 +159,7 @@ class CreatePostForm extends React.Component {
             && this.state.difficulty
             && this.state.tags[0]) {
 
+            window.localStorage.setItem('fromCreatePost', true);
             this.props.uploadImageHandler(this.state.postImage);
             this.setState({ submit: true, showAlert: false });
         } else {
@@ -196,6 +197,7 @@ class CreatePostForm extends React.Component {
                 supplyList: [],
                 created_by: ""
             });
+
 
             setTimeout(() => {
                 this.state.tags.forEach(tag => {

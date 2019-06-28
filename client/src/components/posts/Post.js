@@ -23,7 +23,8 @@ class Post extends React.Component {
     componentDidMount() {
         this.props.getPost(this.state.id)
         this.props.getTag();
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
+        this.props.history.push('#post-top')
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -66,7 +67,7 @@ class Post extends React.Component {
         const supplyList = supplies && supplies.split(" _ ")
         return (
             <React.Fragment>
-                <Card className="post-card" id="post">
+                <Card id='post post-top' className="post-card" >
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
 
                     <CardBody>

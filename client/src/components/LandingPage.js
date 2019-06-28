@@ -1,8 +1,7 @@
 import React from 'react';
-// import Posts from './posts/Posts.js';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
-// import { Button } from "reactstrap";
+import { Button } from "reactstrap";
 import beeImg from '../images/bee-img.png'
 import categoryExample from '../images/category-example.jpg'
 import postExample from '../images/post-example.jpg'
@@ -21,10 +20,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import "./landingpage.scss"
-
-import {
-    Button,
-} from "reactstrap";
 
 
 class LandingPage extends React.Component {

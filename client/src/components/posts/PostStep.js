@@ -4,10 +4,12 @@ import { deleteStep } from '../../actions/steps-tagsActions';
 import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "./postSteps.scss";
 
+
 class PostStep extends React.Component {
   state = {
     isForm: false
   }
+
 
   componentDidMount() {
     if (this.props.location) {
@@ -16,6 +18,7 @@ class PostStep extends React.Component {
         isForm: isForm
       })
     }
+
 
   }
 
@@ -29,6 +32,7 @@ class PostStep extends React.Component {
     } = this.props.step;
 
     return (
+
       <div className='ps-card-container'>
         <Card className={this.props.isEdit ? 'ps-card' : 'ps-card p-page'}>
           <div className='ps-header'>
@@ -36,10 +40,11 @@ class PostStep extends React.Component {
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}
           </div>
           <CardText className='ps-title' id="card"> {title}</CardText>
-          <CardText className='ps-text'>{instruction}</CardText>
+            <CardText className='ps-text'>{instruction}</CardText>
           {img_url && <CardImg className='ps-img' src={img_url} alt="Card image" />}
         </Card>
       </div>
+
     )
   }
 }

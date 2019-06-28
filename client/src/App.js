@@ -22,12 +22,15 @@ import Footer from "./components/Footer.js";
 import { getTest, login } from "./actions";
 import queryString from "query-string";
 
+import { animations } from 'react-animation'
+import 'react-animation/dist/keyframes.css'
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       auth_id: "",
-      user_id: null
+      user_id: null,
     };
   }
 

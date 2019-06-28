@@ -19,7 +19,8 @@ div.bar-container {
   margin-bottom: 50px;
 
   @media screen and (max-width: 500px) {
-    grid-template-columns: 40% 40% 20%;
+    grid-template-columns: 40% 55% 20%;
+    margin-right: 4%;
   }
 }
 
@@ -31,6 +32,9 @@ div.bar-container {
   margin: 0 10px 0 0;
   text-align: right;
   font-family: "Nunito", sans-serif;
+  @media screen and (max-width: 500px) {
+    margin-right: 15px;
+  }
 }
 
 .review-count {

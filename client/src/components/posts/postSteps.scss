@@ -20,6 +20,12 @@
         padding-top: 15px;
         font-family: "Nunito", sans-serif;
     }
+    @media (max-width: 430px) {
+        width: 100%;
+        padding: 0 5% 5% 5%;
+        margin-left: 7%;
+        margin-right: 7%;
+    }
 }
 
 .ps-header {
@@ -83,10 +89,12 @@
 
 .form-control.psf-title-input {
     border: none;
-    // padding: 0;
     border-bottom: 1px solid black;
     width: 70%;
     border-radius: 0;
+    @media (max-width: 430px) { 
+        width: 100%;
+    }
 }
 
 .psf-media {
@@ -111,6 +119,12 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 83px;
+
+    @media (max-width: 430px) {
+        justify-content: center;
+        margin-right: 0px;
+       
+    }
 }
 
 .psf-button {
@@ -119,4 +133,12 @@
     background-color: #FF851A;
     margin: 15px;
     font-size: 16px;
+}
+
+#publish {
+    @media (max-width: 430px) {
+
+        width: 75%;
+        font-size: 18px;
+    }
 }

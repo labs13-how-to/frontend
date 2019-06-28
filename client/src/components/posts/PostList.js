@@ -8,6 +8,7 @@ class PostList extends React.Component {
 
     componentDidMount() {
         this.props.getPosts();
+        window.scrollTo(0, 0);
     }
 
     componentDidUpdate(prevProps, prevState) {

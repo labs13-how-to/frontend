@@ -24,7 +24,7 @@ class Posts extends React.Component {
             < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
             }>
                 <CardImg className="img-fluid" src={img_url} alt="Card image" />
-                <CardHeader>{title && title.length > 39 ? title.slice(0, 39) + '...' : title}</CardHeader>
+                <CardHeader>{title && title.length > 38 ? title.slice(0, 38) + '...' : title}</CardHeader>
 
                 <CardBody>
                     <StarRatingComponent

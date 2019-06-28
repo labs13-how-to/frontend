@@ -84,6 +84,17 @@
     @include media-breakpoint-down(sm) { 
         width: 120%;
         right: 10%;
+        
+        .cta-text{
+            display: flex;
+            h2{
+                width: 70%;
+                margin: 30px 40% 30px 16%;
+            }
+            .btn{
+                align-self: center;
+            }
+        }
         .cta-img{
             height: 100%;
             display: none;
@@ -146,6 +157,7 @@ h2.posts-head {
         padding:0 0 0 15px;
         max-height: 72px;
         height: 72px;
+        overflow: hidden;
     }
     .card-body {
         padding:0 0 0 15px;

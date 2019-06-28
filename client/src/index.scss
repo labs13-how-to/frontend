@@ -377,9 +377,9 @@ code {
   flex-wrap: wrap;
 }
 
-// .form-group {
-//   margin-bottom: 2.5rem;
-// }
+.form-group {
+  margin-bottom: 2.5rem;
+}
 
 // Tablet view
 @include media-breakpoint-down(sm) {

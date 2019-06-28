@@ -27,7 +27,6 @@ class Home extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const el = this.state.element;
 
         if (prevProps.refresh !== this.props.refresh) {
             this.props.getPosts();

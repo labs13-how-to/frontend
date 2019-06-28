@@ -140,9 +140,7 @@ class EditPostForm extends React.Component {
         this.setState({ [e.target.name]: e.target.value });
     };
     handleSupplies = e => {
-        // console.log(e)
         if (e.key === 'Enter') {
-            // console.log(e.target.value)
             this.setState({ supplyList: [...this.state.supplyList, this.state.supplies] });
             this.setState({ supplies: '' });
         }
@@ -201,22 +199,8 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
                             <FormGroup className="pf-img">
-                                <Label>Main Image</Label>
-                                {/* <Input
-                            onChange={this.handleChange}
-                            placeholder='img_url'
-                            value={this.state.img_url}
-                            name='img_url'
-                        /> */}
+                                <Label className="main-img-label">Main Image</Label>
                                 <img className='img-fluid' src={this.state.img_url} alt="upload" />
-                                {/* <Input
-                            type="file"
-                            name="img_url"
-                            id="img_url"
-                            accept="image/png, image/jpeg"
-                            onChange={this.handleImageChange}
-                            disabled={this.state.disabled}
-                        /> */}
                                 <FormGroup>
                                     <Label className='new-img'>Upload New Image</Label>
                                     <FilePond
@@ -242,7 +226,6 @@ class EditPostForm extends React.Component {
                                             }
                                         }}
                                         oninit={() => this.handleInit()}
-                                        // allowFileEncode={true}
                                         onupdatefiles={fileItems => {
                                             // Set current file object to this.state
                                             if (fileItems[0]) {
@@ -251,7 +234,6 @@ class EditPostForm extends React.Component {
                                         }}
                                     />
                                 </FormGroup>
-                                {/* <Button className='pf-button image-button' onClick={() => this.submitImage()}>Save Image</Button> */}
                             </FormGroup>
                             <FormGroup className="pf-img">
                                 <Label>Youtube Video <span className="video-span">(Optional)</span></Label>
@@ -266,22 +248,18 @@ class EditPostForm extends React.Component {
                                 <p>Category</p>
                                 <div className='tag-section'>
                                     <p className='post-tags'>
-                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >🗴</span></span>)}
+                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >x</span></span>)}
                                     </p>
                                     <InputGroupButtonDropdown className='desktop-select' addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                         <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem>
-
                                                 <FormGroup>
-                                                    {/* <Label for="exampleSelectMulti">Select Categories</Label> */}
                                                     <Input onChange={this.handleTagsChange} type="select" name="selectMulti" id="exampleSelectMulti" multiple>
                                                         {this.props.allTags ? this.props.allTags.map(tag => <option key={tag.id} value={tag.name.toLowerCase()}>{tag.name}</option>) : null}
                                                     </Input>
                                                 </FormGroup>
-
                                             </DropdownItem>
-
                                         </DropdownMenu>
                                     </InputGroupButtonDropdown >
                                     <select
@@ -329,8 +307,6 @@ class EditPostForm extends React.Component {
                                     <DropdownMenu>
                                         <DropdownItem>
                                             <FormGroup>
-                                                {/* <Label for="exampleSelectMulti">Select Difficulty</Label> */}
-
                                                 <Input
                                                     className="form-control"
                                                     onChange={this.handleChange}
@@ -390,26 +366,29 @@ class EditPostForm extends React.Component {
                                         (Type your item and press Enter)
                             </span>
                                 </Label>
-                                <p className='post-tags'>
-                                    {this.state.supplyList && this.state.supplyList.map((sup, index) => {
-                                        let currSup = sup.split('');
-                                        currSup[0] = currSup[0].toUpperCase();
-                                        currSup = currSup.join('')
-                                        return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
-                                            let supList = this.state.supplyList;
-                                            supList.splice(index, 1)
-                                            this.setState({ supplyList: supList })
-                                        }} >🗴</span></span>
-                                    })}
+                                <div className='supplies-tags'>
+                                    <p className='post-tags'>
+                                        {this.state.supplyList && this.state.supplyList.map((sup, index) => {
+                                            let currSup = sup.split('');
+                                            currSup[0] = currSup[0].toUpperCase();
+                                            currSup = currSup.join('')
+                                            return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                                let supList = this.state.supplyList;
+                                                supList.splice(index, 1)
+                                                this.setState({ supplyList: supList })
+                                            }} >x</span></span>
+                                        })}
+                                    </p>
 
-                                </p>
-                                <Input
-                                    onKeyDown={this.handleSupplies}
-                                    onChange={this.handleChange}
-                                    placeholder='supplies'
-                                    value={this.state.supplies}
-                                    name='supplies'
-                                />
+                                    <Input
+                                        className="supply-input"
+                                        onKeyDown={this.handleSupplies}
+                                        onChange={this.handleChange}
+                                        placeholder='supplies'
+                                        value={this.state.supplies}
+                                        name='supplies'
+                                    />
+                                </div>
                             </FormGroup>
 
                             <div className="pf-button-container">

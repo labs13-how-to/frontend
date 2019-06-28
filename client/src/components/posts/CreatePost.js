@@ -219,7 +219,7 @@ class CreatePostForm extends React.Component {
                         />
                     </FormGroup>
                     <FormGroup className="pf-img">
-                        <Label>Main Image</Label>
+                        <Label className="main-image-label">Main Image</Label>
                         {/* <Input
                                 type="file"
                                 // name="img_url"

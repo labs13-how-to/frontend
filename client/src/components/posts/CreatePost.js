@@ -453,7 +453,7 @@ class CreatePostForm extends React.Component {
                     <div className="pf-button-container">
                         <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>
-                    <element id="mock"></element>
+              
                 </Form>
             </div>
             ) :

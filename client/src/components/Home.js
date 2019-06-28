@@ -11,20 +11,51 @@ import ExamplePost from '../images/bike_cta.png';
 
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            cardAmount: 5,
+            isDesktop: false,
+        }
+        this.updatePredicate = this.updatePredicate.bind(this);
+    }
 
     componentDidMount() {
+        this.setState({ isDesktop: window.innerWidth > 768 })
         this.props.getPosts();
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
     }
 
     componentDidUpdate(prevProps, prevState) {
+        const el = this.state.element;
+
         if (prevProps.refresh !== this.props.refresh) {
             this.props.getPosts();
         }
     }
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+
+    updatePredicate() {
+        this.setState({ isDesktop: window.innerWidth > 768 });
+        setTimeout(() => {
+            if (this.state.isDesktop) {
+                this.setState({ cardAmount: 5 })
+            } else {
+                this.setState({ cardAmount: 1 })
+            }
+        }, 10);
+
+    }
 
     render() {
+        console.log(this.state.cardAmount)
+        const isDesktop = this.state.isDesktop;
         return (
             <React.Fragment>
+
                 <div className='cta'>
                     <div className='cta-text'>
                         <h2>Never made a how to post before? We'll help you learn how</h2>
@@ -36,24 +67,24 @@ class Home extends React.Component {
 
                 </div>
                 <div className='posts-section'>
-                    <PostList history={this.props.history} isHome={true} />
+                    <PostList history={this.props.history} isHome={true} cardAmount={this.state.cardAmount} />
                     <NavLink to='/posts' className='posts-button'>See More</NavLink>
                 </div>
-                <TagsSearch history={this.props.history} query={'Art'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Apparel'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Appliances'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Baby'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Beauty'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Cooking'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Crafts'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Electronics'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Furniture'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Home Improvement'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Pets'} isHome={true} />
-                <TagsSearch history={this.props.history} query={'Toys'} isHome={true} />
+                <TagsSearch history={this.props.history} query={'Art'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Apparel'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Appliances'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Baby'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Beauty'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Cooking'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Crafts'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Electronics'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Furniture'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Gardening'} isHome={true} cardAmount={this.state.cardAmount} />
+                {isDesktop && <TagsSearch history={this.props.history} query={'Home Improvement'} isHome={true} cardAmount={this.state.cardAmount} />}
+                {isDesktop && <TagsSearch history={this.props.history} query={'Outdoors'} isHome={true} cardAmount={this.state.cardAmount} />}
+                {isDesktop && <TagsSearch history={this.props.history} query={'Pets'} isHome={true} cardAmount={this.state.cardAmount} />}
+                {isDesktop && <TagsSearch history={this.props.history} query={'Toys'} isHome={true} cardAmount={this.state.cardAmount} />}
             </React.Fragment>
         );
     }

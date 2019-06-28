@@ -19,7 +19,7 @@ class TagSearch extends React.Component {
     render() {
         // Grabs query string out of URL params
         const query = this.props.query ? this.props.query : queryString.parse(this.props.location.search).q;
-
+        const cardAmount = this.props.cardAmount || 5;
         return (
             <div className='posts-section'>
                 <h2 className='posts-head' onClick={() => this.props.history.push(`/categories/search?q=${query}`)}>{query}</h2>
@@ -29,7 +29,7 @@ class TagSearch extends React.Component {
                         // Checks if a post title exists w/ query string, ignoring case
                         // if (this.props.isHome && posts == []) if (posts.length > 6) return null;
                         if (post.tags && post.tags.reduce((acc, tag, index) => tag.name.toLowerCase() === query.toLowerCase() ? true : acc, false)) {
-                            if (this.props.isHome && posts.length > 5) {
+                            if (this.props.isHome && posts.length > cardAmount) {
                                 if (!this.state.toLong) this.setState({ toLong: true });
                                 return posts;
                             }

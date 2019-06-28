@@ -185,7 +185,7 @@ class CreateStepForm extends React.Component {
                             <Input
                                 className="psf-title-input"
                                 onChange={this.handleChange}
-                                placeholder="What do you want to name this step?"
+                                placeholder="Name your step"
                                 value={this.state.title}
                                 name="title"
                             />

@@ -408,7 +408,7 @@ class EditPostForm extends React.Component {
                                 />
                             </FormGroup>
 
-                            <div className="pf-button-container">
+                            <div id='edit-save' className="pf-button-container">
                                 <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                             </div>
                             <div class={`alert alert-success${this.state.successAlert ? " show-alert" : ""}`} role="alert">

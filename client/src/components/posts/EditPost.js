@@ -20,6 +20,7 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 // Register FilePond the plugins
 import ProtectedRoute from '../ProtectedRoute.js';
 import CreateStep from './CreatePostStep.js';
+import Bounce from 'react-reveal/Bounce';
 
 registerPlugin(
     FilePondPluginFileEncode,
@@ -53,7 +54,7 @@ class EditPostForm extends React.Component {
         };
     }
 
-   
+
     toggleDropDown() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen
@@ -251,7 +252,8 @@ class EditPostForm extends React.Component {
                                 <p>Category</p>
                                 <div className='tag-section'>
                                     <p className='post-tags'>
-                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => <span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >x</span></span>)}
+                                        {this.props.currPost.tags && this.props.currPost.tags.map((tag, index) => 
+                                        <Bounce duration={500}><span key={index}>{tag.name}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name.toLowerCase() } })} >x</span></span></Bounce>)}
                                     </p>
                                     <InputGroupButtonDropdown className='desktop-select' addonType="append" isOpen={this.state.dropdownOpen} toggle={this.toggleDropDown}>
                                         <DropdownToggle split outline >{'Select Categories\xa0'} </DropdownToggle>
@@ -376,11 +378,11 @@ class EditPostForm extends React.Component {
                                             let currSup = sup.split('');
                                             currSup[0] = currSup[0].toUpperCase();
                                             currSup = currSup.join('')
-                                            return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                            return <Bounce duration={500}><span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
                                                 let supList = this.state.supplyList;
                                                 supList.splice(index, 1)
                                                 this.setState({ supplyList: supList })
-                                            }} >x</span></span>
+                                            }} >x</span></span></Bounce>
                                         })}
                                     </p>
 

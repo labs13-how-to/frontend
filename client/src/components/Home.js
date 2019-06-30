@@ -7,6 +7,8 @@ import { NavLink } from 'react-router-dom';
 import TagsSearch from './posts/TagsSearch';
 import PostList from './posts/PostList.js';
 import ExamplePost from '../images/bike_cta.png';
+import Fade from 'react-reveal/Fade';
+
 
 
 class Home extends React.Component {
@@ -57,13 +59,19 @@ class Home extends React.Component {
 
                 <div className='cta'>
                     <div className='cta-text'>
+
                         <h2>Never made a how to post before? We'll help you learn how</h2>
+
                         <Button onClick={() => this.props.history.push('/posts/1')}>Learn How</Button>
                     </div>
 
+
                     <div className='cta-img'>
-                        <img src={ExamplePost} alt='example'></img>
+                        <Fade>
+                            <img src={ExamplePost} alt='example'></img>
+                        </Fade>
                     </div>
+
 
                 </div>
 
@@ -71,9 +79,9 @@ class Home extends React.Component {
                     <PostList history={this.props.history} isHome={true} cardAmount={this.state.cardAmount} />
                     <NavLink to='/posts' className='posts-button'>See More</NavLink>
                 </div>
-                <TagsSearch history={this.props.history} query={'Art'} isHome={true} cardAmount={this.state.cardAmount} />
                 <TagsSearch history={this.props.history} query={'Apparel'} isHome={true} cardAmount={this.state.cardAmount} />
                 <TagsSearch history={this.props.history} query={'Appliances'} isHome={true} cardAmount={this.state.cardAmount} />
+                <TagsSearch history={this.props.history} query={'Art'} isHome={true} cardAmount={this.state.cardAmount} />
                 <TagsSearch history={this.props.history} query={'Automotive'} isHome={true} cardAmount={this.state.cardAmount} />
                 <TagsSearch history={this.props.history} query={'Baby'} isHome={true} cardAmount={this.state.cardAmount} />
                 <TagsSearch history={this.props.history} query={'Beauty'} isHome={true} cardAmount={this.state.cardAmount} />

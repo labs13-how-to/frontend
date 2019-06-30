@@ -19,7 +19,13 @@ import MobileStoreButton from 'react-mobile-store-button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+// import Slide from 'react-reveal/Slide';
+import Bounce from 'react-reveal/Bounce';
+// import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Zoom';
 import "./landingpage.scss"
+
+
 
 
 class LandingPage extends React.Component {
@@ -54,45 +60,59 @@ class LandingPage extends React.Component {
                 <div className='upper-content'>
                     <div className='upper-content-section' id='one'>
                         <div className='img-content'>
+                            {/* <Zoom> */}
                             <img className='category-example' src={categoryExample} alt='category'></img>
+                            {/* </Zoom> */}
                         </div>
                         <div className='text-content'>
                             <h3>Browse</h3>
-                            <p>Looking for a good project to take on? Browse highly-rated projects by category, or search and browse through tags and users!</p>
+                            <Bounce right>
+                                <p>Looking for a good project to take on? Browse highly-rated projects by category, or search and browse through tags and users!</p>
+                            </Bounce>
                         </div>
                     </div>
                     <div className='upper-content-section' id='two'>
                         <div className='img-content'>
+                            {/* <Zoom> */}
                             <img className='review-example' src={reviewExample} alt='review'></img>
+                            {/* </Zoom> */}
                         </div>
                         <div className='text-content'>
                             <h3>Rate</h3>
-                            <p>Here at <b>Review It Yourself</b>, we know it can be hard to find good DIY posts. Luckily our rating scale makes it easy for you to find the best projects reviewed and tested by people like you!</p>
+                            <Bounce left>
+                                <p>Here at <b>Review It Yourself</b>, we know it can be hard to find good DIY posts. Luckily our rating scale makes it easy for you to find the best projects reviewed and tested by people like you!</p>
+                            </Bounce>
                         </div>
                     </div>
                     <div className='upper-content-section' id="three">
                         <div className='img-content'>
+                            {/* <Zoom> */}
                             <img className='post-example' src={postExample} alt='post'></img>
+                            {/* </Zoom> */}
                         </div>
                         <div className='text-content'>
                             <h3>Create</h3>
-                            <p>Have an amazing project you want to share, or think you can do a better job than someone else?  Post it here and see how well it does!</p>
+                            <Bounce right>
+                                <p>Have an amazing project you want to share, or think you can do a better job than someone else?  Post it here and see how well it does!</p>
+                            </Bounce>
                         </div>
                     </div>
 
                     <div className='join-btn2-div'>
-                        <Button className="join-btn2" href={`${process.env.REACT_APP_BE_URL}/auth/google`}>Join Now</Button>
+                        <a href={`${process.env.REACT_APP_BE_URL}/auth/google`} className="join-btn2"><b>Join Now</b></a>
                     </div>
-                    <div className='join-btn3-div'>
+                    {/* <div className='join-btn3-div'>
                         <Button className="join-btn3" href={`${process.env.REACT_APP_BE_URL}/auth/google`}>Join Now</Button>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="middle-content">
                     <h2>Browse From Your Phone</h2>
                     <div className="middle-content-main">
                         <div className="iphone-div">
-                            <img className='iphone-img' src={iphone} alt='iPhone'></img>
+                            <Fade left>
+                                <img className='iphone-img' src={iphone} alt='iPhone'></img>
+                            </Fade>
                         </div>
                         <div className='middle-content-main2'>
                             <div className='middle-content-section'></div>

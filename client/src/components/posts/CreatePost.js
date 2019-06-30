@@ -25,6 +25,8 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+import HeadShake from 'react-reveal/HeadShake';
+import Bounce from 'react-reveal/Bounce';
 
 import ProtectedRoute from '../ProtectedRoute.js';
 
@@ -58,9 +60,9 @@ class CreatePostForm extends React.Component {
             submit: false,
             supplyList: [],
             showAlert: false,
+            loading: false,
         };
     }
-
 
     componentDidMount() {
         this.hydrateStateWithLocalStorage();
@@ -73,8 +75,6 @@ class CreatePostForm extends React.Component {
             this.handlePostSubmit();
         }
     }
-
-
 
     hydrateStateWithLocalStorage() {
         // if the key exists in localStorage
@@ -166,6 +166,7 @@ class CreatePostForm extends React.Component {
             this.setState({ showAlert: true })
         }
     };
+
     //submit post after image
     handlePostSubmit = async () => {
         if (this.state.submit) {
@@ -198,15 +199,18 @@ class CreatePostForm extends React.Component {
                 created_by: ""
             });
 
-
             setTimeout(() => {
                 this.state.tags.forEach(tag => {
                     const newTag = { tag_id: tag.tag_id, post_id: this.props.addId };
                     this.props.addTag(newTag);
                 });
                 this.props.history.push(`/forms/post/edit/${this.props.addId}`);
-                this.scrollWin()
+
             }, 300);
+
+            setTimeout(() => {
+                this.scrollWin()
+            }, 800);
 
         }
     };
@@ -280,14 +284,16 @@ class CreatePostForm extends React.Component {
                     <FormGroup>
                         <p>Category</p>
                         <div className="tag-section">
+
                             <p className="post-tags form-tags">
                                 {this.state.tags && this.state.tags.map((tag, index) => {
                                     let currTag = tag.name.split('');
                                     currTag[0] = currTag[0].toUpperCase();
                                     currTag = currTag.join('')
-                                    return <span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >x</span></span>
+                                    return <Bounce duration={500}><span key={index}>{currTag}<span id={'tag-delete'} onClick={() => this.handleTagsChange({ target: { value: tag.name } })} >x</span></span></Bounce>
                                 })}
                             </p>
+
                             <InputGroupButtonDropdown
                                 className='desktop-select'
                                 addonType="append"
@@ -431,11 +437,11 @@ class CreatePostForm extends React.Component {
                                     let currSup = sup.split('');
                                     currSup[0] = currSup[0].toUpperCase();
                                     currSup = currSup.join('');
-                                    return <span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
+                                    return <Bounce duration={500}><span key={index} id={index}>{currSup}<span id={'tag-delete'} onClick={() => {
                                         let supList = this.state.supplyList;
                                         supList.splice(index, 1)
                                         this.setState({ supplyList: supList })
-                                    }} >x</span></span>
+                                    }} >x</span></span></Bounce>
                                 })}
 
                             </p>
@@ -449,13 +455,15 @@ class CreatePostForm extends React.Component {
                             />
                         </div>
                     </FormGroup>
-                    <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
-                        * You Must Fill in the required fields to submit a post! *
+                    <HeadShake>
+                        <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                            * You Must Fill in the required fields to submit a post! *
                     </div>
+                    </HeadShake>
                     <div className="pf-button-container">
                         <Button className="pf-button" onClick={this.handleSubmit}>Save</Button>
                     </div>
-              
+
                 </Form>
             </div>
             ) :

@@ -4,8 +4,16 @@ import { deleteStep } from '../../actions/steps-tagsActions';
 import { Card, CardText, CardImg, Button } from 'reactstrap';
 import "./postSteps.scss";
 
+import uniqueId from 'react-html-id';
+
 
 class PostStep extends React.Component {
+  constructor() {
+    super()
+
+    uniqueId.enableUniqueIds(this)
+  }
+
   state = {
     isForm: false
   }
@@ -18,7 +26,6 @@ class PostStep extends React.Component {
         isForm: isForm
       })
     }
-
 
   }
 
@@ -40,7 +47,7 @@ class PostStep extends React.Component {
             {this.state.isForm && <Button className='ps-button' onClick={() => this.props.deleteStep(post_id, id)}>Delete</Button>}
           </div>
           <CardText className='ps-title' id="card"> {title}</CardText>
-            <CardText className='ps-text'>{instruction}</CardText>
+          <CardText className='ps-text'>{instruction}</CardText>
           {img_url && <CardImg className='ps-img' src={img_url} alt="Card image" />}
         </Card>
       </div>

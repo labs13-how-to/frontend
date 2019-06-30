@@ -1,6 +1,8 @@
 import React from 'react';
 import { Card, CardText, CardBody, CardHeader, CardImg } from 'reactstrap';
 import StarRatingComponent from "react-star-rating-component";
+import LazyLoad from 'react-lazyload';
+import Fade from 'react-reveal/Fade';
 
 // import { AnimateOnChange } from 'react-animation';
 
@@ -22,29 +24,32 @@ class Posts extends React.Component {
         const cardDate = this.getDate(this.props.post.created_at);
         return (
 
-            < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
-            }>
-                <CardImg className="img-fluid" src={img_url} alt="Card image" />
-                <CardHeader>{title && title.length > 38 ? title.slice(0, 38) + '...' : title}</CardHeader>
+            <LazyLoad>
+                <Fade>
+                    < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
+                    }>
+                        <CardImg className="img-fluid" src={img_url} alt="Card image" />
+                        <CardHeader>{title && title.length > 38 ? title.slice(0, 38) + '...' : title}</CardHeader>
 
-                <CardBody>
-                    <StarRatingComponent
-                        className="review-stars post-stars"
-                        name="stars"
-                        starCount={5}
-                        value={Math.round(this.props.post.review_avg)}
-                    />
-                    <CardText className='review-count'>{`• \xa0`}{this.props.post.review_count}</CardText>
-                </CardBody>
-                <CardBody>
-                    <div className='post-footer'>
-                        {this.props.post.username && this.props.post.username.length > 16 ? this.props.post.username.slice(0, 16) + '...' : this.props.post.username}
-                        {`\xa0 • \xa0`}
-                        <CardText className='date-count'>{cardDate && `${cardDate[1][1]}/${cardDate[2]}/${cardDate[0]}`}</CardText>
-                    </div>
-                </CardBody>
-            </Card >
-
+                        <CardBody>
+                            <StarRatingComponent
+                                className="review-stars post-stars"
+                                name="stars"
+                                starCount={5}
+                                value={Math.round(this.props.post.review_avg)}
+                            />
+                            <CardText className='review-count'>{`• \xa0`}{this.props.post.review_count}</CardText>
+                        </CardBody>
+                        <CardBody>
+                            <div className='post-footer'>
+                                {this.props.post.username && this.props.post.username.length > 16 ? this.props.post.username.slice(0, 16) + '...' : this.props.post.username}
+                                {`\xa0 • \xa0`}
+                                <CardText className='date-count'>{cardDate && `${cardDate[1][1]}/${cardDate[2]}/${cardDate[0]}`}</CardText>
+                            </div>
+                        </CardBody>
+                    </Card >
+                </Fade>
+            </LazyLoad>
         );
     }
 };

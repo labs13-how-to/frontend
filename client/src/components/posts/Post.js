@@ -66,7 +66,7 @@ class Post extends React.Component {
         const supplyList = supplies && supplies.split(" _ ")
         return (
             <React.Fragment>
-                <Card id='post post-top' className="post-card" >
+                <Card id='post' className="post-card" >
                     <CardImg className="img-fluid" src={img_url} alt="Card image" />
 
                     <CardBody>
@@ -119,7 +119,8 @@ class Post extends React.Component {
                                 {supplyList && supplyList.map((item, index) => <li key={index}>{item}</li>)}
                             </div>
                             <div className="p-content-section">
-                                <span className="p-content-label">Pre-Requisite Skills</span>
+                                <span className="p-content-label" id="skills">Pre-Requisite Skills</span>
+                                <span className="p-content-label" id="skills-mobile">Skills</span>
                                 <CardText>{skills}</CardText>
                             </div>
                         </div>

@@ -54,3 +54,17 @@
         font-size: 18px;
     }
 }
+
+.user-div {
+        margin: 6% 8%;
+        @media (max-width: 430px) {
+            margin: 20px 14%;
+        }
+        @media (max-width: 380px) {
+            margin: 20px 14%;
+        }
+        @media (max-width: 330px) {
+            margin: 20px 11%;
+        }
+}
+

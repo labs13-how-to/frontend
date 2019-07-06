@@ -26,7 +26,7 @@ class Posts extends React.Component {
 
             <LazyLoad>
                 <Fade>
-                    {/* <div className="display-div"> */}
+                    <div className="display-div">
                         < Card className='display-posts' onClick={() => this.props.history.push(`/posts/${id}`)
                         }>
                             <CardImg className="img-fluid" src={img_url} alt="Card image" />
@@ -49,7 +49,7 @@ class Posts extends React.Component {
                                 </div>
                             </CardBody>
                         </Card >
-                    {/* </div> */}
+                    </div>
                 </Fade>
             </LazyLoad>
         );

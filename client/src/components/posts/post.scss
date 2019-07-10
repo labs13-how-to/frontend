@@ -118,6 +118,25 @@ pre {
     color: #ff851a;
     font-size: 25px;
     font-family: "Nunito", sans-serif;
+
+    @media (max-width: 1000px) { 
+        display: block;
+    }
+}
+
+#skills {
+    @media (max-width: 1000px) { 
+        display: none;
+    }
+
+}
+#skills-mobile {
+
+    display: none;
+
+    @media (max-width: 1000px) { 
+        display: block;
+    }
 }
 
 //2nd class name for tags on post-page

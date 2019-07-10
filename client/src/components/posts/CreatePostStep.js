@@ -15,6 +15,8 @@ import FilePondPluginFileEncode from "filepond-plugin-file-encode";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
+
+
 // Register FilePond the plugins
 registerPlugin(
     FilePondPluginFileEncode,
@@ -26,6 +28,7 @@ registerPlugin(
 class CreateStepForm extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             post_id: this.props.match.params.id,
             step_num: 1,
@@ -36,6 +39,7 @@ class CreateStepForm extends React.Component {
             submit: false,
             postImage: undefined,
             showAlert: false,
+            loading: false,
         };
     }
 
@@ -46,6 +50,7 @@ class CreateStepForm extends React.Component {
                 step_num: this.props.currPost.steps.length + 1
             });
     }
+
     componentDidUpdate(prevProps, prevS) {
         //refresh steps
         if (this.props.currPost)
@@ -69,6 +74,7 @@ class CreateStepForm extends React.Component {
             this.handleStepSubmit();
         }
     }
+
     handleChange = e => {
         if (this.state.showAlert) this.setState({ showAlert: false })
         this.setState({ [e.target.name]: e.target.value });
@@ -88,6 +94,7 @@ class CreateStepForm extends React.Component {
             this.setState({ submit: true });
 
             if (!this.state.postImage) {
+                this.setState({ loading: true })
                 setTimeout(() => this.handleStepSubmit(), 100);
             } else {
                 setTimeout(
@@ -98,8 +105,15 @@ class CreateStepForm extends React.Component {
         } else {
             this.setState({ showAlert: true });
         }
-
     };
+
+    scrollWin() {
+        let element1 = document.getElementsByClassName('ps-card-container')
+        const lastItem = element1[element1.length - 1]
+        console.log("last item", lastItem)
+        lastItem.scrollIntoView();
+        window.scrollBy(0, -50);
+    }
 
     handleInit() {
         console.log("FilePond instance has initialised", this.pond);
@@ -117,6 +131,8 @@ class CreateStepForm extends React.Component {
                 vid_url: this.state.vid_url
             };
             await this.props.addStep(this.state.post_id, newStep);
+            this.setState({ loading: false })
+
 
             this.setState({
                 step_num: this.state.step_num + 1,
@@ -131,11 +147,16 @@ class CreateStepForm extends React.Component {
                 this.props.getPost(this.state.post_id)
                 this.pond.removeFiles();
             }, 300);
+
+            setTimeout(() => {
+                this.scrollWin()
+            }, 800);
         }
     }
 
     render() {
         const { steps } = this.props.currPost;
+
         return (
             <>
                 <h3 id='step-form' className="psf-section-header">
@@ -145,7 +166,7 @@ class CreateStepForm extends React.Component {
                     steps.map((step, index) => {
                         return (
                             <PostStep
-                                key={index}
+                                key={step.id}
                                 step={step}
                                 index={index}
                                 location={this.props.location}
@@ -210,7 +231,7 @@ class CreateStepForm extends React.Component {
                                 />
                             </FormGroup>
                         </div>
-                        <div class={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
+                        <div className={`alert alert-danger${this.state.showAlert ? " show-alert" : ""}`} role="alert">
                             * You Must Fill in the required fields to submit a post! *
                     </div>
                         <div className="psf-button-container">
